@@ -10,14 +10,26 @@ import UIKit
 class LoginViewController: UIViewController {
 
     @IBOutlet var personDetailsview: [UIView]!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         for userview in personDetailsview{
+            
+            userview.layer.borderWidth = 1.0
             userview.layer.borderColor = UIColor.white.cgColor
-            userview.layer.cornerRadius = 1.0
             
         }
         // Do any additional setup after loading the view.
     }
+    
+    
+    @IBAction func registerButtonAction(_ sender: UIButton) {
+        let vc =  RegisterViewController(nibName: "RegisterViewController", bundle: nil)
+        navigationController?.pushViewController(vc, animated: true)
+
+        
+    }
+    
 
 }

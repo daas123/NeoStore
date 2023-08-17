@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		922FA9792A8E418D00D30014 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922FA9772A8E418D00D30014 /* RegisterViewController.swift */; };
+		922FA97A2A8E418D00D30014 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 922FA9782A8E418D00D30014 /* RegisterViewController.xib */; };
 		924449B72A8E192B00481CFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924449B62A8E192B00481CFD /* AppDelegate.swift */; };
 		924449B92A8E192B00481CFD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924449B82A8E192B00481CFD /* SceneDelegate.swift */; };
 		924449BB2A8E192B00481CFD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924449BA2A8E192B00481CFD /* ViewController.swift */; };
@@ -38,6 +40,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		922FA9772A8E418D00D30014 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		922FA9782A8E418D00D30014 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		924449B32A8E192B00481CFD /* Neostore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neostore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		924449B62A8E192B00481CFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		924449B82A8E192B00481CFD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +84,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		922FA9762A8E417400D30014 /* Register page */ = {
+			isa = PBXGroup;
+			children = (
+				922FA9772A8E418D00D30014 /* RegisterViewController.swift */,
+				922FA9782A8E418D00D30014 /* RegisterViewController.xib */,
+			);
+			path = "Register page";
+			sourceTree = "<group>";
+		};
 		924449AA2A8E192B00481CFD = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +180,7 @@
 		92D6EB822A8E1EBC00838A15 /* pages */ = {
 			isa = PBXGroup;
 			children = (
+				922FA9762A8E417400D30014 /* Register page */,
 				92D6EB832A8E1EC500838A15 /* login page */,
 			);
 			path = pages;
@@ -286,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92D6EB872A8E1EE200838A15 /* LoginViewController.xib in Resources */,
+				922FA97A2A8E418D00D30014 /* RegisterViewController.xib in Resources */,
 				924449C32A8E192D00481CFD /* LaunchScreen.storyboard in Resources */,
 				924449C02A8E192D00481CFD /* Assets.xcassets in Resources */,
 				924449BE2A8E192B00481CFD /* Main.storyboard in Resources */,
@@ -314,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92D6EB862A8E1EE200838A15 /* LoginViewController.swift in Sources */,
+				922FA9792A8E418D00D30014 /* RegisterViewController.swift in Sources */,
 				924449BB2A8E192B00481CFD /* ViewController.swift in Sources */,
 				924449B72A8E192B00481CFD /* AppDelegate.swift in Sources */,
 				924449B92A8E192B00481CFD /* SceneDelegate.swift in Sources */,
