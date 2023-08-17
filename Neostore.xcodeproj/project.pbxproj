@@ -16,6 +16,8 @@
 		924449CE2A8E192D00481CFD /* NeostoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924449CD2A8E192D00481CFD /* NeostoreTests.swift */; };
 		924449D82A8E192D00481CFD /* NeostoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924449D72A8E192D00481CFD /* NeostoreUITests.swift */; };
 		924449DA2A8E192D00481CFD /* NeostoreUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924449D92A8E192D00481CFD /* NeostoreUITestsLaunchTests.swift */; };
+		92D6EB862A8E1EE200838A15 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D6EB842A8E1EE200838A15 /* LoginViewController.swift */; };
+		92D6EB872A8E1EE200838A15 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92D6EB852A8E1EE200838A15 /* LoginViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		924449D32A8E192D00481CFD /* NeostoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeostoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		924449D72A8E192D00481CFD /* NeostoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeostoreUITests.swift; sourceTree = "<group>"; };
 		924449D92A8E192D00481CFD /* NeostoreUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeostoreUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		92D6EB842A8E1EE200838A15 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		92D6EB852A8E1EE200838A15 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +103,10 @@
 		924449B52A8E192B00481CFD /* Neostore */ = {
 			isa = PBXGroup;
 			children = (
-				924449B62A8E192B00481CFD /* AppDelegate.swift */,
-				924449B82A8E192B00481CFD /* SceneDelegate.swift */,
-				924449BA2A8E192B00481CFD /* ViewController.swift */,
-				924449BC2A8E192B00481CFD /* Main.storyboard */,
+				92D6EB7E2A8E1DF800838A15 /* Application */,
+				92D6EB7D2A8E1DC100838A15 /* Model */,
+				92D6EB7C2A8E1DC000838A15 /* ModelView */,
+				92D6EB7B2A8E1DC000838A15 /* View */,
 				924449BF2A8E192C00481CFD /* Assets.xcassets */,
 				924449C12A8E192D00481CFD /* LaunchScreen.storyboard */,
 				924449C42A8E192D00481CFD /* Info.plist */,
@@ -125,6 +129,56 @@
 				924449D92A8E192D00481CFD /* NeostoreUITestsLaunchTests.swift */,
 			);
 			path = NeostoreUITests;
+			sourceTree = "<group>";
+		};
+		92D6EB7B2A8E1DC000838A15 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				92D6EB822A8E1EBC00838A15 /* pages */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		92D6EB7C2A8E1DC000838A15 /* ModelView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ModelView;
+			sourceTree = "<group>";
+		};
+		92D6EB7D2A8E1DC100838A15 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		92D6EB7E2A8E1DF800838A15 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				924449BA2A8E192B00481CFD /* ViewController.swift */,
+				924449BC2A8E192B00481CFD /* Main.storyboard */,
+				924449B62A8E192B00481CFD /* AppDelegate.swift */,
+				924449B82A8E192B00481CFD /* SceneDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		92D6EB822A8E1EBC00838A15 /* pages */ = {
+			isa = PBXGroup;
+			children = (
+				92D6EB832A8E1EC500838A15 /* login page */,
+			);
+			path = pages;
+			sourceTree = "<group>";
+		};
+		92D6EB832A8E1EC500838A15 /* login page */ = {
+			isa = PBXGroup;
+			children = (
+				92D6EB842A8E1EE200838A15 /* LoginViewController.swift */,
+				92D6EB852A8E1EE200838A15 /* LoginViewController.xib */,
+			);
+			path = "login page";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +285,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92D6EB872A8E1EE200838A15 /* LoginViewController.xib in Resources */,
 				924449C32A8E192D00481CFD /* LaunchScreen.storyboard in Resources */,
 				924449C02A8E192D00481CFD /* Assets.xcassets in Resources */,
 				924449BE2A8E192B00481CFD /* Main.storyboard in Resources */,
@@ -258,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92D6EB862A8E1EE200838A15 /* LoginViewController.swift in Sources */,
 				924449BB2A8E192B00481CFD /* ViewController.swift in Sources */,
 				924449B72A8E192B00481CFD /* AppDelegate.swift in Sources */,
 				924449B92A8E192B00481CFD /* SceneDelegate.swift in Sources */,
