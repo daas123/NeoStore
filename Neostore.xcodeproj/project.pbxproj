@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		921363372A8E61550035A751 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 921363352A8E61550035A751 /* HomeViewController.swift */; };
+		921363382A8E61550035A751 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 921363362A8E61550035A751 /* HomeViewController.xib */; };
 		922FA9792A8E418D00D30014 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922FA9772A8E418D00D30014 /* RegisterViewController.swift */; };
 		922FA97A2A8E418D00D30014 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 922FA9782A8E418D00D30014 /* RegisterViewController.xib */; };
 		924449B72A8E192B00481CFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924449B62A8E192B00481CFD /* AppDelegate.swift */; };
@@ -18,6 +20,8 @@
 		924449CE2A8E192D00481CFD /* NeostoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924449CD2A8E192D00481CFD /* NeostoreTests.swift */; };
 		924449D82A8E192D00481CFD /* NeostoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924449D72A8E192D00481CFD /* NeostoreUITests.swift */; };
 		924449DA2A8E192D00481CFD /* NeostoreUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924449D92A8E192D00481CFD /* NeostoreUITestsLaunchTests.swift */; };
+		929524522A8F3608004C2089 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929524502A8F3608004C2089 /* HomeCollectionViewCell.swift */; };
+		929524532A8F3608004C2089 /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 929524512A8F3608004C2089 /* HomeCollectionViewCell.xib */; };
 		92D6EB862A8E1EE200838A15 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D6EB842A8E1EE200838A15 /* LoginViewController.swift */; };
 		92D6EB872A8E1EE200838A15 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92D6EB852A8E1EE200838A15 /* LoginViewController.xib */; };
 /* End PBXBuildFile section */
@@ -40,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		921363352A8E61550035A751 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		921363362A8E61550035A751 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 		922FA9772A8E418D00D30014 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		922FA9782A8E418D00D30014 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		924449B32A8E192B00481CFD /* Neostore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Neostore.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,6 +61,8 @@
 		924449D32A8E192D00481CFD /* NeostoreUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NeostoreUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		924449D72A8E192D00481CFD /* NeostoreUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeostoreUITests.swift; sourceTree = "<group>"; };
 		924449D92A8E192D00481CFD /* NeostoreUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NeostoreUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		929524502A8F3608004C2089 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
+		929524512A8F3608004C2089 /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
 		92D6EB842A8E1EE200838A15 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		92D6EB852A8E1EE200838A15 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,6 +92,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		921363342A8E612F0035A751 /* home page */ = {
+			isa = PBXGroup;
+			children = (
+				921363352A8E61550035A751 /* HomeViewController.swift */,
+				921363362A8E61550035A751 /* HomeViewController.xib */,
+				9295244F2A8F35B7004C2089 /* HomeCollectionViewCell */,
+			);
+			path = "home page";
+			sourceTree = "<group>";
+		};
 		922FA9762A8E417400D30014 /* Register page */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +162,15 @@
 			path = NeostoreUITests;
 			sourceTree = "<group>";
 		};
+		9295244F2A8F35B7004C2089 /* HomeCollectionViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				929524502A8F3608004C2089 /* HomeCollectionViewCell.swift */,
+				929524512A8F3608004C2089 /* HomeCollectionViewCell.xib */,
+			);
+			path = HomeCollectionViewCell;
+			sourceTree = "<group>";
+		};
 		92D6EB7B2A8E1DC000838A15 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +207,7 @@
 		92D6EB822A8E1EBC00838A15 /* pages */ = {
 			isa = PBXGroup;
 			children = (
+				921363342A8E612F0035A751 /* home page */,
 				922FA9762A8E417400D30014 /* Register page */,
 				92D6EB832A8E1EC500838A15 /* login page */,
 			);
@@ -303,7 +331,9 @@
 				922FA97A2A8E418D00D30014 /* RegisterViewController.xib in Resources */,
 				924449C32A8E192D00481CFD /* LaunchScreen.storyboard in Resources */,
 				924449C02A8E192D00481CFD /* Assets.xcassets in Resources */,
+				929524532A8F3608004C2089 /* HomeCollectionViewCell.xib in Resources */,
 				924449BE2A8E192B00481CFD /* Main.storyboard in Resources */,
+				921363382A8E61550035A751 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -328,11 +358,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				929524522A8F3608004C2089 /* HomeCollectionViewCell.swift in Sources */,
 				92D6EB862A8E1EE200838A15 /* LoginViewController.swift in Sources */,
 				922FA9792A8E418D00D30014 /* RegisterViewController.swift in Sources */,
 				924449BB2A8E192B00481CFD /* ViewController.swift in Sources */,
 				924449B72A8E192B00481CFD /* AppDelegate.swift in Sources */,
 				924449B92A8E192B00481CFD /* SceneDelegate.swift in Sources */,
+				921363372A8E61550035A751 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
