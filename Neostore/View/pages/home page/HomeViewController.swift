@@ -20,10 +20,6 @@ class HomeViewController: UIViewController{
         pageControl.currentPage = 0
         pageControl.numberOfPages = collectionViewImages.count
         
-        // for collection view direction
-        if let layout = homeCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.scrollDirection = .horizontal
-        }
         
         //nib register
         let reg = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
@@ -33,17 +29,15 @@ class HomeViewController: UIViewController{
         homeCollectionView.delegate = self
         homeCollectionView.dataSource = self
         
+        // for removing navigation
+        navigationController?.isNavigationBarHidden = true
+        
     }
 }
 
-extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout , UIScrollViewDelegate {
+extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout {
     
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
-    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        
         return CGSize(width: homeCollectionView.frame.width, height: homeCollectionView.frame.height )
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
