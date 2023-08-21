@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SideMenuViewController" customModule="Neostore" customModuleProvider="target">
+            <connections>
+                <outlet property="SideMenuImage" destination="upK-15-4Yj" id="oXA-M8-fGL"/>
+                <outlet property="SideMenuTableview" destination="e8u-s1-dCl" id="KxP-ko-1Jf"/>
+                <outlet property="view" destination="qAv-Ri-uRT" id="4A2-k2-dkR"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="qAv-Ri-uRT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwn-um-YPV">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="saad" translatesAutoresizingMaskIntoConstraints="NO" id="upK-15-4Yj">
+                            <rect key="frame" x="146" y="70" width="83" height="83"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="83" id="CNY-ud-1GQ"/>
+                                <constraint firstAttribute="width" constant="83" id="hSO-PD-57O"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saad Vadanagara" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYr-eH-tZE">
+                            <rect key="frame" x="5" y="171" width="365" height="28"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="23"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saadvadanagara@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pP8-Ad-PP7">
+                            <rect key="frame" x="5" y="212" width="365" height="15.666666666666657"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.079854620479999999" green="0.058132847010000002" blue="0.087857641350000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="tYr-eH-tZE" firstAttribute="leading" secondItem="pwn-um-YPV" secondAttribute="leading" constant="5" id="0Re-hh-1fo"/>
+                        <constraint firstAttribute="trailing" secondItem="pP8-Ad-PP7" secondAttribute="trailing" constant="5" id="1tL-Zf-HN3"/>
+                        <constraint firstItem="pP8-Ad-PP7" firstAttribute="leading" secondItem="pwn-um-YPV" secondAttribute="leading" constant="5" id="HG7-0u-D4V"/>
+                        <constraint firstItem="pP8-Ad-PP7" firstAttribute="top" secondItem="tYr-eH-tZE" secondAttribute="bottom" constant="13" id="JXn-Jn-3lT"/>
+                        <constraint firstItem="upK-15-4Yj" firstAttribute="top" secondItem="pwn-um-YPV" secondAttribute="top" constant="70" id="abt-pf-vbV"/>
+                        <constraint firstAttribute="trailing" secondItem="tYr-eH-tZE" secondAttribute="trailing" constant="5" id="ocV-cf-lHR"/>
+                        <constraint firstAttribute="height" constant="250" id="ppG-z5-3mP"/>
+                        <constraint firstItem="upK-15-4Yj" firstAttribute="centerX" secondItem="pwn-um-YPV" secondAttribute="centerX" id="tBr-FD-jgd"/>
+                        <constraint firstItem="tYr-eH-tZE" firstAttribute="top" secondItem="upK-15-4Yj" secondAttribute="bottom" constant="18" id="u58-aN-KTe"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="e8u-s1-dCl">
+                    <rect key="frame" x="0.0" y="250" width="375" height="562"/>
+                    <color key="backgroundColor" red="0.079854620479999999" green="0.058132847010000002" blue="0.087857641350000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="2Xn-mj-6sc"/>
+            <color key="backgroundColor" red="0.079854620479999999" green="0.058132847010000002" blue="0.087857641350000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="e8u-s1-dCl" firstAttribute="top" secondItem="pwn-um-YPV" secondAttribute="bottom" id="EE9-Da-bm8"/>
+                <constraint firstItem="e8u-s1-dCl" firstAttribute="trailing" secondItem="2Xn-mj-6sc" secondAttribute="trailing" id="P2c-Cz-fbN"/>
+                <constraint firstAttribute="bottom" secondItem="e8u-s1-dCl" secondAttribute="bottom" id="Uad-NH-va4"/>
+                <constraint firstItem="pwn-um-YPV" firstAttribute="trailing" secondItem="2Xn-mj-6sc" secondAttribute="trailing" id="XVE-hi-uet"/>
+                <constraint firstItem="pwn-um-YPV" firstAttribute="top" secondItem="qAv-Ri-uRT" secondAttribute="top" id="avH-kW-ZM2"/>
+                <constraint firstItem="pwn-um-YPV" firstAttribute="leading" secondItem="2Xn-mj-6sc" secondAttribute="leading" id="cKr-kH-cvE"/>
+                <constraint firstItem="e8u-s1-dCl" firstAttribute="leading" secondItem="2Xn-mj-6sc" secondAttribute="leading" id="l73-V2-eU7"/>
+            </constraints>
+            <point key="canvasLocation" x="284.73282442748092" y="-91.549295774647888"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="saad" width="800" height="800"/>
+    </resources>
+</document>
