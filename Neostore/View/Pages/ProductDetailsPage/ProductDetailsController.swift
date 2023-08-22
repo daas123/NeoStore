@@ -62,7 +62,7 @@ class ProductDetailsController: UIViewController {
         
     }
     @objc func searchButtonTapped() {
-        navigationController?.pushViewController(ProductDetailsController(nibName: "ProductDetailsController", bundle: nil), animated: true)
+        navigationController?.pushViewController(CartViewController(nibName: "CartViewController", bundle: nil), animated: true)
     }
     
     
