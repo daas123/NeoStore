@@ -8,7 +8,24 @@
 
 import UIKit
 
+struct categorydetails{
+    var name : String
+    var imagename :String
+    
+    var nametop : Int
+    var namebottom :Int
+    var nameleading : Int
+    var nametrailing :Int
+    
+    var imagetop : Int
+    var imagebottom :Int
+    var imagetrailing :Int
+    var imageleading : Int
+}
 class HomeViewController: UIViewController{
+    private var categoryData:[[String:Any]] = [
+        ["name":"Table","lblPosition":positions.topRight,"imgName":"table","imgPosition":positions.bottomLeft], ["name":"Sofas","lblPosition":positions.bottomLeft,"imgName":"sofa","imgPosition":positions.topRight],["name":"Chairs","lblPosition":positions.topLeft,"imgName":"chair","imgPosition":positions.bottomRight],["name":"Cupboards","lblPosition":positions.bottomRight,"imgName":"cupboard","imgPosition":positions.topLeft]
+    ]
     
     var sideMenuOpen = false
     var panGesture: UIPanGestureRecognizer!
@@ -34,6 +51,10 @@ class HomeViewController: UIViewController{
     // home collection view outlet
     @IBOutlet weak var homeCollectionView: UICollectionView!
     
+    // category collection view outlet
+    
+    @IBOutlet weak var categoryCollectionView: UICollectionView!
+    
     
     // demo imaged for collection view
     
@@ -45,7 +66,10 @@ class HomeViewController: UIViewController{
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        // setting back button title
+        let backButton = UIBarButtonItem()
+        backButton.title = "" // Set an empty title
+        navigationItem.backBarButtonItem = backButton
         
         //for page controll
         pageControl.currentPage = 1
@@ -53,12 +77,18 @@ class HomeViewController: UIViewController{
         
         
         //nib register
-        let reg = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
-        homeCollectionView.register(reg, forCellWithReuseIdentifier: "collectionviewcell")
+        let slidecell = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
+        homeCollectionView.register(slidecell, forCellWithReuseIdentifier: "collectionviewcell")
+        
+        let catgorycell = UINib(nibName: "CategoryCollectionCell", bundle: nil)
+        categoryCollectionView.register(catgorycell, forCellWithReuseIdentifier: "cell")
+    
         
         // collection view deligate and datasource
         homeCollectionView.delegate = self
         homeCollectionView.dataSource = self
+        categoryCollectionView.delegate = self
+        categoryCollectionView.dataSource = self
         
         //  for removing navigation
         navigationController?.isNavigationBarHidden = true
@@ -141,8 +171,8 @@ class HomeViewController: UIViewController{
             self.view.backgroundColor = #colorLiteral(red: 0.07985462048, green: 0.05813284701, blue: 0.08785764135, alpha: 1)
             self.sideMenuLeadingConstraint.constant = 0
             self.MainMenuLeadingConstraint.constant = self.sideMenuContainer.frame.width
-            self.mainMenutopConstraint.constant = 100
-            self.mainMenubottomConstraint.constant = 100
+            self.mainMenutopConstraint.constant = 50
+            self.mainMenubottomConstraint.constant = 50
             self.mainMenuTrailingConstrain.constant = self.sideMenuContainer.frame.width
             self.view.layoutIfNeeded()
         }
@@ -168,16 +198,47 @@ class HomeViewController: UIViewController{
 extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: homeCollectionView.frame.width, height: homeCollectionView.frame.height )
+        if collectionView == homeCollectionView{
+            return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height)
+        }else{
+            let spacing: CGFloat = 10 // Adjust spacing between cells
+            
+            // Calculate cell width based on available width and spacing
+            let cellWidth = (collectionView.bounds.width - spacing * 3) / 2 // Adjust the factor accordingly
+            
+            // Calculate cell height based on aspect ratio (you can adjust the aspect ratio as needed)
+            let aspectRatio: CGFloat = 1 // Adjust aspect ratio as needed
+            let cellHeight = cellWidth * aspectRatio
+            
+            return CGSize(width: cellWidth, height: cellHeight)
+        }
     }
+   
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        20
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        collectionViewImages.count
+        if collectionView == homeCollectionView{
+            return collectionViewImages.count
+        }else{
+            return categoryData.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let collectionviewcell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionviewcell", for: indexPath) as! HomeCollectionViewCell
-        collectionviewcell.cellImage.image = UIImage(named: collectionViewImages[indexPath.row])
-        return collectionviewcell
+        if collectionView == homeCollectionView{
+            let collectionviewcell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionviewcell", for: indexPath) as! HomeCollectionViewCell
+            collectionviewcell.cellImage.image = UIImage(named: collectionViewImages[indexPath.row])
+            return collectionviewcell
+        }else{
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoryCollectionCell
+            cell.setContraints(lblname: categoryData[indexPath.row]["name"] as! String,
+                               lblPosition: categoryData[indexPath.row]["lblPosition"] as! positions,
+                               imgName: categoryData[indexPath.row]["imgName"] as! String,
+                               imgPosition: categoryData[indexPath.row]["imgPosition"] as! positions)
+            return cell
+        }
     }
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         pageControl.currentPage = indexPath.row

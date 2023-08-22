@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "8D64CBAA-A567-45FF-AA06-63EDB3BBAC85"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9B22AF88-5D44-4F18-ADA3-0CC57F65C23A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/View/pages/home page/HomeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "HomeViewController"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "54D61856-E046-434A-8021-21073DDB5F4F"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/View/pages/home page/HomeViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "HomeViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "54D61856-E046-434A-8021-21073DDB5F4F - c7b95f735a27f9c"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Neostore.HomeViewController.MainMenuLeadingConstraint.getter : Swift.Optional&lt;__C.NSLayoutConstraint&gt;"
+                  moduleName = "Neostore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/View/pages/home%20page/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "85">
+               </Location>
+               <Location
+                  uuid = "54D61856-E046-434A-8021-21073DDB5F4F - 736526efa4b4e010"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Neostore.HomeViewController.MainMenuLeadingConstraint.setter : Swift.Optional&lt;__C.NSLayoutConstraint&gt;"
+                  moduleName = "Neostore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/View/pages/home%20page/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  uuid = "54D61856-E046-434A-8021-21073DDB5F4F - 98cd67fc1375cee1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Neostore.HomeViewController.MainMenuLeadingConstraint.modify : Swift.Optional&lt;__C.NSLayoutConstraint&gt;"
+                  moduleName = "Neostore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/View/pages/home%20page/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "54D61856-E046-434A-8021-21073DDB5F4F - 8faaba092b4c94cf"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Neostore.HomeViewController.MainMenuLeadingConstraint.modify : Swift.Optional&lt;__C.NSLayoutConstraint&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "Neostore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/View/pages/home%20page/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "26">
+               </Location>
+               <Location
+                  uuid = "54D61856-E046-434A-8021-21073DDB5F4F - a4cd1247f6139ce"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Neostore.HomeViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Neostore.HomeViewController"
+                  moduleName = "Neostore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/View/pages/home%20page/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "339">
+               </Location>
+               <Location
+                  uuid = "54D61856-E046-434A-8021-21073DDB5F4F - 25b555a794cd8bd4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Neostore.HomeViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Neostore.HomeViewController&gt;"
+                  moduleName = "Neostore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/View/pages/home%20page/HomeViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "296">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

@@ -24,6 +24,10 @@ class LoginViewController: UIViewController {
     }
     
     
+    @IBAction func LoginButtonAction(_ sender: UIButton) {
+        let vc =  RegisterViewController(nibName: "RegisterViewController", bundle: nil)
+        navigationController?.pushViewController(vc, animated: true)
+    }
     @IBAction func registerButtonAction(_ sender: UIButton) {
         let vc =  RegisterViewController(nibName: "RegisterViewController", bundle: nil)
         navigationController?.pushViewController(vc, animated: true)

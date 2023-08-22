@@ -21,13 +21,22 @@ class ProductViewController: UIViewController {
         
         productTableview.dataSource = self
         productTableview.delegate = self
-        
+        navigationController?.isNavigationBarHidden = false
+ 
         // for activating navigation bar
         navigationController?.isNavigationBarHidden = false
+        
+        // for removing back button title
+        let backButton = UIBarButtonItem()
+        backButton.title = "" // Set an empty title
+        navigationItem.backBarButtonItem = backButton
+        
         // navigation bar back image
         navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
+        
         // navigation bar back text
         navigationController?.navigationBar.backItem?.title = ""
+        
         // navigation bar items color
         navigationController?.navigationBar.tintColor = UIColor.white
         
@@ -37,15 +46,15 @@ class ProductViewController: UIViewController {
         
         // setting title for navigation bar
         title = "Products"
-        // setting color for navigation bar
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
         
         // register cell
         productTableview.register(UINib(nibName: "ProductTableViewCell", bundle: nil), forCellReuseIdentifier: "ProductTableViewCell")
     }
     
     @objc func searchButtonTapped() {
-        navigationController?.pushViewController(HomeViewController(nibName: "HomeViewController", bundle: nil), animated: true)
+        navigationController?.pushViewController(ProductDetailsController(nibName: "ProductDetailsController", bundle: nil), animated: true)
     }
     
     let productDetailsData = [
@@ -62,7 +71,7 @@ class ProductViewController: UIViewController {
     ]
     
     var lastVisibleIndexPath: Int = 0
-     var seenCount = 0
+    var seenCount = 0
     
 }
 extension ProductViewController: UITableViewDelegate,UITableViewDataSource{
@@ -96,7 +105,7 @@ extension ProductViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         lastVisibleIndexPath = indexPath.row
         updatecount()
-        }
+    }
     
     func updatecount()
     {
