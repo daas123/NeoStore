@@ -7,6 +7,12 @@
 //
 
 import UIKit
+enum positions{
+    case topRight
+    case topLeft
+    case bottomLeft
+    case bottomRight
+}
 
 struct categorydetails{
     var name : String

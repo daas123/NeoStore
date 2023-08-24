@@ -9,6 +9,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterViewController" customModule="Neostore" customModuleProvider="target">
             <connections>
+                <outlet property="RegisterConformPassword" destination="VK1-NH-PRY" id="iYg-Bb-HfW"/>
+                <outlet property="RegisterEmail" destination="bHX-8A-pGl" id="MZF-iK-nV0"/>
+                <outlet property="RegisterFemaleradio" destination="tYt-TW-YJL" id="A4g-a4-vv5"/>
+                <outlet property="RegisterFirstname" destination="9bE-Lf-hPd" id="8Pz-4v-7YD"/>
+                <outlet property="RegisterMaleRadio" destination="kZ6-M8-NCZ" id="F4i-KJ-MZM"/>
+                <outlet property="RegisterPassword" destination="z9u-cX-uFj" id="UyS-Ni-HQU"/>
+                <outlet property="RegisterPhoneNumber" destination="xjs-hX-SIX" id="Ds2-1f-fUP"/>
+                <outlet property="RegisterchkBox" destination="5s7-2p-gDt" id="LHe-SJ-qzB"/>
+                <outlet property="Registerlastname" destination="cYJ-tL-sXP" id="D73-ES-J2M"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="registerDetailsView" destination="JIk-uS-s5M" collectionClass="NSMutableArray" id="Y4G-lM-h3Q"/>
                 <outletCollection property="registerDetailsView" destination="gNV-6z-2T4" collectionClass="NSMutableArray" id="eG8-gV-PEi"/>
@@ -55,7 +64,7 @@
                                                         <constraint firstAttribute="height" constant="25" id="Tju-jn-HwS"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="FirstName" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9bE-Lf-hPd">
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="dgggdfg" placeholder="FirstName" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9bE-Lf-hPd">
                                                     <rect key="frame" x="43" y="14.666666666666687" width="276" height="22.666666666666671"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -88,7 +97,7 @@
                                                         <constraint firstAttribute="height" constant="25" id="YYv-vo-LHj"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="LastName" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cYJ-tL-sXP">
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="dsgfdgf" placeholder="LastName" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cYJ-tL-sXP">
                                                     <rect key="frame" x="43" y="14.666666666666687" width="276" height="22.666666666666671"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -121,7 +130,7 @@
                                                         <constraint firstAttribute="width" constant="25" id="zgR-45-jD6"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bHX-8A-pGl">
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="sgssgs@gmail.com" placeholder="Email" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bHX-8A-pGl">
                                                     <rect key="frame" x="43" y="14.333333333333313" width="276" height="23.333333333333329"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -154,7 +163,7 @@
                                                         <constraint firstAttribute="height" constant="25" id="csT-cL-pQO"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z9u-cX-uFj">
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="gdfhhghff" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z9u-cX-uFj">
                                                     <rect key="frame" x="43" y="14.333333333333313" width="276" height="23.333333333333329"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -187,7 +196,7 @@
                                                         <constraint firstAttribute="width" constant="25" id="U5j-Mt-J3n"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Conform Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VK1-NH-PRY">
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="gdfhhghff" placeholder="Conform Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VK1-NH-PRY">
                                                     <rect key="frame" x="38" y="14.333333333333313" width="281" height="23.333333333333329"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -227,6 +236,9 @@
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="circle.fill" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="radioTapped:" destination="-1" eventType="touchUpInside" id="ovb-0q-sdL"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Male" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Erj-5X-O2L">
                                                     <rect key="frame" x="127.00000000000001" y="15.999999999999998" width="36.666666666666671" height="20.333333333333329"/>
@@ -243,6 +255,9 @@
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="circle" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="radioTapped:" destination="-1" eventType="touchUpInside" id="XXw-BM-7tf"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Female" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="deO-iy-qcq">
                                                     <rect key="frame" x="216.66666666666666" y="15.999999999999998" width="55.333333333333343" height="20.333333333333329"/>
@@ -277,7 +292,7 @@
                                                         <constraint firstAttribute="width" constant="25" id="8J3-qm-xqw"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xjs-hX-SIX">
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1234567890" placeholder="Phone Number" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xjs-hX-SIX">
                                                     <rect key="frame" x="38" y="14.333333333333369" width="281" height="23.333333333333329"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -317,6 +332,9 @@
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="square" catalog="system"/>
+                                                    <connections>
+                                                        <action selector="checkbutton:" destination="-1" eventType="touchUpInside" id="Ytv-gB-hOJ"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>

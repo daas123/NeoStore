@@ -7,123 +7,367 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9B22AF88-5D44-4F18-ADA3-0CC57F65C23A"
+            uuid = "A27F59C4-4B55-4D5F-A0CF-6671CD7453B4"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Neostore/View/pages/home page/HomeViewController.swift"
+            filePath = "Neostore/View/Pages/Register page/RegisterViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "16"
-            endingLineNumber = "16"
-            landmarkName = "HomeViewController"
-            landmarkType = "3">
+            startingLineNumber = "103"
+            endingLineNumber = "103"
+            landmarkName = "registerButtonAction(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "54D61856-E046-434A-8021-21073DDB5F4F"
+            uuid = "F8C2D360-BFD8-4DDE-8733-E249A3E22768"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Neostore/View/pages/home page/HomeViewController.swift"
+            filePath = "Neostore/ViewModel/RegisterPageViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
-            landmarkName = "HomeViewController"
-            landmarkType = "3">
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "callValidations(fname:lname:email:pass:cpass:phone:btnSelected:termsAndCondition:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0E87CB5F-4F5B-4155-8A75-B9528E0886C3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/ViewModel/RegisterPageViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "callValidations(fname:lname:email:pass:cpass:phone:btnSelected:termsAndCondition:)"
+            landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "54D61856-E046-434A-8021-21073DDB5F4F - c7b95f735a27f9c"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Neostore.HomeViewController.MainMenuLeadingConstraint.getter : Swift.Optional&lt;__C.NSLayoutConstraint&gt;"
-                  moduleName = "Neostore"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/View/pages/home%20page/HomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17"
-                  offsetFromSymbolStart = "85">
-               </Location>
-               <Location
-                  uuid = "54D61856-E046-434A-8021-21073DDB5F4F - 736526efa4b4e010"
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Neostore.HomeViewController.MainMenuLeadingConstraint.setter : Swift.Optional&lt;__C.NSLayoutConstraint&gt;"
-                  moduleName = "Neostore"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/View/pages/home%20page/HomeViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17"
-                  offsetFromSymbolStart = "136">
-               </Location>
-               <Location
-                  uuid = "54D61856-E046-434A-8021-21073DDB5F4F - 98cd67fc1375cee1"
+                  uuid = "0E87CB5F-4F5B-4155-8A75-B9528E0886C3 - 8d1b34c2877cb96c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Neostore.HomeViewController.MainMenuLeadingConstraint.modify : Swift.Optional&lt;__C.NSLayoutConstraint&gt;"
+                  symbolName = "Neostore.RegisterViewModel.callValidations(fname: Swift.String, lname: Swift.String, email: Swift.String, pass: Swift.String, cpass: Swift.String, phone: Swift.String, btnSelected: Swift.String, termsAndCondition: Swift.Bool) -&gt; ()"
                   moduleName = "Neostore"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/View/pages/home%20page/HomeViewController.swift"
+                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/ViewModel/RegisterPageViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17"
-                  offsetFromSymbolStart = "0">
+                  startingLineNumber = "45"
+                  endingLineNumber = "45"
+                  offsetFromSymbolStart = "1641">
                </Location>
                <Location
-                  uuid = "54D61856-E046-434A-8021-21073DDB5F4F - 8faaba092b4c94cf"
+                  uuid = "0E87CB5F-4F5B-4155-8A75-B9528E0886C3 - 977e086ebf6a4a79"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Neostore.HomeViewController.MainMenuLeadingConstraint.modify : Swift.Optional&lt;__C.NSLayoutConstraint&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  symbolName = "closure #1 (Swift.Result&lt;Neostore.User, Swift.Error&gt;) -&gt; () in Neostore.RegisterViewModel.callValidations(fname: Swift.String, lname: Swift.String, email: Swift.String, pass: Swift.String, cpass: Swift.String, phone: Swift.String, btnSelected: Swift.String, termsAndCondition: Swift.Bool) -&gt; ()"
                   moduleName = "Neostore"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/View/pages/home%20page/HomeViewController.swift"
+                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/ViewModel/RegisterPageViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17"
-                  offsetFromSymbolStart = "26">
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "214">
                </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7EA2BD2D-7CD5-44EE-A22A-B150E6A26128"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/ViewModel/RegisterPageViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "callValidations(fname:lname:email:pass:cpass:phone:btnSelected:termsAndCondition:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D555961B-047B-40A8-920E-37810D3D8008"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/ViewModel/RegisterPageViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "callValidations(fname:lname:email:pass:cpass:phone:btnSelected:termsAndCondition:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C9C1CEE4-A1FB-41C8-A918-43060EA87DD6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/Model/Services/RegistrationService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "12"
+            endingLineNumber = "12"
+            landmarkName = "registerUser(fname:lname:email:pass:cpass:gender:phone:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C52C9811-8135-4F1A-8473-4B1C62A1C413"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/Model/Services/RegistrationService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "registerUser(fname:lname:email:pass:cpass:gender:phone:completion:)"
+            landmarkType = "7">
+            <Locations>
                <Location
-                  uuid = "54D61856-E046-434A-8021-21073DDB5F4F - a4cd1247f6139ce"
+                  uuid = "C52C9811-8135-4F1A-8473-4B1C62A1C413 - b57fa12daafce874"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Neostore.HomeViewController.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; Neostore.HomeViewController"
+                  symbolName = "Neostore.RegisterAPIService.registerUser(fname: Swift.String, lname: Swift.String, email: Swift.String, pass: Swift.String, cpass: Swift.String, gender: Swift.String, phone: Swift.String, completion: (Swift.Result&lt;Neostore.User, Swift.Error&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "Neostore"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/View/pages/home%20page/HomeViewController.swift"
+                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/Model/Services/RegistrationService.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17"
-                  offsetFromSymbolStart = "339">
+                  startingLineNumber = "16"
+                  endingLineNumber = "16"
+                  offsetFromSymbolStart = "1136">
                </Location>
                <Location
-                  uuid = "54D61856-E046-434A-8021-21073DDB5F4F - 25b555a794cd8bd4"
+                  uuid = "C52C9811-8135-4F1A-8473-4B1C62A1C413 - 9f00687183ac8ca1"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Neostore.HomeViewController.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;Neostore.HomeViewController&gt;"
+                  symbolName = "closure #1 (Swift.Result&lt;Foundation.Data, Swift.Error&gt;) -&gt; () in Neostore.RegisterAPIService.registerUser(fname: Swift.String, lname: Swift.String, email: Swift.String, pass: Swift.String, cpass: Swift.String, gender: Swift.String, phone: Swift.String, completion: (Swift.Result&lt;Neostore.User, Swift.Error&gt;) -&gt; ()) -&gt; ()"
                   moduleName = "Neostore"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/View/pages/home%20page/HomeViewController.swift"
+                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/Model/Services/RegistrationService.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "17"
-                  endingLineNumber = "17"
-                  offsetFromSymbolStart = "296">
+                  startingLineNumber = "19"
+                  endingLineNumber = "19"
+                  offsetFromSymbolStart = "250">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C93E87E4-B2D0-4B35-90EC-C6ED66ACB2BF"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/Model/Services/RegistrationService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "registerUser(fname:lname:email:pass:cpass:gender:phone:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C5A1EB85-FEA3-4146-830C-98A5F8203BC2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/Model/Api/ApiManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "16"
+            endingLineNumber = "16"
+            landmarkName = "callRequest(apiCallType:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9E387F9D-450D-442E-94BA-79E23060D184"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/Model/Api/ApiManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "callRequest(apiCallType:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FF5CAB20-618B-407E-BE0F-AD524994929B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/Model/Api/ApiManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "callRequest(apiCallType:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "FF5CAB20-618B-407E-BE0F-AD524994929B - aa8e740b7eb2d259"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Neostore.APIManager.callRequest(apiCallType: Neostore.APIServices, completion: (Swift.Result&lt;Foundation.Data, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Neostore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/Model/Api/ApiManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
+                  offsetFromSymbolStart = "1845">
+               </Location>
+               <Location
+                  uuid = "FF5CAB20-618B-407E-BE0F-AD524994929B - 6d44e5d94ffa78a5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 @Sendable (Swift.Optional&lt;Foundation.Data&gt;, Swift.Optional&lt;__C.NSURLResponse&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Neostore.APIManager.callRequest(apiCallType: Neostore.APIServices, completion: (Swift.Result&lt;Foundation.Data, Swift.Error&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "Neostore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/Model/Api/ApiManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "43"
+                  endingLineNumber = "43"
+                  offsetFromSymbolStart = "114">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "419A3027-1025-4035-85EA-8E8F4D369F4E"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/Model/Api/ApiManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "callRequest(apiCallType:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "337A6F5A-0EF2-4ED5-9AA1-30C51834B505"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/Model/Api/ApiManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
+            landmarkName = "callRequest(apiCallType:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EF551EAC-70A3-4C96-AED3-A9FBA49DA210"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/Model/Api/ApiManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "callRequest(apiCallType:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2C166622-0A06-4072-911F-C4CB69A24CB3"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/ViewModel/LoginPageViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "callValidations(username:password:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2C166622-0A06-4072-911F-C4CB69A24CB3 - 116cd29d9a1dee1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Neostore.loginViewModel.callValidations(username: Swift.String, password: Swift.String) -&gt; ()"
+                  moduleName = "Neostore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/ViewModel/LoginPageViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "133">
+               </Location>
+               <Location
+                  uuid = "2C166622-0A06-4072-911F-C4CB69A24CB3 - fd43bd37cc47ef8c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;Neostore.User, Swift.Error&gt;) -&gt; () in Neostore.loginViewModel.callValidations(username: Swift.String, password: Swift.String) -&gt; ()"
+                  moduleName = "Neostore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/ViewModel/LoginPageViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "32"
+                  endingLineNumber = "32"
+                  offsetFromSymbolStart = "214">
                </Location>
             </Locations>
          </BreakpointContent>
