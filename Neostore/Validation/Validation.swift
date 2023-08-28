@@ -7,87 +7,83 @@
 
 import Foundation
 import UIKit
-protocol ValidationDelegate:AnyObject{
-    func resultMsg(msg:String)
-}
-class Validation{
-    
-    weak var validationDelegate:ValidationDelegate?
 
-    func registerValidation(firstName: String?, lastName: String?, email: String?, password: String?, confirmPassword: String?, mobileNumber: String?) -> Bool{
+class validation{
+    func loginValidation(email:String , password:String , complition: @escaping (Bool,String)->Void){
         
-        guard firstName != "" && lastName != "" && password != "" && confirmPassword != "" else {
-            validationDelegate?.resultMsg(msg: "Please fill the required fields")
-            return false
+        
+        guard email != "" else{
+            complition(false,"Enter the Username")
+            return
+        }
+        guard password != "" else{
+            complition(false,"Enter the Password")
+            return
         }
         
-        guard firstName!.count > 3 && containsOnlyCharacters(firstName!) == true else {
-            validationDelegate?.resultMsg(msg: "Enter your valid first name")
-            return false
+        guard email.contains("@") else{
+            complition(false,"enter the valid email")
+            return
         }
+        complition(true,"All Fields Are ook")
         
-        guard lastName!.count > 3 && containsOnlyCharacters(lastName!) == true else {
-            validationDelegate?.resultMsg( msg:"Enter your valid last name")
-            return false
-        }
-        
-        if email != "" {
-            guard validateEmail(email ?? "") == true else {
-                validationDelegate?.resultMsg( msg:"Enter your valid email id")
-                return false
-            }
-        }
-        
-        guard password!.count >= 2 else {
-            validationDelegate?.resultMsg(msg: "Enter your valid password")
-            return false
-        }
-        
-        if mobileNumber != "" {
-            guard mobileNumber!.count == 10 && containsOnlyNumbers(mobileNumber!) == true else {
-                validationDelegate?.resultMsg(msg:"Enter your valid mobile number")
-                return false
-            }
-        }
-        
-        
-//        validationDelegate?.resultMsg(msg: "Validation successfull")
-        return true
-    }
-        
-    func containsOnlyCharacters(_ input: String) -> Bool {
-        let characterSet = CharacterSet.letters
-        return input.rangeOfCharacter(from: characterSet.inverted) == nil
     }
     
-    func containsOnlyAllowedCharacters(_ input: String) -> Bool {
-        let allowedCharacterSet = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()_+")
-        let inputCharacterSet = CharacterSet(charactersIn: input)
-        return allowedCharacterSet.isSuperset(of: inputCharacterSet)
-    }
-    
-    func containsOneNumberAndOneSpecialChar(_ input: String) -> Bool {
-        let numberRegex = ".*\\d.*"
-        let specialCharRegex = ".*[^A-Za-z0-9].*"
+    func registerValidation(Fname:String? , Lname:String? ,Email:String?,Pass :String?,Cpass:String? ,Gender:String?,Phone:String?, chkBox:Bool?, complition: @escaping (Bool,String)->Void ){
         
-        let numberPredicate = NSPredicate(format: "SELF MATCHES %@", numberRegex)
-        let specialCharPredicate = NSPredicate(format: "SELF MATCHES %@", specialCharRegex)
+        guard Fname!.count>3  else{
+            complition (false,"FirstName Must Greater Then 3 Chracter")
+            return
+        }
         
-        let containsNumber = numberPredicate.evaluate(with: input)
-        let containsSpecialChar = specialCharPredicate.evaluate(with: input)
         
-        return containsNumber && containsSpecialChar
-    }
-    
-    func containsOnlyNumbers(_ input: String) -> Bool {
-        let numericCharacterSet = CharacterSet.decimalDigits
-        let inputCharacterSet = CharacterSet(charactersIn: input)
-        return numericCharacterSet.isSuperset(of: inputCharacterSet)
-    }
-    
-    func validateEmail(_ input: String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluate(with: input) // Use 'input' instead of 'self'
+        guard Lname!.count>3 else{
+            complition (false,"LastName Must Greater Then 3 Chracter")
+            return
+        }
+        
+        
+        guard Email!.contains("@") && Email!.contains(".") else{
+            complition (false,"Email InValid")
+            return
+        }
+        
+        guard Pass!.count>8 else{
+            complition (false,"Password Must cotain: 8 character")
+            return
+        }
+        
+        guard Cpass == Pass else{
+            complition (false,"Comform Password is Not Same")
+            return
+        }
+        
+        guard Gender == "M" else{
+            complition (false,"Enter the Gender")
+            return
+        }
+        guard chkBox == true else{
+            complition(false,"Agree Terms and Condition")
+            return
+        }
+        
+        guard Phone!.count>10 || containsOnlyNumbers(Phone!) else{
+            complition (false,"Enter valid Mobile NO")
+            return
+        }
+        func containsOnlyNumbers(_ input: String) -> Bool {
+            let numericCharacterSet = CharacterSet.decimalDigits
+            let inputCharacterSet = CharacterSet(charactersIn: input)
+            return numericCharacterSet.isSuperset(of: inputCharacterSet)
+        }
+        
+        complition(true,"all OK")
     }
 }
+
+
+
+
+
+
+

@@ -35,7 +35,6 @@ class RegisterViewController: UIViewController{
     // view model
     let viewModel = RegisterViewModel()
     var chkbtn = false
-    var chkbuttonvalue : Bool = false
     
     override func viewDidLoad() {
         
@@ -84,50 +83,28 @@ class RegisterViewController: UIViewController{
         if chkbtn {
             RegisterchkBox.isSelected = true
             chkbtn = false
-            chkbuttonvalue = true
+            
             
         }else{
             RegisterchkBox.isSelected = false
             chkbtn = true
-            chkbuttonvalue = false
+            
         }
     }
     
-    private func sendValidations(){
-        let registerViewModel = RegisterViewModel()
-        registerViewModel.registerViewModelDelegate = self
-        registerViewModel.callValidations(fname: RegisterFirstname.text ?? "", lname: Registerlastname.text ?? "", email: RegisterEmail.text ?? "", pass: RegisterPassword?.text ?? "", cpass: RegisterConformPassword.text ?? "", phone: RegisterPhoneNumber?.text ?? "", btnSelected: Gender ?? "M", termsAndCondition: chkbuttonvalue ?? false)
-    }
     
     @IBAction func registerButtonAction(_ sender: UIButton) {
-        sendValidations()
-        }
-}
-
-
-extension RegisterViewController: RegisterViewModelDelegate{
-    func showAlert(msg:String) {
-        let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
-        if msg == "Registered Successfull"{
-            
-            let action = UIAlertAction(title: "OK", style: .default) { (action) in
-                let nextViewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
-                self.navigationController?.pushViewController(nextViewController, animated: true)
-                self.dismiss(animated: true, completion: nil)
+        viewModel.registervalidation(Fname: RegisterFirstname.text ?? "", Lname: Registerlastname.text ?? "", Email: RegisterEmail.text ?? "", Pass: RegisterPassword?.text ?? "", Cpass: RegisterPassword?.text ?? "", Gender: Gender ?? "F", Phone: RegisterPhoneNumber?.text ?? "", chkBox: RegisterchkBox.isSelected ?? false){
+            (validateBool , resultStrng) in
+            DispatchQueue.main.async {
+                if validateBool{
+                    self.navigationController?.pushViewController(LoginViewController(nibName:"LoginViewController", bundle: nil), animated: true)
+                    self.showAlert(msg: resultStrng)
+                }else{
+                    self.showAlert(msg: resultStrng)
+                }
             }
             
-            alert.addAction(action)
-            
-        } else {
-            
-            let action = UIAlertAction(title: "OK", style: .default) { (action) in
-                self.dismiss(animated: true, completion: nil)
-            }
-            
-            alert.addAction(action)
         }
-        
-        self.present(alert, animated: true, completion: nil)
     }
 }
-  

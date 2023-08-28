@@ -5,8 +5,18 @@
 //  Created by Neosoft on 24/08/23.
 //
 //
-//import Foundation
-//import UIKit
+import Foundation
+import UIKit
+
+extension UIViewController{
+    func showAlert(msg : String){
+        let alert = UIAlertController(title: nil, message: msg , preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+        present(alert, animated: true)
+    }
+}
+
+
 //class AlertError{
 //    func showAlert(msg:String) {
 //        let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)

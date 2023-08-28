@@ -1,4 +1,4 @@
-//
+
 //  RegisterApiService.swift
 //  NeoSTORE
 //
@@ -7,29 +7,43 @@
 
 import UIKit
 
-class RegisterAPIService {
+class RegisterWebService {
     
-    func registerUser(fname: String, lname: String, email: String, pass: String, cpass: String, gender: String, phone: String,completion: @escaping(Result<User,Error>) -> Void){
-        
-        let params = ["first_name": fname, "last_name": lname, "email": email, "password": pass, "confirm_password": cpass,"gender": gender, "phone_no": phone]
-        
-        APIManager.shared.callRequest(apiCallType: .userRegister(param: params)){ (response) in
-            
-            switch response {
-            case .success(let value):
-                do {
-                    let responseData = try JSONDecoder().decode(User.self, from: value)
-                    completion(.success(responseData))
-                } catch {
-                    completion(.failure(error))
+    func RegisterAction(Fname: String , Lname: String, Email: String, Pass: String, Cpass: String, Gender: String, Phone: String, chkBox: Bool , Completion : @escaping (Result<User,Error>)->Void ){
+        let param = ["first_name":Fname , "last_name":Lname , "email":Email ,"password":Pass,"confirm_password":Cpass ,"gender":Gender,"phone_no":Phone]
+        APIManager.shared.callRequest(apiCallType: .userRegister(param:param )){
+            (responce) in
+            switch responce {
+            case .success(let data):
+                if let retriveddata = data as? Data {
+                    let jsondata = try? JSONDecoder().decode(User.self, from: retriveddata)
+                    Completion(.success(jsondata!))
+                }else{
+                    Completion(.failure(Error.self as! Error))
                 }
-            case .failure(let error):
-                print("In Failure")
-                debugPrint(error.localizedDescription)
-                print("Wrong pass")
-                completion(.failure(error))
+            case .failure(let error ):
+                Completion(.failure(error))
             }
-            
         }
     }
 }
+
+//
+//func RegisterAction(Fname:String? , Lname:String? ,Email:String?,Pass :String?,Cpass:String? ,Gender:String?,Phone:String?, chkBox:Bool? , complition : @escaping (Result<User,Error>)->Void){
+//    let param = ["first_name": Fname, "last_name": Lname, "email": Email, "password": Pass, "confirm_password": Cpass, "gender": Gender, "phone_no": Phone]
+//    APIManager.shared.callRequest(apiCallType: .userRegister(param: param)){
+//        (responce) in
+//        switch responce{
+//        case .success(let data):
+//            do{
+//                let jsondata = try? JSONDecoder().decode(User.self, from: data)
+//                complition(.success(jsondata!))
+//            }catch{
+//                complition(.failure(error))
+//            }
+//        case .failure(let error):
+//            complition(.failure(error))
+//        }
+//    }
+//
+//}

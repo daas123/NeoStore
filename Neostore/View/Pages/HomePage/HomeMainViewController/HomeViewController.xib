@@ -13,7 +13,7 @@
                 <outlet property="MainMenuLeadingConstraint" destination="brl-bz-xLd" id="Lra-ON-XP4"/>
                 <outlet property="categoryCollectionView" destination="1Og-3A-86N" id="Kwl-XO-ZQi"/>
                 <outlet property="homeCollectionView" destination="837-VD-Hdl" id="7Xu-43-CSV"/>
-                <outlet property="mainMenuTrailingConstrain" destination="Ipe-a3-Esk" id="7MB-JW-nOk"/>
+                <outlet property="mainMenuTrailingConstrain" destination="Ipe-a3-Esk" id="4Aw-Rs-oho"/>
                 <outlet property="mainMenubottomConstraint" destination="R6L-bp-zFM" id="NYF-YT-GJs"/>
                 <outlet property="mainMenutopConstraint" destination="VcO-Jh-7Al" id="jCg-zW-Qh7"/>
                 <outlet property="mainView" destination="5qK-eb-dfB" id="Za7-bg-JZ9"/>
@@ -78,7 +78,7 @@
                                 <constraint firstAttribute="height" constant="225" id="tcN-WH-60D"/>
                             </constraints>
                             <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jZA-Yk-XvH">
-                                <size key="itemSize" width="128" height="128"/>
+                                <size key="itemSize" width="0.0" height="0.0"/>
                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -93,7 +93,7 @@
                             <rect key="frame" x="0.0" y="285" width="393" height="508"/>
                             <subviews>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="1Og-3A-86N">
-                                    <rect key="frame" x="14" y="14" width="365" height="494"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="508"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Vgy-iE-uYM">
                                         <size key="itemSize" width="128" height="128"/>
@@ -106,9 +106,9 @@
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="1Og-3A-86N" secondAttribute="bottom" id="88z-1i-twn"/>
-                                <constraint firstItem="1Og-3A-86N" firstAttribute="leading" secondItem="ch9-Yd-rBi" secondAttribute="leading" constant="14" id="FsV-E4-nls"/>
-                                <constraint firstItem="1Og-3A-86N" firstAttribute="top" secondItem="ch9-Yd-rBi" secondAttribute="top" constant="14" id="k0H-Tu-ed1"/>
-                                <constraint firstAttribute="trailing" secondItem="1Og-3A-86N" secondAttribute="trailing" constant="14" id="pZO-xe-puy"/>
+                                <constraint firstItem="1Og-3A-86N" firstAttribute="leading" secondItem="ch9-Yd-rBi" secondAttribute="leading" id="FsV-E4-nls"/>
+                                <constraint firstItem="1Og-3A-86N" firstAttribute="top" secondItem="ch9-Yd-rBi" secondAttribute="top" id="k0H-Tu-ed1"/>
+                                <constraint firstAttribute="trailing" secondItem="1Og-3A-86N" secondAttribute="trailing" id="pZO-xe-puy"/>
                             </constraints>
                         </view>
                     </subviews>

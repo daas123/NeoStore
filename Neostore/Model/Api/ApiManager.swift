@@ -18,8 +18,10 @@ class APIManager {
         let session = URLSession.shared
         
         var request = URLRequest(url: URL(string: apiCallType.path)!)
-        
-        request.httpMethod = apiCallType.httpMethod
+        if !(apiCallType.isImageFetching){
+            request.httpMethod = apiCallType.httpMethod
+            
+        }
         
         if let parameter = apiCallType.param{
             
@@ -31,12 +33,19 @@ class APIManager {
                 }
                 request.httpBody = requestBodyComponents.query?.data(using: .utf8)
             }
-//            else{
-//                request.url = URL(string: apiCallType.path)
-//            }
+            else{
+                var urlComponents = URLComponents(string: apiCallType.path)
+                urlComponents?.queryItems = parameter.map{
+                    (key, value) in
+                    URLQueryItem(name: key, value: String(describing: value))
+                }
+                request.url = urlComponents?.url
+            }
         }
-        
-        request.allHTTPHeaderFields = apiCallType.header
+        if !(apiCallType.isImageFetching){
+            request.allHTTPHeaderFields = apiCallType.header
+            
+        }
         
         let task = session.dataTask(with: request){ data, response, error in
             
@@ -49,10 +58,14 @@ class APIManager {
                 print("No data")
                 return
             }
-
-            guard (try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String:Any] != nil else {
-                print("Not containing JSON")
-                return
+            if apiCallType.isImageFetching{
+                completion(.success(content))
+            }
+            if !(apiCallType.isImageFetching){
+                guard (try? JSONSerialization.jsonObject(with: content, options: JSONSerialization.ReadingOptions.mutableContainers)) as? [String:Any] != nil else {
+                    print("Not containing JSON")
+                    return
+                }
             }
             completion(.success(content))
         }

@@ -26,14 +26,19 @@ class LoginViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    private func sendValidations(){
-        let loginViewModel = loginViewModel()
-        loginViewModel.logindeligate = self
-        loginViewModel.callValidations(username: LoginUsername.text ?? "" , password: LoginPassword.text ?? "")
-        
-    }
+
     @IBAction func LoginButtonAction(_ sender: UIButton) {
-        sendValidations()
+        viewmodel.loginValidation(email: LoginUsername.text ?? "", password: LoginPassword.text ?? ""){
+            (validationCheck,msgString) in
+            DispatchQueue.main.async {
+                if validationCheck{
+                    self.navigationController?.pushViewController(HomeViewController(nibName: "HomeViewController", bundle: nil), animated: true)
+                    self.showAlert(msg: msgString)
+                }else{
+                    self.showAlert(msg: msgString)
+                }
+            }
+        }
     }
     @IBAction func registerButtonAction(_ sender: UIButton) {
         let vc =  RegisterViewController(nibName: "RegisterViewController", bundle: nil)
@@ -41,29 +46,3 @@ class LoginViewController: UIViewController {
     }
 }
 
-extension LoginViewController: loginviewDeligate{
-    func showAlert(msg:String) {
-        let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
-        if msg == "login Successfull"{
-            
-            let action = UIAlertAction(title: "OK", style: .default) { (action) in
-                let nextViewController = HomeViewController(nibName: "HomeViewController", bundle: nil)
-                self.navigationController?.pushViewController(nextViewController, animated: true)
-                self.dismiss(animated: true, completion: nil)
-            }
-            
-            alert.addAction(action)
-            
-        } else {
-            
-            let action = UIAlertAction(title: "OK", style: .default) { (action) in
-                self.dismiss(animated: true, completion: nil)
-            }
-            
-            alert.addAction(action)
-        }
-        
-        self.present(alert, animated: true, completion: nil)
-    }
-}
-  

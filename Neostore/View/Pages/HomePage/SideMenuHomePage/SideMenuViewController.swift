@@ -6,19 +6,21 @@
 //
 
 import UIKit
-
-struct menutabledetais{
-    let name:String
-    let image : String
-}
 class SideMenuViewController: UIViewController {
 
     
     @IBOutlet weak var SideMenuImage: UIImageView!
     @IBOutlet weak var SideMenuTableview: UITableView!
     let menuDemoData = [menutabledetais(name: "MyCart", image: "cart"),
-                       menutabledetais(name: "Tables", image: "table.furniture"),
-                       menutabledetais(name: "Sofa", image: "sofa")]
+                        menutabledetais(name: "Tables", image: "table.furniture"),
+                        menutabledetais(name: "Chairs", image: "chair.fill"),
+                        menutabledetais(name: "Sofa", image: "sofa.fill"),
+                        menutabledetais(name: "Bed", image: "bed.double"),
+                        menutabledetais(name: "My Account", image: "person.fill"),
+                        menutabledetais(name: "Store Locator", image: "mappin.and.ellipse"),
+                        menutabledetais(name: "My Order", image: "list.clipboard"),
+                        menutabledetais(name: "Logout", image: "arrow.uturn.left.circle"),
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,6 +60,14 @@ extension SideMenuViewController : UITableViewDelegate,UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 45
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            let selectedId = indexPath.row
+            print(selectedId)
+            let productViewController = ProductViewController(nibName: "ProductViewController", bundle: nil)
+            productViewController.id = selectedId
+            self.navigationController?.pushViewController(productViewController, animated: true)
+        
     }
     
 }

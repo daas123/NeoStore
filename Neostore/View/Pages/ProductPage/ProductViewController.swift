@@ -6,19 +6,14 @@
 //
 
 import UIKit
-struct productDetails{
-    var name:String
-    var producer:String
-    var cost:Int
-    var ratings:Int
-}
+
 class ProductViewController: UIViewController {
     @IBOutlet weak var totalCountCell: UILabel!
     @IBOutlet weak var productTableview: UITableView!
+    let viewmodel = ProductCategoryViewModel()
+    var id : Int?
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
         productTableview.dataSource = self
         productTableview.delegate = self
         navigationController?.isNavigationBarHidden = false
@@ -51,25 +46,25 @@ class ProductViewController: UIViewController {
         
         // register cell
         productTableview.register(UINib(nibName: "ProductTableViewCell", bundle: nil), forCellReuseIdentifier: "ProductTableViewCell")
+        
+        getdata()
     }
     
     @objc func searchButtonTapped() {
         navigationController?.pushViewController(ProductDetailsController(nibName: "ProductDetailsController", bundle: nil), animated: true)
     }
-    
-    let productDetailsData = [
-        productDetails(name: "Table", producer: "helogen", cost: 2000,ratings: 2),
-        productDetails(name: "sofa", producer: "nitrogen", cost: 3000, ratings: 3),
-        productDetails(name: "sofa", producer: "nitrogen", cost: 5000, ratings: 4),
-        productDetails(name: "hotel", producer: "melting", cost: 9000, ratings: 5),
-        productDetails(name: "dosa", producer: "point", cost: 5000, ratings: 1),
-        productDetails(name: "Table", producer: "helogen", cost: 2000,ratings: 2),
-        productDetails(name: "sofa", producer: "nitrogen", cost: 3000, ratings: 3),
-        productDetails(name: "sofa", producer: "nitrogen", cost: 5000, ratings: 4),
-        productDetails(name: "hotel", producer: "melting", cost: 9000, ratings: 5),
-        productDetails(name: "dosa", producer: "point", cost: 5000, ratings: 1)
-    ]
-    
+    var productDetailsData = [productList]()
+    func getdata(){
+        self.viewmodel.GetProductList(id: id ?? 0){
+            (responce) in
+            DispatchQueue.main.async {
+                self.productDetailsData = responce
+                self.productTableview.reloadData()
+            }
+            
+        }
+    }
+
     var lastVisibleIndexPath: Int = 0
     var seenCount = 0
     
@@ -86,6 +81,16 @@ extension ProductViewController: UITableViewDelegate,UITableViewDataSource{
         cell.ProductCost.text = String(productDetailsData[indexPath.row].cost)
         let ratings = getRatingStars(rating: productDetailsData[indexPath.row].ratings)
         cell.ProductRatings.text = ratings
+        
+        // getting image cell
+        let imageurl = productDetailsData[indexPath.row].image
+            self.viewmodel.imageDataProductList(stringurl: imageurl){
+                (image) in
+                DispatchQueue.main.async {
+                    cell.productImage.image = image
+                }
+        
+        }
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -115,6 +120,10 @@ extension ProductViewController: UITableViewDelegate,UITableViewDataSource{
         }
         
     }
+
     
     
 }
+
+
+

@@ -72,7 +72,7 @@ class ProductDetailsController: UIViewController {
 
 extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return 5
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -80,16 +80,13 @@ extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             let productCell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailsTitleCell", for: indexPath) as! ProductDetailsTitleCell
             return productCell
-        case 1,4:
+        case 1,3:
             let sepratorCell = tableView.dequeueReusableCell(withIdentifier: "SepratorCell", for: indexPath) as! SepratorCell
             return sepratorCell
         case 2:
             let imageCell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailsImageCell", for: indexPath) as! ProductDetailsImageCell
             return imageCell
-        case 3:
-            let descriptionCell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailsDescriptionCell", for: indexPath) as! ProductDetailsDescriptionCell
-            return descriptionCell
-        case 5:
+        case 4:
             let buyNowCell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailsBuynowCell", for: indexPath) as! ProductDetailsBuynowCell
             return buyNowCell
         default:
@@ -98,9 +95,9 @@ extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            if indexPath.row == 1 || indexPath.row == 4 { // Adjust the row index as needed
+            if indexPath.row == 1 || indexPath.row == 3 { // Adjust the row index as needed
                 return 13 // Set the desired height for the specific cell
-            }else if indexPath.row == 5{
+            }else if indexPath.row == 4{
                 return 65
             }
             return UITableView.automaticDimension // Use the default height for other cells
