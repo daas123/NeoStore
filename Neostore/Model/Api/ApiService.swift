@@ -31,6 +31,7 @@ enum APIServices{
     case userRegister(param: [String:Any])
     case userLogin(param: [String:Any])
     case productList(param : [String:Any])
+    case productDetails(param: [String:Any])
     
     
     var isImageFetching: Bool {
@@ -58,13 +59,17 @@ enum APIServices{
             
         case .ImageFetching(imageurl: let imageurl):
             return imageurl
+        
+        case .productDetails(param: let param):
+        urlPath = apiDomain + "products/getDetail"
+            return baseURL + urlPath
         }
         
     }
     
     var httpMethod: String {
         switch self {
-        case .productList:
+        case .productList , .productDetails:
             return "GET"
         default:
             return "POST"
@@ -73,7 +78,7 @@ enum APIServices{
     
     var param: [String:Any]? {
         switch self {
-        case .userRegister(param: let param), .userLogin(let param) , .productList(param: let param):
+        case .userRegister(param: let param), .userLogin(let param) , .productList(param: let param), .productDetails(param: let param):
             return param
         default:
             return nil

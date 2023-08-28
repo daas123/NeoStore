@@ -119,8 +119,6 @@ class HomeViewController: UIViewController{
     @IBAction func sideMenuButtonAction(_ sender: UIButton) {
         if sideMenuOpen{
             closeSideMenu()
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
-            mainView.removeGestureRecognizer(tapGesture)
         }else{
             openSideMenu()
         }

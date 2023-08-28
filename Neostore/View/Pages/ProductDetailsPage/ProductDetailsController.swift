@@ -11,7 +11,8 @@ class ProductDetailsController: UIViewController {
     
     @IBOutlet weak var productDetailsTableview: UITableView!
     
-    
+    var id = 1
+    var viewmodel = ProductDetailsViewModel()
     override func viewDidLoad() {
         super.viewDidLoad()
         //        //
@@ -59,12 +60,26 @@ class ProductDetailsController: UIViewController {
         // table view seprator style
         productDetailsTableview.separatorStyle = .none
         
-        
+        getdata()
     }
     @objc func searchButtonTapped() {
         navigationController?.pushViewController(CartViewController(nibName: "CartViewController", bundle: nil), animated: true)
     }
-    
+    var ProductDetials = [DetailsProduct]()
+    func getdata(){
+        self.viewmodel.getProductDetails(id: id ?? 1){
+            (Responce) in
+            DispatchQueue.main.async {
+                switch Responce {
+                case .success(let data):
+                    self.ProductDetials = data
+                case .failure(let failure):
+                    print(failure)
+                }
+            }
+            
+        }
+    }
     
     
     
@@ -72,7 +87,7 @@ class ProductDetailsController: UIViewController {
 
 extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 3
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -80,13 +95,11 @@ extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             let productCell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailsTitleCell", for: indexPath) as! ProductDetailsTitleCell
             return productCell
-        case 1,3:
-            let sepratorCell = tableView.dequeueReusableCell(withIdentifier: "SepratorCell", for: indexPath) as! SepratorCell
-            return sepratorCell
+        case 1:
+            let detailscell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailsImageCell", for: indexPath) as! ProductDetailsImageCell
+            
+            return detailscell
         case 2:
-            let imageCell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailsImageCell", for: indexPath) as! ProductDetailsImageCell
-            return imageCell
-        case 4:
             let buyNowCell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailsBuynowCell", for: indexPath) as! ProductDetailsBuynowCell
             return buyNowCell
         default:
@@ -95,9 +108,7 @@ extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            if indexPath.row == 1 || indexPath.row == 3 { // Adjust the row index as needed
-                return 13 // Set the desired height for the specific cell
-            }else if indexPath.row == 4{
+            if indexPath.row == 2{
                 return 65
             }
             return UITableView.automaticDimension // Use the default height for other cells

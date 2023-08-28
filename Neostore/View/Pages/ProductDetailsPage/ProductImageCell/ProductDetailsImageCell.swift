@@ -9,6 +9,11 @@ import UIKit
 
 class ProductDetailsImageCell: UITableViewCell {
     
+    // text
+    
+    @IBOutlet weak var ProductDetailsCost: UILabel!
+    
+    @IBOutlet weak var ProductDetailsDescription: UILabel!
     
    //image
     
@@ -18,12 +23,13 @@ class ProductDetailsImageCell: UITableViewCell {
     @IBOutlet weak var ProductDetailsSubimageThree: UIImageView!
     
     //cost
-    @IBOutlet weak var ProductDetailsCost: UILabel!
+
     
     // container outlet
     @IBOutlet weak var ProductDetailsImageContainerView: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
+        ProductDetailsImageContainerView.layer.cornerRadius = 10
        
         // Initialization code
     }

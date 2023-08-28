@@ -44,5 +44,23 @@ class ProductListApiService{
             }
         }
     }
+    func getproductDetails(id :Int, DetailsComplition: @escaping(Result<productDetails,Error>)->Void){
+        let param = ["product_id":id] as [String : Any]
+        APIManager.shared.callRequest(apiCallType: .productDetails(param: param)){
+            (response) in
+            switch response {
+            case .success(let data):
+                do {
+                    let response = try? JSONDecoder().decode(productDetails.self, from: data)
+                    DetailsComplition(.success(response!))
+                }catch{
+                    print("not able to fetch the data")
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+                DetailsComplition(.failure(error))
+            }
+        }
+    }
 }
 

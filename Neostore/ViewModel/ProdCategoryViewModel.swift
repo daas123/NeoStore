@@ -21,11 +21,14 @@ class ProductCategoryViewModel{
                     var newdata = [productList]()
                     if let data = data.data{
                         for productData in data{
-                            let product = productList(name: productData.name!,
+                            let product = productList(
+                                                      id: productData.id! ,
+                                                      name: productData.name!,
                                                       cost: productData.cost!,
                                                       producer: productData.producer!,
                                                       ratings: productData.rating!,
-                                                      image: productData.productImages!)
+                                                      image: productData.productImages!
+                                                    )
                             
                             newdata.append(product)  // Append each product to the array
                         }

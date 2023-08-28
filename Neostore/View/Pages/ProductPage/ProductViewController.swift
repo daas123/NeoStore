@@ -73,7 +73,11 @@ extension ProductViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         productDetailsData.count
     }
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let ProductDetailsController = ProductDetailsController(nibName: "ProductDetailsController", bundle: nil)
+        ProductDetailsController.id = productDetailsData[indexPath.row].id
+        self.navigationController?.pushViewController(ProductDetailsController, animated: true)
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductTableViewCell", for: indexPath) as! ProductTableViewCell
         cell.productTitle.text = productDetailsData[indexPath.row].name

@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VFY-nj-Mti">
-                        <rect key="frame" x="13" y="0.0" width="347" height="472"/>
+                        <rect key="frame" x="13" y="13" width="347" height="446"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="slider_img1" translatesAutoresizingMaskIntoConstraints="NO" id="m5f-av-7Jm">
                                 <rect key="frame" x="45" y="80" width="257" height="178"/>
@@ -70,13 +70,13 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zYK-0A-1dM">
-                                <rect key="frame" x="26" y="386" width="110" height="45.666666666666686"/>
+                                <rect key="frame" x="26" y="386" width="110" height="24"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="749" text="description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5c-wd-NPy">
-                                <rect key="frame" x="26" y="441.66666666666669" width="311" height="20.333333333333314"/>
+                                <rect key="frame" x="26" y="420" width="311" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -106,15 +106,15 @@
                 </subviews>
                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                 <constraints>
-                    <constraint firstItem="VFY-nj-Mti" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="7rs-gR-gH6"/>
-                    <constraint firstAttribute="bottom" secondItem="VFY-nj-Mti" secondAttribute="bottom" id="SXE-Ng-BNL"/>
+                    <constraint firstItem="VFY-nj-Mti" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="7rs-gR-gH6"/>
+                    <constraint firstAttribute="bottom" secondItem="VFY-nj-Mti" secondAttribute="bottom" constant="13" id="SXE-Ng-BNL"/>
                     <constraint firstAttribute="trailing" secondItem="VFY-nj-Mti" secondAttribute="trailing" constant="13" id="Xn0-Z7-9pp"/>
                     <constraint firstItem="VFY-nj-Mti" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="sB6-9U-9sU"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="ProductDetailsCost" destination="Zge-qv-2SG" id="HZ4-8n-Gth"/>
+                <outlet property="ProductDetailsDescription" destination="j5c-wd-NPy" id="myr-31-nmm"/>
                 <outlet property="ProductDetailsImageContainerView" destination="VFY-nj-Mti" id="WGT-Wp-rJa"/>
                 <outlet property="ProductDetailsMianImage" destination="m5f-av-7Jm" id="rbn-3C-Lfv"/>
                 <outlet property="ProductDetailsSubimageThree" destination="2An-8z-cBj" id="dih-1o-VgV"/>
