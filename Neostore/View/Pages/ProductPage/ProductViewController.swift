@@ -6,14 +6,16 @@
 //
 
 import UIKit
-
+import SDWebImage
 class ProductViewController: UIViewController {
     @IBOutlet weak var totalCountCell: UILabel!
     @IBOutlet weak var productTableview: UITableView!
     let viewmodel = ProductCategoryViewModel()
-    var id : Int?
+    var id = Int()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         productTableview.dataSource = self
         productTableview.delegate = self
         navigationController?.isNavigationBarHidden = false
@@ -40,30 +42,63 @@ class ProductViewController: UIViewController {
         navigationItem.rightBarButtonItem = searchButton
         
         // setting title for navigation bar
-        title = "Products"
+        title = ""
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         
         
         // register cell
         productTableview.register(UINib(nibName: "ProductTableViewCell", bundle: nil), forCellReuseIdentifier: "ProductTableViewCell")
         
-        getdata()
+        // Getting the data through urlsession
+         getdata()
     }
     
     @objc func searchButtonTapped() {
         navigationController?.pushViewController(ProductDetailsController(nibName: "ProductDetailsController", bundle: nil), animated: true)
     }
-    var productDetailsData = [productList]()
+//    var productDetailsData = [productList]()
+//
     func getdata(){
         self.viewmodel.GetProductList(id: id ?? 0){
-            (responce) in
-            DispatchQueue.main.async {
-                self.productDetailsData = responce
-                self.productTableview.reloadData()
+            (dataretrived) in
+            if dataretrived{
+                DispatchQueue.main.async {
+                    self.productTableview.reloadData()
+                    var title = self.getTitle(id: self.id ?? 0)
+                    self.navigationItem.title = title
+                }
             }
-            
         }
     }
+    
+    func getTitle(id :Int) ->String{
+        switch id{
+        case 1:
+            return productListTile.Tables.rawValue
+        case 2:
+            return productListTile.Chairs.rawValue
+        case 3:
+            return productListTile.Sofas.rawValue
+        case 4:
+            return productListTile.Cupboards.rawValue
+        default :
+            return productListTile.error.rawValue
+        }
+    }
+    
+    // getting the data through urlsession
+//    func getdata(){
+//        self.viewmodel.GetProductList(id: id ?? 0){
+//            (responce) in
+//            DispatchQueue.main.async {
+//                self.productDetailsData = responce
+//                self.productTableview.reloadData()
+//            }
+//
+//        }
+//    }
+    
+    
 
     var lastVisibleIndexPath: Int = 0
     var seenCount = 0
@@ -71,31 +106,46 @@ class ProductViewController: UIViewController {
 }
 extension ProductViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        productDetailsData.count
+        viewmodel.getCount()
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let ProductDetailsController = ProductDetailsController(nibName: "ProductDetailsController", bundle: nil)
-        ProductDetailsController.id = productDetailsData[indexPath.row].id
+        ProductDetailsController.id = viewmodel.getId(row: indexPath.row)
+        ProductDetailsController.ProductCategory = self.getTitle(id: self.id ?? 0)
         self.navigationController?.pushViewController(ProductDetailsController, animated: true)
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductTableViewCell", for: indexPath) as! ProductTableViewCell
-        cell.productTitle.text = productDetailsData[indexPath.row].name
-        cell.productProducer.text = productDetailsData[indexPath.row].producer
-        cell.ProductCost.text = String(productDetailsData[indexPath.row].cost)
-        let ratings = getRatingStars(rating: productDetailsData[indexPath.row].ratings)
+        
+        cell.productTitle.text = viewmodel.getName(row: indexPath.row)
+        cell.productProducer.text = viewmodel.getProducer(row: indexPath.row)
+        cell.ProductCost.text = String(viewmodel.getCost(row: indexPath.row))
+        let ratings = getRatingStars(rating: viewmodel.getrating(row: indexPath.row))
         cell.ProductRatings.text = ratings
+
+       //  by using pod
+        if let imageUrl = URL(string: viewmodel.getimage(row: indexPath.row)) {
+                cell.productImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "bg.jpg"))
+            } else {
+                cell.productImage.image = UIImage(named: "bg.jpg")
+            }
         
-        // getting image cell
-        let imageurl = productDetailsData[indexPath.row].image
-            self.viewmodel.imageDataProductList(stringurl: imageurl){
-                (image) in
-                DispatchQueue.main.async {
-                    cell.productImage.image = image
-                }
+        // remove the tint
+        cell.selectionStyle = .none
         
-        }
         return cell
+        // getting image cell using url session
+//        let imageurl = productDetailsData[indexPath.row].image
+//            self.viewmodel.imageDataProductList(stringurl: imageurl){
+//                (image) in
+//                DispatchQueue.main.async {
+//                    cell.productImage.image = image
+//                }
+//
+//        }
+        
+        
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 94
@@ -119,7 +169,7 @@ extension ProductViewController: UITableViewDelegate,UITableViewDataSource{
     func updatecount()
     {
         if lastVisibleIndexPath > seenCount{
-            totalCountCell.text = "\(lastVisibleIndexPath+1) / \(productDetailsData.count)"
+            totalCountCell.text = "\(lastVisibleIndexPath+1) / \(viewmodel.getCount())"
             seenCount = lastVisibleIndexPath
         }
         

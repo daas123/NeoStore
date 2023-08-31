@@ -33,7 +33,7 @@ class LoginViewController: UIViewController {
             DispatchQueue.main.async {
                 if validationCheck{
                     self.navigationController?.pushViewController(HomeViewController(nibName: "HomeViewController", bundle: nil), animated: true)
-                    self.showAlert(msg: msgString)
+//                    self.showAlert(msg: msgString)
                 }else{
                     self.showAlert(msg: msgString)
                 }

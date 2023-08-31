@@ -32,7 +32,7 @@
             <connections>
                 <outlet property="cellImage" destination="cII-d5-Fet" id="UU9-dh-UyV"/>
             </connections>
-            <point key="canvasLocation" x="182.44274809160305" y="35.563380281690144"/>
+            <point key="canvasLocation" x="181.67938931297709" y="35.211267605633807"/>
         </collectionViewCell>
     </objects>
     <resources>

@@ -7,28 +7,9 @@
 //
 
 import UIKit
-enum positions{
-    case topRight
-    case topLeft
-    case bottomLeft
-    case bottomRight
-}
 
-struct categorydetails{
-    var name : String
-    var imagename :String
-    
-    var nametop : Int
-    var namebottom :Int
-    var nameleading : Int
-    var nametrailing :Int
-    
-    var imagetop : Int
-    var imagebottom :Int
-    var imagetrailing :Int
-    var imageleading : Int
-}
 class HomeViewController: UIViewController{
+    
     private var categoryData:[[String:Any]] = [
         ["name":"Table","lblPosition":positions.topRight,"imgName":"table","imgPosition":positions.bottomLeft],
         ["name":"Chairs","lblPosition":positions.topLeft,"imgName":"chair","imgPosition":positions.bottomRight],
@@ -36,12 +17,16 @@ class HomeViewController: UIViewController{
         ["name":"Cupboards","lblPosition":positions.bottomRight,"imgName":"cupboard","imgPosition":positions.topLeft]
     ]
     
+    var currentsidemenupage = 0
     var sideMenuOpen = false
     var panGesture: UIPanGestureRecognizer!
     var tapGesture: UITapGestureRecognizer!
     
+    // creating the view model
     var viewmodel = ProductViewController()
-    //parent
+    
+    
+    
     
     @IBOutlet var parentView: UIView!
     
@@ -76,15 +61,17 @@ class HomeViewController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        homeCollectionView.decelerationRate = UIScrollView.DecelerationRate.fast // or .normal
         // setting back button title
         let backButton = UIBarButtonItem()
         backButton.title = "" // Set an empty title
         navigationItem.backBarButtonItem = backButton
         
         //for page controll
-        pageControl.currentPage = 1
+        pageControl.currentPage = 0
         pageControl.numberOfPages = collectionViewImages.count
         
         
@@ -109,10 +96,12 @@ class HomeViewController: UIViewController{
         // Hiding the menue before loading
         self.sideMenuLeadingConstraint.constant = -self.sideMenuContainer.frame.width
         self.view.layoutIfNeeded()
+        
+        
         setupSideMenu()
+        startTimer()
         
-        
-        
+        // new code
     }
     
     // hamburgure button
@@ -185,8 +174,8 @@ class HomeViewController: UIViewController{
             self.view.backgroundColor = #colorLiteral(red: 0.07985462048, green: 0.05813284701, blue: 0.08785764135, alpha: 1)
             self.sideMenuLeadingConstraint.constant = 0
             self.MainMenuLeadingConstraint.constant = self.sideMenuContainer.frame.width
-            self.mainMenutopConstraint.constant = 50
-            self.mainMenubottomConstraint.constant = 50
+            self.mainMenutopConstraint.constant = 15
+            self.mainMenubottomConstraint.constant = 15
             self.mainMenuTrailingConstrain.constant =  self.sideMenuContainer.frame.width
             self.view.layoutIfNeeded()
         }
@@ -199,6 +188,7 @@ class HomeViewController: UIViewController{
         sideMenuOpen = false
         UIView.animate(withDuration: 0.3) {
             self.mainView.removeGestureRecognizer(self.tapGesture)
+            self.parentView.removeGestureRecognizer(self.tapGesture)
             self.view.backgroundColor = #colorLiteral(red: 0.9599440694, green: 0.02287241258, blue: 0.09069452435, alpha: 1)
             self.sideMenuLeadingConstraint.constant = -self.sideMenuContainer.frame.width
             self.MainMenuLeadingConstraint.constant = 0
@@ -209,37 +199,61 @@ class HomeViewController: UIViewController{
             self.view.layoutIfNeeded()
         }
     }
+    var currentscrollIndex = 1
+    var contentOffset = CGPoint()
+    @IBAction func PageControlAction(_ sender: UIPageControl) {
+        
+        let presentSelected = sender.currentPage
+        let cellSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
+        
+        pageControl.currentPage = presentSelected
+        currentscrollIndex = presentSelected
+        
+        let targetOffsetX = cellSize.width * CGFloat(presentSelected)
+        homeCollectionView.setContentOffset(CGPoint(x: targetOffsetX, y: contentOffset.y), animated: true)
+    }
+    
+    // auto scroll code
+    var timer : Timer?
+    func startTimer() {
+        timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(scrollToNextItem), userInfo: nil, repeats: true)
+    }
+    
+    @objc func scrollToNextItem() {
+        let cellSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
+        
+        if currentscrollIndex >= categoryData.count {
+            pageControl.currentPage = 0
+            currentscrollIndex = 0
+            homeCollectionView.setContentOffset(CGPoint(x: 0, y: contentOffset.y), animated: true)
+        } else {
+            pageControl.currentPage = currentscrollIndex
+            let targetOffsetX = contentOffset.x + cellSize.width * CGFloat(currentscrollIndex)
+            homeCollectionView.setContentOffset(CGPoint(x: targetOffsetX, y: contentOffset.y), animated: true)
+            currentscrollIndex += 1
+        }
+    }
     
 }
 
-extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout {
+
+extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == homeCollectionView{
-            return CGSize(width: homeCollectionView.bounds.width, height: homeCollectionView.bounds.height)
+            return CGSize(width: UIScreen.main.bounds.width, height: homeCollectionView.bounds.height)
         }
-        let availableWidth = collectionView.bounds.width
-        let availableHeight = collectionView.bounds.height
-        let spacing: CGFloat = 68 // Adjust this value as needed
-        let cellWidth = (availableWidth - spacing) / 2
-        let cellHeight = (availableHeight - spacing) / 2
-        return CGSize(width: cellWidth, height: cellWidth)
-    }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 20
+        let availableWidth = UIScreen.main.bounds.width - 30
+        let cellWidth = (availableWidth - 15) / 2
+        return CGSize(width: cellWidth, height:cellWidth)
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if collectionView == categoryCollectionView{
-            return UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
+            return UIEdgeInsets(top: 15, left: 0, bottom: 15, right: 0)
+        }else{
+            return UIEdgeInsets(top: 0 , left: 0, bottom: 0, right: 0)
         }
-        else {
-            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        }
-        }
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == homeCollectionView{
@@ -266,15 +280,20 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
             return cell
         }
     }
-    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        pageControl.currentPage = indexPath.row
-    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let selectedId = indexPath.row + 1
-        print(selectedId)
-        let productViewController = ProductViewController(nibName: "ProductViewController", bundle: nil)
-        productViewController.id = selectedId
-        self.navigationController?.pushViewController(productViewController, animated: true)
+        if collectionView == categoryCollectionView{
+            let selectedId = indexPath.row + 1
+            print(selectedId)
+            let productViewController = ProductViewController(nibName: "ProductViewController", bundle: nil)
+            productViewController.id = selectedId
+            self.navigationController?.pushViewController(productViewController, animated: true)
+        }
     }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let width = scrollView.frame.width
+        let currentPage = Int((scrollView.contentOffset.x + width / 2) / width)
+        pageControl.currentPage = currentPage
+    }
+    
     
 }

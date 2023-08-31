@@ -41,15 +41,6 @@ struct ProductListdata: Codable {
 
 
 // model for data stroing in productlist page
-struct productList{
-    var id : Int
-    var name : String
-    var cost : Int
-    var producer : String
-    var ratings : Int
-    var image : String
-    
-}
 // model for side menu table in home view controller
 struct menutabledetais{
     let name:String
@@ -107,6 +98,17 @@ struct DetailsProduct{
     let dataDescription : String
     let cost : Int
     let rating : Int
-//    let image1 : String
-//    let image1 : [Product_images]?
+    let image1 : String
 }
+
+
+//setting the title for product
+
+enum productListTile:String{
+    case Tables
+    case Chairs
+    case Sofas
+    case Cupboards
+    case error
+}
+

@@ -11,39 +11,44 @@
 
 import Foundation
 import UIKit
+
+// posotion for category view contoller
+enum positions{
+    case topRight
+    case topLeft
+    case bottomLeft
+    case bottomRight
+}
+
+protocol GetProductListDetails:AnyObject{
+    func getCount()->Int
+    func getProducer(row:Int) -> String
+    func getCost(row:Int)-> Int
+    func getId(row:Int)->Int
+    func getName(row:Int)->String
+    func getimage(row:Int)->String
+    func getrating(row:Int)->Int
+}
+
 class ProductCategoryViewModel{
-    func GetProductList(id:Int , complition : @escaping ([productList])->Void){
-        if (1...4).contains(id){
+    
+    var productListDetailsData: ProductList?
+    
+    func GetProductList(id:Int , complition : @escaping (Bool)->Void){
             ProductListApiService().getProductList(product_category_id: id){
                 (responce) in
                 switch responce{
                 case .success(let data):
-                    var newdata = [productList]()
-                    if let data = data.data{
-                        for productData in data{
-                            let product = productList(
-                                                      id: productData.id! ,
-                                                      name: productData.name!,
-                                                      cost: productData.cost!,
-                                                      producer: productData.producer!,
-                                                      ratings: productData.rating!,
-                                                      image: productData.productImages!
-                                                    )
-                            
-                            newdata.append(product)  // Append each product to the array
-                        }
-                        
-                    }
-                    complition(newdata)
+                    self.productListDetailsData = data
+                    complition(true)
                 case .failure(let error):
                     print ("error not \(error)")
                 }
                 
             }
-        }else{
-            print("not selected valid cell")
-        }
+        
     }
+    
     func imageDataProductList(stringurl : String ,complition : @escaping (UIImage)->Void){
         ProductListApiService().getImageProductlist(productUrl: stringurl){
             (responce) in
@@ -57,4 +62,27 @@ class ProductCategoryViewModel{
         
     }
     
+}
+extension ProductCategoryViewModel:GetProductListDetails{
+    func getCount() -> Int {
+        return productListDetailsData?.data?.count ?? 0
+    }
+    func getProducer(row:Int) -> String{
+        return productListDetailsData?.data?[row].producer ?? "Invalid Row"
+    }
+    func getCost(row:Int)-> Int{
+        return productListDetailsData?.data?[row].cost ?? 0
+    }
+    func getId(row:Int)->Int{
+        return productListDetailsData?.data?[row].id ?? 0
+    }
+    func getName(row:Int)->String{
+        return productListDetailsData?.data?[row].name ?? "invalid"
+    }
+    func getimage(row:Int)->String{
+        return productListDetailsData?.data?[row].productImages ?? "invalid"
+    }
+    func getrating(row:Int)->Int{
+        return productListDetailsData?.data?[row].rating ?? 0
+    }
 }

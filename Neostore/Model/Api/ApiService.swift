@@ -60,7 +60,7 @@ enum APIServices{
         case .ImageFetching(imageurl: let imageurl):
             return imageurl
         
-        case .productDetails(param: let param):
+        case .productDetails:
         urlPath = apiDomain + "products/getDetail"
             return baseURL + urlPath
         }
