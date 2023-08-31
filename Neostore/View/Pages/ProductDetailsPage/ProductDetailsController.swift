@@ -10,7 +10,7 @@ import UIKit
 class ProductDetailsController: UIViewController {
     
     @IBOutlet weak var productDetailsTableview: UITableView!
-    
+    var navigationtitle = String()
     var ProductCategory = String()
     var id = 1
     var viewmodel = ProductDetailsViewModel()
@@ -46,7 +46,7 @@ class ProductDetailsController: UIViewController {
         navigationItem.rightBarButtonItem = searchButton
         
         // setting title for navigation bar
-        self.navigationItem.title = "ProductDetails"
+        self.navigationItem.title = navigationtitle
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         
         
@@ -56,8 +56,6 @@ class ProductDetailsController: UIViewController {
         productDetailsTableview.register(UINib(nibName: "ProductDetailsDescriptionCell", bundle: nil), forCellReuseIdentifier: "ProductDetailsDescriptionCell")
         productDetailsTableview.register(UINib(nibName: "ProductDetailsBuynowCell", bundle: nil), forCellReuseIdentifier: "ProductDetailsBuynowCell")
         productDetailsTableview.register(UINib(nibName: "SepratorCell", bundle: nil), forCellReuseIdentifier: "SepratorCell")
-        
-        
         // table view seprator style
         productDetailsTableview.separatorStyle = .none
         
@@ -91,6 +89,9 @@ class ProductDetailsController: UIViewController {
         }
     }
     
+    
+
+    
 }
 
 extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
@@ -102,16 +103,13 @@ extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0:
             let titleCell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailsTitleCell", for: indexPath) as! ProductDetailsTitleCell
-            
             titleCell.ProductTitle.text = viewmodel.GetTitle()
-            
             titleCell.ProductProducer.text = viewmodel.GetProducer()
-            
             titleCell.ProductCategory.text = ProductCategory
+            let rating = viewmodel.GetRating() // Replace with the method to get the rating value
+            titleCell.setRating(rating)
             
-            let rating = getRatingStars(rating: viewmodel.GetRating())
-            titleCell.ProductRating.text = rating
-            
+
             return titleCell
             
         case 1:

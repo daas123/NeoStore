@@ -10,7 +10,9 @@ import UIKit
 class ProductTableViewCell: UITableViewCell {
 
     
-    @IBOutlet weak var ProductRatings: UILabel!
+    @IBOutlet var productListrating: [UIImageView]!
+    
+    
     @IBOutlet weak var ProductCost: UILabel!
     @IBOutlet weak var productProducer: UILabel!
     @IBOutlet weak var productTitle: UILabel!
@@ -25,5 +27,16 @@ class ProductTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+    func setRating(_ rating: Int) {
+        var count = 0
+        for i in productListrating {
+            count = count + 1
+            if count <= rating {
+                i.image = UIImage(systemName: "star.fill")
+            }else{
+                i.image = UIImage(systemName: "star")
+            }
+        }
+    }
+
 }

@@ -7,48 +7,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7F4DDEE1-CA33-436C-861E-647B84898CEA"
-            shouldBeEnabled = "Yes"
+            uuid = "B0BAD7BF-09B1-4C56-8CB2-04BA081D931F"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Neostore/View/Pages/ProductDetailsPage/ProductDetailsController.swift"
+            filePath = "Neostore/View/Pages/ProductDetailsPage/ProductTitleCell/ProductDetailsTitleCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
-            landmarkName = "tableView(_:cellForRowAt:)"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "setRating(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E3F42AF0-2CC9-43EE-A394-27E1D3B8113A"
+            uuid = "29A3DFC4-C9F6-413F-B0BA-F76EAD63971F"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Neostore/View/Pages/ProductDetailsPage/ProductMiddelCell/ProductDetailsImageCell.swift"
+            filePath = "Neostore/View/Pages/ProductDetailsPage/ProductTitleCell/ProductDetailsTitleCell.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "collectionView(_:cellForItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5AD57E4E-E78D-4908-93F0-6688E549FF73"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Neostore/View/Pages/ProductDetailsPage/ProductMiddelCell/ProductDetailsImageCell.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "32"
-            endingLineNumber = "32"
-            landmarkName = "reloadCollectionviewdata()"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "setRating(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

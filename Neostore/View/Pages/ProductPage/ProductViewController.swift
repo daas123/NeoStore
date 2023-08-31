@@ -112,7 +112,9 @@ extension ProductViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let ProductDetailsController = ProductDetailsController(nibName: "ProductDetailsController", bundle: nil)
         ProductDetailsController.id = viewmodel.getId(row: indexPath.row)
-        ProductDetailsController.ProductCategory = self.getTitle(id: self.id ?? 0)
+        ProductDetailsController.ProductCategory = self.getTitle(id: self.id)
+        ProductDetailsController.navigationtitle = viewmodel.getName(row: indexPath.row)
+        
         self.navigationController?.pushViewController(ProductDetailsController, animated: true)
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -121,8 +123,9 @@ extension ProductViewController: UITableViewDelegate,UITableViewDataSource{
         cell.productTitle.text = viewmodel.getName(row: indexPath.row)
         cell.productProducer.text = viewmodel.getProducer(row: indexPath.row)
         cell.ProductCost.text = String(viewmodel.getCost(row: indexPath.row))
-        let ratings = getRatingStars(rating: viewmodel.getrating(row: indexPath.row))
-        cell.ProductRatings.text = ratings
+        let rating = viewmodel.getrating(row: indexPath.row)
+        cell.setRating(rating)
+
 
        //  by using pod
         if let imageUrl = URL(string: viewmodel.getimage(row: indexPath.row)) {
