@@ -3,7 +3,20 @@
 //  Neostore
 //
 //  Created by Neosoft on 17/08/23.
-//
+//guard let windowScene = (scene as? UIWindowScene) else { return }
+//let window = UIWindow(windowScene: windowScene)
+//let viewController : UIViewController
+//// Create your view controller
+//if UserDefaults.standard.string(forKey: "accessToken") == nil || UserDefaults.standard.string(forKey: "accessToken") == ""{
+//    viewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
+//} else {
+//    viewController = HomeContainerViewController()
+//}
+//// Create a navigation controller if needed
+//let navigationController = UINavigationController(rootViewController: viewController)
+//window.rootViewController = navigationController // or viewController if not using navigation controller
+//self.window = window
+//window.makeKeyAndVisible()
 
 import UIKit
 
@@ -15,11 +28,18 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let windowScene = (scene as? UIWindowScene) else { return}
-        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-       window?.windowScene = windowScene
-       let navigationController = UINavigationController(rootViewController: HomeViewController())
-        window?.rootViewController = navigationController
-       window?.makeKeyAndVisible()
+        let window = UIWindow(windowScene: windowScene)
+        let viewController : UIViewController
+        if UserDefaults.standard.string(forKey: "accessToken") == "" || UserDefaults.standard.string(forKey: "accessToken") == nil {
+            viewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
+        }else{
+            viewController = HomeViewController(nibName: "HomeViewController" , bundle: nil)
+        }
+        
+        let navigationController = UINavigationController(rootViewController: viewController)
+        window.rootViewController = navigationController // or viewController if not using navigation controller
+        self.window = window
+        window.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

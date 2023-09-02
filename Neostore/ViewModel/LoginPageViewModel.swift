@@ -17,6 +17,7 @@ class loginViewModel{
                     (responce) in
                     switch responce{
                     case .success(let value):
+                        UserDefaults.standard.set(value.data?.access_token, forKey: "accessToken")
                         complition(true,value.user_msg!)
                     case .failure(let error):
                         complition (false , error.localizedDescription)

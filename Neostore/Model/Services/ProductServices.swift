@@ -17,7 +17,6 @@ class ProductListApiService{
             case .success(let value):
                 do {
                     let responseData = try? JSONDecoder().decode(ProductList.self, from: value)
-                    
                     completion(.success(responseData!))
                 } catch {
                     completion(.failure(error))

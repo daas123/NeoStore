@@ -11,6 +11,7 @@ class ProductDetailsBuynowCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         // Initialization code
     }
 
@@ -21,8 +22,11 @@ class ProductDetailsBuynowCell: UITableViewCell {
     }
     
     @IBAction func ProductDetailsBuyNowAction(_ sender: UIButton) {
+//        let vc = ProductDetailsOrderViewController(nibName: "ProductDetailsOrderViewController", bundle: nil)
+//        self.present(vc, animated: true)
     }
     
     @IBAction func ProductDetailsRateAction(_ sender: UIButton) {
+        
     }
 }

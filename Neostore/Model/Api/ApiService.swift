@@ -32,6 +32,8 @@ enum APIServices{
     case userLogin(param: [String:Any])
     case productList(param : [String:Any])
     case productDetails(param: [String:Any])
+    case productRating(param: [String:Any])
+    case productAddToCart(param: [String:Any])
     
     
     var isImageFetching: Bool {
@@ -63,6 +65,14 @@ enum APIServices{
         case .productDetails:
         urlPath = apiDomain + "products/getDetail"
             return baseURL + urlPath
+            
+        case .productRating:
+        urlPath = apiDomain + "products/setRating"
+            return baseURL + urlPath
+            
+        case .productAddToCart:
+        urlPath = apiDomain + "products/addToCart"
+            return baseURL + urlPath
         }
         
     }
@@ -78,7 +88,7 @@ enum APIServices{
     
     var param: [String:Any]? {
         switch self {
-        case .userRegister(param: let param), .userLogin(let param) , .productList(param: let param), .productDetails(param: let param):
+        case .userRegister(param: let param), .userLogin(let param) , .productList(param: let param), .productDetails(param: let param) , .productRating(param: let param),.productAddToCart(param: let param):
             return param
         default:
             return nil
@@ -87,12 +97,7 @@ enum APIServices{
     
     var header: [String:String] {
         var dict:[String:String]
-//        switch self{
-//        case .userRegister , .userLogin:
-            dict = [contentKey:contentValue_Post]
-//        case .productList:
-//            dict = [contentKey:contentValue_Get]
-//        }
+        dict = [contentKey:contentValue_Post,"access_token":UserDefaults.standard.string(forKey:"accessToken") ?? ""]
         return dict
     }
 }

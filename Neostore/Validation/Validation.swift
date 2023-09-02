@@ -79,6 +79,17 @@ class validation{
         
         complition(true,"all OK")
     }
+    
+    func addToCart(Quantity: String, completion: @escaping (Bool, String) -> Void) {
+        let allowedCharacterSet = CharacterSet(charactersIn: "0123456789")
+        
+        // Check if Quantity is a valid integer between 1 and 7
+        if let quantityInt = Int(Quantity), (1...7).contains(quantityInt), Quantity.rangeOfCharacter(from: allowedCharacterSet.inverted) == nil {
+            completion(true, "All ok")
+        } else {
+            completion(false, "Quantity must be between 1 to 7 and contain only numbers")
+        }
+    }
 }
 
 

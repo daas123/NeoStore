@@ -45,7 +45,17 @@ struct ProductListdata: Codable {
 struct menutabledetais{
     let name:String
     let image : String
+    let category : sidemuneCategory
 }
+enum sidemuneCategory:String{
+    case cart
+    case logout
+    case productdetails
+    case myaccount
+    case storelocator
+    case myorder
+}
+
 
 
 // model for productlist

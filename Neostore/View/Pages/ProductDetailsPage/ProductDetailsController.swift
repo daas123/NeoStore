@@ -10,12 +10,17 @@ import UIKit
 class ProductDetailsController: UIViewController {
     
     @IBOutlet weak var productDetailsTableview: UITableView!
+    @IBOutlet weak var ProductDetailsMainView: UIView!
     var navigationtitle = String()
     var ProductCategory = String()
-    var id = 1
+    var Productid = 1
     var viewmodel = ProductDetailsViewModel()
+    var tapGesture: UITapGestureRecognizer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(viewWillDisappearNotification), name: NSNotification.Name(rawValue: "RatingDoneNotification"), object: nil)
         //        //
         productDetailsTableview.delegate = self
         productDetailsTableview.dataSource = self
@@ -59,14 +64,37 @@ class ProductDetailsController: UIViewController {
         // table view seprator style
         productDetailsTableview.separatorStyle = .none
         
+        // getdatresponce from view model
         getdata()
+        
+        //adding tap guestiure
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
     }
+    
+    @objc private func viewWillDisappearNotification(_ notification: Notification) {
+        if let message = notification.userInfo?["message"] as? String {
+            self.showAlert(msg: message)
+        }
+    }
+    
+    deinit {
+            // Remove the observer when the view is deallocated
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "ViewWillDisappearNotification"), object: nil)
+        }
+    // view didload end
+    
+    @objc private func handleTapGesture(_ sender: UITapGestureRecognizer) {
+        print("tap occured")
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
     @objc func searchButtonTapped() {
         navigationController?.pushViewController(CartViewController(nibName: "CartViewController", bundle: nil), animated: true)
     }
     var ProductDetials = [DetailsProduct]()
     func getdata(){
-        self.viewmodel.getProductDetails(id: id ){
+        self.viewmodel.getProductDetails(id: Productid ){
             (Responce) in
             DispatchQueue.main.async {
                     self.productDetailsTableview.reloadData()
@@ -89,6 +117,34 @@ class ProductDetailsController: UIViewController {
         }
     }
     
+    func ShowOrderview() {
+        UIView.animate(withDuration: 0.3) {
+            let popupViewController = ProductDetailsOrderViewController(nibName: "ProductDetailsOrderViewController", bundle: nil)
+            popupViewController.modalPresentationStyle = .overCurrentContext
+            popupViewController.modalTransitionStyle = .crossDissolve
+            self.present(popupViewController, animated: true, completion: nil)
+        }
+    }
+    
+    func ShowRatingview() {
+        UIView.animate(withDuration: 0.3) {
+            let popupViewController = ProductDetailsRateController(nibName: "ProductDetailsRateController", bundle: nil)
+            popupViewController.productId = self.Productid
+            popupViewController.modalPresentationStyle = .overCurrentContext
+            popupViewController.modalTransitionStyle = .crossDissolve
+            self.present(popupViewController, animated: true, completion: nil)
+        }
+    }
+
+    
+    @IBAction func OrderButtion(_ sender: UIButton) {
+        ShowOrderview()
+    }
+    
+    @IBAction func RateButton(_ sender: Any) {
+        ShowRatingview()
+    }
+    
     
 
     
@@ -96,7 +152,7 @@ class ProductDetailsController: UIViewController {
 
 extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -119,9 +175,6 @@ extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
             detailscell.imageCollectioViewData = viewmodel.Getimagedata()
             detailscell.reloadCollectionviewdata()
             return detailscell
-        case 2:
-            let buyNowCell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailsBuynowCell", for: indexPath) as! ProductDetailsBuynowCell
-            return buyNowCell
         default:
             fatalError("Invalid section")
         }
@@ -138,18 +191,5 @@ extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
         0
-    }
-
-    func getRatingStars(rating: Int) -> String {
-        var stars = ""
-        for i in 1...5{
-            if i<=rating{
-                stars += "☆"
-            }else{
-                stars += "☆"
-            }
-        }
-        
-        return stars
     }
 }

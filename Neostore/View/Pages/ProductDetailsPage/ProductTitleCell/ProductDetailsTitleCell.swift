@@ -25,11 +25,11 @@ class ProductDetailsTitleCell: UITableViewCell {
         // Configure the view for the selected state
     }
     func setRating(_ rating: Int) {
-        var count = 0
+        var count = 1
         for i in productratingimages {
-            count = count + 1
-            if count <= rating {
+            if rating >= count {
                 i.image = UIImage(systemName: "star.fill")
+                count += 1
             }else{
                 i.image = UIImage(systemName: "star")
             }

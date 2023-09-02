@@ -111,7 +111,7 @@ extension ProductViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let ProductDetailsController = ProductDetailsController(nibName: "ProductDetailsController", bundle: nil)
-        ProductDetailsController.id = viewmodel.getId(row: indexPath.row)
+        ProductDetailsController.Productid = viewmodel.getId(row: indexPath.row)
         ProductDetailsController.ProductCategory = self.getTitle(id: self.id)
         ProductDetailsController.navigationtitle = viewmodel.getName(row: indexPath.row)
         
@@ -153,14 +153,7 @@ extension ProductViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 94
     }
-    
-    func getRatingStars(rating: Int) -> String {
-        var stars = ""
-        for _ in 0..<rating {
-            stars += "⭐️" // You can use any star symbol here
-        }
-        return stars
-    }
+
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         updatecount()
     }
