@@ -12,7 +12,7 @@ class ProductDetailsOrderViewController: UIViewController {
     let viewModel = OrderviewModel()
     var orderViewGesture: UITapGestureRecognizer!
     var orderDetailsGesture: UITapGestureRecognizer!
-    var productId = 1    // details outlet
+    var productId = 1      // details outlet
     
     
     
