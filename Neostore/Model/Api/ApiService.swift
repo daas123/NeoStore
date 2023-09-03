@@ -30,6 +30,7 @@ enum APIServices{
     case ImageFetching(imageurl : String)
     case userRegister(param: [String:Any])
     case userLogin(param: [String:Any])
+    case fetchAccountDetails
     case productList(param : [String:Any])
     case productDetails(param: [String:Any])
     case productRating(param: [String:Any])
@@ -71,15 +72,19 @@ enum APIServices{
             return baseURL + urlPath
             
         case .productAddToCart:
-        urlPath = apiDomain + "products/addToCart"
+        urlPath = apiDomain + "addToCart"
             return baseURL + urlPath
+            
+        case .fetchAccountDetails:
+            urlPath = apiDomain + "users/getUserData"
+                return baseURL + urlPath
         }
         
     }
     
     var httpMethod: String {
         switch self {
-        case .productList , .productDetails:
+        case .productList , .productDetails , .fetchAccountDetails:
             return "GET"
         default:
             return "POST"

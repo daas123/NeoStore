@@ -9,7 +9,8 @@ import UIKit
 
 class CartTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var cartIncreasingButton: UIButton!
+    
+    @IBOutlet weak var TotalCartlabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         self.layer.borderWidth = 2

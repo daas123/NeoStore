@@ -15,8 +15,8 @@ class RegisterWebService {
             (responce) in
             switch responce {
             case .success(let data):
-                if let retriveddata = data as? Data {
-                    let jsondata = try? JSONDecoder().decode(User.self, from: retriveddata)
+                if let retriveData = data as? Data {
+                    let jsondata = try? JSONDecoder().decode(User.self, from: retriveData)
                     Completion(.success(jsondata!))
                 }else{
                     Completion(.failure(Error.self as! Error))

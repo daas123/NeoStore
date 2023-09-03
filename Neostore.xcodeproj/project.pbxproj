@@ -96,6 +96,9 @@
 		92E48DBA2AA35A8E00822F8C /* MyAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E48DB82AA35A8E00822F8C /* MyAccountViewController.xib */; };
 		92E48DBD2AA35ACB00822F8C /* AccountEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E48DBB2AA35ACB00822F8C /* AccountEditViewController.swift */; };
 		92E48DBE2AA35ACB00822F8C /* AccountEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E48DBC2AA35ACB00822F8C /* AccountEditViewController.xib */; };
+		92E48DC22AA3B00D00822F8C /* SideMenuViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E48DC12AA3B00D00822F8C /* SideMenuViewmodel.swift */; };
+		92E48DC42AA3B7B400822F8C /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E48DC32AA3B7B400822F8C /* AccountModel.swift */; };
+		92E48DC72AA3BC5300822F8C /* SideMenuService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E48DC62AA3BC5300822F8C /* SideMenuService.swift */; };
 		92E891142AA2FD120099980C /* AddAddressLandMarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E891122AA2FD120099980C /* AddAddressLandMarkCell.swift */; };
 		92E891152AA2FD120099980C /* AddAddressLandMarkCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E891132AA2FD120099980C /* AddAddressLandMarkCell.xib */; };
 		92E8911C2AA2FD820099980C /* AddAddressCityStateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E8911A2AA2FD820099980C /* AddAddressCityStateCell.swift */; };
@@ -234,6 +237,9 @@
 		92E48DB82AA35A8E00822F8C /* MyAccountViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyAccountViewController.xib; sourceTree = "<group>"; };
 		92E48DBB2AA35ACB00822F8C /* AccountEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEditViewController.swift; sourceTree = "<group>"; };
 		92E48DBC2AA35ACB00822F8C /* AccountEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountEditViewController.xib; sourceTree = "<group>"; };
+		92E48DC12AA3B00D00822F8C /* SideMenuViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewmodel.swift; sourceTree = "<group>"; };
+		92E48DC32AA3B7B400822F8C /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
+		92E48DC62AA3BC5300822F8C /* SideMenuService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuService.swift; sourceTree = "<group>"; };
 		92E891122AA2FD120099980C /* AddAddressLandMarkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressLandMarkCell.swift; sourceTree = "<group>"; };
 		92E891132AA2FD120099980C /* AddAddressLandMarkCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAddressLandMarkCell.xib; sourceTree = "<group>"; };
 		92E8911A2AA2FD820099980C /* AddAddressCityStateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressCityStateCell.swift; sourceTree = "<group>"; };
@@ -355,6 +361,7 @@
 				929484402A977E4700CA3C51 /* ProductServices.swift */,
 				929A9F7C2AA1CAB2007B36F3 /* RatingService.swift */,
 				929A9F7E2AA1CB4B007B36F3 /* OrderService.swift */,
+				92E48DC62AA3BC5300822F8C /* SideMenuService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -403,6 +410,7 @@
 				9294843E2A977E3400CA3C51 /* ProductModel.swift */,
 				929A9F802AA1CC29007B36F3 /* RatingModel.swift */,
 				929A9F822AA1CC4C007B36F3 /* OrderModel.swift */,
+				92E48DC32AA3B7B400822F8C /* AccountModel.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -621,6 +629,7 @@
 				92988DB42A95CE2200DA4135 /* RegisterPageViewModel.swift */,
 				92D5B9232A9BAC8700D03C5C /* ProdCategoryViewModel.swift */,
 				929C527C2A9C972C00E98F18 /* ProductDetailsViewModel.swift */,
+				92E48DC12AA3B00D00822F8C /* SideMenuViewmodel.swift */,
 				929A9F782AA1C9A1007B36F3 /* RateViewModel.swift */,
 				929A9F7A2AA1C9BD007B36F3 /* OrderViewModel.swift */,
 			);
@@ -686,7 +695,6 @@
 		92D6EB822A8E1EBC00838A15 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
-				92E48DB42AA3574300822F8C /* New Group */,
 				92D6EB832A8E1EC500838A15 /* login page */,
 				922FA9762A8E417400D30014 /* Register page */,
 				921363342A8E612F0035A751 /* HomePage */,
@@ -718,13 +726,6 @@
 				92E48DAD2AA3452500822F8C /* AddressCell.xib */,
 			);
 			path = StoreLocatorCell;
-			sourceTree = "<group>";
-		};
-		92E48DB42AA3574300822F8C /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		92E48DB52AA357E000822F8C /* MyAccountpage */ = {
@@ -1255,8 +1256,10 @@
 				92E8914E2AA3369A0099980C /* MyOrdersViewController.swift in Sources */,
 				92E48DB22AA34EDB00822F8C /* ResetPassViewController.swift in Sources */,
 				92E8914A2AA32C500099980C /* PlaceOrderCell.swift in Sources */,
+				92E48DC42AA3B7B400822F8C /* AccountModel.swift in Sources */,
 				92E48DBD2AA35ACB00822F8C /* AccountEditViewController.swift in Sources */,
 				929867B12A94AD9000E2DF59 /* ProductDetailsBuynowCell.swift in Sources */,
+				92E48DC22AA3B00D00822F8C /* SideMenuViewmodel.swift in Sources */,
 				929A9F7F2AA1CB4B007B36F3 /* OrderService.swift in Sources */,
 				92E8911C2AA2FD820099980C /* AddAddressCityStateCell.swift in Sources */,
 				920FB7A52A95360D007C5E8C /* LoginPageViewModel.swift in Sources */,
@@ -1305,6 +1308,7 @@
 				923BE13B2A9603F6006354BF /* ApiManager.swift in Sources */,
 				92E48DA92AA3446700822F8C /* StoreLocatorViewController.swift in Sources */,
 				924449B92A8E192B00481CFD /* SceneDelegate.swift in Sources */,
+				92E48DC72AA3BC5300822F8C /* SideMenuService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

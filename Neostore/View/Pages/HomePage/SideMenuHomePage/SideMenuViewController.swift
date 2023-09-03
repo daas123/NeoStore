@@ -7,20 +7,14 @@
 
 import UIKit
 class SideMenuViewController: UIViewController {
-
     
+    
+    @IBOutlet weak var userEmail: UILabel!
+    @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var SideMenuImage: UIImageView!
     @IBOutlet weak var SideMenuTableview: UITableView!
-    let menuDemoData = [menutabledetais(name: "MyCart", image: "cart", category: .cart ),
-                        menutabledetais(name: "Tables", image: "table.furniture", category: .productdetails),
-                        menutabledetais(name: "Chairs", image: "chair.fill", category: .productdetails),
-                        menutabledetais(name: "Sofa", image: "sofa.fill", category: .productdetails),
-                        menutabledetais(name: "Bed", image: "bed.double", category: .productdetails),
-                        menutabledetais(name: "My Account", image: "person.fill", category: .myaccount),
-                        menutabledetais(name: "Store Locator", image: "mappin.and.ellipse", category: .storelocator),
-                        menutabledetais(name: "My Order", image: "list.clipboard", category: .myorder),
-                        menutabledetais(name: "Logout", image: "arrow.uturn.left.circle", category: .logout),
-    ]
+    
+    var viewmodel = SideMenuViewmodel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,57 +31,97 @@ class SideMenuViewController: UIViewController {
         // register the cart cell
         let cart = UINib(nibName: "CartTableViewCell", bundle: nil)
         SideMenuTableview.register(cart, forCellReuseIdentifier: "CartTableViewCell")
+        
+        getData()
     }
-
+    //end of view did load
+    
+    func getData(){
+        viewmodel.fetchAccountDetails{
+            respose in
+            DispatchQueue.main.async {
+                if respose{
+                    self.SideMenuTableview.reloadData()
+                    self.userEmail.text = self.viewmodel.menuDemoData.data?.user_data?.email
+                    self.userName.text = (self.viewmodel.menuDemoData.data?.user_data?.first_name ?? "Hello") + (self.viewmodel.menuDemoData.data?.user_data?.last_name ?? "User")
+                    
+                }
+            }
+        }
+    }
+    
 }
+
+
+
 extension SideMenuViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        menuDemoData.count
+        5 + (viewmodel.menuDemoData.data?.product_categories?.count ?? 0)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // for cart only
-        switch menuDemoData[indexPath.row].category{
-        case .productdetails :
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "CartTableViewCell", for: indexPath) as! CartTableViewCell
+            cell.TotalCartlabel.text = String(viewmodel.menuDemoData.data?.total_carts ?? 0 )
+            return cell
+        }else if (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4){
             let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuTableviewCell", for: indexPath) as! SideMenuTableViewCell
-                    cell.cellImage.image =  UIImage(systemName: menuDemoData[indexPath.row].image)
-                    cell.celllabel.text = menuDemoData[indexPath.row].name
-                    return cell
-        case .cart :
+            cell.celllabel.text = viewmodel.menuDemoData.data?.product_categories?[indexPath.row-1].name
+            cell.cellImage.image = UIImage(systemName: viewmodel.sideMenuTableImages[indexPath.row])
+            return cell
+        }else if indexPath.row == 5{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuTableviewCell", for: indexPath) as! SideMenuTableViewCell
+            cell.celllabel.text = "MyAccount"
+            cell.cellImage.image = UIImage(systemName: viewmodel.sideMenuTableImages[indexPath.row])
+            return cell
+        }else if indexPath.row == 6{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuTableviewCell", for: indexPath) as! SideMenuTableViewCell
+            cell.celllabel.text = "Store Locator"
+            cell.cellImage.image = UIImage(systemName: viewmodel.sideMenuTableImages[indexPath.row])
+            return cell
+        }else if indexPath.row == 7{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuTableviewCell", for: indexPath) as! SideMenuTableViewCell
+            cell.celllabel.text = "My Orders"
+            cell.cellImage.image = UIImage(systemName: viewmodel.sideMenuTableImages[indexPath.row])
+            return cell
+        }else if indexPath.row == 8{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuTableviewCell", for: indexPath) as! SideMenuTableViewCell
+            cell.celllabel.text = "logOut"
+            cell.cellImage.image = UIImage(systemName: viewmodel.sideMenuTableImages[indexPath.row])
+            return cell
+        }
+        else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "CartTableViewCell", for: indexPath) as! CartTableViewCell
             return cell
-//        case .myaccount :
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "CartTableViewCell", for: indexPath) as! CartTableViewCell
-//            return cell
-//        case .myorder :
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "CartTableViewCell", for: indexPath) as! CartTableViewCell
-//            return cell
-        default :
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuTableviewCell", for: indexPath) as! SideMenuTableViewCell
-                    cell.cellImage.image =  UIImage(systemName: menuDemoData[indexPath.row].image)
-                    cell.celllabel.text = menuDemoData[indexPath.row].name
-                    return cell
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 45
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        switch menuDemoData[indexPath.row].category{
-        case .productdetails:
-            let selectedId = indexPath.row
-            print(selectedId)
-            let productViewController = ProductViewController(nibName: "ProductViewController", bundle: nil)
-            productViewController.id = selectedId
-            self.navigationController?.pushViewController(productViewController, animated: true)
+        if indexPath.row == 0 {
+            let cartViewController = CartViewController(nibName: "CartViewController", bundle: nil)
+            self.navigationController?.pushViewController(cartViewController, animated: true)
             
-        case .logout:
+        }else if (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4){
+            let productViewController = ProductViewController(nibName: "ProductViewController", bundle: nil)
+            let selectedId = indexPath.row
+            productViewController.id = viewmodel.menuDemoData.data?.product_categories?[indexPath.row-1].id ?? 0
+            self.navigationController?.pushViewController(productViewController, animated: true)
+        }else if indexPath.row == 5{
+            
+        }else if indexPath.row == 6{
+            
+        }else if indexPath.row == 7{
+            
+        }else if indexPath.row == 8{
             UserDefaults.standard.set("", forKey: "accessToken")
             let LoginViewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
             self.navigationController?.pushViewController(LoginViewController, animated: true)
-        default:
-            print("hello")
+        }
+        else{
+            print("not selected proper row")
         }
         
     }

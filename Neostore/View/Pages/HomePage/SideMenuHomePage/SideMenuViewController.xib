@@ -11,6 +11,8 @@
             <connections>
                 <outlet property="SideMenuImage" destination="upK-15-4Yj" id="oXA-M8-fGL"/>
                 <outlet property="SideMenuTableview" destination="e8u-s1-dCl" id="KxP-ko-1Jf"/>
+                <outlet property="userEmail" destination="pP8-Ad-PP7" id="9Xc-vd-Tna"/>
+                <outlet property="userName" destination="tYr-eH-tZE" id="XSq-T7-0zY"/>
                 <outlet property="view" destination="qAv-Ri-uRT" id="4A2-k2-dkR"/>
             </connections>
         </placeholder>
@@ -22,21 +24,21 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pwn-um-YPV">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="250"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.uturn.left.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="upK-15-4Yj">
-                            <rect key="frame" x="146" y="71" width="83" height="81.666666666666671"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bed.double" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="upK-15-4Yj">
+                            <rect key="frame" x="146" y="72" width="83" height="79"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="83" id="CNY-ud-1GQ"/>
                                 <constraint firstAttribute="width" constant="83" id="hSO-PD-57O"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saad Vadanagara" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYr-eH-tZE">
-                            <rect key="frame" x="5" y="171" width="365" height="28"/>
-                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="23"/>
+                            <rect key="frame" x="5" y="171" width="365" height="24"/>
+                            <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saadvadanagara@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pP8-Ad-PP7">
-                            <rect key="frame" x="5" y="212" width="365" height="15.666666666666657"/>
+                            <rect key="frame" x="5" y="208" width="365" height="15.666666666666657"/>
                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -75,6 +77,6 @@
         </view>
     </objects>
     <resources>
-        <image name="arrow.uturn.left.circle" catalog="system" width="128" height="123"/>
+        <image name="bed.double" catalog="system" width="128" height="82"/>
     </resources>
 </document>
