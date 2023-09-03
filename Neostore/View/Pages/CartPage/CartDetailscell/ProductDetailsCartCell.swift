@@ -9,9 +9,11 @@ import UIKit
 
 class ProductDetailsCartCell: UITableViewCell {
 
+    @IBOutlet weak var CartProductQuantity: UILabel!
+    @IBOutlet weak var CartProductImage: UIImageView!
     @IBOutlet weak var CartProductName: UILabel!
     @IBOutlet weak var CartProuductTotalCost: UILabel!
-    @IBOutlet weak var CartProductProducer: UILabel!
+    @IBOutlet weak var cartProductCategory: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

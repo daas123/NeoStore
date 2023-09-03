@@ -18,10 +18,12 @@ protocol GetDetailsPageDetails{
     func Getimagedata()->[Product_images]?
     
 }
+protocol RelaodProductDetailPage{
+    func reloadDetailsPage()
+}
 
 
 class ProductDetailsViewModel:GetDetailsPageDetails{
-    
     
     var productDetailsData : productDetails?
     func getProductDetails(id:Int , complition : @escaping (Bool)->Void){

@@ -26,8 +26,6 @@ class HomeViewController: UIViewController{
     var viewmodel = ProductViewController()
     
     
-    
-    
     @IBOutlet var parentView: UIView!
     
     // main view outlet

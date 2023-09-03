@@ -12,10 +12,7 @@ class ProductDetailsOrderViewController: UIViewController {
     let viewModel = OrderviewModel()
     var orderViewGesture: UITapGestureRecognizer!
     var orderDetailsGesture: UITapGestureRecognizer!
-    var productId = 1      // details outlet
-    
-    
-    
+    var productId = Int()      // details outlet
     @IBOutlet weak var ProductOrderLabel: UILabel!
     
     @IBOutlet weak var ProductOrderImage: UIImageView!
@@ -26,7 +23,9 @@ class ProductDetailsOrderViewController: UIViewController {
     @IBOutlet weak var orderDetailsview: UIView!
     @IBOutlet weak var orderViewMain: UIView!
     var tapGesture: UITapGestureRecognizer!
+    var sidemenudeligate : ReloadSidemenuDetails?
     override func viewDidLoad() {
+        
         orderViewGesture = UITapGestureRecognizer(target: self, action: #selector(handleOrderViewTap(_:)))
         orderViewMain.addGestureRecognizer(orderViewGesture)
 
@@ -52,6 +51,7 @@ class ProductDetailsOrderViewController: UIViewController {
         viewModel.AddToCart(productid:productId, quantity: ProductOrderQuantityField.text ?? "0" ){
             (responce,Msg) in
             if responce{
+                self.sidemenudeligate?.reloadSideMenu()
                 DispatchQueue.main.async {
                     UIView.animate(withDuration: 0.3) {
                         self.dismiss(animated: true, completion: nil)

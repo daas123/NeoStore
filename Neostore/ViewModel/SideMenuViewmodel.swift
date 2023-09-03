@@ -6,6 +6,10 @@
 //  cart   table.furniture  chair.fill  sofa.fill   bed.double
 
 import Foundation
+
+protocol ReloadSidemenuDetails{
+    func reloadSideMenu()
+}
 class SideMenuViewmodel{
     var menuDemoData = FetchAccount()
     var sideMenuTableImages = ["","table.furniture","chair.fill","sofa.fill","bed.double","person.fill","mappin.and.ellipse","note.text","arrow.uturn.left.circle"]

@@ -29,6 +29,9 @@ protocol GetProductListDetails:AnyObject{
     func getimage(row:Int)->String
     func getrating(row:Int)->Int
 }
+protocol RelaodProductListPage{
+    func reloadProductlist()
+}
 
 class ProductCategoryViewModel{
     

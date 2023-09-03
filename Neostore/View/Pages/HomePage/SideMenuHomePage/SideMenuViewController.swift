@@ -15,9 +15,10 @@ class SideMenuViewController: UIViewController {
     @IBOutlet weak var SideMenuTableview: UITableView!
     
     var viewmodel = SideMenuViewmodel()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        ProductDetailsOrderViewController().sidemenudeligate = self
+        
         // table view cell register
         SideMenuImage.image = UIImage(named: "saad")
         SideMenuImage.layer.cornerRadius = 33
@@ -124,6 +125,14 @@ extension SideMenuViewController : UITableViewDelegate,UITableViewDataSource{
             print("not selected proper row")
         }
         
+    }
+    
+}
+
+extension SideMenuViewController:ReloadSidemenuDetails{
+    func reloadSideMenu() {
+        print("side mune data is reloaded")
+        getData()
     }
     
 }

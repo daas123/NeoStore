@@ -13,13 +13,12 @@ class ProductDetailsController: UIViewController {
     @IBOutlet weak var ProductDetailsMainView: UIView!
     var navigationtitle = String()
     var ProductCategory = String()
-    var Productid = 1
+    var Productid = Int()
     var viewmodel = ProductDetailsViewModel()
     var tapGesture: UITapGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         NotificationCenter.default.addObserver(self, selector: #selector(viewWillDisappearNotification), name: NSNotification.Name(rawValue: "RatingDoneNotification"), object: nil)
         //        //
         productDetailsTableview.delegate = self
@@ -120,6 +119,7 @@ class ProductDetailsController: UIViewController {
     func ShowOrderview() {
         UIView.animate(withDuration: 0.3) {
             let popupViewController = ProductDetailsOrderViewController(nibName: "ProductDetailsOrderViewController", bundle: nil)
+            popupViewController.productId = self.Productid
             popupViewController.modalPresentationStyle = .overCurrentContext
             popupViewController.modalTransitionStyle = .crossDissolve
             self.present(popupViewController, animated: true, completion: nil)
