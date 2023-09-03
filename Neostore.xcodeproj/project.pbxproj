@@ -23,7 +23,6 @@
 		922FA97A2A8E418D00D30014 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 922FA9782A8E418D00D30014 /* RegisterViewController.xib */; };
 		923BE1392A9603CD006354BF /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923BE1382A9603CD006354BF /* ApiService.swift */; };
 		923BE13B2A9603F6006354BF /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923BE13A2A9603F6006354BF /* ApiManager.swift */; };
-		923BE13E2A960E22006354BF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923BE13D2A960E22006354BF /* Constants.swift */; };
 		923BE1422A964C41006354BF /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923BE1412A964C41006354BF /* Validation.swift */; };
 		923DA9642A9203F4007016EA /* SideMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923DA9622A9203F4007016EA /* SideMenuViewController.swift */; };
 		923DA9652A9203F4007016EA /* SideMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923DA9632A9203F4007016EA /* SideMenuViewController.xib */; };
@@ -160,7 +159,6 @@
 		922FA9782A8E418D00D30014 /* RegisterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterViewController.xib; sourceTree = "<group>"; };
 		923BE1382A9603CD006354BF /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
 		923BE13A2A9603F6006354BF /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
-		923BE13D2A960E22006354BF /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		923BE1412A964C41006354BF /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		923DA9622A9203F4007016EA /* SideMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewController.swift; sourceTree = "<group>"; };
 		923DA9632A9203F4007016EA /* SideMenuViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SideMenuViewController.xib; sourceTree = "<group>"; };
@@ -395,14 +393,6 @@
 			path = Api;
 			sourceTree = "<group>";
 		};
-		923BE13C2A960E10006354BF /* Constant */ = {
-			isa = PBXGroup;
-			children = (
-				923BE13D2A960E22006354BF /* Constants.swift */,
-			);
-			path = Constant;
-			sourceTree = "<group>";
-		};
 		923BE13F2A963791006354BF /* Entities */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,7 +490,6 @@
 				92D6EB7D2A8E1DC100838A15 /* Model */,
 				92A8170E2A93573B00341144 /* ViewModel */,
 				92D6EB7B2A8E1DC000838A15 /* View */,
-				923BE13C2A960E10006354BF /* Constant */,
 				924449BF2A8E192C00481CFD /* Assets.xcassets */,
 				924449C12A8E192D00481CFD /* LaunchScreen.storyboard */,
 				924449C42A8E192D00481CFD /* Info.plist */,
@@ -1263,7 +1252,6 @@
 				929A9F7F2AA1CB4B007B36F3 /* OrderService.swift in Sources */,
 				92E8911C2AA2FD820099980C /* AddAddressCityStateCell.swift in Sources */,
 				920FB7A52A95360D007C5E8C /* LoginPageViewModel.swift in Sources */,
-				923BE13E2A960E22006354BF /* Constants.swift in Sources */,
 				929524522A8F3608004C2089 /* HomeCollectionViewCell.swift in Sources */,
 				92E48DA12AA33E5600822F8C /* OrderIdListCell.swift in Sources */,
 				9299181C2A933A1700E379EA /* ProductDetailsController.swift in Sources */,
