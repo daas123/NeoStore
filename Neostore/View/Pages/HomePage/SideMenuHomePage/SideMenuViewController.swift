@@ -9,16 +9,18 @@ import UIKit
 class SideMenuViewController: UIViewController {
     
     
+    
     @IBOutlet weak var userEmail: UILabel!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var SideMenuImage: UIImageView!
     @IBOutlet weak var SideMenuTableview: UITableView!
     
     var viewmodel = SideMenuViewmodel()
+    override func viewWillAppear(_ animated: Bool) {
+        getData()
+    }
     override func viewDidLoad() {
-        super.viewDidLoad()
-        ProductDetailsOrderViewController().sidemenudeligate = self
-        
+        super.viewDidLoad()        
         // table view cell register
         SideMenuImage.image = UIImage(named: "saad")
         SideMenuImage.layer.cornerRadius = 33
@@ -32,8 +34,6 @@ class SideMenuViewController: UIViewController {
         // register the cart cell
         let cart = UINib(nibName: "CartTableViewCell", bundle: nil)
         SideMenuTableview.register(cart, forCellReuseIdentifier: "CartTableViewCell")
-        
-        getData()
     }
     //end of view did load
     
@@ -129,10 +129,3 @@ extension SideMenuViewController : UITableViewDelegate,UITableViewDataSource{
     
 }
 
-extension SideMenuViewController:ReloadSidemenuDetails{
-    func reloadSideMenu() {
-        print("side mune data is reloaded")
-        getData()
-    }
-    
-}

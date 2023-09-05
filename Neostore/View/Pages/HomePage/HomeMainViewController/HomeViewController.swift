@@ -59,7 +59,9 @@ class HomeViewController: UIViewController{
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
     }
-    
+    override func viewDidDisappear(_ animated: Bool) {
+        closeSideMenu()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         homeCollectionView.decelerationRate = UIScrollView.DecelerationRate.fast // or .normal

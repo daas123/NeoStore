@@ -7,12 +7,20 @@
 
 import UIKit
 
+protocol RelaodProductDetailPage:NSObject{
+    func reloadDetailsPage()
+    func showMsg(msg:String)
+}
+
+
 class ProductDetailsRateController: UIViewController {
     var productId = Int()
     var viewModel = RateViewModel()
     var RateGestureMain: UITapGestureRecognizer!
     var RateGestureMainSubview: UITapGestureRecognizer!
-    
+    weak var deligate : RelaodProductDetailPage?
+    var productlabel : String?
+    var productimage : String?
     // button outlet
     
     @IBOutlet var ratingButton: [UIButton]!
@@ -77,6 +85,8 @@ class ProductDetailsRateController: UIViewController {
                     UIView.animate(withDuration: 0.3) {
                         self.dismiss(animated: true, completion: nil)
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RatingDoneNotification"), object: nil , userInfo: ["message": msg])
+                        
+                            self.deligate?.reloadDetailsPage()
                     }
                 }
             }

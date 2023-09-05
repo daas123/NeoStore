@@ -29,7 +29,7 @@ struct AddToCart : Codable {
 
 struct CartData: Codable {
     let status: Int
-    let data: [CartList]
+    let data: [CartList]?
     let count, total: Int
 }
 

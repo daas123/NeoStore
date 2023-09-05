@@ -3,7 +3,9 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -41,53 +43,68 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="5GN-MW-LbT">
-                        <rect key="frame" x="175" y="56" width="94" height="32"/>
-                    </stepper>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B4V-x5-2SR">
                         <rect key="frame" x="367" y="42" width="38" height="20"/>
                         <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QTY : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H9h-xk-vBG">
-                        <rect key="frame" x="91" y="62" width="46" height="20"/>
-                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="16"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6rq-Gz-LVz">
-                        <rect key="frame" x="142" y="61.333333333333336" width="8" height="21.666666666666664"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Pu-IO-RzB">
+                        <rect key="frame" x="91" y="59" width="85" height="28"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3sg-J3-HxO">
+                                <rect key="frame" x="51.333333333333336" y="0.0" width="28.666666666666664" height="28"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="11"/>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="   ">
+                                    <imageReference key="image" image="chevron.down" catalog="system" symbolScale="medium"/>
+                                </state>
+                                <connections>
+                                    <action selector="ProductCartDetailsCount:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kTQ-vK-wW4"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uvz-C3-flO">
+                                <rect key="frame" x="5" y="0.0" width="80" height="28"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemGray5Color"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Uvz-C3-flO" secondAttribute="trailing" id="5du-Fb-Km0"/>
+                            <constraint firstItem="Uvz-C3-flO" firstAttribute="leading" secondItem="9Pu-IO-RzB" secondAttribute="leading" constant="5" id="Oav-R0-vM2"/>
+                            <constraint firstAttribute="bottom" secondItem="3sg-J3-HxO" secondAttribute="bottom" id="RM4-5o-wuf"/>
+                            <constraint firstAttribute="height" constant="28" id="WUY-kL-eCo"/>
+                            <constraint firstAttribute="bottom" secondItem="Uvz-C3-flO" secondAttribute="bottom" id="ajp-WA-8Za"/>
+                            <constraint firstAttribute="width" constant="85" id="g85-7C-khC"/>
+                            <constraint firstAttribute="trailing" secondItem="3sg-J3-HxO" secondAttribute="trailing" constant="5" id="hFu-gh-uus"/>
+                            <constraint firstItem="3sg-J3-HxO" firstAttribute="top" secondItem="9Pu-IO-RzB" secondAttribute="top" id="i16-75-pYU"/>
+                            <constraint firstItem="Uvz-C3-flO" firstAttribute="top" secondItem="9Pu-IO-RzB" secondAttribute="top" id="xad-1f-cxk"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="5GN-MW-LbT" firstAttribute="leading" secondItem="6rq-Gz-LVz" secondAttribute="trailing" constant="25" id="5tx-Vz-M2Z"/>
                     <constraint firstItem="QCj-wZ-4B5" firstAttribute="top" secondItem="rAq-6T-jr1" secondAttribute="bottom" constant="5" id="8JW-sD-JQI"/>
+                    <constraint firstAttribute="bottom" secondItem="9Pu-IO-RzB" secondAttribute="bottom" constant="17" id="BlY-9A-JKL"/>
                     <constraint firstItem="HL5-4H-XAj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="13" id="EPY-RC-05W"/>
-                    <constraint firstItem="6rq-Gz-LVz" firstAttribute="centerY" secondItem="H9h-xk-vBG" secondAttribute="centerY" id="K7h-68-i4W"/>
                     <constraint firstItem="HL5-4H-XAj" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="M4P-Li-O9P"/>
-                    <constraint firstItem="H9h-xk-vBG" firstAttribute="top" secondItem="QCj-wZ-4B5" secondAttribute="bottom" constant="10" id="Od0-P0-3ND"/>
                     <constraint firstItem="rAq-6T-jr1" firstAttribute="leading" secondItem="HL5-4H-XAj" secondAttribute="trailing" constant="8" symbolic="YES" id="Qdy-rj-7r8"/>
+                    <constraint firstItem="9Pu-IO-RzB" firstAttribute="top" secondItem="QCj-wZ-4B5" secondAttribute="bottom" constant="7" id="WyV-9U-1o9"/>
                     <constraint firstAttribute="trailing" secondItem="B4V-x5-2SR" secondAttribute="trailing" constant="8" id="b9S-cj-OJJ"/>
-                    <constraint firstAttribute="bottom" secondItem="H9h-xk-vBG" secondAttribute="bottom" constant="22" id="bNT-Vo-rX6"/>
                     <constraint firstItem="DGB-vI-wTF" firstAttribute="centerY" secondItem="B4V-x5-2SR" secondAttribute="centerY" id="edn-88-xmx"/>
                     <constraint firstItem="B4V-x5-2SR" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="fRi-2z-01p"/>
                     <constraint firstItem="QCj-wZ-4B5" firstAttribute="leading" secondItem="HL5-4H-XAj" secondAttribute="trailing" constant="8" symbolic="YES" id="jzI-og-ngQ"/>
                     <constraint firstItem="B4V-x5-2SR" firstAttribute="leading" secondItem="DGB-vI-wTF" secondAttribute="trailing" constant="5" id="vRg-H6-aQG"/>
-                    <constraint firstItem="H9h-xk-vBG" firstAttribute="leading" secondItem="HL5-4H-XAj" secondAttribute="trailing" constant="8" symbolic="YES" id="vzA-PQ-yFM"/>
-                    <constraint firstItem="6rq-Gz-LVz" firstAttribute="leading" secondItem="H9h-xk-vBG" secondAttribute="trailing" constant="5" id="wnd-QV-srU"/>
-                    <constraint firstItem="5GN-MW-LbT" firstAttribute="centerY" secondItem="H9h-xk-vBG" secondAttribute="centerY" id="z3I-P5-lKN"/>
                     <constraint firstItem="rAq-6T-jr1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="z8H-Ov-uGZ"/>
+                    <constraint firstItem="9Pu-IO-RzB" firstAttribute="leading" secondItem="HL5-4H-XAj" secondAttribute="trailing" constant="8" symbolic="YES" id="ziv-Vb-eL3"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="CartProductImage" destination="HL5-4H-XAj" id="bmO-eh-UTZ"/>
                 <outlet property="CartProductName" destination="rAq-6T-jr1" id="yEr-52-hxD"/>
-                <outlet property="CartProductQuantity" destination="6rq-Gz-LVz" id="Hi8-PL-TBC"/>
+                <outlet property="CartProductQuantity" destination="Uvz-C3-flO" id="DbG-8U-qkq"/>
                 <outlet property="CartProuductTotalCost" destination="B4V-x5-2SR" id="QE2-9s-wyU"/>
                 <outlet property="cartProductCategory" destination="QCj-wZ-4B5" id="jYm-gm-DDF"/>
             </connections>
@@ -95,6 +112,13 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="chevron.down" catalog="system" width="128" height="70"/>
         <image name="slider_img1" width="1500" height="750"/>
+        <systemColor name="labelColor">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

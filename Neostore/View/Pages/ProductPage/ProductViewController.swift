@@ -13,6 +13,9 @@ class ProductViewController: UIViewController {
     let viewmodel = ProductCategoryViewModel()
     var id = Int()
     
+    override func viewWillAppear(_ animated: Bool) {
+        getdata()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,7 +53,6 @@ class ProductViewController: UIViewController {
         productTableview.register(UINib(nibName: "ProductTableViewCell", bundle: nil), forCellReuseIdentifier: "ProductTableViewCell")
         
         // Getting the data through urlsession
-         getdata()
     }
     
     @objc func searchButtonTapped() {

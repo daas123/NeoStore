@@ -18,9 +18,6 @@ protocol GetDetailsPageDetails{
     func Getimagedata()->[Product_images]?
     
 }
-protocol RelaodProductDetailPage{
-    func reloadDetailsPage()
-}
 
 
 class ProductDetailsViewModel:GetDetailsPageDetails{

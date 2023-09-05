@@ -27,7 +27,7 @@ class CartService{
     }
     func DeleteCart(productid :Int,complition: @escaping (Result<AddToCart,Error>)->Void){
         let param = ["product_id":productid]
-        APIManager.shared.callRequest(apiCallType:.productEditCart(param: param)){
+        APIManager.shared.callRequest(apiCallType:.productDeleteCart(param: param)){
             (responce) in
             switch responce{
             case .success(let data):
@@ -50,7 +50,7 @@ class CartService{
             case .success(let data):
                 do {
                     let responseData = try? JSONDecoder().decode(CartData.self, from: data)
-                    complition(.success(responseData!))
+                    complition(.success(responseData ?? CartData.init(status: 0, data: [], count: 0, total: 0)))
                 }
             case .failure(let error):
                 print("In Failure")

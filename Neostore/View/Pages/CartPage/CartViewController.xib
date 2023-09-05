@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -10,34 +10,47 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CartViewController" customModule="Neostore" customModuleProvider="target">
             <connections>
+                <outlet property="CartPickerView" destination="h2u-td-kPI" id="IxP-Nq-e8w"/>
                 <outlet property="CartTableview" destination="k2P-Bh-1zL" id="jVH-wG-uma"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="k2P-Bh-1zL">
-                    <rect key="frame" x="0.0" y="59" width="393" height="793"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
+                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h2u-td-kPI">
+                    <rect key="frame" x="0.0" y="441" width="320" height="127"/>
+                    <color key="backgroundColor" systemColor="systemGray6Color"/>
+                </pickerView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="0.91372549020000005" green="0.10980392160000001" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="k2P-Bh-1zL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="5rD-GV-2PO"/>
+                <constraint firstItem="h2u-td-kPI" firstAttribute="height" secondItem="k2P-Bh-1zL" secondAttribute="height" multiplier="0.223592" id="6hb-dd-l7J"/>
+                <constraint firstAttribute="bottom" secondItem="h2u-td-kPI" secondAttribute="bottom" id="990-bQ-Q0N"/>
                 <constraint firstItem="k2P-Bh-1zL" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="CzM-Yz-u6X"/>
                 <constraint firstItem="k2P-Bh-1zL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Dtx-Vh-aeh"/>
+                <constraint firstItem="h2u-td-kPI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="DzK-RF-yHj"/>
+                <constraint firstItem="h2u-td-kPI" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="I00-MC-mOw"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="k2P-Bh-1zL" secondAttribute="trailing" id="eMX-6c-StK"/>
+                <constraint firstItem="h2u-td-kPI" firstAttribute="width" secondItem="k2P-Bh-1zL" secondAttribute="width" id="fcc-U2-uM9"/>
             </constraints>
-            <point key="canvasLocation" x="35.877862595419849" y="19.718309859154932"/>
+            <point key="canvasLocation" x="35.625" y="19.014084507042252"/>
         </view>
     </objects>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -16,11 +16,15 @@ class ProductDetailsController: UIViewController {
     var Productid = Int()
     var viewmodel = ProductDetailsViewModel()
     var tapGesture: UITapGestureRecognizer!
-    
+    var productRate = ProductDetailsRateController()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(false)
+        productRate.deligate = self
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+//        productRate.deligate = self
         NotificationCenter.default.addObserver(self, selector: #selector(viewWillDisappearNotification), name: NSNotification.Name(rawValue: "RatingDoneNotification"), object: nil)
-        //        //
         productDetailsTableview.delegate = self
         productDetailsTableview.dataSource = self
         
@@ -73,6 +77,7 @@ class ProductDetailsController: UIViewController {
     @objc private func viewWillDisappearNotification(_ notification: Notification) {
         if let message = notification.userInfo?["message"] as? String {
             self.showAlert(msg: message)
+            getdata()
         }
     }
     
@@ -97,7 +102,6 @@ class ProductDetailsController: UIViewController {
             (Responce) in
             DispatchQueue.main.async {
                     self.productDetailsTableview.reloadData()
-                    
                 }
             }
         }
@@ -117,23 +121,23 @@ class ProductDetailsController: UIViewController {
     }
     
     func ShowOrderview() {
-        UIView.animate(withDuration: 0.3) {
             let popupViewController = ProductDetailsOrderViewController(nibName: "ProductDetailsOrderViewController", bundle: nil)
             popupViewController.productId = self.Productid
+            popupViewController.productlabel = viewmodel.GetTitle()
+            popupViewController.productimage = viewmodel.productDetailsData?.data?.product_images?.first?.image
             popupViewController.modalPresentationStyle = .overCurrentContext
             popupViewController.modalTransitionStyle = .crossDissolve
             self.present(popupViewController, animated: true, completion: nil)
-        }
     }
     
     func ShowRatingview() {
-        UIView.animate(withDuration: 0.3) {
             let popupViewController = ProductDetailsRateController(nibName: "ProductDetailsRateController", bundle: nil)
+            popupViewController.productlabel = viewmodel.GetTitle()
+            popupViewController.productimage = viewmodel.productDetailsData?.data?.product_images?.first?.image
             popupViewController.productId = self.Productid
             popupViewController.modalPresentationStyle = .overCurrentContext
             popupViewController.modalTransitionStyle = .crossDissolve
             self.present(popupViewController, animated: true, completion: nil)
-        }
     }
 
     
@@ -192,4 +196,15 @@ extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
         0
     }
+}
+
+
+extension ProductDetailsController : RelaodProductDetailPage{
+    func reloadDetailsPage() {
+        productDetailsTableview.reloadData()
+    }
+    func showMsg(msg:String) {
+        self.showAlert(msg: msg)
+    }
+    
 }
