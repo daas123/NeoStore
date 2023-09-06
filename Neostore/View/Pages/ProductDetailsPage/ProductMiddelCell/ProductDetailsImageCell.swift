@@ -28,17 +28,19 @@ class ProductDetailsImageCell: UITableViewCell {
         productDeatailscollectionview.dataSource = self
         productDeatailscollectionview.register(UINib(nibName: "ImageCollectionviewCell", bundle: nil), forCellWithReuseIdentifier: "ProductDetailsImagecell")
         productDetailsImageContainerView.layer.cornerRadius = 10
-        productDetailsMianImage.layer.borderColor = UIColor.red.cgColor
-        productDetailsMianImage.layer.borderWidth = 2
+        productDetailsMianImage.layer.borderColor = UIColor.gray.cgColor
+        productDetailsMianImage.layer.borderWidth = 1
+        
+        
+        //for keyboard
+        
     }
+    
+    
     func reloadCollectionviewdata(){
         productDeatailscollectionview.reloadData()
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        // Configure the view for the selected state
-    }
     @IBAction func ProductDetailsShareButton(_ sender: UIButton) {
     }
     
@@ -65,9 +67,13 @@ extension ProductDetailsImageCell : UICollectionViewDelegate ,UICollectionViewDa
             return CGSize(width: 100, height:100)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let Imagecell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductDetailsImagecell", for: indexPath) as! ImageCollectionviewCell
+        Imagecell.setBorder()
             if let imageUrl = URL(string: imageCollectioViewData?[indexPath.row].image ?? "invalid") {
                 productDetailsMianImage.sd_setImage(with: imageUrl)
                 }
+//        collectionView.layer.borderColor = UIColor.gray.cgColor
+//        collectionView.layer.borderWidth = 1
     }
     
     

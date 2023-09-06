@@ -111,8 +111,11 @@ extension SideMenuViewController : UITableViewDelegate,UITableViewDataSource{
             productViewController.id = viewmodel.menuDemoData.data?.product_categories?[indexPath.row-1].id ?? 0
             self.navigationController?.pushViewController(productViewController, animated: true)
         }else if indexPath.row == 5{
-            
+            let MyAccountViewController = MyAccountViewController(nibName: "MyAccountViewController", bundle: nil)
+            self.navigationController?.pushViewController(MyAccountViewController, animated: true)
         }else if indexPath.row == 6{
+            let StoreLocatorViewController = StoreLocatorViewController(nibName: "StoreLocatorViewController", bundle: nil)
+            self.navigationController?.pushViewController(StoreLocatorViewController, animated: true)
             
         }else if indexPath.row == 7{
             let MyOrdersViewController = MyOrdersViewController(nibName: "MyOrdersViewController", bundle: nil)

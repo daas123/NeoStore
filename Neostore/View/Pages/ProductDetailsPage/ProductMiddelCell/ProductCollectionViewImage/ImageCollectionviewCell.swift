@@ -15,5 +15,14 @@ class ImageCollectionviewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    func setBorder(){
+        productDetailsImagecell.layer.borderColor = UIColor.gray.cgColor
+        productDetailsImagecell.layer.borderWidth = 1
+    }
+    
+    func clearBorder(){
+        productDetailsImagecell.layer.borderColor = nil
+        productDetailsImagecell.layer.borderWidth = 0
+    }
 
 }
