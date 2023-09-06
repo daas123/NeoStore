@@ -12,11 +12,11 @@ class StoreLocatorViewController: UIViewController {
     @IBOutlet weak var storeLocatorTableview: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        StoreLocatorTableview.delegate = self
-        StoreLocatorTableview.dataSource = self
+        storeLocatorTableview.delegate = self
+        storeLocatorTableview.dataSource = self
         
         
-        StoreLocatorTableview.register(UINib(nibName: "AddressCell", bundle: nil), forCellReuseIdentifier: "AddressCell")
+        storeLocatorTableview.register(UINib(nibName: "AddressCell", bundle: nil), forCellReuseIdentifier: "AddressCell")
 
     }
 }
