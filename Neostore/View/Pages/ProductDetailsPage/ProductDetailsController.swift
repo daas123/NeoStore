@@ -163,9 +163,9 @@ extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0:
             let titleCell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailsTitleCell", for: indexPath) as! ProductDetailsTitleCell
-            titleCell.ProductTitle.text = viewmodel.GetTitle()
-            titleCell.ProductProducer.text = viewmodel.GetProducer()
-            titleCell.ProductCategory.text = ProductCategory
+            titleCell.productTitle.text = viewmodel.GetTitle()
+            titleCell.productProducer.text = viewmodel.GetProducer()
+            titleCell.productCategory.text = ProductCategory
             let rating = viewmodel.GetRating() // Replace with the method to get the rating value
             titleCell.setRating(rating)
             
@@ -174,8 +174,8 @@ extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
             
         case 1:
             let detailscell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailsImageCell", for: indexPath) as! ProductDetailsImageCell
-            detailscell.ProductDetailsDescription.text = viewmodel.GetDescription()
-            detailscell.ProductDetailsCost.text = String(viewmodel.Getcost())
+            detailscell.productDetailsDescription.text = viewmodel.GetDescription()
+            detailscell.productDetailsCost.text = String(viewmodel.Getcost())
             detailscell.imageCollectioViewData = viewmodel.Getimagedata()
             detailscell.reloadCollectionviewdata()
             return detailscell

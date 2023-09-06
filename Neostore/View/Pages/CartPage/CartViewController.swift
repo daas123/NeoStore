@@ -20,15 +20,15 @@ class CartViewController: UIViewController, UITextFieldDelegate {
     var toolbar = UIToolbar()
     var cellIndexpath : IndexPath = []
     
-    @IBOutlet weak var CartPickerView: UIPickerView!
-    @IBOutlet weak var CartTableview: UITableView!
+    @IBOutlet weak var cartPickerView: UIPickerView!
+    @IBOutlet weak var cartTableview: UITableView!
     override func viewWillAppear(_ animated: Bool) {
         getData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        CartPickerView.isHidden = true
+        cartPickerView.isHidden = true
         navigationController?.isNavigationBarHidden = false
         // for removing back button title
         let backButton = UIBarButtonItem()
@@ -51,16 +51,16 @@ class CartViewController: UIViewController, UITextFieldDelegate {
         
         self.navigationItem.title = "ProductDetails"
         //adding deligate and datasource
-        CartTableview.dataSource = self
-        CartTableview.dataSource = self
+        cartTableview.dataSource = self
+        cartTableview.dataSource = self
         
-        CartPickerView.delegate = self
-        CartPickerView.dataSource = self
+        cartPickerView.delegate = self
+        cartPickerView.dataSource = self
         
         //reg cells
-        CartTableview.register(UINib(nibName: "ProductDetailsCartCell", bundle: nil), forCellReuseIdentifier: "ProductDetailsCartCell")
-        CartTableview.register(UINib(nibName: "CartTotalCell", bundle: nil), forCellReuseIdentifier: "CartTotalCell")
-        CartTableview.register(UINib(nibName: "CartOrderCell", bundle: nil), forCellReuseIdentifier: "CartOrderCell")
+        cartTableview.register(UINib(nibName: "ProductDetailsCartCell", bundle: nil), forCellReuseIdentifier: "ProductDetailsCartCell")
+        cartTableview.register(UINib(nibName: "CartTotalCell", bundle: nil), forCellReuseIdentifier: "CartTotalCell")
+        cartTableview.register(UINib(nibName: "CartOrderCell", bundle: nil), forCellReuseIdentifier: "CartOrderCell")
         
         //getData
         
@@ -84,7 +84,7 @@ class CartViewController: UIViewController, UITextFieldDelegate {
             responce in
             DispatchQueue.main.async {
                 if responce{
-                    self.CartTableview.reloadData()
+                    self.cartTableview.reloadData()
                 }
             }
         }
@@ -95,7 +95,7 @@ class CartViewController: UIViewController, UITextFieldDelegate {
             responce in
             DispatchQueue.main.async {
                 if responce{
-                    self.CartTableview.reloadData()
+                    self.cartTableview.reloadData()
                 }
             }
         }
@@ -105,9 +105,9 @@ class CartViewController: UIViewController, UITextFieldDelegate {
     @objc func textFieldTapped(_ gestureRecognizer: UITapGestureRecognizer) {
         if let textField = gestureRecognizer.view as? UITextField {
             selectedTextField = textField
-            textField.inputView = CartPickerView // Show the picker view
+            textField.inputView = cartPickerView // Show the picker view
             textField.inputAccessoryView = toolbar // Set the toolbar as an accessory view
-            CartPickerView.isHidden = false
+            cartPickerView.isHidden = false
             textField.becomeFirstResponder()
             cellIndexpath = IndexPath(row: textField.tag, section: 0)
         }
@@ -128,7 +128,7 @@ class CartViewController: UIViewController, UITextFieldDelegate {
                 
             }
             selectedTextField?.resignFirstResponder()
-            CartPickerView.isHidden = true
+            cartPickerView.isHidden = true
         }else{
             deleteCartData(indexpath: viewModel.cartData?.data?[cellIndexpath.row].productID ?? 0 )
             self.getData()
@@ -137,7 +137,7 @@ class CartViewController: UIViewController, UITextFieldDelegate {
     
     @objc func cancelButtonTapped() {
         selectedTextField?.resignFirstResponder() // Hide the keyboard/picker view
-        CartPickerView.isHidden = true
+        cartPickerView.isHidden = true
     }
     
     
@@ -158,27 +158,27 @@ extension CartViewController : UITableViewDelegate,UITableViewDataSource{
                 let productCell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailsCartCell", for: indexPath) as! ProductDetailsCartCell
 
                 //for picker view
-                productCell.CartProductQuantity.delegate = self
+                productCell.cartProductQuantity.delegate = self
                 let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(textFieldTapped(_:)))
-                productCell.CartProductQuantity.addGestureRecognizer(tapGestureRecognizer)
-                productCell.CartProductQuantity.tag = indexPath.row
+                productCell.cartProductQuantity.addGestureRecognizer(tapGestureRecognizer)
+                productCell.cartProductQuantity.tag = indexPath.row
                 
                 
-                productCell.CartProductName.text = viewModel.cartData?.data?[indexPath.row].product?.name
+                productCell.cartProductName.text = viewModel.cartData?.data?[indexPath.row].product?.name
                 productCell.cartProductCategory.text = viewModel.cartData?.data?[indexPath.row].product?.productCategory
-                productCell.CartProductQuantity.text = String(viewModel.cartData?.data?[indexPath.row].quantity ?? 0)
-                productCell.CartProuductTotalCost.text = String(viewModel.cartData?.data?[indexPath.row].product?.subTotal ?? 0)
+                productCell.cartProductQuantity.text = String(viewModel.cartData?.data?[indexPath.row].quantity ?? 0)
+                productCell.cartProuductTotalCost.text = String(viewModel.cartData?.data?[indexPath.row].product?.subTotal ?? 0)
                 if let imageUrl = URL(string: viewModel.cartData?.data?[indexPath.row].product?.productImages ?? "invalid" ) {
-                    productCell.CartProductImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "bg.jpg"))
+                    productCell.cartProductImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "bg.jpg"))
                 } else {
-                    productCell.CartProductImage.image = UIImage(named: "bg.jpg")
+                    productCell.cartProductImage.image = UIImage(named: "bg.jpg")
                 }
                 productCell.selectionStyle = .none
                 return productCell
                 
             }else if indexPath.row == TotalData{
                 let productCell = tableView.dequeueReusableCell(withIdentifier: "CartTotalCell", for: indexPath) as! CartTotalCell
-                productCell.CartTotalCost.text = String(viewModel.cartData?.total ?? 0)
+                productCell.cartTotalCost.text = String(viewModel.cartData?.total ?? 0)
                 productCell.selectionStyle = .none
                 return productCell
                 
@@ -195,7 +195,7 @@ extension CartViewController : UITableViewDelegate,UITableViewDataSource{
         }else{
             if indexPath.row == 0{
                 let productCell = tableView.dequeueReusableCell(withIdentifier: "CartTotalCell", for: indexPath) as! CartTotalCell
-                productCell.CartTotalCost.text = String(0)
+                productCell.cartTotalCost.text = String(0)
                 productCell.selectionStyle = .none
                 return productCell
             }else if indexPath.row == 1{

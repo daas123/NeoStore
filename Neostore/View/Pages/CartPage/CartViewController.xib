@@ -10,8 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CartViewController" customModule="Neostore" customModuleProvider="target">
             <connections>
-                <outlet property="CartPickerView" destination="h2u-td-kPI" id="IxP-Nq-e8w"/>
-                <outlet property="CartTableview" destination="k2P-Bh-1zL" id="jVH-wG-uma"/>
+                <outlet property="cartPickerView" destination="h2u-td-kPI" id="Z6n-yB-X8V"/>
+                <outlet property="cartTableview" destination="k2P-Bh-1zL" id="yAn-3p-0aM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

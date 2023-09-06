@@ -11,9 +11,9 @@ class ProductDetailsTitleCell: UITableViewCell {
 
     
     @IBOutlet var productratingimages: [UIImageView]!
-    @IBOutlet weak var ProductProducer: UILabel!
-    @IBOutlet weak var ProductCategory: UILabel!
-    @IBOutlet weak var ProductTitle: UILabel!
+    @IBOutlet weak var productProducer: UILabel!
+    @IBOutlet weak var productCategory: UILabel!
+    @IBOutlet weak var productTitle: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

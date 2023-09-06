@@ -82,6 +82,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="orderDetailsCategory" destination="Zcv-3p-9Yh" id="b3p-kb-KK3"/>
+                <outlet property="orderDetailsCost" destination="YrO-BI-8Aw" id="IjM-96-9V6"/>
                 <outlet property="orderDetailsImage" destination="84q-TU-dnD" id="0ma-E7-wzo"/>
                 <outlet property="orderDetailsQnt" destination="URu-rq-3HY" id="hYc-Qd-HtO"/>
                 <outlet property="orderDetailsTitle" destination="Mgh-lA-wK8" id="4xJ-xw-RRF"/>

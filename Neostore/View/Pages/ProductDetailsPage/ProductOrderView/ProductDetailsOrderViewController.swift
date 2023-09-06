@@ -16,20 +16,20 @@ class ProductDetailsOrderViewController: UIViewController {
     
     var productlabel : String?
     var productimage : String?
-    @IBOutlet weak var ProductOrderLabel: UILabel!
+    @IBOutlet weak var productOrderLabel: UILabel!
     
-    @IBOutlet weak var ProductOrderImage: UIImageView!
+    @IBOutlet weak var productOrderImage: UIImageView!
     
-    @IBOutlet weak var ProductOrderQuantityField: UITextField!
+    @IBOutlet weak var productOrderQuantityField: UITextField!
     
     
     @IBOutlet weak var orderDetailsview: UIView!
     @IBOutlet weak var orderViewMain: UIView!
     var tapGesture: UITapGestureRecognizer!
     override func viewDidLoad() {
-        ProductOrderLabel.text = productlabel
+        productOrderLabel.text = productlabel
         if let imageUrl = URL(string: productimage ?? "invalid" ) {
-            ProductOrderImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "bg.jpg"))
+            productOrderImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "bg.jpg"))
             }
         orderViewGesture = UITapGestureRecognizer(target: self, action: #selector(handleOrderViewTap(_:)))
         orderViewMain?.addGestureRecognizer(orderViewGesture)
@@ -53,7 +53,7 @@ class ProductDetailsOrderViewController: UIViewController {
     }
     
     @IBAction func orderButton(_ sender: UIButton) {
-        viewModel.AddToCart(productid:productId, quantity: ProductOrderQuantityField?.text ?? "0" ){
+        viewModel.AddToCart(productid:productId, quantity: productOrderQuantityField?.text ?? "0" ){
             (responce,Msg) in
             if responce{
                 DispatchQueue.main.async {

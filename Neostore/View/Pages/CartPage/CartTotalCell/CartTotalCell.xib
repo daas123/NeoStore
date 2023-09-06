@@ -59,7 +59,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="CartTotalCost" destination="KOd-Sy-dN4" id="Yqn-qw-Mbb"/>
+                <outlet property="cartTotalCost" destination="KOd-Sy-dN4" id="jta-TW-KQs"/>
             </connections>
             <point key="canvasLocation" x="80.916030534351137" y="30.281690140845072"/>
         </tableViewCell>

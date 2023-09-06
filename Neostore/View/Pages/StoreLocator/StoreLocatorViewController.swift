@@ -9,7 +9,7 @@ import UIKit
 
 class StoreLocatorViewController: UIViewController {
 
-    @IBOutlet weak var StoreLocatorTableview: UITableView!
+    @IBOutlet weak var storeLocatorTableview: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         StoreLocatorTableview.delegate = self

@@ -12,8 +12,8 @@ class SideMenuViewController: UIViewController {
     
     @IBOutlet weak var userEmail: UILabel!
     @IBOutlet weak var userName: UILabel!
-    @IBOutlet weak var SideMenuImage: UIImageView!
-    @IBOutlet weak var SideMenuTableview: UITableView!
+    @IBOutlet weak var sideMenuImage: UIImageView!
+    @IBOutlet weak var sideMenuTableview: UITableView!
     
     var viewmodel = SideMenuViewmodel()
     override func viewWillAppear(_ animated: Bool) {
@@ -22,18 +22,18 @@ class SideMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()        
         // table view cell register
-        SideMenuImage.image = UIImage(named: "saad")
-        SideMenuImage.layer.cornerRadius = 33
+        sideMenuImage.image = UIImage(named: "saad")
+        sideMenuImage.layer.cornerRadius = 33
         
-        SideMenuTableview.delegate = self
-        SideMenuTableview.dataSource = self
+        sideMenuTableview.delegate = self
+        sideMenuTableview.dataSource = self
         
         // register the cell
         let reg = UINib(nibName: "SideMenuTableViewCell", bundle: nil)
-        SideMenuTableview.register(reg, forCellReuseIdentifier: "SideMenuTableviewCell")
+        sideMenuTableview.register(reg, forCellReuseIdentifier: "SideMenuTableviewCell")
         // register the cart cell
         let cart = UINib(nibName: "CartTableViewCell", bundle: nil)
-        SideMenuTableview.register(cart, forCellReuseIdentifier: "CartTableViewCell")
+        sideMenuTableview.register(cart, forCellReuseIdentifier: "CartTableViewCell")
     }
     //end of view did load
     
@@ -42,7 +42,7 @@ class SideMenuViewController: UIViewController {
             respose in
             DispatchQueue.main.async {
                 if respose{
-                    self.SideMenuTableview.reloadData()
+                    self.sideMenuTableview.reloadData()
                     self.userEmail.text = self.viewmodel.menuDemoData.data?.user_data?.email
                     self.userName.text = (self.viewmodel.menuDemoData.data?.user_data?.first_name ?? "Hello") + (self.viewmodel.menuDemoData.data?.user_data?.last_name ?? "User")
                     

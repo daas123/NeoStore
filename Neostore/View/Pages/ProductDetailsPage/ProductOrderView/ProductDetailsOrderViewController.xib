@@ -10,11 +10,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProductDetailsOrderViewController" customModule="Neostore" customModuleProvider="target">
             <connections>
-                <outlet property="ProductOrderImage" destination="ey0-l7-gyW" id="qzh-Rb-Ifa"/>
-                <outlet property="ProductOrderLabel" destination="fid-Nj-xqf" id="A7T-Cb-GL8"/>
-                <outlet property="ProductOrderQuantityField" destination="hKT-8O-amT" id="VsU-kP-TRQ"/>
                 <outlet property="orderDetailsview" destination="Pii-jO-zoS" id="TZ6-J4-bT6"/>
                 <outlet property="orderViewMain" destination="Pa6-Eb-uIk" id="4ic-K0-MsD"/>
+                <outlet property="productOrderImage" destination="ey0-l7-gyW" id="N0s-9T-T6P"/>
+                <outlet property="productOrderLabel" destination="fid-Nj-xqf" id="NE8-se-2rT"/>
+                <outlet property="productOrderQuantityField" destination="hKT-8O-amT" id="veQ-Xt-uTs"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

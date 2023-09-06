@@ -9,6 +9,7 @@ import UIKit
 
 class OrderIdTotalCell: UITableViewCell {
 
+    @IBOutlet weak var orderDetailsTotal: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

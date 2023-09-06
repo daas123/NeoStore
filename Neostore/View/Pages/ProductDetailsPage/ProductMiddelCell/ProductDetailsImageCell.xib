@@ -110,11 +110,11 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="ProductDeatailscollectionview" destination="hMI-4i-jFI" id="lKl-Sf-o1V"/>
-                <outlet property="ProductDetailsCost" destination="Zge-qv-2SG" id="Wrb-v7-edQ"/>
-                <outlet property="ProductDetailsDescription" destination="j5c-wd-NPy" id="myr-31-nmm"/>
-                <outlet property="ProductDetailsImageContainerView" destination="VFY-nj-Mti" id="WGT-Wp-rJa"/>
-                <outlet property="ProductDetailsMianImage" destination="m5f-av-7Jm" id="rbn-3C-Lfv"/>
+                <outlet property="productDeatailscollectionview" destination="hMI-4i-jFI" id="Nky-eS-dhb"/>
+                <outlet property="productDetailsCost" destination="Zge-qv-2SG" id="IJl-dK-AIF"/>
+                <outlet property="productDetailsDescription" destination="j5c-wd-NPy" id="l78-7N-6fh"/>
+                <outlet property="productDetailsImageContainerView" destination="VFY-nj-Mti" id="yRX-e0-f1G"/>
+                <outlet property="productDetailsMianImage" destination="m5f-av-7Jm" id="uDn-KD-fGB"/>
             </connections>
             <point key="canvasLocation" x="98.473282442748086" y="211.26760563380282"/>
         </tableViewCell>

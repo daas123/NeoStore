@@ -77,6 +77,7 @@
                     <constraint firstItem="tJJ-eK-dZ5" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ApY-ym-cBO"/>
                     <constraint firstItem="Sdm-Kp-A0z" firstAttribute="leading" secondItem="tJJ-eK-dZ5" secondAttribute="trailing" constant="10" id="BFx-pO-CVp"/>
                     <constraint firstAttribute="trailing" secondItem="21M-Nw-I0Z" secondAttribute="trailing" constant="5" id="D2c-dd-zHq"/>
+                    <constraint firstItem="Sdm-Kp-A0z" firstAttribute="top" secondItem="21M-Nw-I0Z" secondAttribute="bottom" constant="9" id="H17-A8-iD1"/>
                     <constraint firstItem="21M-Nw-I0Z" firstAttribute="leading" secondItem="tJJ-eK-dZ5" secondAttribute="trailing" constant="10" id="MjZ-RG-aJi"/>
                     <constraint firstAttribute="trailing" secondItem="WDt-nd-wAQ" secondAttribute="trailing" constant="5" id="PR3-af-NVd"/>
                     <constraint firstItem="tJJ-eK-dZ5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Pkw-WO-Kaa"/>
@@ -89,7 +90,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="ProductCost" destination="Sdm-Kp-A0z" id="CLD-2n-QzM"/>
+                <outlet property="productCost" destination="Sdm-Kp-A0z" id="kfQ-jE-cma"/>
                 <outlet property="productImage" destination="tJJ-eK-dZ5" id="aUn-eQ-ClJ"/>
                 <outlet property="productProducer" destination="21M-Nw-I0Z" id="X8Y-BU-oqQ"/>
                 <outlet property="productTitle" destination="WDt-nd-wAQ" id="iU4-iu-mBd"/>

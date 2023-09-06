@@ -102,11 +102,11 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="CartProductImage" destination="HL5-4H-XAj" id="bmO-eh-UTZ"/>
-                <outlet property="CartProductName" destination="rAq-6T-jr1" id="yEr-52-hxD"/>
-                <outlet property="CartProductQuantity" destination="Uvz-C3-flO" id="DbG-8U-qkq"/>
-                <outlet property="CartProuductTotalCost" destination="B4V-x5-2SR" id="QE2-9s-wyU"/>
-                <outlet property="cartProductCategory" destination="QCj-wZ-4B5" id="jYm-gm-DDF"/>
+                <outlet property="cartProductCategory" destination="QCj-wZ-4B5" id="1MP-99-C64"/>
+                <outlet property="cartProductImage" destination="HL5-4H-XAj" id="GmX-Dr-XoU"/>
+                <outlet property="cartProductName" destination="rAq-6T-jr1" id="DeN-fM-6TK"/>
+                <outlet property="cartProductQuantity" destination="Uvz-C3-flO" id="Y7b-cq-F9R"/>
+                <outlet property="cartProuductTotalCost" destination="B4V-x5-2SR" id="TbA-2W-Pxr"/>
             </connections>
             <point key="canvasLocation" x="107.63358778625954" y="40.845070422535215"/>
         </tableViewCell>

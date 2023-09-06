@@ -11,6 +11,7 @@ class OrderIdListCell: UITableViewCell {
 
     
     
+    @IBOutlet weak var orderDetailsCost: UILabel!
     @IBOutlet weak var orderDetailsCategory: UILabel!
     @IBOutlet weak var orderDetailsQnt: UILabel!
     @IBOutlet weak var orderDetailsTitle: UILabel!

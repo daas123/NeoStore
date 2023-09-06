@@ -124,7 +124,7 @@ extension ProductViewController: UITableViewDelegate,UITableViewDataSource{
         
         cell.productTitle.text = viewmodel.getName(row: indexPath.row)
         cell.productProducer.text = viewmodel.getProducer(row: indexPath.row)
-        cell.ProductCost.text = String(viewmodel.getCost(row: indexPath.row))
+        cell.productCost.text = String(viewmodel.getCost(row: indexPath.row))
         let rating = viewmodel.getrating(row: indexPath.row)
         cell.setRating(rating)
 

@@ -81,9 +81,9 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="cMG-1T-fqu"/>
             <connections>
-                <outlet property="ProductCategory" destination="NSx-uL-sdu" id="axZ-M5-MWf"/>
-                <outlet property="ProductProducer" destination="fXn-qy-HeB" id="Cyn-A5-T2E"/>
-                <outlet property="ProductTitle" destination="bei-M5-dhS" id="EzH-uA-xeN"/>
+                <outlet property="productCategory" destination="NSx-uL-sdu" id="1vs-da-Fc0"/>
+                <outlet property="productProducer" destination="fXn-qy-HeB" id="UZJ-NG-6LA"/>
+                <outlet property="productTitle" destination="bei-M5-dhS" id="683-FA-XZD"/>
                 <outletCollection property="productratingimages" destination="mwb-Ot-6RO" collectionClass="NSMutableArray" id="jx8-OV-iMh"/>
                 <outletCollection property="productratingimages" destination="G2q-dg-nyE" collectionClass="NSMutableArray" id="yLv-xg-hrI"/>
                 <outletCollection property="productratingimages" destination="Bw1-eM-2bu" collectionClass="NSMutableArray" id="8bp-RG-aNU"/>

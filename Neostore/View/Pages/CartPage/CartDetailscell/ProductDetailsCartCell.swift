@@ -11,10 +11,10 @@ class ProductDetailsCartCell: UITableViewCell {
     // picker view    
     var index : Int?
     
-    @IBOutlet weak var CartProductQuantity: UITextField!
-    @IBOutlet weak var CartProductImage: UIImageView!
-    @IBOutlet weak var CartProductName: UILabel!
-    @IBOutlet weak var CartProuductTotalCost: UILabel!
+    @IBOutlet weak var cartProductQuantity: UITextField!
+    @IBOutlet weak var cartProductImage: UIImageView!
+    @IBOutlet weak var cartProductName: UILabel!
+    @IBOutlet weak var cartProuductTotalCost: UILabel!
     @IBOutlet weak var cartProductCategory: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()

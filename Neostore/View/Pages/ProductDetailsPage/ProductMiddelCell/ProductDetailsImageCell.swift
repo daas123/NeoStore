@@ -9,30 +9,30 @@ import UIKit
 import SDWebImage
 class ProductDetailsImageCell: UITableViewCell {
     //cost
-    @IBOutlet weak var ProductDetailsCost: UILabel!
+    @IBOutlet weak var productDetailsCost: UILabel!
     // text
-    @IBOutlet weak var ProductDetailsDescription: UILabel!
+    @IBOutlet weak var productDetailsDescription: UILabel!
    //image
-    @IBOutlet weak var ProductDetailsMianImage: UIImageView!
+    @IBOutlet weak var productDetailsMianImage: UIImageView!
     // container outlet
-    @IBOutlet weak var ProductDetailsImageContainerView: UIView!
+    @IBOutlet weak var productDetailsImageContainerView: UIView!
    // collectionview cell
-    @IBOutlet weak var ProductDeatailscollectionview: UICollectionView!
+    @IBOutlet weak var productDeatailscollectionview: UICollectionView!
     // get CollectionviewData
     var imageCollectioViewData : [Product_images]?
     
     override func awakeFromNib() {
         
         super.awakeFromNib()
-        ProductDeatailscollectionview.delegate = self
-        ProductDeatailscollectionview.dataSource = self
-        ProductDeatailscollectionview.register(UINib(nibName: "ImageCollectionviewCell", bundle: nil), forCellWithReuseIdentifier: "ProductDetailsImagecell")
-        ProductDetailsImageContainerView.layer.cornerRadius = 10
-        ProductDetailsMianImage.layer.borderColor = UIColor.red.cgColor
-        ProductDetailsMianImage.layer.borderWidth = 2
+        productDeatailscollectionview.delegate = self
+        productDeatailscollectionview.dataSource = self
+        productDeatailscollectionview.register(UINib(nibName: "ImageCollectionviewCell", bundle: nil), forCellWithReuseIdentifier: "ProductDetailsImagecell")
+        productDetailsImageContainerView.layer.cornerRadius = 10
+        productDetailsMianImage.layer.borderColor = UIColor.red.cgColor
+        productDetailsMianImage.layer.borderWidth = 2
     }
     func reloadCollectionviewdata(){
-        ProductDeatailscollectionview.reloadData()
+        productDeatailscollectionview.reloadData()
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -54,7 +54,7 @@ extension ProductDetailsImageCell : UICollectionViewDelegate ,UICollectionViewDa
         let Imagecell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductDetailsImagecell", for: indexPath) as! ImageCollectionviewCell
         if let imageUrl = URL(string: imageCollectioViewData?[indexPath.row].image ?? "invalid") {
             if indexPath.row == 0{
-                ProductDetailsMianImage.sd_setImage(with: imageUrl)
+                productDetailsMianImage.sd_setImage(with: imageUrl)
             }
             Imagecell.productDetailsImagecell.sd_setImage(with: imageUrl)
             }
@@ -66,7 +66,7 @@ extension ProductDetailsImageCell : UICollectionViewDelegate ,UICollectionViewDa
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             if let imageUrl = URL(string: imageCollectioViewData?[indexPath.row].image ?? "invalid") {
-                ProductDetailsMianImage.sd_setImage(with: imageUrl)
+                productDetailsMianImage.sd_setImage(with: imageUrl)
                 }
     }
     

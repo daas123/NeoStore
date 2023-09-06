@@ -9,8 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SideMenuViewController" customModule="Neostore" customModuleProvider="target">
             <connections>
-                <outlet property="SideMenuImage" destination="upK-15-4Yj" id="oXA-M8-fGL"/>
-                <outlet property="SideMenuTableview" destination="e8u-s1-dCl" id="KxP-ko-1Jf"/>
+                <outlet property="sideMenuImage" destination="upK-15-4Yj" id="bAB-8S-8Vq"/>
+                <outlet property="sideMenuTableview" destination="e8u-s1-dCl" id="aIP-Z9-lfb"/>
                 <outlet property="userEmail" destination="pP8-Ad-PP7" id="9Xc-vd-Tna"/>
                 <outlet property="userName" destination="tYr-eH-tZE" id="XSq-T7-0zY"/>
                 <outlet property="view" destination="qAv-Ri-uRT" id="4A2-k2-dkR"/>
