@@ -9,15 +9,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterViewController" customModule="Neostore" customModuleProvider="target">
             <connections>
-                <outlet property="RegisterConformPassword" destination="VK1-NH-PRY" id="iYg-Bb-HfW"/>
-                <outlet property="RegisterEmail" destination="bHX-8A-pGl" id="MZF-iK-nV0"/>
-                <outlet property="RegisterFemaleradio" destination="tYt-TW-YJL" id="A4g-a4-vv5"/>
-                <outlet property="RegisterFirstname" destination="9bE-Lf-hPd" id="8Pz-4v-7YD"/>
-                <outlet property="RegisterMaleRadio" destination="kZ6-M8-NCZ" id="F4i-KJ-MZM"/>
-                <outlet property="RegisterPassword" destination="z9u-cX-uFj" id="UyS-Ni-HQU"/>
-                <outlet property="RegisterPhoneNumber" destination="xjs-hX-SIX" id="Ds2-1f-fUP"/>
-                <outlet property="RegisterchkBox" destination="5s7-2p-gDt" id="LHe-SJ-qzB"/>
-                <outlet property="Registerlastname" destination="cYJ-tL-sXP" id="D73-ES-J2M"/>
+                <outlet property="registerConformPassword" destination="VK1-NH-PRY" id="bZ1-se-3eb"/>
+                <outlet property="registerEmail" destination="bHX-8A-pGl" id="5ft-Sk-AtW"/>
+                <outlet property="registerFemaleradio" destination="tYt-TW-YJL" id="pmw-fd-N6v"/>
+                <outlet property="registerFirstname" destination="9bE-Lf-hPd" id="Mqc-d1-5Y2"/>
+                <outlet property="registerMaleRadio" destination="kZ6-M8-NCZ" id="6Z3-vq-NbQ"/>
+                <outlet property="registerPassword" destination="z9u-cX-uFj" id="awl-qH-azC"/>
+                <outlet property="registerPhoneNumber" destination="xjs-hX-SIX" id="6q9-yh-04P"/>
+                <outlet property="registerchkBox" destination="5s7-2p-gDt" id="Oip-Y3-RiA"/>
+                <outlet property="registerlastname" destination="cYJ-tL-sXP" id="mWE-iC-vTf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="registerDetailsView" destination="JIk-uS-s5M" collectionClass="NSMutableArray" id="Y4G-lM-h3Q"/>
                 <outletCollection property="registerDetailsView" destination="gNV-6z-2T4" collectionClass="NSMutableArray" id="eG8-gV-PEi"/>
@@ -64,7 +64,7 @@
                                                         <constraint firstAttribute="height" constant="25" id="Tju-jn-HwS"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="dgggdfg" placeholder="FirstName" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9bE-Lf-hPd">
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="FirstName" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9bE-Lf-hPd">
                                                     <rect key="frame" x="43" y="14.666666666666687" width="276" height="22.666666666666671"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -97,7 +97,7 @@
                                                         <constraint firstAttribute="height" constant="25" id="YYv-vo-LHj"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="dsgfdgf" placeholder="LastName" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cYJ-tL-sXP">
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="LastName" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cYJ-tL-sXP">
                                                     <rect key="frame" x="43" y="14.666666666666687" width="276" height="22.666666666666671"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -130,7 +130,7 @@
                                                         <constraint firstAttribute="width" constant="25" id="zgR-45-jD6"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="sgssgs@gmail.com" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bHX-8A-pGl">
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bHX-8A-pGl">
                                                     <rect key="frame" x="43" y="14.333333333333313" width="276" height="23.333333333333329"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -163,7 +163,7 @@
                                                         <constraint firstAttribute="height" constant="25" id="csT-cL-pQO"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="gdfhhghff" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z9u-cX-uFj">
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="z9u-cX-uFj">
                                                     <rect key="frame" x="43" y="14.333333333333313" width="276" height="23.333333333333329"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -196,7 +196,7 @@
                                                         <constraint firstAttribute="width" constant="25" id="U5j-Mt-J3n"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="gdfhhghff" placeholder="Conform Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VK1-NH-PRY">
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Conform Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VK1-NH-PRY">
                                                     <rect key="frame" x="38" y="15" width="281" height="22"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -292,7 +292,7 @@
                                                         <constraint firstAttribute="width" constant="25" id="8J3-qm-xqw"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1234567890" placeholder="Phone Number" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xjs-hX-SIX">
+                                                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone Number" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xjs-hX-SIX">
                                                     <rect key="frame" x="38" y="14.333333333333369" width="281" height="23.333333333333329"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -367,7 +367,7 @@
                                     </subviews>
                                 </stackView>
                             </subviews>
-                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" red="0.95686274510000002" green="0.094117647060000004" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstItem="Aa3-hr-txF" firstAttribute="leading" secondItem="I6C-0S-mUr" secondAttribute="leading" id="1C9-Vb-6ED"/>
                                 <constraint firstAttribute="trailing" secondItem="slv-i4-zLi" secondAttribute="trailing" constant="33" id="5Bn-3c-dS8"/>
@@ -393,7 +393,7 @@
                 </scrollView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" red="0.95994287729263306" green="0.024212529882788658" blue="0.090971626341342926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.95686274510000002" green="0.094117647060000004" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="YNf-e6-bB3" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="5rf-dY-2J5"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="YNf-e6-bB3" secondAttribute="trailing" id="Mj5-Pf-hEE"/>

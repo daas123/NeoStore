@@ -32,6 +32,9 @@
                             </attributedString>
                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </buttonConfiguration>
+                        <connections>
+                            <action selector="cartOrderAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="vaP-sK-AwX"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>

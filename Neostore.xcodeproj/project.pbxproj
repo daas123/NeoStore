@@ -51,6 +51,9 @@
 		929484412A977E4700CA3C51 /* ProductServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929484402A977E4700CA3C51 /* ProductServices.swift */; };
 		929524522A8F3608004C2089 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929524502A8F3608004C2089 /* HomeCollectionViewCell.swift */; };
 		929524532A8F3608004C2089 /* HomeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 929524512A8F3608004C2089 /* HomeCollectionViewCell.xib */; };
+		9295B0622AA8778800DF10C7 /* OrderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9295B0612AA8778800DF10C7 /* OrderListViewModel.swift */; };
+		9295B0642AA877E600DF10C7 /* OrderListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9295B0632AA877E600DF10C7 /* OrderListService.swift */; };
+		9295B0662AA87ACC00DF10C7 /* OrderlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9295B0652AA87ACC00DF10C7 /* OrderlistModel.swift */; };
 		929867A52A94ACF400E2DF59 /* ProductDetailsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929867A32A94ACF400E2DF59 /* ProductDetailsTitleCell.swift */; };
 		929867A62A94ACF400E2DF59 /* ProductDetailsTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 929867A42A94ACF400E2DF59 /* ProductDetailsTitleCell.xib */; };
 		929867A92A94AD1800E2DF59 /* ProductDetailsImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929867A72A94AD1800E2DF59 /* ProductDetailsImageCell.swift */; };
@@ -69,6 +72,8 @@
 		929A9F812AA1CC29007B36F3 /* RatingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A9F802AA1CC29007B36F3 /* RatingModel.swift */; };
 		929A9F832AA1CC4C007B36F3 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A9F822AA1CC4C007B36F3 /* OrderModel.swift */; };
 		929C527D2A9C972C00E98F18 /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929C527C2A9C972C00E98F18 /* ProductDetailsViewModel.swift */; };
+		929FF3032AA72EE10095C3DE /* AddAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929FF3022AA72EE10095C3DE /* AddAddressViewModel.swift */; };
+		929FF3072AA737A40095C3DE /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929FF3062AA737A40095C3DE /* Keyboard.swift */; };
 		92A817232A93888000341144 /* CategoryCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A817212A93888000341144 /* CategoryCollectionCell.swift */; };
 		92A817242A93888000341144 /* CategoryCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92A817222A93888000341144 /* CategoryCollectionCell.xib */; };
 		92AC4CEA2A9FC04F0086A1E9 /* ImageCollectionviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AC4CE82A9FC04F0086A1E9 /* ImageCollectionviewCell.swift */; };
@@ -194,6 +199,9 @@
 		929484402A977E4700CA3C51 /* ProductServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductServices.swift; sourceTree = "<group>"; };
 		929524502A8F3608004C2089 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		929524512A8F3608004C2089 /* HomeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCollectionViewCell.xib; sourceTree = "<group>"; };
+		9295B0612AA8778800DF10C7 /* OrderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListViewModel.swift; sourceTree = "<group>"; };
+		9295B0632AA877E600DF10C7 /* OrderListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListService.swift; sourceTree = "<group>"; };
+		9295B0652AA87ACC00DF10C7 /* OrderlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderlistModel.swift; sourceTree = "<group>"; };
 		929867A32A94ACF400E2DF59 /* ProductDetailsTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsTitleCell.swift; sourceTree = "<group>"; };
 		929867A42A94ACF400E2DF59 /* ProductDetailsTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductDetailsTitleCell.xib; sourceTree = "<group>"; };
 		929867A72A94AD1800E2DF59 /* ProductDetailsImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsImageCell.swift; sourceTree = "<group>"; };
@@ -212,6 +220,8 @@
 		929A9F802AA1CC29007B36F3 /* RatingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatingModel.swift; sourceTree = "<group>"; };
 		929A9F822AA1CC4C007B36F3 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		929C527C2A9C972C00E98F18 /* ProductDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewModel.swift; sourceTree = "<group>"; };
+		929FF3022AA72EE10095C3DE /* AddAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressViewModel.swift; sourceTree = "<group>"; };
+		929FF3062AA737A40095C3DE /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		92A817212A93888000341144 /* CategoryCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionCell.swift; sourceTree = "<group>"; };
 		92A817222A93888000341144 /* CategoryCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCollectionCell.xib; sourceTree = "<group>"; };
 		92AC4CE82A9FC04F0086A1E9 /* ImageCollectionviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionviewCell.swift; sourceTree = "<group>"; };
@@ -367,6 +377,7 @@
 				929A9F7E2AA1CB4B007B36F3 /* OrderService.swift */,
 				92E48DC62AA3BC5300822F8C /* SideMenuService.swift */,
 				92AED7B52AA4F1A300B68CA7 /* CartService.swift */,
+				9295B0632AA877E600DF10C7 /* OrderListService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -408,6 +419,7 @@
 				929A9F802AA1CC29007B36F3 /* RatingModel.swift */,
 				929A9F822AA1CC4C007B36F3 /* OrderModel.swift */,
 				92E48DC32AA3B7B400822F8C /* AccountModel.swift */,
+				9295B0652AA87ACC00DF10C7 /* OrderlistModel.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -554,6 +566,7 @@
 				929483E22A97397400CA3C51 /* Alert.swift */,
 				9264CEA82A9F24F50046E732 /* NavigationController.swift */,
 				92B302612AA5ADE300031DBF /* cellSelection.swift */,
+				929FF3062AA737A40095C3DE /* Keyboard.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -630,6 +643,8 @@
 				929A9F782AA1C9A1007B36F3 /* RateViewModel.swift */,
 				929A9F7A2AA1C9BD007B36F3 /* OrderViewModel.swift */,
 				92AED7B32AA4E18100B68CA7 /* CartViewModel.swift */,
+				929FF3022AA72EE10095C3DE /* AddAddressViewModel.swift */,
+				9295B0612AA8778800DF10C7 /* OrderListViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -783,8 +798,8 @@
 		92E890F82AA2F63D0099980C /* OrdersPage */ = {
 			isa = PBXGroup;
 			children = (
-				92E891552AA33B120099980C /* MyordersPage */,
-				92E891562AA33B7B0099980C /* OrderIdPage */,
+				92E891552AA33B120099980C /* MyorderslIstPage */,
+				92E891562AA33B7B0099980C /* MyorderslIstDetailsPage */,
 			);
 			path = OrdersPage;
 			sourceTree = "<group>";
@@ -911,24 +926,24 @@
 			path = MyOrderscell;
 			sourceTree = "<group>";
 		};
-		92E891552AA33B120099980C /* MyordersPage */ = {
+		92E891552AA33B120099980C /* MyorderslIstPage */ = {
 			isa = PBXGroup;
 			children = (
 				92E891502AA3374C0099980C /* MyOrderscell */,
 				92E8914C2AA3369A0099980C /* MyOrdersViewController.swift */,
 				92E8914D2AA3369A0099980C /* MyOrdersViewController.xib */,
 			);
-			path = MyordersPage;
+			path = MyorderslIstPage;
 			sourceTree = "<group>";
 		};
-		92E891562AA33B7B0099980C /* OrderIdPage */ = {
+		92E891562AA33B7B0099980C /* MyorderslIstDetailsPage */ = {
 			isa = PBXGroup;
 			children = (
 				92E8915B2AA33C3E0099980C /* OrderCells */,
 				92E891572AA33C370099980C /* OrderIdViewController.swift */,
 				92E891582AA33C370099980C /* OrderIdViewController.xib */,
 			);
-			path = OrderIdPage;
+			path = MyorderslIstDetailsPage;
 			sourceTree = "<group>";
 		};
 		92E8915B2AA33C3E0099980C /* OrderCells */ = {
@@ -1249,6 +1264,7 @@
 			files = (
 				92AC4CEA2A9FC04F0086A1E9 /* ImageCollectionviewCell.swift in Sources */,
 				92E891362AA30D090099980C /* AddAdressCell.swift in Sources */,
+				9295B0642AA877E600DF10C7 /* OrderListService.swift in Sources */,
 				92A817232A93888000341144 /* CategoryCollectionCell.swift in Sources */,
 				929867A52A94ACF400E2DF59 /* ProductDetailsTitleCell.swift in Sources */,
 				92D5B9242A9BAC8700D03C5C /* ProdCategoryViewModel.swift in Sources */,
@@ -1257,6 +1273,7 @@
 				920FB7AD2A953A19007C5E8C /* loginServices.swift in Sources */,
 				92988DB52A95CE2200DA4135 /* RegisterPageViewModel.swift in Sources */,
 				92988DB32A95CD9D00DA4135 /* RegistrationService.swift in Sources */,
+				9295B0622AA8778800DF10C7 /* OrderListViewModel.swift in Sources */,
 				92E48DB92AA35A8E00822F8C /* MyAccountViewController.swift in Sources */,
 				9264CEA92A9F24F50046E732 /* NavigationController.swift in Sources */,
 				92E8914E2AA3369A0099980C /* MyOrdersViewController.swift in Sources */,
@@ -1270,6 +1287,7 @@
 				929A9F7F2AA1CB4B007B36F3 /* OrderService.swift in Sources */,
 				92E8911C2AA2FD820099980C /* AddAddressCityStateCell.swift in Sources */,
 				920FB7A52A95360D007C5E8C /* LoginPageViewModel.swift in Sources */,
+				9295B0662AA87ACC00DF10C7 /* OrderlistModel.swift in Sources */,
 				929524522A8F3608004C2089 /* HomeCollectionViewCell.swift in Sources */,
 				92E48DA12AA33E5600822F8C /* OrderIdListCell.swift in Sources */,
 				9299181C2A933A1700E379EA /* ProductDetailsController.swift in Sources */,
@@ -1279,6 +1297,7 @@
 				923DA96D2A920749007016EA /* HomeViewController.swift in Sources */,
 				920FB7A22A9517E2007C5E8C /* CartOrderCell.swift in Sources */,
 				92E48DAE2AA3452500822F8C /* AddressCell.swift in Sources */,
+				929FF3032AA72EE10095C3DE /* AddAddressViewModel.swift in Sources */,
 				929C527D2A9C972C00E98F18 /* ProductDetailsViewModel.swift in Sources */,
 				92AED7B42AA4E18100B68CA7 /* CartViewModel.swift in Sources */,
 				9292F0E52AA09D9800851195 /* ProductDetailsOrderViewController.swift in Sources */,
@@ -1304,6 +1323,7 @@
 				92E8913F2AA329240099980C /* AddressListCell.swift in Sources */,
 				920FB7862A9504AF007C5E8C /* CartViewController.swift in Sources */,
 				929A9F7B2AA1C9BD007B36F3 /* OrderViewModel.swift in Sources */,
+				929FF3072AA737A40095C3DE /* Keyboard.swift in Sources */,
 				92E891592AA33C370099980C /* OrderIdViewController.swift in Sources */,
 				92E48DA52AA33E7700822F8C /* OrderIdTotalCell.swift in Sources */,
 				923DA9742A922C9D007016EA /* SideMenuTableViewCell.swift in Sources */,

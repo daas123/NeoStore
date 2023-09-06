@@ -48,7 +48,7 @@ class validation{
             return
         }
         
-        guard Pass!.count>8 else{
+        guard Pass!.count>=8 else{
             complition (false,"Password Must cotain: 8 character")
             return
         }

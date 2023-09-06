@@ -16,7 +16,6 @@ extension UINavigationController{
             navigationBarAppearance.configureWithOpaqueBackground()
             navigationBarAppearance.backgroundColor = UIColor(named: "Primary Background")
             navigationBarAppearance.titleTextAttributes = [
-//                NSAttributedString.Key.font: UIFont(name: Font.fontBold.rawValue, size: 26)!,
                 NSAttributedString.Key.foregroundColor: UIColor(#colorLiteral(red: 1, green: 1, blue: 1, alpha: 1))
             ]
             navigationBar.standardAppearance = navigationBarAppearance

@@ -22,11 +22,14 @@ class ProductDetailsImageCell: UITableViewCell {
     var imageCollectioViewData : [Product_images]?
     
     override func awakeFromNib() {
+        
         super.awakeFromNib()
         ProductDeatailscollectionview.delegate = self
         ProductDeatailscollectionview.dataSource = self
         ProductDeatailscollectionview.register(UINib(nibName: "ImageCollectionviewCell", bundle: nil), forCellWithReuseIdentifier: "ProductDetailsImagecell")
         ProductDetailsImageContainerView.layer.cornerRadius = 10
+        ProductDetailsMianImage.layer.borderColor = UIColor.red.cgColor
+        ProductDetailsMianImage.layer.borderWidth = 2
     }
     func reloadCollectionviewdata(){
         ProductDeatailscollectionview.reloadData()

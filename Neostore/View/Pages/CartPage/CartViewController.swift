@@ -30,7 +30,6 @@ class CartViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         CartPickerView.isHidden = true
         navigationController?.isNavigationBarHidden = false
-
         // for removing back button title
         let backButton = UIBarButtonItem()
         backButton.title = "" // Set an empty title
@@ -185,6 +184,7 @@ extension CartViewController : UITableViewDelegate,UITableViewDataSource{
                 
             }else if indexPath.row == TotalData+1{
                 let productCell = tableView.dequeueReusableCell(withIdentifier: "CartOrderCell", for: indexPath) as! CartOrderCell
+                productCell.cartDeligate = self
                 productCell.selectionStyle = .none
                 return productCell
             }else{
@@ -259,4 +259,12 @@ extension CartViewController : UIPickerViewDelegate , UIPickerViewDataSource{
         }
 }
 
-
+extension CartViewController : CartAction{
+    func pushOrderViewController() {
+        let addressListController = AddressListViewController(nibName: "AddressListViewController", bundle: nil)
+        
+        self.navigationController?.pushViewController(addressListController,animated: true)
+    }
+    
+    
+}

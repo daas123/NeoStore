@@ -38,6 +38,9 @@ enum APIServices{
     case productEditCart(param: [String:Any])
     case productDeleteCart(param:[String:Any])
     case CartList
+    case Order(param:[String:Any])
+    case OrderList
+    case OrderListDetials(param:[String:Any])
     
     var isImageFetching: Bool {
             if case .ImageFetching = self {
@@ -92,13 +95,26 @@ enum APIServices{
         case .CartList:
             urlPath = apiDomain + "cart"
                 return baseURL + urlPath
+            
+        case .Order:
+            urlPath = apiDomain + "order"
+                return baseURL + urlPath
+            
+        case .OrderList:
+            urlPath = apiDomain + "orderList"
+                return baseURL + urlPath
+            
+        case .OrderListDetials:
+            urlPath = apiDomain + "orderDetail"
+                return baseURL + urlPath
         }
+        
         
     }
     
     var httpMethod: String {
         switch self {
-        case .productList , .productDetails , .fetchAccountDetails,.CartList:
+        case .productList , .productDetails , .fetchAccountDetails, .CartList , .OrderList , .OrderListDetials :
             return "GET"
         default:
             return "POST"
@@ -107,7 +123,7 @@ enum APIServices{
     
     var param: [String:Any]? {
         switch self {
-        case .userRegister(param: let param), .userLogin(let param) , .productList(param: let param), .productDetails(param: let param) , .productRating(param: let param),.productAddToCart(param: let param),.productEditCart(param: let param),.productDeleteCart(param: let param):
+        case .userRegister(param: let param), .userLogin(let param) , .productList(param: let param), .productDetails(param: let param) , .productRating(param: let param),.productAddToCart(param: let param),.productEditCart(param: let param),.productDeleteCart(param: let param),.Order(param: let param),.OrderListDetials(let param):
             return param
         default:
             return nil

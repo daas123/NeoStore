@@ -80,6 +80,12 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="orderDetailsCategory" destination="Zcv-3p-9Yh" id="b3p-kb-KK3"/>
+                <outlet property="orderDetailsImage" destination="84q-TU-dnD" id="0ma-E7-wzo"/>
+                <outlet property="orderDetailsQnt" destination="URu-rq-3HY" id="hYc-Qd-HtO"/>
+                <outlet property="orderDetailsTitle" destination="Mgh-lA-wK8" id="4xJ-xw-RRF"/>
+            </connections>
             <point key="canvasLocation" x="72.51908396946564" y="35.563380281690144"/>
         </tableViewCell>
     </objects>

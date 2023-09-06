@@ -61,3 +61,10 @@ struct CartListData: Codable {
         case subTotal = "sub_total"
     }
 }
+
+
+struct OrderCart: Codable {
+    let status: Int
+    let message: String
+    let user_msg : String
+}

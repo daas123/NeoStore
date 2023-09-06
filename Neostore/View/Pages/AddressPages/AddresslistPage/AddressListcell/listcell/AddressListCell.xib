@@ -21,16 +21,17 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xMO-Q3-4XT">
                         <rect key="frame" x="0.0" y="0.0" width="388" height="104"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HtN-Bz-BAP">
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HtN-Bz-BAP">
                                 <rect key="frame" x="8" y="39.666666666666664" width="25" height="24.999999999999993"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="HgZ-fa-XoE"/>
                                     <constraint firstAttribute="height" constant="25" id="Vog-aV-MpI"/>
                                 </constraints>
-                                <color key="tintColor" red="0.91372549020000005" green="0.10980392160000001" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain">
                                     <imageReference key="image" image="circle" catalog="system" symbolScale="medium"/>
+                                    <color key="baseForegroundColor" red="0.95686274510000002" green="0.094117647060000004" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </buttonConfiguration>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D1I-8f-a44">
@@ -81,6 +82,11 @@
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="addressLabel" destination="Uwh-Hj-fR9" id="g6y-oY-CyA"/>
+                <outlet property="addressLabelDetails" destination="PoC-Hb-yRn" id="BUO-Dc-9qh"/>
+                <outlet property="radioButton" destination="HtN-Bz-BAP" id="jDe-x1-MMB"/>
+            </connections>
             <point key="canvasLocation" x="97.70992366412213" y="40.140845070422536"/>
         </tableViewCell>
     </objects>

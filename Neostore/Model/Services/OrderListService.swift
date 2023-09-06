@@ -1,20 +1,19 @@
 //
-//  OrderService.swift
+//  OrderList.swift
 //  Neostore
 //
-//  Created by Neosoft on 01/09/23.
+//  Created by Neosoft on 06/09/23.
 //
 
 import Foundation
-class OrderService{
-    func AddtoCart(productid :Int ,quantity:Int,complition: @escaping (Result<AddToCart,Error>) -> Void){
-        let param = ["product_id":productid,"quantity":quantity]
-        APIManager.shared.callRequest(apiCallType:.productAddToCart(param: param)){
+class OrderListService{
+    func getCartList(complition: @escaping (Result<OrderList,Error>)->Void){
+        APIManager.shared.callRequest(apiCallType:.OrderList){
             (responce) in
             switch responce{
             case .success(let data):
                 do {
-                    let responseData = try? JSONDecoder().decode(AddToCart.self, from: data)
+                    let responseData = try? JSONDecoder().decode(OrderList.self, from: data)
                     complition(.success(responseData!))
                 }
             case .failure(let error):
@@ -25,17 +24,16 @@ class OrderService{
                 
             }
         }
-        
     }
     
-    func orderCart(address:String ,complition: @escaping (Result<OrderCart,Error>) -> Void){
-        let param = ["address":address]
-        APIManager.shared.callRequest(apiCallType:.Order(param: param)){
+    func getCartListDetails(order_id :Int,complition: @escaping (Result<OrderListDetials,Error>)->Void){
+        let param = ["order_id":order_id]
+        APIManager.shared.callRequest(apiCallType:.OrderListDetials(param: param)){
             (responce) in
             switch responce{
             case .success(let data):
                 do {
-                    let responseData = try? JSONDecoder().decode(OrderCart.self, from: data)
+                    let responseData = try? JSONDecoder().decode(OrderListDetials.self, from: data)
                     complition(.success(responseData!))
                 }
             case .failure(let error):
@@ -46,7 +44,5 @@ class OrderService{
                 
             }
         }
-        
     }
-
 }

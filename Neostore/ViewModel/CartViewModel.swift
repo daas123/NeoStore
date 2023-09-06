@@ -7,6 +7,10 @@
 
 import Foundation
 import UIKit
+
+protocol CartAction:NSObject{
+    func pushOrderViewController()
+}
 class CartViewModel{
     var cartData : CartData?
     var cartPickerviewData = [0,1,2,3,4,5,6,7]
@@ -38,7 +42,7 @@ class CartViewModel{
             case .success(let data):
                 self.cartData = data
                 complition(true)
-            case .failure(let error):
+            case .failure(_):
                 complition(false)
             }
         }
@@ -48,9 +52,9 @@ class CartViewModel{
         CartService().DeleteCart(productid: id){
             responce in
             switch responce{
-            case .success(let data):
+            case .success(_):
                 complition(true)
-            case .failure(let error):
+            case .failure(_):
                 complition(false)
             }
         }

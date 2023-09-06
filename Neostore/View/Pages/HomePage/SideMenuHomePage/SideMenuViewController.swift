@@ -115,6 +115,8 @@ extension SideMenuViewController : UITableViewDelegate,UITableViewDataSource{
         }else if indexPath.row == 6{
             
         }else if indexPath.row == 7{
+            let MyOrdersViewController = MyOrdersViewController(nibName: "MyOrdersViewController", bundle: nil)
+            self.navigationController?.pushViewController(MyOrdersViewController, animated: true)
             
         }else if indexPath.row == 8{
             UserDefaults.standard.set("", forKey: "accessToken")

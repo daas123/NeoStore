@@ -7,24 +7,33 @@
 
 import Foundation
 
+import Foundation
+
 class LoginWebService {
-    func loginAction(email : String , password :String , complition : @escaping (Result<User,Error>)->Void){
-        let param = ["email":email , "password":password]
-        APIManager.shared.callRequest(apiCallType: .userLogin(param: param)){
-            (responce) in
-            switch responce{
-            case .success(let data):
-                if let retriveddata = data as? Data {
-                    do {
-                        let jsondata = try? JSONDecoder().decode(User.self, from: retriveddata)
-                        complition(.success(jsondata!))
-                    }catch{
-                        print("Not able to decode")
+    func loginAction(email: String, password: String, completion: @escaping (Result<(User?, AuthResponse?), Error>) -> Void) {
+        let param = ["email": email, "password": password]
+        APIManager.shared.callRequest(apiCallType: .userLogin(param: param)) { response in
+            do {
+                switch response {
+                case .success(let data):
+                    guard let retrievedData = data as? Data else {
+                        print("Error in model")
+                        return
                     }
+                    
+                    if let jsondata = try? JSONDecoder().decode(User.self, from: retrievedData) {
+                        completion(.success((jsondata, nil)))
+                    }
+                    
+                    if let jsondata2 = try? JSONDecoder().decode(AuthResponse.self, from: retrievedData) {
+                        completion(.success((nil, jsondata2)))
+                    }
+                    
+                case .failure(let error):
+                    throw error
                 }
-                
-            case .failure(let error):
-                complition(.failure(error))
+            } catch {
+                completion(.failure(error))
             }
         }
     }
@@ -32,32 +41,3 @@ class LoginWebService {
 
 
 
-//
-//class loginApiService:NSObject{
-//    func LoginUser(Username: String, pass: String , completion: @escaping(Result<User,Error>) -> Void){
-//
-//        let params = ["email" : Username, "password" : pass ]
-//
-//        APIManager.shared.callRequest(apiCallType: .userLogin(param: params)){ (response) in
-//            switch response {
-//            case .success(let value):
-//                if let content = value as? Data {
-//                    do {
-//                        let responseData = try JSONDecoder().decode(User.self, from: content)
-//                        completion(.success(responseData))
-//                    } catch {
-//                        print(error)
-//                    }
-//                }
-//                else{
-//                    print("no error")
-//                }
-//            case .failure(let error):
-//                print("In Failure")
-//                debugPrint(error.localizedDescription)
-//                print("Wrong pass")
-//                completion(.failure(error))
-//            }
-//        }
-//    }
-//}

@@ -1,5 +1,5 @@
 //
-//  OrderIdCell.swift
+//  OrderIdListCell.swift
 //  Neostore
 //
 //  Created by Neosoft on 02/09/23.
@@ -7,8 +7,14 @@
 
 import UIKit
 
-class OrderIdCell: UITableViewCell {
+class OrderIdListCell: UITableViewCell {
 
+    
+    
+    @IBOutlet weak var orderDetailsCategory: UILabel!
+    @IBOutlet weak var orderDetailsQnt: UILabel!
+    @IBOutlet weak var orderDetailsTitle: UILabel!
+    @IBOutlet weak var orderDetailsImage: UIImageView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

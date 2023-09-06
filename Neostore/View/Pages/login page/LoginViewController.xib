@@ -10,8 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="Neostore" customModuleProvider="target">
             <connections>
-                <outlet property="LoginPassword" destination="j1q-HC-MYt" id="YEO-lI-fOB"/>
-                <outlet property="LoginUsername" destination="ROz-4J-ANH" id="QPH-Lb-dei"/>
+                <outlet property="loginPassword" destination="j1q-HC-MYt" id="p0s-lc-xWi"/>
+                <outlet property="loginUsername" destination="ROz-4J-ANH" id="4ar-LL-iqT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="personDetailsview" destination="ghr-NS-MuW" collectionClass="NSMutableArray" id="6qn-MU-9GS"/>
                 <outletCollection property="personDetailsview" destination="Jof-kZ-0jR" collectionClass="NSMutableArray" id="VOr-UO-hqg"/>
