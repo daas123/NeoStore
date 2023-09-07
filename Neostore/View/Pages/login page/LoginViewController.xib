@@ -152,6 +152,7 @@
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oxp-Ig-Kde">
                                     <rect key="frame" x="256" y="479" width="48" height="48"/>
+                                    <color key="backgroundColor" red="0.42967452483923257" green="0.14131476524855444" blue="0.0" alpha="0.27699643570855753" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="48" id="Cpw-Xr-Bw9"/>
                                         <constraint firstAttribute="height" constant="48" id="Sz6-Mz-ylz"/>

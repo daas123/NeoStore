@@ -62,6 +62,7 @@ class ProductDetailsRateController: UIViewController {
             backrating = sender.tag
             currentrating = sender.tag + 1
         }else{
+            
             currentrating = sender.tag
             backrating = sender.tag
             for rate in backrating...4{

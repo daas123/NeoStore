@@ -8,6 +8,7 @@
 import UIKit
 import SDWebImage
 class ProductDetailsImageCell: UITableViewCell {
+    var selectedImageIndex = 0
     //cost
     @IBOutlet weak var productDetailsCost: UILabel!
     // text
@@ -52,24 +53,44 @@ extension ProductDetailsImageCell : UICollectionViewDelegate ,UICollectionViewDa
         return imageCollectioViewData?.count ?? 0
     }
     
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        let Imagecell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductDetailsImagecell", for: indexPath) as! ImageCollectionviewCell
+//        if let imageUrl = URL(string: imageCollectioViewData?[indexPath.row].image ?? "invalid") {
+//            if indexPath.row == 0{
+//                productDetailsMianImage.sd_setImage(with: imageUrl)
+//            }
+//            Imagecell.productDetailsImagecell.sd_setImage(with: imageUrl)
+//            }
+//        return Imagecell
+//    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let Imagecell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductDetailsImagecell", for: indexPath) as! ImageCollectionviewCell
+        let imageCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductDetailsImagecell", for: indexPath) as! ImageCollectionviewCell
+        
+        if indexPath.row == selectedImageIndex {
+            imageCell.setBorder()
+        } else {
+            imageCell.clearBorder()
+        }
+
         if let imageUrl = URL(string: imageCollectioViewData?[indexPath.row].image ?? "invalid") {
-            if indexPath.row == 0{
-                productDetailsMianImage.sd_setImage(with: imageUrl)
-            }
-            Imagecell.productDetailsImagecell.sd_setImage(with: imageUrl)
-            }
-        return Imagecell
+            imageCell.productDetailsImagecell.sd_setImage(with: imageUrl)
+        }
+        
+        return imageCell
     }
+
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             return CGSize(width: 100, height:100)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let Imagecell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductDetailsImagecell", for: indexPath) as! ImageCollectionviewCell
-        Imagecell.setBorder()
-            if let imageUrl = URL(string: imageCollectioViewData?[indexPath.row].image ?? "invalid") {
+        
+        selectedImageIndex = indexPath.row
+        collectionView.reloadData()
+        
+        if let imageUrl = URL(string: imageCollectioViewData?[indexPath.row].image ?? "invalid") {
                 productDetailsMianImage.sd_setImage(with: imageUrl)
                 }
 //        collectionView.layer.borderColor = UIColor.gray.cgColor

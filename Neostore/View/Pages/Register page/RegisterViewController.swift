@@ -51,7 +51,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate{
         
         title = "Register"
         for registerViews in registerDetailsView{
-            registerViews.layer.borderWidth = 1
+            registerViews.layer.borderWidth = 2
             registerViews.layer.borderColor = UIColor.white.cgColor
         }
         

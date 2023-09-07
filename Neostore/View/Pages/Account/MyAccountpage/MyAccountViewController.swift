@@ -9,9 +9,26 @@ import UIKit
 
 class MyAccountViewController: UIViewController {
 
+    let viewModel = SideMenuViewmodel()
+    @IBOutlet var myAccountTextViews: [UIView]!
+    
+    
+    @IBOutlet weak var accountFname: UITextField!
+    @IBOutlet weak var accountLname: UITextField!
+    @IBOutlet weak var accountEmail: UITextField!
+    @IBOutlet weak var accountPhoneNo: UITextField!
+    @IBOutlet weak var accountDateOfBirth: UITextField!
+    
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        for textViews in myAccountTextViews{
+            textViews.layer.borderWidth = 1
+            textViews.layer.borderColor = UIColor.white.cgColor
+        }
+        
         navigationController?.isNavigationBarHidden = false
         // for activating navigation bar
         
@@ -35,7 +52,30 @@ class MyAccountViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
 
         // Do any additional setup after loading the view.
+        getData()
     }
+    
+    func assignDatatoTextfields(){
+        
+    }
+    func getData(){
+        viewModel.fetchAccountDetails(){
+            responce in
+            if responce {
+                
+            }
+        }
+    }
+    
+    
+    @IBAction func EditProfileAction(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func ResetPasswordAction(_ sender: UIButton) {
+        
+    }
+    
 
 
 

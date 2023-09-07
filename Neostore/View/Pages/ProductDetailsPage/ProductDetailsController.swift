@@ -168,7 +168,7 @@ extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
             titleCell.productCategory.text = ProductCategory
             let rating = viewmodel.GetRating() // Replace with the method to get the rating value
             titleCell.setRating(rating)
-            
+            titleCell.selectionStyle = .none
 
             return titleCell
             
@@ -178,6 +178,7 @@ extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
             detailscell.productDetailsCost.text = String(viewmodel.Getcost())
             detailscell.imageCollectioViewData = viewmodel.Getimagedata()
             detailscell.reloadCollectionviewdata()
+            detailscell.selectionStyle = .none
             return detailscell
         default:
             fatalError("Invalid section")
