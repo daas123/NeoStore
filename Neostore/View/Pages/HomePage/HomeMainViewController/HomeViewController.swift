@@ -63,6 +63,7 @@ class HomeViewController: UIViewController{
         closeSideMenu()
     }
     override func viewDidLoad() {
+        self.stopActivityIndicator()
         super.viewDidLoad()
         homeCollectionView.decelerationRate = UIScrollView.DecelerationRate.fast // or .normal
         // setting back button title

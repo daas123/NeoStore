@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SDWebImage
 class ProductDetailsController: UIViewController {
     
     @IBOutlet weak var productDetailsTableview: UITableView!
@@ -98,10 +98,12 @@ class ProductDetailsController: UIViewController {
     }
     var ProductDetials = [DetailsProduct]()
     func getdata(){
+        self.startActivityIndicator()
         self.viewmodel.getProductDetails(id: Productid ){
             (Responce) in
             DispatchQueue.main.async {
                     self.productDetailsTableview.reloadData()
+                self.stopActivityIndicator()
                 }
             }
         }
@@ -179,6 +181,11 @@ extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
             detailscell.imageCollectioViewData = viewmodel.Getimagedata()
             detailscell.reloadCollectionviewdata()
             detailscell.selectionStyle = .none
+            let imagedata = viewmodel.Getimagedata()
+            if let imageUrl = URL(string: imagedata?[0].image ?? "invalid") {
+                detailscell.productDetailsMianImage.sd_setImage(with: imageUrl)
+            }
+            
             return detailscell
         default:
             fatalError("Invalid section")

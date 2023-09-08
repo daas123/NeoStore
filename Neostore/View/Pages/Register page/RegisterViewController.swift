@@ -39,8 +39,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-        
+
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
         // navigation bar back text
@@ -153,6 +152,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate{
     
     
     @IBAction func registerButtonAction(_ sender: UIButton) {
+        self.startActivityIndicator()
         viewModel.registervalidation(Fname: registerFirstname.text ?? "", Lname: registerlastname.text ?? "", Email: registerEmail.text ?? "", Pass: registerPassword?.text ?? "", Cpass: registerPassword?.text ?? "", Gender: gender ?? "F", Phone: registerPhoneNumber?.text ?? "", chkBox: registerchkBox.isSelected ?? false){
             (validateBool , resultStrng) in
             DispatchQueue.main.async {
@@ -162,6 +162,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate{
                 }else{
                     self.showAlert(msg: resultStrng)
                 }
+                self.stopActivityIndicator()
             }
             
         }

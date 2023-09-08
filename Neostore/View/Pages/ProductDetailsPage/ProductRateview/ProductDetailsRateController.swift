@@ -27,10 +27,14 @@ class ProductDetailsRateController: UIViewController {
     
     @IBOutlet weak var productDetailsMain: UIView!
     @IBOutlet weak var productDetailsSubview: UIView!
-
+    @IBOutlet weak var productDetailsImage: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let imageUrl = URL(string: productimage ?? "invalid" ) {
+            productDetailsImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "bg.jpg"))
+            }
         RateGestureMain = UITapGestureRecognizer(target: self, action: #selector(handleOrderViewTap(_:)))
         productDetailsMain.addGestureRecognizer(RateGestureMain)
 
@@ -78,6 +82,7 @@ class ProductDetailsRateController: UIViewController {
     }
     
     @IBAction func RateButtonAction(_ sender: UIButton) {
+        self.startActivityIndicator()
         viewModel.sendRating(rating: currentrating, productId: productId){
             (responce,msg) in
             print(self.currentrating)
@@ -86,8 +91,8 @@ class ProductDetailsRateController: UIViewController {
                     UIView.animate(withDuration: 0.3) {
                         self.dismiss(animated: true, completion: nil)
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RatingDoneNotification"), object: nil , userInfo: ["message": msg])
-                        
                             self.deligate?.reloadDetailsPage()
+                        self.stopActivityIndicator()
                     }
                 }
             }

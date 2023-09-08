@@ -54,6 +54,8 @@
 		9295B0622AA8778800DF10C7 /* OrderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9295B0612AA8778800DF10C7 /* OrderListViewModel.swift */; };
 		9295B0642AA877E600DF10C7 /* OrderListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9295B0632AA877E600DF10C7 /* OrderListService.swift */; };
 		9295B0662AA87ACC00DF10C7 /* OrderlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9295B0652AA87ACC00DF10C7 /* OrderlistModel.swift */; };
+		929852E42AA9BB0700FB8B78 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929852E32AA9BB0700FB8B78 /* ActivityIndicator.swift */; };
+		929852E82AA9C70300FB8B78 /* keybordDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929852E72AA9C70300FB8B78 /* keybordDismiss.swift */; };
 		929867A52A94ACF400E2DF59 /* ProductDetailsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929867A32A94ACF400E2DF59 /* ProductDetailsTitleCell.swift */; };
 		929867A62A94ACF400E2DF59 /* ProductDetailsTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 929867A42A94ACF400E2DF59 /* ProductDetailsTitleCell.xib */; };
 		929867A92A94AD1800E2DF59 /* ProductDetailsImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929867A72A94AD1800E2DF59 /* ProductDetailsImageCell.swift */; };
@@ -101,8 +103,6 @@
 		92E48DB32AA34EDB00822F8C /* ResetPassViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E48DB12AA34EDB00822F8C /* ResetPassViewController.xib */; };
 		92E48DB92AA35A8E00822F8C /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E48DB72AA35A8E00822F8C /* MyAccountViewController.swift */; };
 		92E48DBA2AA35A8E00822F8C /* MyAccountViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E48DB82AA35A8E00822F8C /* MyAccountViewController.xib */; };
-		92E48DBD2AA35ACB00822F8C /* AccountEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E48DBB2AA35ACB00822F8C /* AccountEditViewController.swift */; };
-		92E48DBE2AA35ACB00822F8C /* AccountEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E48DBC2AA35ACB00822F8C /* AccountEditViewController.xib */; };
 		92E48DC22AA3B00D00822F8C /* SideMenuViewmodel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E48DC12AA3B00D00822F8C /* SideMenuViewmodel.swift */; };
 		92E48DC42AA3B7B400822F8C /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E48DC32AA3B7B400822F8C /* AccountModel.swift */; };
 		92E48DC72AA3BC5300822F8C /* SideMenuService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E48DC62AA3BC5300822F8C /* SideMenuService.swift */; };
@@ -202,6 +202,8 @@
 		9295B0612AA8778800DF10C7 /* OrderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListViewModel.swift; sourceTree = "<group>"; };
 		9295B0632AA877E600DF10C7 /* OrderListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListService.swift; sourceTree = "<group>"; };
 		9295B0652AA87ACC00DF10C7 /* OrderlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderlistModel.swift; sourceTree = "<group>"; };
+		929852E32AA9BB0700FB8B78 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		929852E72AA9C70300FB8B78 /* keybordDismiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keybordDismiss.swift; sourceTree = "<group>"; };
 		929867A32A94ACF400E2DF59 /* ProductDetailsTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsTitleCell.swift; sourceTree = "<group>"; };
 		929867A42A94ACF400E2DF59 /* ProductDetailsTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductDetailsTitleCell.xib; sourceTree = "<group>"; };
 		929867A72A94AD1800E2DF59 /* ProductDetailsImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsImageCell.swift; sourceTree = "<group>"; };
@@ -249,8 +251,6 @@
 		92E48DB12AA34EDB00822F8C /* ResetPassViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ResetPassViewController.xib; sourceTree = "<group>"; };
 		92E48DB72AA35A8E00822F8C /* MyAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
 		92E48DB82AA35A8E00822F8C /* MyAccountViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyAccountViewController.xib; sourceTree = "<group>"; };
-		92E48DBB2AA35ACB00822F8C /* AccountEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountEditViewController.swift; sourceTree = "<group>"; };
-		92E48DBC2AA35ACB00822F8C /* AccountEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountEditViewController.xib; sourceTree = "<group>"; };
 		92E48DC12AA3B00D00822F8C /* SideMenuViewmodel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuViewmodel.swift; sourceTree = "<group>"; };
 		92E48DC32AA3B7B400822F8C /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
 		92E48DC62AA3BC5300822F8C /* SideMenuService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuService.swift; sourceTree = "<group>"; };
@@ -567,6 +567,8 @@
 				9264CEA82A9F24F50046E732 /* NavigationController.swift */,
 				92B302612AA5ADE300031DBF /* cellSelection.swift */,
 				929FF3062AA737A40095C3DE /* Keyboard.swift */,
+				929852E32AA9BB0700FB8B78 /* ActivityIndicator.swift */,
+				929852E72AA9C70300FB8B78 /* keybordDismiss.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -758,15 +760,6 @@
 			path = MyAccountpage;
 			sourceTree = "<group>";
 		};
-		92E48DB62AA357E300822F8C /* AccountEditPage */ = {
-			isa = PBXGroup;
-			children = (
-				92E48DBB2AA35ACB00822F8C /* AccountEditViewController.swift */,
-				92E48DBC2AA35ACB00822F8C /* AccountEditViewController.xib */,
-			);
-			path = AccountEditPage;
-			sourceTree = "<group>";
-		};
 		92E890F52AA2F5780099980C /* ResetPassword */ = {
 			isa = PBXGroup;
 			children = (
@@ -779,7 +772,6 @@
 		92E890F62AA2F5B70099980C /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				92E48DB62AA357E300822F8C /* AccountEditPage */,
 				92E48DB52AA357E000822F8C /* MyAccountpage */,
 			);
 			path = Account;
@@ -1122,7 +1114,6 @@
 				920FB7A32A9517E2007C5E8C /* CartOrderCell.xib in Resources */,
 				923DA97B2A923FB2007016EA /* CartTableViewCell.xib in Resources */,
 				920FB79A2A951699007C5E8C /* ProductDetailsCartCell.xib in Resources */,
-				92E48DBE2AA35ACB00822F8C /* AccountEditViewController.xib in Resources */,
 				920FB79E2A9516EA007C5E8C /* CartTotalCell.xib in Resources */,
 				924449BE2A8E192B00481CFD /* Main.storyboard in Resources */,
 				923DA9802A925D9A007016EA /* ProductViewController.xib in Resources */,
@@ -1281,11 +1272,11 @@
 				92E8914A2AA32C500099980C /* PlaceOrderCell.swift in Sources */,
 				92E48DC42AA3B7B400822F8C /* AccountModel.swift in Sources */,
 				92B302622AA5ADE300031DBF /* cellSelection.swift in Sources */,
-				92E48DBD2AA35ACB00822F8C /* AccountEditViewController.swift in Sources */,
 				929867B12A94AD9000E2DF59 /* ProductDetailsBuynowCell.swift in Sources */,
 				92E48DC22AA3B00D00822F8C /* SideMenuViewmodel.swift in Sources */,
 				929A9F7F2AA1CB4B007B36F3 /* OrderService.swift in Sources */,
 				92E8911C2AA2FD820099980C /* AddAddressCityStateCell.swift in Sources */,
+				929852E82AA9C70300FB8B78 /* keybordDismiss.swift in Sources */,
 				920FB7A52A95360D007C5E8C /* LoginPageViewModel.swift in Sources */,
 				9295B0662AA87ACC00DF10C7 /* OrderlistModel.swift in Sources */,
 				929524522A8F3608004C2089 /* HomeCollectionViewCell.swift in Sources */,
@@ -1302,6 +1293,7 @@
 				92AED7B42AA4E18100B68CA7 /* CartViewModel.swift in Sources */,
 				9292F0E52AA09D9800851195 /* ProductDetailsOrderViewController.swift in Sources */,
 				92C285712A9274BF0043D1C6 /* ProductTableViewCell.swift in Sources */,
+				929852E42AA9BB0700FB8B78 /* ActivityIndicator.swift in Sources */,
 				924449BB2A8E192B00481CFD /* ViewController.swift in Sources */,
 				929484412A977E4700CA3C51 /* ProductServices.swift in Sources */,
 				92AED7B22AA4D4ED00B68CA7 /* DataReload.swift in Sources */,
@@ -1514,19 +1506,22 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DV48BW2GWL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Neostore/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Neo Saad";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = abc.test.Neostore;
+				PRODUCT_BUNDLE_IDENTIFIER = abc.test.Neostore11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -1542,19 +1537,22 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = DV48BW2GWL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Neostore/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Neo Saad";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = abc.test.Neostore;
+				PRODUCT_BUNDLE_IDENTIFIER = abc.test.Neostore11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

@@ -6,9 +6,11 @@
 //
 
 import UIKit
-
 class LoginViewController: UIViewController {
 
+    
+    @IBOutlet weak var parentViewTapGuesture: UIView!
+    
     @IBOutlet var personDetailsview: [UIView]!
     
     @IBOutlet weak var loginUsername: UITextField!
@@ -30,16 +32,25 @@ class LoginViewController: UIViewController {
             userview.layer.borderWidth = 1.0
             userview.layer.borderColor = UIColor.white.cgColor
         }
-        // Do any additional setup after loading the view.
+        
+        // adding the tap guesture
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.parentViewTapGuesture.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissKeyboard() {
+        self.parentViewTapGuesture.endEditing(true)
     }
 
 
     @IBAction func LoginButtonAction(_ sender: UIButton) {
+        self.startActivityIndicator()
         viewmodel.loginValidation(email: loginUsername.text ?? "", password: loginPassword.text ?? ""){
             (validationCheck,msgString) in
             DispatchQueue.main.async {
                 if validationCheck{
                     self.navigationController?.pushViewController(HomeViewController(nibName: "HomeViewController", bundle: nil), animated: true)
+                    
 //                    self.showAlert(msg: msgString)
                 }else{
                     self.showAlert(msg: msgString)

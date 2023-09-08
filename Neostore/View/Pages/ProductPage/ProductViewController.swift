@@ -13,9 +13,6 @@ class ProductViewController: UIViewController {
     let viewmodel = ProductCategoryViewModel()
     var id = Int()
     
-    override func viewWillAppear(_ animated: Bool) {
-        getdata()
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -53,6 +50,7 @@ class ProductViewController: UIViewController {
         productTableview.register(UINib(nibName: "ProductTableViewCell", bundle: nil), forCellReuseIdentifier: "ProductTableViewCell")
         
         // Getting the data through urlsession
+        getdata()
     }
     
     @objc func searchButtonTapped() {
@@ -61,6 +59,7 @@ class ProductViewController: UIViewController {
 //    var productDetailsData = [productList]()
 //
     func getdata(){
+        self.startActivityIndicator()
         self.viewmodel.GetProductList(id: id ?? 0){
             (dataretrived) in
             if dataretrived{
@@ -68,6 +67,7 @@ class ProductViewController: UIViewController {
                     self.productTableview.reloadData()
                     var title = self.getTitle(id: self.id ?? 0)
                     self.navigationItem.title = title
+                    self.stopActivityIndicator()
                 }
             }
         }
@@ -121,7 +121,6 @@ extension ProductViewController: UITableViewDelegate,UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductTableViewCell", for: indexPath) as! ProductTableViewCell
-        
         cell.productTitle.text = viewmodel.getName(row: indexPath.row)
         cell.productProducer.text = viewmodel.getProducer(row: indexPath.row)
         cell.productCost.text = String(viewmodel.getCost(row: indexPath.row))

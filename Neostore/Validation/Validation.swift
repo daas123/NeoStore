@@ -21,11 +21,24 @@ class validation{
             return
         }
         
-        guard email.contains("@") else{
+        func isValidEmail(_ email: String) -> Bool {
+            // Regular expression pattern for a valid email address
+            let emailRegex = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}$"
+            
+            // Create a predicate with the emailRegex pattern
+            let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailRegex)
+            
+            // Evaluate the predicate with the email string
+            return emailPredicate.evaluate(with: email)
+        }
+        
+        guard (isValidEmail(email)) else{
             complition(false,"enter the valid email")
             return
         }
         complition(true,"All Fields Are ook")
+        
+        
         
     }
     
@@ -43,7 +56,7 @@ class validation{
         }
         
         
-        guard Email!.contains("@") && Email!.contains(".") else{
+        guard ((Email?.contains("@gmail.com")) != nil) else{
             complition (false,"Email InValid")
             return
         }

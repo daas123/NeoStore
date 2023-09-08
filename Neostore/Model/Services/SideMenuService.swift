@@ -21,4 +21,20 @@ class FetchAccountWEbService{
             }
         }
     }
+    func editAccountdata(first_name:String ,last_name:String,email:String,dob:String,phone_no:String,profile_pic:String,complition: @escaping (Result<FetchAccount,Error>) -> Void){
+        let param = ["first_name":first_name, "last_name": last_name, "email": email, "dob": dob, "phone_no": phone_no]
+        APIManager.shared.callRequest(apiCallType: .EditAccountDetails(param: param)){
+            responce in
+            switch responce{
+            case .success(let data):
+                do {
+                    let responseData = try? JSONDecoder().decode(FetchAccount.self, from: data)
+                    complition(.success(responseData!))
+                }
+            case .failure(let error):
+                complition(.failure(error))
+            }
+        }
+        
+    }
 }

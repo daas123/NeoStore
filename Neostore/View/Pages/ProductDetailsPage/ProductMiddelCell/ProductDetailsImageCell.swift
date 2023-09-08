@@ -52,17 +52,7 @@ extension ProductDetailsImageCell : UICollectionViewDelegate ,UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageCollectioViewData?.count ?? 0
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//        let Imagecell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductDetailsImagecell", for: indexPath) as! ImageCollectionviewCell
-//        if let imageUrl = URL(string: imageCollectioViewData?[indexPath.row].image ?? "invalid") {
-//            if indexPath.row == 0{
-//                productDetailsMianImage.sd_setImage(with: imageUrl)
-//            }
-//            Imagecell.productDetailsImagecell.sd_setImage(with: imageUrl)
-//            }
-//        return Imagecell
-//    }
+
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let imageCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductDetailsImagecell", for: indexPath) as! ImageCollectionviewCell
@@ -93,8 +83,6 @@ extension ProductDetailsImageCell : UICollectionViewDelegate ,UICollectionViewDa
         if let imageUrl = URL(string: imageCollectioViewData?[indexPath.row].image ?? "invalid") {
                 productDetailsMianImage.sd_setImage(with: imageUrl)
                 }
-//        collectionView.layer.borderColor = UIColor.gray.cgColor
-//        collectionView.layer.borderWidth = 1
     }
     
     
