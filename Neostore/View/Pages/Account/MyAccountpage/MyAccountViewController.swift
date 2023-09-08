@@ -19,10 +19,12 @@ class MyAccountViewController: UIViewController {
     @IBOutlet weak var accountDateOfBirth: UITextField!
     @IBOutlet weak var editbutton: UIButton!
     
+    @IBOutlet weak var accountImage: UIImageView!
     @IBOutlet weak var cancelButton: UIButton!
     var originalViewYPosition: CGFloat = 0.0
     let datePicker = UIPickerView()
     var selectedDate = ""
+    let imagePicker = UIImagePickerController()
     
     //
     //pickerview data
@@ -71,6 +73,9 @@ class MyAccountViewController: UIViewController {
         datePicker.delegate = self
         datePicker.dataSource = self
         
+        // for image picker view
+        imagePicker.delegate = self
+        
         accountDateOfBirth.inputView = datePicker
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
@@ -99,6 +104,12 @@ class MyAccountViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(pickerWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         originalViewYPosition = view.frame.origin.y
         fillData()
+        
+        // for image editiong
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleImageTap))
+        accountImage.addGestureRecognizer(tapGesture)
+        
+        
     }
     
     @objc func pickerWillShow(_ notification: Notification) {
@@ -148,23 +159,25 @@ class MyAccountViewController: UIViewController {
         self.accountEmail.text = SideMenuViewmodel.menuDemoData.data?.user_data?.email
         self.accountPhoneNo.text = String(SideMenuViewmodel.menuDemoData.data?.user_data?.phone_no ?? "0")
         self.accountDateOfBirth.text = String(SideMenuViewmodel.menuDemoData.data?.user_data?.dob ?? "0")
-        
+        if let imageUrl = URL(string:SideMenuViewmodel.menuDemoData.data?.user_data?.profile_pic ?? "invalid") {
+            self.accountImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "bg.jpg"))
+        } else {
+            self.accountImage.image = UIImage(named: "bg.jpg")
+        }
     }
-//    func getData(){
-//        viewModel.fetchAccountDetails(){
-//            responce in
-//            DispatchQueue.main.async {
-//                if responce {
-//                    self.fillData()
-//                }
-//            }
-//        }
-//    }
     
+    @objc func handleImageTap() {
+            // Handle the tap gesture to trigger image selection/upload
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary
+            present(imagePicker, animated: true, completion: nil)
+        }
     
     @IBAction func EditProfileAction(_ sender: UIButton) {
         print("button is clicked")
         if sender.titleLabel?.text == "Edit Profile" {
+            accountImage.isUserInteractionEnabled = true
             cancelButton.isHidden = false
             let attributedString = NSMutableAttributedString(string: "Save")
             title = "Save Details"
@@ -198,6 +211,8 @@ class MyAccountViewController: UIViewController {
         cancelButton.isHidden = true
         fillData()
         title = "AccountDetails"
+        accountImage.isUserInteractionEnabled = false
+
         let attributedString = NSMutableAttributedString(string: "Edit Profile")
         let range = NSRange(location: 0, length: 12)
         attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
@@ -253,8 +268,24 @@ extension MyAccountViewController : UIPickerViewDataSource, UIPickerViewDelegate
         
         // You can use these components to construct the selected date
         selectedDate = "\(selectedMonth)-\(selectedDay)-\(selectedYear)"
-//        print("Selected Date: \(selectedDate)")
+        //        print("Selected Date: \(selectedDate)")
     }
+    
+    
+}
+
+extension MyAccountViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+            if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+                accountImage.image = selectedImage
+            }
+            dismiss(animated: true, completion: nil)
+        }
+
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            dismiss(animated: true, completion: nil)
+        }
     
     
 }

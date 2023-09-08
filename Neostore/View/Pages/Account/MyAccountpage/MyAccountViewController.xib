@@ -13,6 +13,7 @@
                 <outlet property="accountDateOfBirth" destination="2RF-Vc-hWj" id="XX7-uz-cqD"/>
                 <outlet property="accountEmail" destination="bxs-OK-u2V" id="N6i-os-1ts"/>
                 <outlet property="accountFname" destination="GoB-rU-5km" id="jsX-YW-EMv"/>
+                <outlet property="accountImage" destination="7SE-yo-N9I" id="Bf2-kE-J36"/>
                 <outlet property="accountLname" destination="2Is-Ay-JEk" id="tfM-qI-ilm"/>
                 <outlet property="accountPhoneNo" destination="Nxz-pC-YMb" id="lYp-8o-t4V"/>
                 <outlet property="cancelButton" destination="Bq8-X6-Kto" id="Ai1-oZ-RCO"/>
