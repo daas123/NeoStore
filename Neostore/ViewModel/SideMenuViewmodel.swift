@@ -12,7 +12,7 @@ protocol ReloadSidemenuDetails{
 }
 class SideMenuViewmodel{
      static var menuDemoData = FetchAccount()
-    var sideMenuTableImages = ["","table.furniture","chair.fill","sofa.fill","bed.double","person.fill","mappin.and.ellipse","note.text","arrow.uturn.left.circle"]
+    var sideMenuTableImages = ["cart","table","chair","sofa","bed","person","location","order","logout"]
     func fetchAccountDetails(complition : @escaping (Bool)->Void){
         FetchAccountWEbService().getAccountdata(){
             responce in
@@ -27,8 +27,8 @@ class SideMenuViewmodel{
     
         }
     }
-    func editAccountDetails(first_name: String, last_name: String, email: String, dob: String, phone_no: String,profile_pic:String,complition : @escaping (Bool)->Void){
-        FetchAccountWEbService().editAccountdata(first_name: first_name, last_name: last_name, email: email, dob: dob, phone_no:phone_no, profile_pic: profile_pic){
+    func editAccountDetails(first_name: String, last_name: String, email: String, dob: String, phone_no: String,complition : @escaping (Bool)->Void){
+        FetchAccountWEbService().editAccountdata(first_name: first_name, last_name: last_name, email: email, dob: dob, phone_no:phone_no, profile_pic: ""){
             responce in
             switch responce{
             case .success(let data):

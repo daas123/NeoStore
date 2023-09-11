@@ -68,9 +68,10 @@
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="filled">
                                         <attributedString key="attributedTitle">
-                                            <fragment content="Button">
+                                            <fragment content="Add To Cart">
                                                 <attributes>
                                                     <font key="NSFont" size="20" name="Helvetica-Bold"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
                                         </attributedString>

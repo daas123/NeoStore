@@ -54,6 +54,8 @@
 		9295B0622AA8778800DF10C7 /* OrderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9295B0612AA8778800DF10C7 /* OrderListViewModel.swift */; };
 		9295B0642AA877E600DF10C7 /* OrderListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9295B0632AA877E600DF10C7 /* OrderListService.swift */; };
 		9295B0662AA87ACC00DF10C7 /* OrderlistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9295B0652AA87ACC00DF10C7 /* OrderlistModel.swift */; };
+		92970FBC2AAD9E5000FF91BD /* AddAddressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92970FBA2AAD9E4F00FF91BD /* AddAddressCell.swift */; };
+		92970FBD2AAD9E5000FF91BD /* AddAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92970FBB2AAD9E4F00FF91BD /* AddAddressCell.xib */; };
 		929852E42AA9BB0700FB8B78 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929852E32AA9BB0700FB8B78 /* ActivityIndicator.swift */; };
 		929852E82AA9C70300FB8B78 /* keybordDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929852E72AA9C70300FB8B78 /* keybordDismiss.swift */; };
 		929867A52A94ACF400E2DF59 /* ProductDetailsTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929867A32A94ACF400E2DF59 /* ProductDetailsTitleCell.swift */; };
@@ -122,8 +124,6 @@
 		92E891402AA329240099980C /* AddressListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E8913E2AA329240099980C /* AddressListCell.xib */; };
 		92E891452AA32B9E0099980C /* FirstViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E891432AA32B9E0099980C /* FirstViewCell.swift */; };
 		92E891462AA32B9E0099980C /* FirstViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E891442AA32B9E0099980C /* FirstViewCell.xib */; };
-		92E8914A2AA32C500099980C /* PlaceOrderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E891482AA32C500099980C /* PlaceOrderCell.swift */; };
-		92E8914B2AA32C500099980C /* PlaceOrderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E891492AA32C500099980C /* PlaceOrderCell.xib */; };
 		92E8914E2AA3369A0099980C /* MyOrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E8914C2AA3369A0099980C /* MyOrdersViewController.swift */; };
 		92E8914F2AA3369A0099980C /* MyOrdersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E8914D2AA3369A0099980C /* MyOrdersViewController.xib */; };
 		92E891532AA337A00099980C /* OrderIdCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E891512AA337A00099980C /* OrderIdCell.swift */; };
@@ -202,6 +202,8 @@
 		9295B0612AA8778800DF10C7 /* OrderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListViewModel.swift; sourceTree = "<group>"; };
 		9295B0632AA877E600DF10C7 /* OrderListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderListService.swift; sourceTree = "<group>"; };
 		9295B0652AA87ACC00DF10C7 /* OrderlistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderlistModel.swift; sourceTree = "<group>"; };
+		92970FBA2AAD9E4F00FF91BD /* AddAddressCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressCell.swift; sourceTree = "<group>"; };
+		92970FBB2AAD9E4F00FF91BD /* AddAddressCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddAddressCell.xib; sourceTree = "<group>"; };
 		929852E32AA9BB0700FB8B78 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		929852E72AA9C70300FB8B78 /* keybordDismiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = keybordDismiss.swift; sourceTree = "<group>"; };
 		929867A32A94ACF400E2DF59 /* ProductDetailsTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsTitleCell.swift; sourceTree = "<group>"; };
@@ -270,8 +272,6 @@
 		92E8913E2AA329240099980C /* AddressListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddressListCell.xib; sourceTree = "<group>"; };
 		92E891432AA32B9E0099980C /* FirstViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewCell.swift; sourceTree = "<group>"; };
 		92E891442AA32B9E0099980C /* FirstViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstViewCell.xib; sourceTree = "<group>"; };
-		92E891482AA32C500099980C /* PlaceOrderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceOrderCell.swift; sourceTree = "<group>"; };
-		92E891492AA32C500099980C /* PlaceOrderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceOrderCell.xib; sourceTree = "<group>"; };
 		92E8914C2AA3369A0099980C /* MyOrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyOrdersViewController.swift; sourceTree = "<group>"; };
 		92E8914D2AA3369A0099980C /* MyOrdersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyOrdersViewController.xib; sourceTree = "<group>"; };
 		92E891512AA337A00099980C /* OrderIdCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderIdCell.swift; sourceTree = "<group>"; };
@@ -582,6 +582,15 @@
 			path = HomeCollectionViewCell;
 			sourceTree = "<group>";
 		};
+		92970FB92AAD9E2000FF91BD /* AddaddressList */ = {
+			isa = PBXGroup;
+			children = (
+				92970FBA2AAD9E4F00FF91BD /* AddAddressCell.swift */,
+				92970FBB2AAD9E4F00FF91BD /* AddAddressCell.xib */,
+			);
+			path = AddaddressList;
+			sourceTree = "<group>";
+		};
 		9298679F2A94ABD600E2DF59 /* ProductTitleCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -876,8 +885,8 @@
 			isa = PBXGroup;
 			children = (
 				92E891422AA32B600099980C /* Firstlabelcell */,
+				92970FB92AAD9E2000FF91BD /* AddaddressList */,
 				92E891412AA32AE20099980C /* listcell */,
-				92E891472AA32BAF0099980C /* PlaceOrder */,
 			);
 			path = AddressListcell;
 			sourceTree = "<group>";
@@ -898,15 +907,6 @@
 				92E891442AA32B9E0099980C /* FirstViewCell.xib */,
 			);
 			path = Firstlabelcell;
-			sourceTree = "<group>";
-		};
-		92E891472AA32BAF0099980C /* PlaceOrder */ = {
-			isa = PBXGroup;
-			children = (
-				92E891482AA32C500099980C /* PlaceOrderCell.swift */,
-				92E891492AA32C500099980C /* PlaceOrderCell.xib */,
-			);
-			path = PlaceOrder;
 			sourceTree = "<group>";
 		};
 		92E891502AA3374C0099980C /* MyOrderscell */ = {
@@ -1108,7 +1108,6 @@
 				924449C02A8E192D00481CFD /* Assets.xcassets in Resources */,
 				92E48DB32AA34EDB00822F8C /* ResetPassViewController.xib in Resources */,
 				9292F0E62AA09D9800851195 /* ProductDetailsOrderViewController.xib in Resources */,
-				92E8914B2AA32C500099980C /* PlaceOrderCell.xib in Resources */,
 				929524532A8F3608004C2089 /* HomeCollectionViewCell.xib in Resources */,
 				92E891402AA329240099980C /* AddressListCell.xib in Resources */,
 				920FB7A32A9517E2007C5E8C /* CartOrderCell.xib in Resources */,
@@ -1119,6 +1118,7 @@
 				923DA9802A925D9A007016EA /* ProductViewController.xib in Resources */,
 				923DA9752A922C9D007016EA /* SideMenuTableViewCell.xib in Resources */,
 				92E891332AA30BBC0099980C /* AddAddressController.xib in Resources */,
+				92970FBD2AAD9E5000FF91BD /* AddAddressCell.xib in Resources */,
 				923DA9652A9203F4007016EA /* SideMenuViewController.xib in Resources */,
 				92E48DA62AA33E7700822F8C /* OrderIdTotalCell.xib in Resources */,
 				92E891372AA30D090099980C /* AddAdressCell.xib in Resources */,
@@ -1269,7 +1269,6 @@
 				9264CEA92A9F24F50046E732 /* NavigationController.swift in Sources */,
 				92E8914E2AA3369A0099980C /* MyOrdersViewController.swift in Sources */,
 				92E48DB22AA34EDB00822F8C /* ResetPassViewController.swift in Sources */,
-				92E8914A2AA32C500099980C /* PlaceOrderCell.swift in Sources */,
 				92E48DC42AA3B7B400822F8C /* AccountModel.swift in Sources */,
 				92B302622AA5ADE300031DBF /* cellSelection.swift in Sources */,
 				929867B12A94AD9000E2DF59 /* ProductDetailsBuynowCell.swift in Sources */,
@@ -1320,6 +1319,7 @@
 				92E48DA52AA33E7700822F8C /* OrderIdTotalCell.swift in Sources */,
 				923DA9742A922C9D007016EA /* SideMenuTableViewCell.swift in Sources */,
 				923BE1392A9603CD006354BF /* ApiService.swift in Sources */,
+				92970FBC2AAD9E5000FF91BD /* AddAddressCell.swift in Sources */,
 				923DA97A2A923FB2007016EA /* CartTableViewCell.swift in Sources */,
 				923DA9642A9203F4007016EA /* SideMenuViewController.swift in Sources */,
 				929483E32A97397400CA3C51 /* Alert.swift in Sources */,

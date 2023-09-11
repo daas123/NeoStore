@@ -66,3 +66,10 @@ struct AuthResponse: Codable {
         case userMsg = "user_msg"
     }
 }
+
+
+struct ForgetPass:Codable{
+    let status:Int
+    let message:String
+    let user_msg:String
+}

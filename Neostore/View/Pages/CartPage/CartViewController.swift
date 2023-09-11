@@ -19,8 +19,7 @@ class CartViewController: UIViewController, UITextFieldDelegate {
     let viewModel = CartViewModel()
     var toolbar = UIToolbar()
     var cellIndexpath : IndexPath = []
-    
-    @IBOutlet weak var cartPickerView: UIPickerView!
+    var cartPickerView = UIPickerView()
     @IBOutlet weak var cartTableview: UITableView!
     override func viewWillAppear(_ animated: Bool) {
         getData()
@@ -115,7 +114,7 @@ class CartViewController: UIViewController, UITextFieldDelegate {
     @objc func doneButtonTapped() {
         print(selectedOption)
         if selectedOption != 0 {
-            viewModel.editToCart(productid: viewModel.cartData?.data?[cellIndexpath.row].productID ?? 0, quantity: String(selectedOption ?? 0) ){
+            viewModel.editToCart(productid: viewModel.cartData?.data?[cellIndexpath.row].productID ?? 0, quantity: String(selectedOption ) ){
                 (responce,msg) in
                 if responce {
                     DispatchQueue.main.async {
@@ -131,6 +130,7 @@ class CartViewController: UIViewController, UITextFieldDelegate {
             cartPickerView.isHidden = true
         }else{
             deleteCartData(indexpath: viewModel.cartData?.data?[cellIndexpath.row].productID ?? 0 )
+            NotificationCenter.default.post(name: .reloadSideMenuData, object: nil)
             self.getData()
         }
     }
@@ -200,6 +200,7 @@ extension CartViewController : UITableViewDelegate,UITableViewDataSource{
                 return productCell
             }else if indexPath.row == 1{
                 let productCell = tableView.dequeueReusableCell(withIdentifier: "CartOrderCell", for: indexPath) as! CartOrderCell
+                productCell.cartDeligate = self
                 productCell.selectionStyle = .none
                 return productCell
             }else{
@@ -227,6 +228,7 @@ extension CartViewController : UITableViewDelegate,UITableViewDataSource{
         if editingStyle == .delete
         {
             deleteCartData(indexpath: viewModel.cartData?.data?[indexPath.row].productID ?? 1)
+            NotificationCenter.default.post(name: .reloadSideMenuData, object: nil)
             getData()
         } else {
             print("Insert")
@@ -260,10 +262,15 @@ extension CartViewController : UIPickerViewDelegate , UIPickerViewDataSource{
 }
 
 extension CartViewController : CartAction{
+    
     func pushOrderViewController() {
-        let addressListController = AddressListViewController(nibName: "AddressListViewController", bundle: nil)
         
-        self.navigationController?.pushViewController(addressListController,animated: true)
+        if viewModel.cartData?.count == 0 || viewModel.cartData == nil{
+            self.showAlert(msg: "Add product to cart")
+        }else{
+            let addressListController = AddressListViewController(nibName: "AddressListViewController", bundle: nil)
+            self.navigationController?.pushViewController(addressListController,animated: true)
+        }
     }
     
     

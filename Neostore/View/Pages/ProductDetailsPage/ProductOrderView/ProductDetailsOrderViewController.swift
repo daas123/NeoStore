@@ -10,7 +10,7 @@ import SDWebImage
 class ProductDetailsOrderViewController: UIViewController {
     
     var originalViewYPosition: CGFloat = 0.0
-    var deligate : RelaodProductDetailPage?
+    var deligate : ReloadSideMenuData?
     let viewModel = OrderviewModel()
     var orderViewGesture: UITapGestureRecognizer!
     var orderDetailsGesture: UITapGestureRecognizer!
@@ -30,7 +30,6 @@ class ProductDetailsOrderViewController: UIViewController {
     var tapGesture: UITapGestureRecognizer!
     override func viewDidLoad() {
         
-                
         productOrderLabel.text = productlabel
         if let imageUrl = URL(string: productimage ?? "invalid" ) {
             productOrderImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "bg.jpg"))
@@ -47,6 +46,7 @@ class ProductDetailsOrderViewController: UIViewController {
         // for keyboard
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
         originalViewYPosition = view.frame.origin.y
         
         
@@ -93,14 +93,13 @@ class ProductDetailsOrderViewController: UIViewController {
     }
     
     @IBAction func orderButton(_ sender: UIButton) {
-        self.startActivityIndicator()
         viewModel.AddToCart(productid:productId, quantity: productOrderQuantityField?.text ?? "0" ){
             (responce,Msg) in
             if responce{
                 DispatchQueue.main.async {
-                    self.stopActivityIndicator()
                     UIView.animate(withDuration: 0.3) {
-                        self.deligate?.reloadDetailsPage()
+//                        self.deligate?.reloadSidemenu()
+                        NotificationCenter.default.post(name: .reloadSideMenuData, object: nil)
                         self.dismiss(animated: true, completion: nil)
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RatingDoneNotification"), object: nil , userInfo: ["message": Msg])
                     }
@@ -136,4 +135,7 @@ extension ProductDetailsOrderViewController : UITextFieldDelegate{
            return true
        }
 
+}
+extension Notification.Name {
+    static let reloadSideMenuData = Notification.Name("ReloadSideMenuData")
 }

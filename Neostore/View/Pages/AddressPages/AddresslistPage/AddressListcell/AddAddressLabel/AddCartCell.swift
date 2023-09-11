@@ -1,13 +1,13 @@
 //
-//  PlaceOrderCell.swift
+//  AddCartCell.swift
 //  Neostore
 //
-//  Created by Neosoft on 02/09/23.
+//  Created by Neosoft on 10/09/23.
 //
 
 import UIKit
 
-class PlaceOrderCell: UITableViewCell {
+class AddCartCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()

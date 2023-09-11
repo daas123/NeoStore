@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -10,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CartViewController" customModule="Neostore" customModuleProvider="target">
             <connections>
-                <outlet property="cartPickerView" destination="h2u-td-kPI" id="Z6n-yB-X8V"/>
                 <outlet property="cartTableview" destination="k2P-Bh-1zL" id="yAn-3p-0aM"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,23 +24,14 @@
                     <rect key="frame" x="0.0" y="47" width="375" height="765"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </tableView>
-                <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h2u-td-kPI">
-                    <rect key="frame" x="0.0" y="641" width="375" height="171"/>
-                    <color key="backgroundColor" systemColor="systemGray6Color"/>
-                </pickerView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" red="0.91372549020000005" green="0.10980392160000001" blue="0.1019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="k2P-Bh-1zL" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="5rD-GV-2PO"/>
-                <constraint firstItem="h2u-td-kPI" firstAttribute="height" secondItem="k2P-Bh-1zL" secondAttribute="height" multiplier="0.223592" id="6hb-dd-l7J"/>
-                <constraint firstAttribute="bottom" secondItem="h2u-td-kPI" secondAttribute="bottom" id="990-bQ-Q0N"/>
                 <constraint firstItem="k2P-Bh-1zL" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="CzM-Yz-u6X"/>
                 <constraint firstItem="k2P-Bh-1zL" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Dtx-Vh-aeh"/>
-                <constraint firstItem="h2u-td-kPI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="DzK-RF-yHj"/>
-                <constraint firstItem="h2u-td-kPI" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="I00-MC-mOw"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="k2P-Bh-1zL" secondAttribute="trailing" id="eMX-6c-StK"/>
-                <constraint firstItem="h2u-td-kPI" firstAttribute="width" secondItem="k2P-Bh-1zL" secondAttribute="width" id="fcc-U2-uM9"/>
             </constraints>
             <point key="canvasLocation" x="35.625" y="19.014084507042252"/>
         </view>
@@ -48,9 +39,6 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

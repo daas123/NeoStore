@@ -7,14 +7,22 @@
 
 import UIKit
 class LoginViewController: UIViewController {
-
     
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var dontHaveaccoutButton: UIButton!
+    @IBOutlet weak var plusButton: UIButton!
+    @IBOutlet weak var forgetPassword: UIButton!
+    
+    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var parentViewTapGuesture: UIView!
     
     @IBOutlet var personDetailsview: [UIView]!
     
     @IBOutlet weak var loginUsername: UITextField!
     @IBOutlet weak var loginPassword: UITextField!
+    
+    
+    @IBOutlet weak var passwordView: UIView!
     let viewmodel = loginViewModel()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,27 +49,48 @@ class LoginViewController: UIViewController {
     @objc func dismissKeyboard() {
         self.parentViewTapGuesture.endEditing(true)
     }
-
-
+    
+    
     @IBAction func LoginButtonAction(_ sender: UIButton) {
-        self.startActivityIndicator()
-        viewmodel.loginValidation(email: loginUsername.text ?? "", password: loginPassword.text ?? ""){
-            (validationCheck,msgString) in
-            DispatchQueue.main.async {
-                if validationCheck{
-                    self.navigationController?.pushViewController(HomeViewController(nibName: "HomeViewController", bundle: nil), animated: true)
-                    
-//                    self.showAlert(msg: msgString)
-                }else{
-                    self.showAlert(msg: msgString)
+        if sender.titleLabel?.text == "LOGIN"{
+            self.startActivityIndicator()
+            viewmodel.loginValidation(email: loginUsername.text ?? "", password: loginPassword.text ?? ""){
+                (validationCheck,msgString) in
+                DispatchQueue.main.async {
+                    if validationCheck{
+                        self.navigationController?.pushViewController(HomeViewController(nibName: "HomeViewController", bundle: nil), animated: true)
+                        
+                        //                    self.showAlert(msg: msgString)
+                    }else{
+                        self.showAlert(msg: msgString)
+                        self.stopActivityIndicator()
+                        
+                    }
                 }
             }
+        }else{
+            print("cancel button")
         }
     }
     @IBAction func registerButtonAction(_ sender: UIButton) {
         let vc =  RegisterViewController(nibName: "RegisterViewController", bundle: nil)
         navigationController?.pushViewController(vc, animated: true)
     }
+    
+    @IBAction func forgetPasswordAction(_ sender: UIButton) {
+        passwordView.isHidden = true
+        forgetPassword.isHidden = true
+        dontHaveaccoutButton.isHidden = true
+        plusButton.isHidden = true
+        cancelButton.isHidden = false
+        
+        let attributedString = NSMutableAttributedString(string: "SEND EMAIL")
+        let range = NSRange(location: 0, length: 10)
+        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
+        loginButton.setAttributedTitle(attributedString, for: .normal)
+        
+    }
+    
 }
 
 

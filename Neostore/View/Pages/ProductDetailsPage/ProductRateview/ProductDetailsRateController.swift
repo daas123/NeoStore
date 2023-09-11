@@ -23,7 +23,8 @@ class ProductDetailsRateController: UIViewController {
     var productimage : String?
     // button outlet
     
-    @IBOutlet var ratingButton: [UIButton]!
+    
+    @IBOutlet var ratingImage: [UIImageView]!
     
     @IBOutlet weak var productDetailsMain: UIView!
     @IBOutlet weak var productDetailsSubview: UIView!
@@ -41,11 +42,13 @@ class ProductDetailsRateController: UIViewController {
         RateGestureMainSubview = UITapGestureRecognizer(target: self, action: #selector(handleOrderDetailsTap(_:)))
         productDetailsSubview.addGestureRecognizer(RateGestureMainSubview)
         
-        for buttonicon in ratingButton{
-            buttonicon.setImage(UIImage(systemName: "star"), for: .normal)
-            buttonicon.setImage(UIImage(systemName: "star.fill"), for: .selected)
+        for (index, image) in ratingImage.enumerated() {
+            image.image = UIImage(systemName: "star")
+            image.highlightedImage = UIImage(systemName: "star.fill")
+            image.tag = index // Set the tag to represent the index
+            image.isUserInteractionEnabled = true
+            image.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(rateButtonClickAction(_:))))
         }
-        
         
     }
     
@@ -58,23 +61,40 @@ class ProductDetailsRateController: UIViewController {
 
     var backrating = 0
     var currentrating = 0
-    @IBAction func rateButtonClickAction(_ sender: UIButton) {
-        if sender.tag >= backrating{
-            for rate in 0...sender.tag{
-                ratingButton[rate].isSelected = true
-            }
-            backrating = sender.tag
-            currentrating = sender.tag + 1
-        }else{
-            
-            currentrating = sender.tag
-            backrating = sender.tag
-            for rate in backrating...4{
-                ratingButton[rate].isSelected = false
-            }
+    var firstselected = false
+    @IBAction func rateButtonClickAction(_ sender: UITapGestureRecognizer) {
+        guard sender.view is UIImageView else {
+            return
         }
-        print("user seleccted \(sender.tag) and my count \(backrating) and rating is \(currentrating) ")
+        
+        let selectedRating = sender.view?.tag ?? 0
+        
+        // Check if the first image is already selected
+        let isFirstImageSelected = ratingImage[0].isHighlighted
+        if selectedRating == 0 {
+            // If the first image is already selected, unselect it
+            if isFirstImageSelected {
+                ratingImage[0].isHighlighted = false
+                currentrating = 0
+            } else {
+                // If the first image is not selected, select it
+                ratingImage[0].isHighlighted = true
+                currentrating = 1
+            }
+        } else {
+            // Handle the selection of other stars
+            for i in 0..<ratingImage.count {
+                ratingImage[i].isHighlighted = i <= selectedRating
+            }
+            currentrating = selectedRating + 1
+        }
+        
+        debugPrint("User selected \(currentrating) star")
     }
+
+
+
+
     
     
     @IBAction func closeButtonAction(_ sender: UIButton) {

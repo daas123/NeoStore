@@ -7,7 +7,8 @@
 
 import UIKit
 import SDWebImage
-class ProductDetailsController: UIViewController {
+class ProductDetailsController: UIViewController{
+    
     
     @IBOutlet weak var productDetailsTableview: UITableView!
     @IBOutlet weak var ProductDetailsMainView: UIView!
@@ -23,7 +24,7 @@ class ProductDetailsController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-//        productRate.deligate = self
+        //        productRate.deligate = self
         NotificationCenter.default.addObserver(self, selector: #selector(viewWillDisappearNotification), name: NSNotification.Name(rawValue: "RatingDoneNotification"), object: nil)
         productDetailsTableview.delegate = self
         productDetailsTableview.dataSource = self
@@ -31,7 +32,6 @@ class ProductDetailsController: UIViewController {
         let backbutton = UIBarButtonItem()
         backbutton.title = ""
         navigationItem.backBarButtonItem = backbutton
-        
         // for activating navigation bar
         navigationController?.isNavigationBarHidden = false
         
@@ -82,9 +82,9 @@ class ProductDetailsController: UIViewController {
     }
     
     deinit {
-            // Remove the observer when the view is deallocated
-            NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "ViewWillDisappearNotification"), object: nil)
-        }
+        // Remove the observer when the view is deallocated
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "ViewWillDisappearNotification"), object: nil)
+    }
     // view didload end
     
     @objc private func handleTapGesture(_ sender: UITapGestureRecognizer) {
@@ -98,15 +98,15 @@ class ProductDetailsController: UIViewController {
     }
     var ProductDetials = [DetailsProduct]()
     func getdata(){
-        self.startActivityIndicator()
+//        self.startActivityIndicator()
         self.viewmodel.getProductDetails(id: Productid ){
             (Responce) in
             DispatchQueue.main.async {
-                    self.productDetailsTableview.reloadData()
-                self.stopActivityIndicator()
-                }
+                self.productDetailsTableview.reloadData()
+//                self.stopActivityIndicator()
             }
         }
+    }
     func GetCategory(id :Int) ->String{
         switch id{
         case 1:
@@ -123,25 +123,27 @@ class ProductDetailsController: UIViewController {
     }
     
     func ShowOrderview() {
-            let popupViewController = ProductDetailsOrderViewController(nibName: "ProductDetailsOrderViewController", bundle: nil)
-            popupViewController.productId = self.Productid
-            popupViewController.productlabel = viewmodel.GetTitle()
-            popupViewController.productimage = viewmodel.productDetailsData?.data?.product_images?.first?.image
-            popupViewController.modalPresentationStyle = .overCurrentContext
-            popupViewController.modalTransitionStyle = .crossDissolve
-            self.present(popupViewController, animated: true, completion: nil)
+        let popupViewController = ProductDetailsOrderViewController(nibName: "ProductDetailsOrderViewController", bundle: nil)
+        popupViewController.productId = self.Productid
+        popupViewController.deligate = SideMenuViewController()
+        popupViewController.productlabel = viewmodel.GetTitle()
+        popupViewController.productimage = viewmodel.productDetailsData?.data?.product_images?.first?.image
+        
+        popupViewController.modalPresentationStyle = .overCurrentContext
+        popupViewController.modalTransitionStyle = .crossDissolve
+        self.present(popupViewController, animated: true, completion: nil)
     }
     
     func ShowRatingview() {
-            let popupViewController = ProductDetailsRateController(nibName: "ProductDetailsRateController", bundle: nil)
-            popupViewController.productlabel = viewmodel.GetTitle()
-            popupViewController.productimage = viewmodel.productDetailsData?.data?.product_images?.first?.image
-            popupViewController.productId = self.Productid
-            popupViewController.modalPresentationStyle = .overCurrentContext
-            popupViewController.modalTransitionStyle = .crossDissolve
-            self.present(popupViewController, animated: true, completion: nil)
+        let popupViewController = ProductDetailsRateController(nibName: "ProductDetailsRateController", bundle: nil)
+        popupViewController.productlabel = viewmodel.GetTitle()
+        popupViewController.productimage = viewmodel.productDetailsData?.data?.product_images?.first?.image
+        popupViewController.productId = self.Productid
+        popupViewController.modalPresentationStyle = .overCurrentContext
+        popupViewController.modalTransitionStyle = .crossDissolve
+        self.present(popupViewController, animated: true, completion: nil)
     }
-
+    
     
     @IBAction func OrderButtion(_ sender: UIButton) {
         ShowOrderview()
@@ -152,7 +154,7 @@ class ProductDetailsController: UIViewController {
     }
     
     
-
+    
     
 }
 
@@ -171,7 +173,7 @@ extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
             let rating = viewmodel.GetRating() // Replace with the method to get the rating value
             titleCell.setRating(rating)
             titleCell.selectionStyle = .none
-
+            
             return titleCell
             
         case 1:
@@ -192,11 +194,11 @@ extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-            if indexPath.row == 2{
-                return 65
-            }
-            return UITableView.automaticDimension // Use the default height for other cells
+        if indexPath.row == 2{
+            return 65
         }
+        return UITableView.automaticDimension // Use the default height for other cells
+    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         0

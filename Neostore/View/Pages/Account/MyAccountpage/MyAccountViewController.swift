@@ -10,7 +10,8 @@ import UIKit
 class MyAccountViewController: UIViewController {
     
     let viewModel = SideMenuViewmodel()
-    
+//    var accessToken
+    var accesstoken : String?
     @IBOutlet var myAccountTextViews: [UIView]!
     @IBOutlet weak var accountFname: UITextField!
     @IBOutlet weak var accountLname: UITextField!
@@ -36,9 +37,16 @@ class MyAccountViewController: UIViewController {
         return Array(minYear...maxYear)
     }()
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.stopActivityIndicator()
+        fillData()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        accountImage.image = UIImage(named: "saad")
+        accountImage.layer.cornerRadius = accountImage.frame.size.width / 2
+        accountImage.clipsToBounds = true
         
         for textViews in myAccountTextViews{
             textViews.layer.borderWidth = 1
@@ -103,7 +111,6 @@ class MyAccountViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(pickerWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(pickerWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         originalViewYPosition = view.frame.origin.y
-        fillData()
         
         // for image editiong
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleImageTap))
@@ -159,75 +166,128 @@ class MyAccountViewController: UIViewController {
         self.accountEmail.text = SideMenuViewmodel.menuDemoData.data?.user_data?.email
         self.accountPhoneNo.text = String(SideMenuViewmodel.menuDemoData.data?.user_data?.phone_no ?? "0")
         self.accountDateOfBirth.text = String(SideMenuViewmodel.menuDemoData.data?.user_data?.dob ?? "0")
-        if let imageUrl = URL(string:SideMenuViewmodel.menuDemoData.data?.user_data?.profile_pic ?? "invalid") {
-            self.accountImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "bg.jpg"))
-        } else {
-            self.accountImage.image = UIImage(named: "bg.jpg")
+        if let accessToken = accesstoken,
+               let imageData = UserDefaults.standard.data(forKey: accessToken),
+               let image = UIImage(data: imageData) {
+                self.accountImage.image = image
+        }else{
+            accountImage.image = UIImage(named: "userdefault")
         }
     }
     
     @objc func handleImageTap() {
-            // Handle the tap gesture to trigger image selection/upload
+        let alertController = UIAlertController(title: "Choose an Option", message: nil, preferredStyle: .actionSheet)
+        
+        // Option to upload from gallery
+        let galleryAction = UIAlertAction(title: "Upload from Gallery", style: .default) { _ in
+            self.selectImageFromGallery()
+        }
+        
+        // Option to take a photo
+        let cameraAction = UIAlertAction(title: "Take a Photo", style: .default) { _ in
+            self.takePhoto()
+        }
+        
+        // Cancel option
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        // Add the actions to the alert controller
+        alertController.addAction(galleryAction)
+        alertController.addAction(cameraAction)
+        alertController.addAction(cancelAction)
+        
+        // Present the alert controller
+        present(alertController, animated: true, completion: nil)
+    
+}
+    func selectImageFromGallery() {
+            // Implement image selection logic from the photo gallery here.
             let imagePicker = UIImagePickerController()
             imagePicker.delegate = self
             imagePicker.sourceType = .photoLibrary
             present(imagePicker, animated: true, completion: nil)
         }
-    
-    @IBAction func EditProfileAction(_ sender: UIButton) {
-        print("button is clicked")
-        if sender.titleLabel?.text == "Edit Profile" {
-            accountImage.isUserInteractionEnabled = true
-            cancelButton.isHidden = false
-            let attributedString = NSMutableAttributedString(string: "Save")
-            title = "Save Details"
-            let range = NSRange(location: 0, length: 4)
-            attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
-            sender.setAttributedTitle(attributedString, for: .normal)
-            accountFname.isUserInteractionEnabled = true
-            accountLname.isUserInteractionEnabled = true
-            accountEmail.isUserInteractionEnabled = true
-            accountPhoneNo.isUserInteractionEnabled = true
-            accountDateOfBirth.isUserInteractionEnabled = true
-            accountFname.becomeFirstResponder()
-        }else{
-            title = "AccountDetails"
-            cancelButton.isHidden = true
-            let attributedString = NSMutableAttributedString(string: "Edit Profile")
-            let range = NSRange(location: 0, length: 12)
-            attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
-            sender.setAttributedTitle(attributedString, for: .normal)
-            accountFname.isUserInteractionEnabled = false
-            accountLname.isUserInteractionEnabled = false
-            accountEmail.isUserInteractionEnabled = false
-            accountPhoneNo.isUserInteractionEnabled = false
-            accountDateOfBirth.isUserInteractionEnabled = false
-            //            viewModel.editAccountDetails(first_name: accountFname.text, last_name: accountLname.text, email: accountEmail.text, dob: <#T##String#>, phone_no: <#T##String#>, profile_pic: <#T##String#>, complition: <#T##(Bool) -> Void#>)
+
+        func takePhoto() {
+            // Implement taking a photo using the camera here.
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .camera
+            present(imagePicker, animated: true, completion: nil)
         }
-        
-    }
-    
-    @IBAction func cancelButtonAction(_ sender: UIButton) {
-        cancelButton.isHidden = true
-        fillData()
+
+@IBAction func EditProfileAction(_ sender: UIButton) {
+    print("button is clicked")
+    if sender.titleLabel?.text == "Edit Profile" {
+        accountImage.isUserInteractionEnabled = true
+        cancelButton.isHidden = false
+        let attributedString = NSMutableAttributedString(string: "Save")
+        title = "Save Details"
+        let range = NSRange(location: 0, length: 4)
+        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
+        sender.setAttributedTitle(attributedString, for: .normal)
+        accountFname.isUserInteractionEnabled = true
+        accountLname.isUserInteractionEnabled = true
+        accountEmail.isUserInteractionEnabled = true
+        accountPhoneNo.isUserInteractionEnabled = true
+        accountDateOfBirth.isUserInteractionEnabled = true
+        accountFname.becomeFirstResponder()
+    }else{
         title = "AccountDetails"
         accountImage.isUserInteractionEnabled = false
-
+        cancelButton.isHidden = true
         let attributedString = NSMutableAttributedString(string: "Edit Profile")
         let range = NSRange(location: 0, length: 12)
         attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
-        editbutton.setAttributedTitle(attributedString, for: .normal)
+        sender.setAttributedTitle(attributedString, for: .normal)
         accountFname.isUserInteractionEnabled = false
         accountLname.isUserInteractionEnabled = false
         accountEmail.isUserInteractionEnabled = false
         accountPhoneNo.isUserInteractionEnabled = false
         accountDateOfBirth.isUserInteractionEnabled = false
+        if let selectedImage = accountImage.image,
+           let imageData = selectedImage.jpegData(compressionQuality: 1.0),
+            let accessToken = accesstoken {
+                    UserDefaults.standard.set(imageData, forKey: accessToken)
+                }
         
+        viewModel.editAccountDetails(first_name: accountFname.text ?? "", last_name: accountLname.text ?? "", email: accountEmail.text  ?? "", dob: selectedDate , phone_no: accountPhoneNo.text ?? ""){
+            responce in
+            DispatchQueue.main.async {
+                if responce{
+                    NotificationCenter.default.post(name: .reloadSideMenuData, object: nil)
+                    print(self.accesstoken)
+                    self.showAlert(msg: "Details Updated Succefully")
+                }else{
+                    self.showAlert(msg: "Some Went Wrong")
+                }
+            }
+        }
     }
     
-    @IBAction func ResetPasswordAction(_ sender: UIButton) {
-        
-    }
+}
+
+@IBAction func cancelButtonAction(_ sender: UIButton) {
+    cancelButton.isHidden = true
+    fillData()
+    title = "AccountDetails"
+    accountImage.isUserInteractionEnabled = false
+    
+    let attributedString = NSMutableAttributedString(string: "Edit Profile")
+    let range = NSRange(location: 0, length: 12)
+    attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
+    editbutton.setAttributedTitle(attributedString, for: .normal)
+    accountFname.isUserInteractionEnabled = false
+    accountLname.isUserInteractionEnabled = false
+    accountEmail.isUserInteractionEnabled = false
+    accountPhoneNo.isUserInteractionEnabled = false
+    accountDateOfBirth.isUserInteractionEnabled = false
+    
+}
+
+@IBAction func ResetPasswordAction(_ sender: UIButton) {
+    navigationController?.pushViewController(ResetPassViewController(nibName:"ResetPassViewController", bundle: nil), animated: true)
+}
 }
 
 extension MyAccountViewController : UIPickerViewDataSource, UIPickerViewDelegate{
@@ -275,17 +335,17 @@ extension MyAccountViewController : UIPickerViewDataSource, UIPickerViewDelegate
 }
 
 extension MyAccountViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate{
-
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
-                accountImage.image = selectedImage
-            }
-            dismiss(animated: true, completion: nil)
+        if let selectedImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            accountImage.image = selectedImage
         }
-
-        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-            dismiss(animated: true, completion: nil)
-        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
     
     
 }

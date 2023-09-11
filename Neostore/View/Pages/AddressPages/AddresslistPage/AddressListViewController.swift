@@ -9,16 +9,24 @@ import UIKit
 
 class AddressListViewController: UIViewController {
     var selectedIndexPath: IndexPath?
+    @IBOutlet weak var orderButton: UIButton!
     var viewModel = AddAddressViewModel()
     @IBOutlet weak var addressListTableview: UITableView!
+    override func viewWillAppear(_ animated: Bool) {
+//        addressListTableview.reloadData()
+    }
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        addressListTableview.separatorStyle = .none
+
         addressListTableview.delegate = self
         addressListTableview.dataSource = self
         
         addressListTableview.register(UINib(nibName: "FirstViewCell", bundle: nil), forCellReuseIdentifier: "FirstViewCell")
         addressListTableview.register(UINib(nibName: "AddressListCell", bundle: nil), forCellReuseIdentifier: "AddressListCell")
         addressListTableview.register(UINib(nibName: "PlaceOrderCell", bundle: nil), forCellReuseIdentifier: "PlaceOrderCell")
+        addressListTableview.register(UINib(nibName: "AddAddressCell", bundle: nil), forCellReuseIdentifier: "AddAddressCell")
         
         
         // nvigation
@@ -41,6 +49,13 @@ class AddressListViewController: UIViewController {
         let searchButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addAddressbutton))
         navigationItem.rightBarButtonItem = searchButton
         self.navigationItem.title = "Select Address"
+        
+        if viewModel.addressData.count <= 0{
+            let attributedString = NSMutableAttributedString(string: "Add Address")
+            let range = NSRange(location: 0, length: 11)
+            attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
+            orderButton.setAttributedTitle(attributedString, for: .normal)
+        }
     }
     @objc func addAddressbutton() {
         navigationController?.pushViewController(AddAddressController(nibName: "AddAddressController", bundle: nil), animated: true)
@@ -52,45 +67,68 @@ class AddressListViewController: UIViewController {
     }
     
     @IBAction func orderButtonAction(_ sender: UIButton) {
-        let selecteddata = dataCollection(index: selectedIndexPath?.row ?? 0)
-        viewModel.OrderCart(address: selecteddata){
-            responce in
-            DispatchQueue.main.async {
-                if responce{
-                    self.navigationController?.pushViewController(HomeViewController(nibName: "HomeViewController", bundle: nil), animated: true)
-                    self.showAlert(msg: "Order done Succesfully")
+        if selectedIndexPath != nil{
+            if sender.titleLabel?.text == "Order" {
+                let selecteddata = dataCollection(index: (1 - (selectedIndexPath?.row ?? 0)))
+                viewModel.OrderCart(address: selecteddata){
+                    responce in
+                    DispatchQueue.main.async {
+                        if responce{
+                            self.navigationController?.pushViewController(HomeViewController(nibName: "HomeViewController", bundle: nil), animated: true)
+                            self.showAlert(msg: "Order done Succesfully")
+                        }else{
+                            self.showAlert(msg: "something went Wrong")
+                        }
+                    }
+                    
+                }
+            }else{
+                if viewModel.addressData.count != 0 && selectedIndexPath?.row != 0 && selectedIndexPath != nil{
+                    self.navigationController?.pushViewController(AddAddressController(nibName: "AddAddressController", bundle: nil), animated: true)
                 }else{
-                    self.showAlert(msg: "something went Wrong")
+                    self.showAlert(msg: "Add an Address")
                 }
             }
-                
-    }
-
-        
+        }else{
+            self.showAlert(msg: "Select the Address")
+        }
     }
     
 }
 extension AddressListViewController : UITableViewDelegate ,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.addressData.count
+        if viewModel.addressData.count == 0 {
+            return 1
+        }else{
+            return 1+viewModel.addressData.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if viewModel.addressData.count == 0{
+            let cell = tableView.dequeueReusableCell(withIdentifier: "AddAddressCell", for: indexPath) as! AddAddressCell
+            cell.selectionStyle = .none
+            return cell
+        }
+        
         if indexPath.row == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: "FirstViewCell", for: indexPath) as! FirstViewCell
             return cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "AddressListCell", for: indexPath) as! AddressListCell
-            cell.addressLabel.text = "Address \(indexPath.row)"
-            cell.addressLabelDetails.text = dataCollection(index: indexPath.row)
+            cell.addressLabel.text = "Address \(indexPath.row - 1)"
+            cell.addressLabelDetails.text = dataCollection(index: indexPath.row - 1)
             cell.setSelected(indexPath == selectedIndexPath)
             return cell
         }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath != selectedIndexPath {
-            selectedIndexPath = indexPath
-            tableView.reloadData()
+        if viewModel.addressData.count == 0{
+            navigationController?.pushViewController(AddAddressController(nibName: "AddAddressController", bundle: nil), animated: true)
+        }
+            if indexPath != selectedIndexPath {
+                selectedIndexPath = indexPath
+                tableView.reloadData()
         }
     }
 
@@ -111,9 +149,10 @@ extension AddressListViewController : UITableViewDelegate ,UITableViewDataSource
         if editingStyle == .delete
         {
             var addresses = viewModel.addressData
-            addresses.remove(at: indexPath.row)
+            addresses.remove(at: indexPath.row-1)
             viewModel.addressData = addresses
             tableView.reloadData()
+            selectedIndexPath = IndexPath(row: (selectedIndexPath?.row ?? 1) - 1 , section: selectedIndexPath?.section ?? 1)
         } else {
             print("no data")
         }

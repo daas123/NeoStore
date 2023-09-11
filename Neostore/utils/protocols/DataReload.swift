@@ -6,6 +6,6 @@
 //
 
 import Foundation
-protocol ReloadData: AnyObject {
-    func Reload()
+protocol ReloadSideMenuData: AnyObject {
+    func reloadSidemenu()
 }

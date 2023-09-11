@@ -9,6 +9,11 @@ import Foundation
 import UIKit
 
 class validation{
+    func containsOnlyNumbers(_ input: String) -> Bool {
+        let numericCharacterSet = CharacterSet.decimalDigits
+        let inputCharacterSet = CharacterSet(charactersIn: input)
+        return numericCharacterSet.isSuperset(of: inputCharacterSet)
+    }
     func loginValidation(email:String , password:String , complition: @escaping (Bool,String)->Void){
         
         
@@ -84,24 +89,36 @@ class validation{
             complition (false,"Enter valid Mobile NO")
             return
         }
-        func containsOnlyNumbers(_ input: String) -> Bool {
-            let numericCharacterSet = CharacterSet.decimalDigits
-            let inputCharacterSet = CharacterSet(charactersIn: input)
-            return numericCharacterSet.isSuperset(of: inputCharacterSet)
-        }
-        
         complition(true,"all OK")
     }
     
     func addToCart(Quantity: String, completion: @escaping (Bool, String) -> Void) {
         let allowedCharacterSet = CharacterSet(charactersIn: "0123456789")
-        
         // Check if Quantity is a valid integer between 1 and 7
         if let quantityInt = Int(Quantity), (1...7).contains(quantityInt), Quantity.rangeOfCharacter(from: allowedCharacterSet.inverted) == nil {
             completion(true, "All ok")
         } else {
             completion(false, "Quantity must be between 1 to 7 and contain only numbers")
         }
+    }
+    
+    func forgetPass(old_password:String,password:String,confirm_password:String,completion: @escaping (Bool, String) -> Void){
+        
+        guard password != "" && old_password != "" && confirm_password != "" else{
+            completion(false,"all Text Filled must be Filled")
+            return
+        }
+        
+        guard password == confirm_password else{
+            completion(false,"Both NewPassword Must Be Same")
+            return
+        }
+        guard password.count <= 8 || confirm_password.count <= 8 || old_password.count <= 8 else{
+            completion(false,"password must be less than 8 character")
+            return
+        }
+        
+        completion(true,"All Ok")
     }
 }
 

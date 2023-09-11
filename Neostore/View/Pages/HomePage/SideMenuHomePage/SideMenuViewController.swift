@@ -10,22 +10,34 @@ class SideMenuViewController: UIViewController {
     
     
     
+    @IBOutlet weak var profileview: UIView!
     @IBOutlet weak var userEmail: UILabel!
     @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var sideMenuImage: UIImageView!
     @IBOutlet weak var sideMenuTableview: UITableView!
     
     var viewmodel = SideMenuViewmodel()
+    
    
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
+        //setting the instence
+        
         // table view cell register
+//        sideMenuImage.image = UIImage(named: "saad")
+//        sideMenuImage.layer.cornerRadius = 33
         sideMenuImage.image = UIImage(named: "saad")
-        sideMenuImage.layer.cornerRadius = 33
+        sideMenuImage.layer.cornerRadius = sideMenuImage.frame.size.width / 2
+        sideMenuImage.clipsToBounds = true
         
         sideMenuTableview.delegate = self
         sideMenuTableview.dataSource = self
         
+        // for tap guesture
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+        profileview.addGestureRecognizer(tapGesture)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadData), name: .reloadSideMenuData, object: nil)
         // register the cell
         let reg = UINib(nibName: "SideMenuTableViewCell", bundle: nil)
         sideMenuTableview.register(reg, forCellReuseIdentifier: "SideMenuTableviewCell")
@@ -35,6 +47,14 @@ class SideMenuViewController: UIViewController {
         getData()
     }
     //end of view did load
+    @objc func handleTap() {
+        let MyAccountViewController = MyAccountViewController(nibName: "MyAccountViewController", bundle: nil)
+        MyAccountViewController.accesstoken = SideMenuViewmodel.menuDemoData.data?.user_data?.access_token
+        navigationController?.pushViewController(MyAccountViewController, animated: true)
+    }
+    @objc func reloadData() {
+        getData() // Reload your data here
+    }
     
     func getData(){
         viewmodel.fetchAccountDetails{
@@ -44,11 +64,13 @@ class SideMenuViewController: UIViewController {
                     self.sideMenuTableview.reloadData()
                     self.userEmail.text = SideMenuViewmodel.menuDemoData.data?.user_data?.email
                     self.userName.text = (SideMenuViewmodel.menuDemoData.data?.user_data?.first_name ?? "Hello") + (SideMenuViewmodel.menuDemoData.data?.user_data?.last_name ?? "User")
-                    if let imageUrl = URL(string:SideMenuViewmodel.menuDemoData.data?.user_data?.profile_pic ?? "invalid") {
-                        self.sideMenuImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "bg.jpg"))
-                        } else {
-                            self.sideMenuImage.image = UIImage(named: "bg.jpg")
-                        }
+                    if let accessToken = SideMenuViewmodel.menuDemoData.data?.user_data?.access_token,
+                           let imageData = UserDefaults.standard.data(forKey: accessToken),
+                           let image = UIImage(data: imageData) {
+                            self.sideMenuImage.image = image
+                    }else{
+                        self.sideMenuImage.image = UIImage(named: "userdefault")
+                    }
                     
                 }
             }
@@ -73,27 +95,27 @@ extension SideMenuViewController : UITableViewDelegate,UITableViewDataSource{
         }else if (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4){
             let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuTableviewCell", for: indexPath) as! SideMenuTableViewCell
             cell.celllabel.text = SideMenuViewmodel.menuDemoData.data?.product_categories?[indexPath.row-1].name
-            cell.cellImage.image = UIImage(systemName: viewmodel.sideMenuTableImages[indexPath.row])
+            cell.cellImage.image = UIImage(named: viewmodel.sideMenuTableImages[indexPath.row])
             return cell
         }else if indexPath.row == 5{
             let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuTableviewCell", for: indexPath) as! SideMenuTableViewCell
             cell.celllabel.text = "MyAccount"
-            cell.cellImage.image = UIImage(systemName: viewmodel.sideMenuTableImages[indexPath.row])
+            cell.cellImage.image = UIImage(named: viewmodel.sideMenuTableImages[indexPath.row])
             return cell
         }else if indexPath.row == 6{
             let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuTableviewCell", for: indexPath) as! SideMenuTableViewCell
             cell.celllabel.text = "Store Locator"
-            cell.cellImage.image = UIImage(systemName: viewmodel.sideMenuTableImages[indexPath.row])
+            cell.cellImage.image = UIImage(named: viewmodel.sideMenuTableImages[indexPath.row])
             return cell
         }else if indexPath.row == 7{
             let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuTableviewCell", for: indexPath) as! SideMenuTableViewCell
             cell.celllabel.text = "My Orders"
-            cell.cellImage.image = UIImage(systemName: viewmodel.sideMenuTableImages[indexPath.row])
+            cell.cellImage.image = UIImage(named: viewmodel.sideMenuTableImages[indexPath.row])
             return cell
         }else if indexPath.row == 8{
             let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuTableviewCell", for: indexPath) as! SideMenuTableViewCell
             cell.celllabel.text = "logOut"
-            cell.cellImage.image = UIImage(systemName: viewmodel.sideMenuTableImages[indexPath.row])
+            cell.cellImage.image = UIImage(named: viewmodel.sideMenuTableImages[indexPath.row])
             return cell
         }
         else{
@@ -107,19 +129,17 @@ extension SideMenuViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             let cartViewController = CartViewController(nibName: "CartViewController", bundle: nil)
-            
             self.navigationController?.pushViewController(cartViewController, animated: true)
             
         }else if (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4){
             let productViewController = ProductViewController(nibName: "ProductViewController", bundle: nil)
-            let selectedId = indexPath.row
             productViewController.id = SideMenuViewmodel.menuDemoData.data?.product_categories?[indexPath.row-1].id ?? 0
-            
             self.navigationController?.pushViewController(productViewController, animated: true)
             
         }else if indexPath.row == 5{
             let MyAccountViewController = MyAccountViewController(nibName: "MyAccountViewController", bundle: nil)
-           
+            MyAccountViewController.accesstoken = SideMenuViewmodel.menuDemoData.data?.user_data?.access_token
+            self.startActivityIndicator()
             self.navigationController?.pushViewController(MyAccountViewController, animated: true)
         }else if indexPath.row == 6{
             let StoreLocatorViewController = StoreLocatorViewController(nibName: "StoreLocatorViewController", bundle: nil)
@@ -144,4 +164,16 @@ extension SideMenuViewController : UITableViewDelegate,UITableViewDataSource{
     }
     
 }
+extension SideMenuViewController : ReloadSideMenuData{
+    func reloadSidemenu() {
+        viewmodel.fetchAccountDetails{
+            responce in
+            if responce{
+                print("data get reloaded")
+//                self.sideMenuTableview.reloadData()
+            }
+        }
+    }
+}
+
 

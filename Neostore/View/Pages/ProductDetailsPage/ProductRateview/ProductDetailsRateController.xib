@@ -16,6 +16,11 @@
                 <outlet property="productDetailsMain" destination="Ra3-BP-8fG" id="d99-Z0-fEI"/>
                 <outlet property="productDetailsSubview" destination="5Ua-vF-1x0" id="h7s-E6-akp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outletCollection property="ratingImage" destination="ACy-B4-rmS" collectionClass="NSMutableArray" id="QAi-zb-v6w"/>
+                <outletCollection property="ratingImage" destination="sJd-IT-QlL" collectionClass="NSMutableArray" id="JCt-ye-41I"/>
+                <outletCollection property="ratingImage" destination="OC5-70-cgB" collectionClass="NSMutableArray" id="bSj-mg-C1z"/>
+                <outletCollection property="ratingImage" destination="efL-9E-frZ" collectionClass="NSMutableArray" id="Ag6-72-3fE"/>
+                <outletCollection property="ratingImage" destination="Phr-4N-X5n" collectionClass="NSMutableArray" id="es9-pw-O6Y"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -45,27 +50,27 @@
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WKR-dw-n2u">
                                     <rect key="frame" x="50" y="244" width="223" height="40"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ACy-B4-rmS">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ACy-B4-rmS">
                                             <rect key="frame" x="0.0" y="1" width="44.5" height="36.5"/>
                                             <color key="tintColor" systemColor="systemYellowColor"/>
                                             <imageReference key="image" image="star" catalog="system" symbolScale="small"/>
                                         </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sJd-IT-QlL">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="2" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sJd-IT-QlL">
                                             <rect key="frame" x="44.5" y="1" width="44.5" height="36.5"/>
                                             <color key="tintColor" systemColor="systemYellowColor"/>
                                             <imageReference key="image" image="star" catalog="system" symbolScale="small"/>
                                         </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OC5-70-cgB">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="3" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OC5-70-cgB">
                                             <rect key="frame" x="89.5" y="1" width="44.5" height="36.5"/>
                                             <color key="tintColor" systemColor="systemYellowColor"/>
                                             <imageReference key="image" image="star" catalog="system" symbolScale="small"/>
                                         </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="efL-9E-frZ">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="4" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="efL-9E-frZ">
                                             <rect key="frame" x="134" y="1" width="44.5" height="36.5"/>
                                             <color key="tintColor" systemColor="systemYellowColor"/>
                                             <imageReference key="image" image="star" catalog="system" symbolScale="small"/>
                                         </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Phr-4N-X5n">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Phr-4N-X5n">
                                             <rect key="frame" x="178.5" y="1" width="44.5" height="36.5"/>
                                             <color key="tintColor" systemColor="systemYellowColor"/>
                                             <imageReference key="image" image="star" catalog="system" symbolScale="small"/>
