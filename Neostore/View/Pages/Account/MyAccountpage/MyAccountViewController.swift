@@ -38,7 +38,7 @@ class MyAccountViewController: UIViewController {
     }()
     
     override func viewWillAppear(_ animated: Bool) {
-        self.stopActivityIndicator()
+        self.startActivityIndicator()
         fillData()
     }
     
@@ -52,7 +52,7 @@ class MyAccountViewController: UIViewController {
             textViews.layer.borderWidth = 1
             textViews.layer.borderColor = UIColor.white.cgColor
         }
-        
+        self.stopActivityIndicator()
         navigationController?.isNavigationBarHidden = false
         // for activating navigation bar
         
@@ -166,13 +166,23 @@ class MyAccountViewController: UIViewController {
         self.accountEmail.text = SideMenuViewmodel.menuDemoData.data?.user_data?.email
         self.accountPhoneNo.text = String(SideMenuViewmodel.menuDemoData.data?.user_data?.phone_no ?? "0")
         self.accountDateOfBirth.text = String(SideMenuViewmodel.menuDemoData.data?.user_data?.dob ?? "0")
-        if let accessToken = accesstoken,
+        self.startActivityIndicator()
+        DispatchQueue.global(qos: .background).async {
+            if let accessToken = self.accesstoken,
                let imageData = UserDefaults.standard.data(forKey: accessToken),
                let image = UIImage(data: imageData) {
-                self.accountImage.image = image
-        }else{
-            accountImage.image = UIImage(named: "userdefault")
+                DispatchQueue.main.async {
+                    self.accountImage.image = image
+                    self.stopActivityIndicator()
+                }
+            }else{
+                DispatchQueue.main.async {
+                    self.accountImage.image = UIImage(named: "userdefault")
+                    self.stopActivityIndicator()
+                }
+            }
         }
+        self.stopActivityIndicator()
     }
     
     @objc func handleImageTap() {

@@ -64,18 +64,28 @@ class SideMenuViewController: UIViewController {
                     self.sideMenuTableview.reloadData()
                     self.userEmail.text = SideMenuViewmodel.menuDemoData.data?.user_data?.email
                     self.userName.text = (SideMenuViewmodel.menuDemoData.data?.user_data?.first_name ?? "Hello") + (SideMenuViewmodel.menuDemoData.data?.user_data?.last_name ?? "User")
-                    if let accessToken = SideMenuViewmodel.menuDemoData.data?.user_data?.access_token,
+                    
+//                    DispatchQueue.global(qos: .background).async {
+                        if let accessToken = SideMenuViewmodel.menuDemoData.data?.user_data?.access_token,
                            let imageData = UserDefaults.standard.data(forKey: accessToken),
                            let image = UIImage(data: imageData) {
-                            self.sideMenuImage.image = image
-                    }else{
-                        self.sideMenuImage.image = UIImage(named: "userdefault")
-                    }
+                            DispatchQueue.main.async {
+                                self.sideMenuImage.image = image
+                            }
+                        }else{
+                            DispatchQueue.main.async {
+                                self.sideMenuImage.image = UIImage(named: "userdefault")
+                            }
+                        }
+//                    }
                     
                 }
             }
         }
     }
+    deinit {
+            NotificationCenter.default.removeObserver(self, name: .reloadSideMenuData, object: nil)
+        }
     
 }
 
@@ -128,6 +138,7 @@ extension SideMenuViewController : UITableViewDelegate,UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
+            self.startActivityIndicator()
             let cartViewController = CartViewController(nibName: "CartViewController", bundle: nil)
             self.navigationController?.pushViewController(cartViewController, animated: true)
             
@@ -137,9 +148,9 @@ extension SideMenuViewController : UITableViewDelegate,UITableViewDataSource{
             self.navigationController?.pushViewController(productViewController, animated: true)
             
         }else if indexPath.row == 5{
+            self.startActivityIndicator()
             let MyAccountViewController = MyAccountViewController(nibName: "MyAccountViewController", bundle: nil)
             MyAccountViewController.accesstoken = SideMenuViewmodel.menuDemoData.data?.user_data?.access_token
-            self.startActivityIndicator()
             self.navigationController?.pushViewController(MyAccountViewController, animated: true)
         }else if indexPath.row == 6{
             let StoreLocatorViewController = StoreLocatorViewController(nibName: "StoreLocatorViewController", bundle: nil)

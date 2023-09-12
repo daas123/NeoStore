@@ -14,15 +14,17 @@ class ImageCollectionviewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        productDetailsImagecell.layer.borderColor = UIColor.gray.cgColor
+        productDetailsImagecell.layer.borderWidth = 1
     }
     func setBorder(){
-        productDetailsImagecell.layer.borderColor = UIColor.gray.cgColor
+        productDetailsImagecell.layer.borderColor = UIColor.red.cgColor
         productDetailsImagecell.layer.borderWidth = 1
     }
     
     func clearBorder(){
-        productDetailsImagecell.layer.borderColor = nil
-        productDetailsImagecell.layer.borderWidth = 0
+        productDetailsImagecell.layer.borderColor = UIColor.gray.cgColor
+        productDetailsImagecell.layer.borderWidth = 1
     }
 
 }

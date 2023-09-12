@@ -30,7 +30,8 @@ enum APIServices{
     case ImageFetching(imageurl : String)
     case userRegister(param: [String:Any])
     case userLogin(param: [String:Any])
-    case ForgetPasword(param : [String:Any])
+    case ForgetPassword(param: [String:Any])
+    case ChangePasword(param : [String:Any])
     case fetchAccountDetails
     case EditAccountDetails(param: [String:Any])
     case productList(param : [String:Any])
@@ -110,12 +111,15 @@ enum APIServices{
             urlPath = apiDomain + "orderDetail"
                 return baseURL + urlPath
             
-        case .EditAccountDetails(param: let param):
+        case .EditAccountDetails:
             urlPath = apiDomain + "users/update"
                 return baseURL + urlPath
             
-        case .ForgetPasword(param: let param):
+        case .ChangePasword:
             urlPath = apiDomain + "users/change"
+                return baseURL + urlPath
+        case .ForgetPassword:
+            urlPath = apiDomain + "users/forgot"
                 return baseURL + urlPath
         }
         
@@ -133,7 +137,7 @@ enum APIServices{
     
     var param: [String:Any]? {
         switch self {
-        case .userRegister(param: let param), .userLogin(let param) , .productList(param: let param), .productDetails(param: let param) , .productRating(param: let param),.productAddToCart(param: let param),.productEditCart(param: let param),.productDeleteCart(param: let param),.Order(param: let param),.OrderListDetials(let param),.EditAccountDetails(param: let param), .ForgetPasword(param: let param):
+        case .userRegister(param: let param), .userLogin(let param) , .productList(param: let param), .productDetails(param: let param) , .productRating(param: let param),.productAddToCart(param: let param),.productEditCart(param: let param),.productDeleteCart(param: let param),.Order(param: let param),.OrderListDetials(let param),.EditAccountDetails(param: let param), .ChangePasword(param: let param),.ForgetPassword(param: let param):
             return param
         default:
             return nil

@@ -13,11 +13,11 @@ class ProductDetailsImageCell: UITableViewCell {
     @IBOutlet weak var productDetailsCost: UILabel!
     // text
     @IBOutlet weak var productDetailsDescription: UILabel!
-   //image
+    //image
     @IBOutlet weak var productDetailsMianImage: UIImageView!
     // container outlet
     @IBOutlet weak var productDetailsImageContainerView: UIView!
-   // collectionview cell
+    // collectionview cell
     @IBOutlet weak var productDeatailscollectionview: UICollectionView!
     // get CollectionviewData
     var imageCollectioViewData : [Product_images]?
@@ -52,7 +52,7 @@ extension ProductDetailsImageCell : UICollectionViewDelegate ,UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageCollectioViewData?.count ?? 0
     }
-
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let imageCell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductDetailsImagecell", for: indexPath) as! ImageCollectionviewCell
@@ -62,27 +62,30 @@ extension ProductDetailsImageCell : UICollectionViewDelegate ,UICollectionViewDa
         } else {
             imageCell.clearBorder()
         }
-
+        
         if let imageUrl = URL(string: imageCollectioViewData?[indexPath.row].image ?? "invalid") {
             imageCell.productDetailsImagecell.sd_setImage(with: imageUrl)
         }
         
         return imageCell
     }
-
+    
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return CGSize(width: 100, height:100)
+        return CGSize(width: 100, height:100)
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         selectedImageIndex = indexPath.row
         collectionView.reloadData()
         
+        let itemIndexPath = IndexPath(item: selectedImageIndex, section: 0)
+           collectionView.scrollToItem(at: itemIndexPath, at: .centeredHorizontally, animated: true)
+        
         if let imageUrl = URL(string: imageCollectioViewData?[indexPath.row].image ?? "invalid") {
-                productDetailsMianImage.sd_setImage(with: imageUrl)
-                }
+            productDetailsMianImage.sd_setImage(with: imageUrl)
+        }
     }
     
     

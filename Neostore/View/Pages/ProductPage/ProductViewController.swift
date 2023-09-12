@@ -54,7 +54,7 @@ class ProductViewController: UIViewController {
     }
     
     @objc func searchButtonTapped() {
-        navigationController?.pushViewController(ProductDetailsController(nibName: "ProductDetailsController", bundle: nil), animated: true)
+//        navigationController?.pushViewController(ProductDetailsController(nibName: "ProductDetailsController", bundle: nil), animated: true)
     }
 //    var productDetailsData = [productList]()
 //
@@ -112,11 +112,11 @@ extension ProductViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.startActivityIndicator()
         let ProductDetailsController = ProductDetailsController(nibName: "ProductDetailsController", bundle: nil)
         ProductDetailsController.Productid = viewmodel.getId(row: indexPath.row)
         ProductDetailsController.ProductCategory = self.getTitle(id: self.id)
         ProductDetailsController.navigationtitle = viewmodel.getName(row: indexPath.row)
-        
         self.navigationController?.pushViewController(ProductDetailsController, animated: true)
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

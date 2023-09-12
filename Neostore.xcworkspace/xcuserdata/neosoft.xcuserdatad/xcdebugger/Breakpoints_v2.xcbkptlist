@@ -7,32 +7,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5D710707-CA69-4940-A4DB-466BA187AE85"
-            shouldBeEnabled = "Yes"
+            uuid = "6807EFBF-9D1B-4B0B-B33B-278FBCBB5093"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Neostore/View/Pages/Account/MyAccountpage/MyAccountViewController.swift"
+            filePath = "Neostore/View/Pages/CartPage/CartViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
-            landmarkName = "EditProfileAction(_:)"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "orderAction(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "E49DE4B9-6816-4741-A01A-076E6ACAF281"
-            shouldBeEnabled = "Yes"
+            uuid = "C860E899-0741-4512-AF92-939D79E786E7"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Neostore/View/Pages/HomePage/SideMenuHomePage/SideMenuViewController.swift"
+            filePath = "Neostore/View/Pages/CartPage/CartViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "reloadData()"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
+            landmarkName = "orderAction(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0A3BD9AA-F087-403A-9693-E0313C93D84C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/View/Pages/AddressPages/AddresslistPage/AddressListViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "dataCollection(index:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

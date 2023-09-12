@@ -39,9 +39,27 @@ class LoginWebService {
     }
     
     
-    func forgetAction(old_password: String, password: String,confirm_password:String, completion: @escaping (Result<ForgetPass,Error>)->Void){
+    func changeAction(old_password: String, password: String,confirm_password:String, completion: @escaping (Result<ForgetPass,Error>)->Void){
         let param = ["old_password":old_password,"password":password,"confirm_password":confirm_password]
-        APIManager.shared.callRequest(apiCallType: .ForgetPasword(param: param)) { response in
+        APIManager.shared.callRequest(apiCallType: .ChangePasword(param: param)) { response in
+            switch response {
+            case .success(let data):
+                if let retriveData = data as? Data {
+                    let jsondata = try? JSONDecoder().decode(ForgetPass.self, from: retriveData)
+                    completion(.success(jsondata!))
+                }else{
+                    completion(.failure(Error.self as! Error))
+                }
+            case .failure(let error ):
+                completion(.failure(error))
+            }
+        }
+        
+    }
+    
+    func forgetAction(email:String, completion: @escaping (Result<ForgetPass,Error>)->Void){
+        let param = ["email":email]
+        APIManager.shared.callRequest(apiCallType: .ForgetPassword(param: param)) { response in
             switch response {
             case .success(let data):
                 if let retriveData = data as? Data {

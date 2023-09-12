@@ -69,7 +69,20 @@ class LoginViewController: UIViewController {
                 }
             }
         }else{
-            print("cancel button")
+            self.startActivityIndicator()
+            viewmodel.forgetPassword(email: loginUsername.text ?? ""){
+                (responce, msg) in
+                DispatchQueue.main.async {
+                    if responce{
+                        self.stopActivityIndicator()
+                        self.showAlert(msg: "password send succesfuly")
+                    }else{
+                        self.stopActivityIndicator()
+                        self.showAlert(msg: msg)
+                    }
+                }
+            }
+            
         }
     }
     @IBAction func registerButtonAction(_ sender: UIButton) {
@@ -78,18 +91,32 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func forgetPasswordAction(_ sender: UIButton) {
+        let attributedString = NSMutableAttributedString(string: "SEND EMAIL")
+        let range = NSRange(location: 0, length: 10)
+        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
+        loginButton.setAttributedTitle(attributedString, for: .normal)
+        
         passwordView.isHidden = true
         forgetPassword.isHidden = true
         dontHaveaccoutButton.isHidden = true
         plusButton.isHidden = true
         cancelButton.isHidden = false
         
-        let attributedString = NSMutableAttributedString(string: "SEND EMAIL")
-        let range = NSRange(location: 0, length: 10)
+    }
+    
+    @IBAction func cancelButtonAction(_ sender: UIButton) {
+        cancelButton.isHidden = true
+        passwordView.isHidden = false
+        forgetPassword.isHidden = false
+        dontHaveaccoutButton.isHidden = false
+        plusButton.isHidden = false
+        let attributedString = NSMutableAttributedString(string: "LOGIN")
+        let range = NSRange(location: 0, length: 5)
         attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
         loginButton.setAttributedTitle(attributedString, for: .normal)
         
     }
+    
     
 }
 

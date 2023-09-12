@@ -29,7 +29,7 @@ class ProductDetailsOrderViewController: UIViewController {
     @IBOutlet weak var orderViewMain: UIView!
     var tapGesture: UITapGestureRecognizer!
     override func viewDidLoad() {
-        
+        productOrderQuantityField.becomeFirstResponder()
         productOrderLabel.text = productlabel
         if let imageUrl = URL(string: productimage ?? "invalid" ) {
             productOrderImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "bg.jpg"))
@@ -93,6 +93,7 @@ class ProductDetailsOrderViewController: UIViewController {
     }
     
     @IBAction func orderButton(_ sender: UIButton) {
+        startActivityIndicator()
         viewModel.AddToCart(productid:productId, quantity: productOrderQuantityField?.text ?? "0" ){
             (responce,Msg) in
             if responce{
@@ -102,6 +103,7 @@ class ProductDetailsOrderViewController: UIViewController {
                         NotificationCenter.default.post(name: .reloadSideMenuData, object: nil)
                         self.dismiss(animated: true, completion: nil)
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RatingDoneNotification"), object: nil , userInfo: ["message": Msg])
+                        self.stopActivityIndicator()
                     }
                 }
             }else{

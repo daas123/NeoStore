@@ -102,7 +102,7 @@ class validation{
         }
     }
     
-    func forgetPass(old_password:String,password:String,confirm_password:String,completion: @escaping (Bool, String) -> Void){
+    func changeAction(old_password:String,password:String,confirm_password:String,completion: @escaping (Bool, String) -> Void){
         
         guard password != "" && old_password != "" && confirm_password != "" else{
             completion(false,"all Text Filled must be Filled")

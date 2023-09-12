@@ -12,9 +12,9 @@ class HomeViewController: UIViewController{
     
     private var categoryData:[[String:Any]] = [
         ["name":"Table","lblPosition":positions.topRight,"imgName":"table","imgPosition":positions.bottomLeft],
-        ["name":"Chairs","lblPosition":positions.topLeft,"imgName":"chair","imgPosition":positions.bottomRight],
-        ["name":"Sofas","lblPosition":positions.bottomLeft,"imgName":"sofa","imgPosition":positions.topRight],
-        ["name":"Cupboards","lblPosition":positions.bottomRight,"imgName":"cupboard","imgPosition":positions.topLeft]
+        ["name":"Chairs","lblPosition":positions.bottomLeft,"imgName":"chair","imgPosition":positions.topRight],
+        ["name":"Sofas","lblPosition":positions.topLeft,"imgName":"sofa","imgPosition":positions.bottomRight],
+        ["name":"Beds","lblPosition":positions.bottomRight,"imgName":"bed","imgPosition":positions.topLeft]
     ]
     
     var currentsidemenupage = 0
@@ -116,7 +116,7 @@ class HomeViewController: UIViewController{
     // search button
     
     @IBAction func searchButtonAction(_ sender: UIButton) {
-        navigationController?.pushViewController(ProductViewController(nibName: "ProductViewController", bundle: nil), animated: true)
+//        navigationController?.pushViewController(ProductViewController(nibName: "ProductViewController", bundle: nil), animated: true)
     }
     // setup pangesture and tapgesture
     func setupSideMenu() {

@@ -34,11 +34,11 @@ class loginViewModel{
         }
     }
     
-    func forgetPassword(old_password:String,password:String,confirm_password:String,complition :@escaping (Bool, String)-> Void){
-        validation().forgetPass(old_password: old_password, password: password, confirm_password: confirm_password){
+    func chnagePassword(old_password:String,password:String,confirm_password:String,complition :@escaping (Bool, String)-> Void){
+        validation().changeAction(old_password: old_password, password: password, confirm_password: confirm_password){
             (ValidBool,ErrorString) in
             if ValidBool{
-                self.loginservice.forgetAction(old_password: old_password, password: password, confirm_password: confirm_password){
+                self.loginservice.changeAction(old_password: old_password, password: password, confirm_password: confirm_password){
                     responce in
                     switch responce{
                     case .success(let value):
@@ -57,6 +57,24 @@ class loginViewModel{
         }
         
     }
+    func forgetPassword(email:String,complition :@escaping (Bool, String)-> Void){
+        self.loginservice.forgetAction(email: email){
+            responce in
+            switch responce{
+            case .success(let value):
+                if value.status == 200{
+                    complition(true,value.user_msg)
+                }else{
+                    complition(false,value.user_msg)
+                }
+            case .failure(let error):
+                complition (false , error.localizedDescription)
+            }
+        }
+    }
     
 }
+
+
+
 

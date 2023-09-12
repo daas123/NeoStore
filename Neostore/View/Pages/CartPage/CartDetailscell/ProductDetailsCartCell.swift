@@ -11,6 +11,7 @@ class ProductDetailsCartCell: UITableViewCell {
     // picker view    
     var index : Int?
     
+    @IBOutlet weak var pickerBackgroundView: UIView!
     @IBOutlet weak var cartProductQuantity: UITextField!
     @IBOutlet weak var cartProductImage: UIImageView!
     @IBOutlet weak var cartProductName: UILabel!
@@ -18,7 +19,7 @@ class ProductDetailsCartCell: UITableViewCell {
     @IBOutlet weak var cartProductCategory: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        pickerBackgroundView.layer.cornerRadius = 4
         // Initialization code
     }
     
@@ -28,6 +29,6 @@ class ProductDetailsCartCell: UITableViewCell {
     }
     
     @IBAction func ProductCartDetailsCount(_ sender: UIButton) {
-       
+        
     }
 }

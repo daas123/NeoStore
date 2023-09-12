@@ -26,7 +26,7 @@ class ResetPassViewController: UIViewController {
     }
     
     func getdata(){
-        viewModel.forgetPassword(old_password:oldPassword.text ?? "", password: newPassword.text ?? "", confirm_password: conformPassword.text ?? ""){
+        viewModel.chnagePassword(old_password:oldPassword.text ?? "", password: newPassword.text ?? "", confirm_password: conformPassword.text ?? ""){
             (responce,msg) in
             DispatchQueue.main.async {
                 if responce {

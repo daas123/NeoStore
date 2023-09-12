@@ -94,7 +94,7 @@ class ProductDetailsController: UIViewController{
     }
     
     @objc func searchButtonTapped() {
-        navigationController?.pushViewController(CartViewController(nibName: "CartViewController", bundle: nil), animated: true)
+//        navigationController?.pushViewController(CartViewController(nibName: "CartViewController", bundle: nil), animated: true)
     }
     var ProductDetials = [DetailsProduct]()
     func getdata(){
@@ -103,7 +103,7 @@ class ProductDetailsController: UIViewController{
             (Responce) in
             DispatchQueue.main.async {
                 self.productDetailsTableview.reloadData()
-//                self.stopActivityIndicator()
+                self.stopActivityIndicator()
             }
         }
     }

@@ -48,7 +48,7 @@ class CartViewController: UIViewController, UITextFieldDelegate {
         navigationItem.rightBarButtonItem = searchButton
         
         
-        self.navigationItem.title = "ProductDetails"
+        self.navigationItem.title = "My Cart"
         //adding deligate and datasource
         cartTableview.dataSource = self
         cartTableview.dataSource = self
@@ -70,11 +70,55 @@ class CartViewController: UIViewController, UITextFieldDelegate {
         toolbar.setItems([cancelButton, flexibleSpace, doneButton], animated: false)
         toolbar.isUserInteractionEnabled = true
         toolbar.sizeToFit()
+        // tap guesture for picker view
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
+        self.view.addGestureRecognizer(tapGestureRecognizer)
+        
+        // guesture for keyboard
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
     }
     
- 
+
+    @objc func keyboardWillShow(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
+            return
+        }
+
+        // Calculate the frame of the selected text field
+        if let selectedTextField = selectedTextField {
+            let textFieldFrame = selectedTextField.convert(selectedTextField.bounds, to: cartTableview)
+            let textFieldMaxY = textFieldFrame.maxY
+            
+            // Calculate the available space below the text field
+            let availableSpace = view.frame.height - keyboardFrame.size.height - textFieldMaxY
+            
+            // Check if there's not enough space for the picker view
+            if availableSpace < cartPickerView.frame.size.height {
+                // Calculate how much the content offset needs to be adjusted
+                let offset = cartTableview.contentOffset.y + (cartPickerView.frame.size.height - availableSpace)
+                
+                // Scroll the table view to adjust the content offset
+                cartTableview.setContentOffset(CGPoint(x: 0, y: offset), animated: true)
+            }
+        }
+    }
+
+
+
+
+
+
+
+    @objc func viewTapped() {
+        cartTableview.reloadData()
+        selectedTextField?.resignFirstResponder() // Hide the keyboard/picker view
+        cartPickerView.isHidden = true
+    }
+    
     @objc func searchButtonTapped() {
-        navigationController?.pushViewController(CartViewController(nibName: "CartViewController", bundle: nil), animated: true)
+        //        navigationController?.pushViewController(CartViewController(nibName: "CartViewController", bundle: nil), animated: true)
     }
     
     
@@ -84,6 +128,14 @@ class CartViewController: UIViewController, UITextFieldDelegate {
             DispatchQueue.main.async {
                 if responce{
                     self.cartTableview.reloadData()
+                    self.stopActivityIndicator()
+                    
+                    self.cartPickerView.reloadAllComponents()
+                    
+                    if let selectedTextField = self.selectedTextField {
+                        self.cartPickerView.selectRow(self.selectedOption - 1, inComponent: 0, animated: false)
+                        selectedTextField.text = String(self.selectedOption)
+                    }
                 }
             }
         }
@@ -103,14 +155,22 @@ class CartViewController: UIViewController, UITextFieldDelegate {
     // ui picker view
     @objc func textFieldTapped(_ gestureRecognizer: UITapGestureRecognizer) {
         if let textField = gestureRecognizer.view as? UITextField {
+            cellIndexpath = IndexPath(row: textField.tag, section: 0)
+            cartTableview.scrollToRow(at: cellIndexpath, at: .middle, animated: true)
             selectedTextField = textField
             textField.inputView = cartPickerView // Show the picker view
             textField.inputAccessoryView = toolbar // Set the toolbar as an accessory view
             cartPickerView.isHidden = false
             textField.becomeFirstResponder()
-            cellIndexpath = IndexPath(row: textField.tag, section: 0)
+            // Calculate the IndexPath of the selected cell
+            
+            if let initialQuantity = viewModel.cartData?.data?[cellIndexpath.row].quantity {
+                selectedOption = initialQuantity
+                cartPickerView.selectRow(initialQuantity - 1, inComponent: 0, animated: false)
+            }
         }
     }
+
     @objc func doneButtonTapped() {
         print(selectedOption)
         if selectedOption != 0 {
@@ -124,7 +184,6 @@ class CartViewController: UIViewController, UITextFieldDelegate {
                         }
                     }
                 }
-                
             }
             selectedTextField?.resignFirstResponder()
             cartPickerView.isHidden = true
@@ -136,17 +195,25 @@ class CartViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func cancelButtonTapped() {
+        cartTableview.reloadData()
         selectedTextField?.resignFirstResponder() // Hide the keyboard/picker view
         cartPickerView.isHidden = true
     }
     
+    
+    @IBAction func orderAction(_ sender: UIButton) {
+        if viewModel.cartData?.count != 0 && viewModel.cartData?.count != nil{
+            let addressListController = AddressListViewController(nibName: "AddressListViewController", bundle: nil)
+            self.navigationController?.pushViewController(addressListController,animated: true)
+        }
+    }
     
     
     
 }
 extension CartViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2+(viewModel.cartData?.count ?? 0)
+        return 1+(viewModel.cartData?.count ?? 0)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -156,7 +223,7 @@ extension CartViewController : UITableViewDelegate,UITableViewDataSource{
             
             if (indexPath.row) < TotalData{
                 let productCell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailsCartCell", for: indexPath) as! ProductDetailsCartCell
-
+                
                 //for picker view
                 productCell.cartProductQuantity.delegate = self
                 let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(textFieldTapped(_:)))
@@ -182,11 +249,6 @@ extension CartViewController : UITableViewDelegate,UITableViewDataSource{
                 productCell.selectionStyle = .none
                 return productCell
                 
-            }else if indexPath.row == TotalData+1{
-                let productCell = tableView.dequeueReusableCell(withIdentifier: "CartOrderCell", for: indexPath) as! CartOrderCell
-                productCell.cartDeligate = self
-                productCell.selectionStyle = .none
-                return productCell
             }else{
                 let productCell = tableView.dequeueReusableCell(withIdentifier: "CartTotalCell", for: indexPath) as! CartTotalCell
                 productCell.selectionStyle = .none
@@ -198,11 +260,6 @@ extension CartViewController : UITableViewDelegate,UITableViewDataSource{
                 productCell.cartTotalCost.text = String(0)
                 productCell.selectionStyle = .none
                 return productCell
-            }else if indexPath.row == 1{
-                let productCell = tableView.dequeueReusableCell(withIdentifier: "CartOrderCell", for: indexPath) as! CartOrderCell
-                productCell.cartDeligate = self
-                productCell.selectionStyle = .none
-                return productCell
             }else{
                 let productCell = tableView.dequeueReusableCell(withIdentifier: "CartOrderCell", for: indexPath) as! CartOrderCell
                 productCell.selectionStyle = .none
@@ -210,7 +267,17 @@ extension CartViewController : UITableViewDelegate,UITableViewDataSource{
             }
         }
     }
-    
+    //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    //        if viewModel.cartData?.count == nil || viewModel.cartData?.count == 0 {
+    //            return 100
+    //        }
+    //        else if indexPath.row == viewModel.cartData?.count{
+    //            return 200
+    //        }else{
+    //            return UITableView.automaticDimension
+    //        }
+    //        return 200
+    //    }
     // extra functions
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -227,9 +294,11 @@ extension CartViewController : UITableViewDelegate,UITableViewDataSource{
         
         if editingStyle == .delete
         {
+            let deletedata = viewModel.cartData?.data?[indexPath.row].product?.name
             deleteCartData(indexpath: viewModel.cartData?.data?[indexPath.row].productID ?? 1)
             NotificationCenter.default.post(name: .reloadSideMenuData, object: nil)
             getData()
+            self.showAlert(msg: "\(deletedata!) is Removed From Cart")
         } else {
             print("Insert")
         }
@@ -240,15 +309,17 @@ extension CartViewController : UITableViewDelegate,UITableViewDataSource{
     }
     
     
+    
+    
 }
 
 extension CartViewController : UIPickerViewDelegate , UIPickerViewDataSource{
     
-
+    
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         1
     }
-
+    
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return viewModel.cartPickerviewData.count
     }
@@ -258,7 +329,7 @@ extension CartViewController : UIPickerViewDelegate , UIPickerViewDataSource{
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedOption = viewModel.cartPickerviewData[row]
         print(selectedOption)
-        }
+    }
 }
 
 extension CartViewController : CartAction{

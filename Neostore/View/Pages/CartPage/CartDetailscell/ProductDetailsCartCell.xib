@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -50,37 +51,38 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9Pu-IO-RzB">
-                        <rect key="frame" x="91" y="59" width="85" height="28"/>
+                        <rect key="frame" x="91" y="59" width="50" height="28"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3sg-J3-HxO">
-                                <rect key="frame" x="51.333333333333336" y="0.0" width="28.666666666666664" height="28"/>
+                                <rect key="frame" x="0.0" y="0.0" width="45" height="28"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="11"/>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                <state key="normal" title="   ">
+                                <state key="normal">
                                     <imageReference key="image" image="chevron.down" catalog="system" symbolScale="medium"/>
                                 </state>
                                 <connections>
                                     <action selector="ProductCartDetailsCount:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kTQ-vK-wW4"/>
                                 </connections>
                             </button>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uvz-C3-flO">
-                                <rect key="frame" x="5" y="0.0" width="80" height="28"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="1" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Uvz-C3-flO">
+                                <rect key="frame" x="8" y="0.0" width="42" height="28"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="Uvz-C3-flO" secondAttribute="trailing" id="5du-Fb-Km0"/>
-                            <constraint firstItem="Uvz-C3-flO" firstAttribute="leading" secondItem="9Pu-IO-RzB" secondAttribute="leading" constant="5" id="Oav-R0-vM2"/>
-                            <constraint firstAttribute="bottom" secondItem="3sg-J3-HxO" secondAttribute="bottom" id="RM4-5o-wuf"/>
+                            <constraint firstItem="3sg-J3-HxO" firstAttribute="leading" secondItem="9Pu-IO-RzB" secondAttribute="leading" id="2mR-Y0-keq"/>
+                            <constraint firstItem="Uvz-C3-flO" firstAttribute="top" secondItem="9Pu-IO-RzB" secondAttribute="top" id="6DV-ke-ose"/>
+                            <constraint firstItem="3sg-J3-HxO" firstAttribute="top" secondItem="9Pu-IO-RzB" secondAttribute="top" id="9YD-z2-K4g"/>
+                            <constraint firstItem="Uvz-C3-flO" firstAttribute="leading" secondItem="9Pu-IO-RzB" secondAttribute="leading" constant="8" id="Jiy-mt-cKF"/>
+                            <constraint firstAttribute="bottom" secondItem="3sg-J3-HxO" secondAttribute="bottom" id="V39-2O-RLs"/>
                             <constraint firstAttribute="height" constant="28" id="WUY-kL-eCo"/>
-                            <constraint firstAttribute="bottom" secondItem="Uvz-C3-flO" secondAttribute="bottom" id="ajp-WA-8Za"/>
-                            <constraint firstAttribute="width" constant="85" id="g85-7C-khC"/>
-                            <constraint firstAttribute="trailing" secondItem="3sg-J3-HxO" secondAttribute="trailing" constant="5" id="hFu-gh-uus"/>
-                            <constraint firstItem="3sg-J3-HxO" firstAttribute="top" secondItem="9Pu-IO-RzB" secondAttribute="top" id="i16-75-pYU"/>
-                            <constraint firstItem="Uvz-C3-flO" firstAttribute="top" secondItem="9Pu-IO-RzB" secondAttribute="top" id="xad-1f-cxk"/>
+                            <constraint firstAttribute="trailing" secondItem="3sg-J3-HxO" secondAttribute="trailing" constant="5" id="cYK-FZ-Ouu"/>
+                            <constraint firstAttribute="bottom" secondItem="Uvz-C3-flO" secondAttribute="bottom" id="fWG-Ye-dy8"/>
+                            <constraint firstAttribute="width" constant="50" id="ojf-4T-fb6"/>
+                            <constraint firstAttribute="trailing" secondItem="Uvz-C3-flO" secondAttribute="trailing" id="qf6-8z-AD5"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -107,6 +109,7 @@
                 <outlet property="cartProductName" destination="rAq-6T-jr1" id="DeN-fM-6TK"/>
                 <outlet property="cartProductQuantity" destination="Uvz-C3-flO" id="Y7b-cq-F9R"/>
                 <outlet property="cartProuductTotalCost" destination="B4V-x5-2SR" id="TbA-2W-Pxr"/>
+                <outlet property="pickerBackgroundView" destination="9Pu-IO-RzB" id="WHC-wU-IvT"/>
             </connections>
             <point key="canvasLocation" x="107.63358778625954" y="40.845070422535215"/>
         </tableViewCell>
