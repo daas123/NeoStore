@@ -11,7 +11,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StoreLocatorViewController" customModule="Neostore" customModuleProvider="target">
             <connections>
-                <outlet property="mapView" destination="y5V-L2-MGT" id="C4K-5q-fzp"/>
                 <outlet property="storeLocatorTableview" destination="qJn-md-lGB" id="Drz-lQ-lES"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
