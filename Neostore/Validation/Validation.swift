@@ -47,50 +47,60 @@ class validation{
         
     }
     
-    func registerValidation(Fname:String? , Lname:String? ,Email:String?,Pass :String?,Cpass:String? ,Gender:String?,Phone:String?, chkBox:Bool?, complition: @escaping (Bool,String)->Void ){
+    func registerValidation(Fname: String?, Lname: String?, Email: String?, Pass: String?, Cpass: String?, Gender: String?, Phone: String?, chkBox: Bool?, completion: @escaping (Bool, String) -> Void) {
         
-        guard Fname!.count>3  else{
-            complition (false,"FirstName Must Greater Then 3 Chracter")
+        // Optional unwrapping and trimming whitespace
+        guard let firstName = Fname?.trimmingCharacters(in: .whitespaces), !firstName.isEmpty, firstName.count > 3 else {
+            completion(false, "First Name must be at least 4 characters long.")
             return
         }
         
-        
-        guard Lname!.count>3 else{
-            complition (false,"LastName Must Greater Then 3 Chracter")
+        guard let lastName = Lname?.trimmingCharacters(in: .whitespaces), !lastName.isEmpty, lastName.count > 3 else {
+            completion(false, "Last Name must be at least 4 characters long.")
             return
         }
         
-        
-        guard ((Email?.contains("@gmail.com")) != nil) else{
-            complition (false,"Email InValid")
+        guard let email = Email?.trimmingCharacters(in: .whitespaces), !email.isEmpty, isValidEmail(email) else {
+            completion(false, "Invalid Email Address.")
             return
         }
         
-        guard Pass!.count>=8 else{
-            complition (false,"Password Must cotain: 8 character")
+        guard let password = Pass, password.count >= 8 else {
+            completion(false, "Password must be at least 8 characters long.")
             return
         }
         
-        guard Cpass == Pass else{
-            complition (false,"Comform Password is Not Same")
+        guard let confirmPassword = Cpass, confirmPassword == password else {
+            completion(false, "Confirm Password does not match Password.")
             return
         }
         
-        guard Gender == "M" else{
-            complition (false,"Enter the Gender")
-            return
-        }
-        guard chkBox == true else{
-            complition(false,"Agree Terms and Condition")
+        guard let gender = Gender, !gender.isEmpty , gender != "Nan" else {
+            completion(false, "Please select a Gender.")
             return
         }
         
-        guard Phone!.count>10 || containsOnlyNumbers(Phone!) else{
-            complition (false,"Enter valid Mobile NO")
+        guard let checkBox = chkBox, checkBox else {
+            completion(false, "You must agree to the Terms and Conditions.")
             return
         }
-        complition(true,"all OK")
+        
+        guard let phone = Phone?.trimmingCharacters(in: .whitespaces), !phone.isEmpty, phone.count >= 10, containsOnlyNumbers(phone) else {
+            completion(false, "Invalid Mobile Number.")
+            return
+        }
+        
+        completion(true, "All fields are valid.")
     }
+
+    // Function to validate email using regular expression
+    func isValidEmail(_ email: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        return NSPredicate(format: "SELF MATCHES %@", emailRegex).evaluate(with: email)
+    }
+
+    // Function to check if a string contains only number
+
     
     func addToCart(Quantity: String, completion: @escaping (Bool, String) -> Void) {
         let allowedCharacterSet = CharacterSet(charactersIn: "0123456789")

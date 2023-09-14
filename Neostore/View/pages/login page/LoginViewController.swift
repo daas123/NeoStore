@@ -6,7 +6,7 @@
 //
 
 import UIKit
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController,UITextFieldDelegate {
     
     @IBOutlet weak var navigationback: UIButton!
     @IBOutlet weak var dontHaveaccoutButton: UIButton!
@@ -40,6 +40,8 @@ class LoginViewController: UIViewController {
             userview.layer.borderWidth = 1.0
             userview.layer.borderColor = UIColor.white.cgColor
         }
+        loginPassword.delegate = self
+        loginUsername.delegate = self
         
         // adding the tap guesture
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -48,6 +50,19 @@ class LoginViewController: UIViewController {
     
     @objc func dismissKeyboard() {
         self.parentViewTapGuesture.endEditing(true)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case loginUsername:
+            loginPassword.becomeFirstResponder()
+        case loginPassword:
+            loginPassword.resignFirstResponder() // Hide the keyboard when pressing return on the last field
+        default:
+            break
+        }
+        
+        return true
     }
     
     

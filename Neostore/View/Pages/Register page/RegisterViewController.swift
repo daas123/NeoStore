@@ -12,6 +12,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate{
     var originalViewYPosition: CGFloat = 0.0
     @IBOutlet var registerDetailsView: [UIView]!
     
+    @IBOutlet weak var scrollView: UIScrollView!
     
     // user registration feilds
     
@@ -82,6 +83,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate{
         registerlastname.tag = 1
         registerEmail.delegate = self
         registerEmail.tag = 2
+        registerPassword?.delegate = self
+        registerConformPassword.delegate = self
+        registerPhoneNumber?.delegate = self
+        
+        
         
         
     }
@@ -89,11 +95,21 @@ class RegisterViewController: UIViewController, UITextFieldDelegate{
         view.endEditing(true)
     }
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if let nextTextField = view.viewWithTag(textField.tag + 1) as? UITextField {
-            nextTextField.becomeFirstResponder()
-        } else {
-            textField.resignFirstResponder()
+        switch textField {
+        case registerFirstname:
+            registerlastname.becomeFirstResponder()
+        case registerlastname:
+            registerEmail.becomeFirstResponder()
+        case registerEmail:
+            registerPassword?.becomeFirstResponder()
+        case registerPassword:
+            registerConformPassword.becomeFirstResponder()
+        case registerConformPassword:
+            registerPhoneNumber?.resignFirstResponder() // Hide the keyboard when pressing return on the last field
+        default:
+            break
         }
+        
         return true
     }
 
@@ -106,16 +122,18 @@ class RegisterViewController: UIViewController, UITextFieldDelegate{
             if let activeTextField = UIResponder.currentFirstResponder as? UITextField,
                activeTextField != registerFirstname && activeTextField != registerlastname {
                 UIView.animate(withDuration: 0.3) {
-                    // Move the view upward by the keyboard's height
-                    self.view.frame.origin.y = self.originalViewYPosition - keyboardHeight + 40
+                    var contentInset:UIEdgeInsets = self.scrollView.contentInset
+                            contentInset.bottom = keyboardFrame.size.height + 20
+                    self.scrollView.contentInset = contentInset
                 }
+                
             }
         }
     }
     @objc func keyboardWillHide(_ notification: Notification) {
         UIView.animate(withDuration: 0.3) {
             // Restore the view to its original position
-            self.view.frame.origin.y = self.originalViewYPosition
+            self.scrollView.contentInset = UIEdgeInsets.zero
         }
     }
     
@@ -153,7 +171,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate{
     
     @IBAction func registerButtonAction(_ sender: UIButton) {
         self.startActivityIndicator()
-        viewModel.registervalidation(Fname: registerFirstname.text ?? "", Lname: registerlastname.text ?? "", Email: registerEmail.text ?? "", Pass: registerPassword?.text ?? "", Cpass: registerPassword?.text ?? "", Gender: gender ?? "F", Phone: registerPhoneNumber?.text ?? "", chkBox: registerchkBox.isSelected ?? false){
+        viewModel.registervalidation(Fname: registerFirstname.text ?? "", Lname: registerlastname.text ?? "", Email: registerEmail.text ?? "", Pass: registerPassword?.text ?? "", Cpass: registerConformPassword?.text ?? "", Gender: gender ?? "Nan" , Phone: registerPhoneNumber?.text ?? "", chkBox: registerchkBox.isSelected ){
             (validateBool , resultStrng) in
             DispatchQueue.main.async {
                 if validateBool{

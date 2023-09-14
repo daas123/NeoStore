@@ -18,6 +18,7 @@
                 <outlet property="registerPhoneNumber" destination="xjs-hX-SIX" id="6q9-yh-04P"/>
                 <outlet property="registerchkBox" destination="5s7-2p-gDt" id="Oip-Y3-RiA"/>
                 <outlet property="registerlastname" destination="cYJ-tL-sXP" id="mWE-iC-vTf"/>
+                <outlet property="scrollView" destination="YNf-e6-bB3" id="vTS-IT-nkT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outletCollection property="registerDetailsView" destination="JIk-uS-s5M" collectionClass="NSMutableArray" id="Y4G-lM-h3Q"/>
                 <outletCollection property="registerDetailsView" destination="gNV-6z-2T4" collectionClass="NSMutableArray" id="eG8-gV-PEi"/>
@@ -38,9 +39,6 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I6C-0S-mUr">
                             <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg" translatesAutoresizingMaskIntoConstraints="NO" id="Aa3-hr-txF">
-                                    <rect key="frame" x="0.0" y="0.0" width="393" height="793"/>
-                                </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NeoSTORE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUf-U3-W2m">
                                     <rect key="frame" x="105.66666666666667" y="29.999999999999996" width="181.66666666666663" height="40.666666666666657"/>
                                     <constraints>
@@ -369,14 +367,10 @@
                             </subviews>
                             <color key="backgroundColor" red="0.95686274510000002" green="0.094117647060000004" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstItem="Aa3-hr-txF" firstAttribute="leading" secondItem="I6C-0S-mUr" secondAttribute="leading" id="1C9-Vb-6ED"/>
                                 <constraint firstAttribute="trailing" secondItem="slv-i4-zLi" secondAttribute="trailing" constant="33" id="5Bn-3c-dS8"/>
-                                <constraint firstItem="Aa3-hr-txF" firstAttribute="top" secondItem="I6C-0S-mUr" secondAttribute="top" id="FCh-ii-kap"/>
                                 <constraint firstItem="FUf-U3-W2m" firstAttribute="top" secondItem="I6C-0S-mUr" secondAttribute="top" constant="30" id="GPP-hb-LQz"/>
                                 <constraint firstItem="slv-i4-zLi" firstAttribute="top" secondItem="FUf-U3-W2m" secondAttribute="bottom" constant="20" id="MYz-m2-t8V"/>
                                 <constraint firstAttribute="bottom" secondItem="slv-i4-zLi" secondAttribute="bottom" constant="114.33" id="OaW-3S-AwA"/>
-                                <constraint firstAttribute="bottom" secondItem="Aa3-hr-txF" secondAttribute="bottom" id="SBC-cp-chs"/>
-                                <constraint firstAttribute="trailing" secondItem="Aa3-hr-txF" secondAttribute="trailing" id="njo-pp-XYv"/>
                                 <constraint firstItem="slv-i4-zLi" firstAttribute="leading" secondItem="I6C-0S-mUr" secondAttribute="leading" constant="33" id="pFu-et-Ukj"/>
                                 <constraint firstItem="FUf-U3-W2m" firstAttribute="centerX" secondItem="I6C-0S-mUr" secondAttribute="centerX" id="uad-0z-6BQ"/>
                             </constraints>
@@ -404,7 +398,6 @@
         </view>
     </objects>
     <resources>
-        <image name="bg" width="538" height="390"/>
         <image name="circle" catalog="system" width="128" height="123"/>
         <image name="circle.fill" catalog="system" width="128" height="123"/>
         <image name="envelope.fill" catalog="system" width="128" height="93"/>

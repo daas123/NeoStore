@@ -260,5 +260,197 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "25E38435-B9EE-444A-B753-E769F85A1EF2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/Validation/Validation.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "registerValidation(Fname:Lname:Email:Pass:Cpass:Gender:Phone:chkBox:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "25E38435-B9EE-444A-B753-E769F85A1EF2 - 575e59d937565285"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Neostore.validation.registerValidation(Fname: Swift.Optional&lt;Swift.String&gt;, Lname: Swift.Optional&lt;Swift.String&gt;, Email: Swift.Optional&lt;Swift.String&gt;, Pass: Swift.Optional&lt;Swift.String&gt;, Cpass: Swift.Optional&lt;Swift.String&gt;, Gender: Swift.Optional&lt;Swift.String&gt;, Phone: Swift.Optional&lt;Swift.String&gt;, chkBox: Swift.Optional&lt;Swift.Bool&gt;, completion: (Swift.Bool, Swift.String) -&gt; ()) -&gt; ()"
+                  moduleName = "Neostore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/Validation/Validation.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "1660">
+               </Location>
+               <Location
+                  uuid = "25E38435-B9EE-444A-B753-E769F85A1EF2 - 575e59d937565285"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Neostore.validation.registerValidation(Fname: Swift.Optional&lt;Swift.String&gt;, Lname: Swift.Optional&lt;Swift.String&gt;, Email: Swift.Optional&lt;Swift.String&gt;, Pass: Swift.Optional&lt;Swift.String&gt;, Cpass: Swift.Optional&lt;Swift.String&gt;, Gender: Swift.Optional&lt;Swift.String&gt;, Phone: Swift.Optional&lt;Swift.String&gt;, chkBox: Swift.Optional&lt;Swift.Bool&gt;, completion: (Swift.Bool, Swift.String) -&gt; ()) -&gt; ()"
+                  moduleName = "Neostore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/Validation/Validation.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "83"
+                  endingLineNumber = "83"
+                  offsetFromSymbolStart = "1688">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D82B1BB0-2F49-4632-B77C-B57A9DA01317"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/Validation/Validation.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "registerValidation(Fname:Lname:Email:Pass:Cpass:Gender:Phone:chkBox:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "01417B80-2151-4328-97AD-C5B833A43E42"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/Validation/Validation.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "86"
+            endingLineNumber = "86"
+            landmarkName = "registerValidation(Fname:Lname:Email:Pass:Cpass:Gender:Phone:chkBox:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "01417B80-2151-4328-97AD-C5B833A43E42 - 575e59d937565328"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Neostore.validation.registerValidation(Fname: Swift.Optional&lt;Swift.String&gt;, Lname: Swift.Optional&lt;Swift.String&gt;, Email: Swift.Optional&lt;Swift.String&gt;, Pass: Swift.Optional&lt;Swift.String&gt;, Cpass: Swift.Optional&lt;Swift.String&gt;, Gender: Swift.Optional&lt;Swift.String&gt;, Phone: Swift.Optional&lt;Swift.String&gt;, chkBox: Swift.Optional&lt;Swift.Bool&gt;, completion: (Swift.Bool, Swift.String) -&gt; ()) -&gt; ()"
+                  moduleName = "Neostore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/Validation/Validation.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "1720">
+               </Location>
+               <Location
+                  uuid = "01417B80-2151-4328-97AD-C5B833A43E42 - 575e59d937565328"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Neostore.validation.registerValidation(Fname: Swift.Optional&lt;Swift.String&gt;, Lname: Swift.Optional&lt;Swift.String&gt;, Email: Swift.Optional&lt;Swift.String&gt;, Pass: Swift.Optional&lt;Swift.String&gt;, Cpass: Swift.Optional&lt;Swift.String&gt;, Gender: Swift.Optional&lt;Swift.String&gt;, Phone: Swift.Optional&lt;Swift.String&gt;, chkBox: Swift.Optional&lt;Swift.Bool&gt;, completion: (Swift.Bool, Swift.String) -&gt; ()) -&gt; ()"
+                  moduleName = "Neostore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/Validation/Validation.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "88"
+                  endingLineNumber = "88"
+                  offsetFromSymbolStart = "1916">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3AD0E58F-B899-4A90-8BD2-915D2FF2EEDD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/Validation/Validation.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "registerValidation(Fname:Lname:Email:Pass:Cpass:Gender:Phone:chkBox:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F32364DC-B994-48E7-A9D5-82392E6C0625"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/Validation/Validation.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "registerValidation(Fname:Lname:Email:Pass:Cpass:Gender:Phone:chkBox:completion:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F32364DC-B994-48E7-A9D5-82392E6C0625 - 575e59d937564d3f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Neostore.validation.registerValidation(Fname: Swift.Optional&lt;Swift.String&gt;, Lname: Swift.Optional&lt;Swift.String&gt;, Email: Swift.Optional&lt;Swift.String&gt;, Pass: Swift.Optional&lt;Swift.String&gt;, Cpass: Swift.Optional&lt;Swift.String&gt;, Gender: Swift.Optional&lt;Swift.String&gt;, Phone: Swift.Optional&lt;Swift.String&gt;, chkBox: Swift.Optional&lt;Swift.Bool&gt;, completion: (Swift.Bool, Swift.String) -&gt; ()) -&gt; ()"
+                  moduleName = "Neostore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/Validation/Validation.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "1380">
+               </Location>
+               <Location
+                  uuid = "F32364DC-B994-48E7-A9D5-82392E6C0625 - 575e59d937564d3f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Neostore.validation.registerValidation(Fname: Swift.Optional&lt;Swift.String&gt;, Lname: Swift.Optional&lt;Swift.String&gt;, Email: Swift.Optional&lt;Swift.String&gt;, Pass: Swift.Optional&lt;Swift.String&gt;, Cpass: Swift.Optional&lt;Swift.String&gt;, Gender: Swift.Optional&lt;Swift.String&gt;, Phone: Swift.Optional&lt;Swift.String&gt;, chkBox: Swift.Optional&lt;Swift.Bool&gt;, completion: (Swift.Bool, Swift.String) -&gt; ()) -&gt; ()"
+                  moduleName = "Neostore"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/Validation/Validation.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "1416">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E11E1A3E-587B-4568-B743-2D2B7CAC8E72"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/Validation/Validation.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "registerValidation(Fname:Lname:Email:Pass:Cpass:Gender:Phone:chkBox:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
