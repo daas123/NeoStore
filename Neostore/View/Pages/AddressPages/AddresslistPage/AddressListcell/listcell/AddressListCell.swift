@@ -6,18 +6,26 @@
 //
 
 import UIKit
-protocol SelectAddressCell{
+protocol RemoveCell{
+    func removeAddressCell(index : Int)
 }
 
 class AddressListCell: UITableViewCell {
 
-    
+    @IBOutlet weak var addressBackView: UIView!
+    var cellindex : Int?
+    var deligate : AddressListViewController?
+    @IBOutlet weak var listcellview: UIView!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var addressLabelDetails: UILabel!
     
     @IBOutlet weak var radioButton: UIButton!
     override func awakeFromNib() {
         super.awakeFromNib()
+        addressBackView.layer.cornerRadius = 5
+        addressBackView.layer.borderColor = UIColor.gray.cgColor
+        addressBackView.layer.borderWidth = 1
+//        listcellview.layer.borderColor = UIColor.white.cgColor
         radioButton.setImage(UIImage(systemName: "circle"), for: .normal)
         radioButton.setImage(UIImage(systemName: "circle.fill"), for: .selected)
     }
@@ -29,5 +37,10 @@ class AddressListCell: UITableViewCell {
     func setSelected(_ selected: Bool) {
            radioButton.isSelected = selected
        }
+    
+    
+    @IBAction func closeButton(_ sender: UIButton) {
+        deligate?.removeAddressCell(index: cellindex ?? 0)
+    }
     
 }

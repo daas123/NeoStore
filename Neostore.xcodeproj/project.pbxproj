@@ -987,6 +987,7 @@
 				924449B02A8E192B00481CFD /* Frameworks */,
 				924449B12A8E192B00481CFD /* Resources */,
 				5780207621F1855CFF8D40F9 /* [CP] Embed Pods Frameworks */,
+				550B5FE7EAC8C427D4896C19 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1025,6 +1026,7 @@
 				924449D02A8E192D00481CFD /* Frameworks */,
 				924449D12A8E192D00481CFD /* Resources */,
 				227E1B629EA452200AA8CACA /* [CP] Embed Pods Frameworks */,
+				247EAC98ACD86706BFA4A23B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1205,6 +1207,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Neostore-NeostoreUITests/Pods-Neostore-NeostoreUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		247EAC98ACD86706BFA4A23B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Neostore-NeostoreUITests/Pods-Neostore-NeostoreUITests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Neostore-NeostoreUITests/Pods-Neostore-NeostoreUITests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Neostore-NeostoreUITests/Pods-Neostore-NeostoreUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		550B5FE7EAC8C427D4896C19 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Neostore/Pods-Neostore-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Neostore/Pods-Neostore-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Neostore/Pods-Neostore-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5780207621F1855CFF8D40F9 /* [CP] Embed Pods Frameworks */ = {
@@ -1515,7 +1551,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1546,7 +1582,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

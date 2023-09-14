@@ -52,19 +52,6 @@ class ProductCategoryViewModel{
         
     }
     
-    func imageDataProductList(stringurl : String ,complition : @escaping (UIImage)->Void){
-        ProductListApiService().getImageProductlist(productUrl: stringurl){
-            (responce) in
-            switch responce{
-            case .success(let imagedata):
-                complition(imagedata)
-            case .failure(let error):
-                debugPrint("no image rerived , Error : \(error.localizedDescription)")
-            }
-        }
-        
-    }
-    
 }
 extension ProductCategoryViewModel:GetProductListDetails{
     func getCount() -> Int {

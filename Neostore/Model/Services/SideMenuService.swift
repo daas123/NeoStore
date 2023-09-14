@@ -32,7 +32,7 @@ class FetchAccountWEbService{
                     if responseData?.status == 200{
                         complition(.success(responseData!))
                     }else{
-                        complition(.failure(Error.self as! Error))
+                        print("erorr")
                     }
                 }
             case .failure(let error):

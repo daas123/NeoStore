@@ -120,6 +120,38 @@ class validation{
         
         completion(true,"All Ok")
     }
+    func addAddressValidation(address :String , landmard:String ,city:String,state:String,zipcode:Int ,country:String, complition :@escaping (Bool, String) -> Void){
+        guard address != "" else{
+            complition(false,"Enter the address")
+            return
+        }
+        guard landmard != ""  else{
+            complition(false,"Enter the landmark")
+            return
+        }
+        guard city != "" else{
+            complition(false,"Enter the City")
+            return
+        }
+        guard state != ""  else{
+            complition(false,"Enter the State")
+            return
+        }
+        guard country != "" else{
+            complition(false,"Enter the Country")
+            return
+        }
+        guard Int(zipcode) != nil else {
+            complition(false, "Zipcode should be a number")
+            return
+        }
+        
+        
+        
+        complition(true,"ook")
+        
+        
+    }
 }
 
 

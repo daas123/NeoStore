@@ -1,4 +1,9 @@
 PODS:
+  - GoogleMaps (8.2.0):
+    - GoogleMaps/Maps (= 8.2.0)
+  - GoogleMaps/Base (8.2.0)
+  - GoogleMaps/Maps (8.2.0):
+    - GoogleMaps/Base
   - NVActivityIndicatorView (5.1.1):
     - NVActivityIndicatorView/Base (= 5.1.1)
   - NVActivityIndicatorView/Base (5.1.1)
@@ -7,18 +12,21 @@ PODS:
   - SDWebImage/Core (5.18.0)
 
 DEPENDENCIES:
+  - GoogleMaps
   - NVActivityIndicatorView
   - SDWebImage (~> 5.0)
 
 SPEC REPOS:
   trunk:
+    - GoogleMaps
     - NVActivityIndicatorView
     - SDWebImage
 
 SPEC CHECKSUMS:
+  GoogleMaps: 081f2547b60a1c0870a8f49166a653900e5055d5
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   SDWebImage: 182830bcddc30cde95fbc60dfe4badc3553d94ba
 
-PODFILE CHECKSUM: e0f5a2fd84390143615e295a7372a04c0f7cfaee
+PODFILE CHECKSUM: e7eeef26babd5ab08080a520032a802e1a333d48
 
 COCOAPODS: 1.11.3

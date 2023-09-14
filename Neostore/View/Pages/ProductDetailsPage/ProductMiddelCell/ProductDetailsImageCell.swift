@@ -43,7 +43,28 @@ class ProductDetailsImageCell: UITableViewCell {
     }
     
     @IBAction func ProductDetailsShareButton(_ sender: UIButton) {
+        shareProductDetails()
     }
+    func shareProductDetails() {
+        if let image = productDetailsMianImage.image,
+           let productName = productDetailsDescription.text,
+           let productPrice = productDetailsCost.text {
+            
+            let shareItems: [Any] = [image, "\(productName)\nPrice: \(productPrice)"]
+            
+            let activityViewController = UIActivityViewController(
+                activityItems: shareItems,
+                applicationActivities: nil
+            )
+            
+            if let viewController = self.parentViewController {
+                viewController.present(activityViewController, animated: true, completion: nil)
+            }
+            
+        }
+    }
+
+    
     
     
 }
@@ -89,4 +110,16 @@ extension ProductDetailsImageCell : UICollectionViewDelegate ,UICollectionViewDa
     }
     
     
+}
+extension UIView {
+    var parentViewController: UIViewController? {
+        var parentResponder: UIResponder? = self
+        while parentResponder != nil {
+            parentResponder = parentResponder!.next
+            if let viewController = parentResponder as? UIViewController {
+                return viewController
+            }
+        }
+        return nil
+    }
 }

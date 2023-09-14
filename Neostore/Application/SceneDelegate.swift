@@ -33,7 +33,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if UserDefaults.standard.string(forKey: "accessToken") == "" || UserDefaults.standard.string(forKey: "accessToken") == nil {
             viewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
         }else{
-            viewController = AddressListViewController(nibName: "AddressListViewController" , bundle: nil)
+            viewController = HomeViewController(nibName: "HomeViewController" , bundle: nil)
         }
         
         let navigationController = UINavigationController(rootViewController: viewController)

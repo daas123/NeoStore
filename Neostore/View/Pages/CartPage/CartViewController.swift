@@ -44,8 +44,8 @@ class CartViewController: UIViewController, UITextFieldDelegate {
         navigationController?.navigationBar.tintColor = UIColor.white
         
         // addding search bitton on screen
-        let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchButtonTapped))
-        navigationItem.rightBarButtonItem = searchButton
+//        let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchButtonTapped))
+//        navigationItem.rightBarButtonItem = searchButton
         
         
         self.navigationItem.title = "My Cart"

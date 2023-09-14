@@ -3,6 +3,7 @@
     <device id="retina4_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Map view configurations" minToolsVersion="14.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -10,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="StoreLocatorViewController" customModule="Neostore" customModuleProvider="target">
             <connections>
+                <outlet property="mapView" destination="y5V-L2-MGT" id="C4K-5q-fzp"/>
                 <outlet property="storeLocatorTableview" destination="qJn-md-lGB" id="Drz-lQ-lES"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -23,28 +25,29 @@
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ia7-B2-V1I">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="210"/>
+                            <rect key="frame" x="0.0" y="0.0" width="320" height="284"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map" translatesAutoresizingMaskIntoConstraints="NO" id="O3A-L0-cJh">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="210"/>
-                                </imageView>
+                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y5V-L2-MGT" customClass="GMSMapView">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="284"/>
+                                    <standardMapConfiguration key="preferredConfiguration"/>
+                                </mapView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstItem="O3A-L0-cJh" firstAttribute="top" secondItem="Ia7-B2-V1I" secondAttribute="top" id="MqD-C7-bWy"/>
-                                <constraint firstAttribute="trailing" secondItem="O3A-L0-cJh" secondAttribute="trailing" id="N25-xq-6ea"/>
-                                <constraint firstAttribute="bottom" secondItem="O3A-L0-cJh" secondAttribute="bottom" id="YhU-8w-zz8"/>
-                                <constraint firstItem="O3A-L0-cJh" firstAttribute="leading" secondItem="Ia7-B2-V1I" secondAttribute="leading" id="fgn-FV-xIG"/>
+                                <constraint firstAttribute="bottom" secondItem="y5V-L2-MGT" secondAttribute="bottom" id="6fT-If-a7P"/>
+                                <constraint firstItem="y5V-L2-MGT" firstAttribute="leading" secondItem="Ia7-B2-V1I" secondAttribute="leading" id="CEx-4q-Wzp"/>
+                                <constraint firstItem="y5V-L2-MGT" firstAttribute="top" secondItem="Ia7-B2-V1I" secondAttribute="top" id="VZ0-Ss-Clh"/>
+                                <constraint firstAttribute="trailing" secondItem="y5V-L2-MGT" secondAttribute="trailing" id="g6u-Ya-qDK"/>
                             </constraints>
                         </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="qJn-md-lGB">
-                            <rect key="frame" x="0.0" y="210" width="320" height="358"/>
+                            <rect key="frame" x="0.0" y="284" width="320" height="284"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </tableView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
-                        <constraint firstItem="Ia7-B2-V1I" firstAttribute="height" secondItem="ad3-Aw-fqM" secondAttribute="height" multiplier="0.37" id="1DC-CR-bFn"/>
+                        <constraint firstItem="Ia7-B2-V1I" firstAttribute="height" secondItem="ad3-Aw-fqM" secondAttribute="height" multiplier="0.5" id="1DC-CR-bFn"/>
                         <constraint firstAttribute="trailing" secondItem="qJn-md-lGB" secondAttribute="trailing" id="1eY-Ny-fCX"/>
                         <constraint firstItem="qJn-md-lGB" firstAttribute="top" secondItem="Ia7-B2-V1I" secondAttribute="bottom" id="DYl-MQ-LVz"/>
                         <constraint firstItem="qJn-md-lGB" firstAttribute="leading" secondItem="ad3-Aw-fqM" secondAttribute="leading" id="Hk8-oo-JP1"/>
@@ -68,7 +71,6 @@
         </view>
     </objects>
     <resources>
-        <image name="map" width="691" height="342"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

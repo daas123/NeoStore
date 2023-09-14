@@ -66,7 +66,7 @@ class ProductDetailsOrderViewController: UIViewController {
             if UIResponder.currentFirstResponder is UITextField {
                 UIView.animate(withDuration: 0.3) {
                     // Move the view upward by the keyboard's height
-                    self.view.frame.origin.y = self.originalViewYPosition - keyboardHeight + 200
+                    self.view.frame.origin.y = self.originalViewYPosition - keyboardHeight + 150
                 }
             }
         }
@@ -108,6 +108,7 @@ class ProductDetailsOrderViewController: UIViewController {
                 }
             }else{
                 self.showAlert(msg: Msg ?? "no data fetched")
+                self.stopActivityIndicator()
             }
         }
     }

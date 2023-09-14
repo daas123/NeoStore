@@ -8,7 +8,7 @@
 import UIKit
 class LoginViewController: UIViewController {
     
-    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var navigationback: UIButton!
     @IBOutlet weak var dontHaveaccoutButton: UIButton!
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var forgetPassword: UIButton!
@@ -100,13 +100,12 @@ class LoginViewController: UIViewController {
         forgetPassword.isHidden = true
         dontHaveaccoutButton.isHidden = true
         plusButton.isHidden = true
-        cancelButton.isHidden = false
-        
+        navigationback.isHidden = false
     }
     
     @IBAction func cancelButtonAction(_ sender: UIButton) {
-        cancelButton.isHidden = true
         passwordView.isHidden = false
+        navigationback.isHidden = true
         forgetPassword.isHidden = false
         dontHaveaccoutButton.isHidden = false
         plusButton.isHidden = false

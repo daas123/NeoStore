@@ -13,7 +13,7 @@ protocol CartAction:NSObject{
 }
 class CartViewModel{
     var cartData : CartData?
-    var cartPickerviewData = [1,2,3,4,5,6,7]
+    var cartPickerviewData = [1,2,3,4,5,6,7,8]
     func editToCart(productid :Int ,quantity:String, complition : @escaping (Bool,String?)->Void){
         validation().addToCart(Quantity: quantity){
             (Result,msg) in

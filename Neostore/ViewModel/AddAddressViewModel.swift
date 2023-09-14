@@ -31,22 +31,29 @@ class AddAddressViewModel {
                 }
             }
         }
-    func addAddressData(address:String,landmark:String,city:String,state:String,zipCode:Int,country:String,complition: @escaping (Bool)->Void){
-        var newAddress = AddressFormate(
-                    address: address,
-                    landmark: landmark,
-                    city: city,
-                    state: state,
-                    zipCode: zipCode,
-                    country: country
-                )
-        var addresses = addressData
-        addresses.append(newAddress)
-                
-                // Save the updated array back to UserDefaults
-        self.addressData = addresses
-                
-        complition(true)
+    func addAddressData(address:String,landmark:String,city:String,state:String,zipCode:Int,country:String,complition: @escaping (Bool,String)->Void){
+        
+        validation().addAddressValidation(address: address, landmard: landmark, city: city, state: state, zipcode: zipCode, country: country){
+            result,msg in
+            if result {
+                var newAddress = AddressFormate(
+                            address: address,
+                            landmark: landmark,
+                            city: city,
+                            state: state,
+                            zipCode: zipCode,
+                            country: country
+                        )
+                var addresses = self.addressData
+                addresses.append(newAddress)
+                self.addressData = addresses
+                        
+                complition(true,msg)
+            }else{
+                complition(false,msg)
+            }
+            
+        }
     }
     
     func OrderCart(address:String ,complition: @escaping (Bool)->Void){
