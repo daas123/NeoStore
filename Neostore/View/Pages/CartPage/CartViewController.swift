@@ -14,6 +14,9 @@ struct cartDetails{
 }
 class CartViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var cartStackView: UIStackView!
+    
     var selectedTextField: UITextField?
     var selectedOption = 0
     let viewModel = CartViewModel()
@@ -76,30 +79,29 @@ class CartViewController: UIViewController, UITextFieldDelegate {
         
         // guesture for keyboard
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
         
     }
     @objc func keyboardWillShow(_ notification: Notification) {
-        guard let userInfo = notification.userInfo,
-              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
-            return
-        }
-
-        // Calculate the frame of the selected text field
-        if let selectedTextField = selectedTextField {
-            let textFieldFrame = selectedTextField.convert(selectedTextField.bounds, to: cartTableview)
-            let textFieldMaxY = textFieldFrame.maxY
+        if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
+            let keyboardHeight = keyboardFrame.height
             
-            // Calculate the available space below the text field
-            let availableSpace = view.frame.height - keyboardFrame.size.height - textFieldMaxY
-            
-            // Check if there's not enough space for the picker view
-            if availableSpace < cartPickerView.frame.size.height {
-                // Calculate how much the content offset needs to be adjusted
-                let offset = cartTableview.contentOffset.y + (cartPickerView.frame.size.height - availableSpace)
+            // Check if the active text field is not FirstName or LastName
+            if let activeTextField = UIResponder.currentFirstResponder as? UITextField{
+                UIView.animate(withDuration: 0.3) {
+                    var contentInset:UIEdgeInsets = self.cartTableview.contentInset
+                            contentInset.bottom = keyboardFrame.size.height
+                    self.cartTableview.contentInset = contentInset
+                    self.cartTableview.scrollToRow(at: IndexPath(row: self.cellIndexpath.row, section: self.cellIndexpath.section), at: .top, animated: true)
+                }
                 
-                // Scroll the table view to adjust the content offset
-                cartTableview.setContentOffset(CGPoint(x: 0, y: offset), animated: true)
             }
+        }
+    }
+    @objc func keyboardWillHide(_ notification: Notification) {
+        UIView.animate(withDuration: 0.3) {
+            // Restore the view to its original position
+            self.cartTableview.contentInset = UIEdgeInsets.zero
         }
     }
 
@@ -161,6 +163,7 @@ class CartViewController: UIViewController, UITextFieldDelegate {
             cartPickerView.isHidden = false
             textField.becomeFirstResponder()
             // Calculate the IndexPath of the selected cell
+            cartTableview.scrollToRow(at: cellIndexpath, at: .top, animated: true)
             
             if let initialQuantity = viewModel.cartData?.data?[cellIndexpath.row].quantity {
                 selectedOption = initialQuantity

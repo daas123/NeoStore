@@ -6,22 +6,17 @@
 //
 
 import UIKit
-class LoginViewController: UIViewController,UITextFieldDelegate {
+class LoginViewController: UIViewController {
     
     @IBOutlet weak var navigationback: UIButton!
     @IBOutlet weak var dontHaveaccoutButton: UIButton!
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var forgetPassword: UIButton!
-    
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var parentViewTapGuesture: UIView!
-    
     @IBOutlet var personDetailsview: [UIView]!
-    
     @IBOutlet weak var loginUsername: UITextField!
     @IBOutlet weak var loginPassword: UITextField!
-    
-    
     @IBOutlet weak var passwordView: UIView!
     let viewmodel = loginViewModel()
     
@@ -30,6 +25,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        //wrong
         navigationController?.isNavigationBarHidden = true
         let backButton = UIBarButtonItem()
         backButton.title = "" // Set an empty title
@@ -43,6 +39,7 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         loginPassword.delegate = self
         loginUsername.delegate = self
         
+        //wrong
         // adding the tap guesture
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.parentViewTapGuesture.addGestureRecognizer(tapGesture)
@@ -52,22 +49,12 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
         self.parentViewTapGuesture.endEditing(true)
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        switch textField {
-        case loginUsername:
-            loginPassword.becomeFirstResponder()
-        case loginPassword:
-            loginPassword.resignFirstResponder() // Hide the keyboard when pressing return on the last field
-        default:
-            break
-        }
-        
-        return true
-    }
     
     
     @IBAction func LoginButtonAction(_ sender: UIButton) {
-        if sender.titleLabel?.text == "LOGIN"{
+        
+        //wrong
+        if sender.titleLabel?.text == "LOGIN" {
             self.startActivityIndicator()
             viewmodel.loginValidation(email: loginUsername.text ?? "", password: loginPassword.text ?? ""){
                 (validationCheck,msgString) in
@@ -135,3 +122,19 @@ class LoginViewController: UIViewController,UITextFieldDelegate {
 }
 
 
+extension LoginViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        switch textField {
+        case loginUsername:
+            loginPassword.becomeFirstResponder()
+        case loginPassword:
+            loginPassword.resignFirstResponder() // Hide the keyboard when pressing return on the last field
+        default:
+            break
+        }
+        
+        return true
+    }
+    
+}

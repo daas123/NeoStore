@@ -76,7 +76,7 @@ class AddressListViewController: UIViewController {
     @IBAction func orderButtonAction(_ sender: UIButton) {
         if selectedIndexPath != nil{
             if sender.titleLabel?.text == "ORDER" {
-                let selecteddata = dataCollection(index: (selectedIndexPath?.row ?? 0)-1)
+                let selecteddata = dataCollection(index: 1-(selectedIndexPath?.row ?? 0))
                 
                 viewModel.OrderCart(address: selecteddata){
                     responce in

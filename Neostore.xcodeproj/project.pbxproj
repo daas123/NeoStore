@@ -82,7 +82,8 @@
 		92A817242A93888000341144 /* CategoryCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92A817222A93888000341144 /* CategoryCollectionCell.xib */; };
 		92AC4CEA2A9FC04F0086A1E9 /* ImageCollectionviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AC4CE82A9FC04F0086A1E9 /* ImageCollectionviewCell.swift */; };
 		92AC4CEB2A9FC04F0086A1E9 /* ImageCollectionviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92AC4CE92A9FC04F0086A1E9 /* ImageCollectionviewCell.xib */; };
-		92AED7B22AA4D4ED00B68CA7 /* DataReload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AED7B12AA4D4ED00B68CA7 /* DataReload.swift */; };
+		92AE2A1F2AB716B2005BEC6E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AE2A1E2AB716B2005BEC6E /* BaseViewController.swift */; };
+		92AED7B22AA4D4ED00B68CA7 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AED7B12AA4D4ED00B68CA7 /* Protocol.swift */; };
 		92AED7B42AA4E18100B68CA7 /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AED7B32AA4E18100B68CA7 /* CartViewModel.swift */; };
 		92AED7B62AA4F1A300B68CA7 /* CartService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92AED7B52AA4F1A300B68CA7 /* CartService.swift */; };
 		92B302622AA5ADE300031DBF /* cellSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B302612AA5ADE300031DBF /* cellSelection.swift */; };
@@ -230,7 +231,8 @@
 		92A817222A93888000341144 /* CategoryCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryCollectionCell.xib; sourceTree = "<group>"; };
 		92AC4CE82A9FC04F0086A1E9 /* ImageCollectionviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionviewCell.swift; sourceTree = "<group>"; };
 		92AC4CE92A9FC04F0086A1E9 /* ImageCollectionviewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCollectionviewCell.xib; sourceTree = "<group>"; };
-		92AED7B12AA4D4ED00B68CA7 /* DataReload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataReload.swift; sourceTree = "<group>"; };
+		92AE2A1E2AB716B2005BEC6E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		92AED7B12AA4D4ED00B68CA7 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocol.swift; sourceTree = "<group>"; };
 		92AED7B32AA4E18100B68CA7 /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
 		92AED7B52AA4F1A300B68CA7 /* CartService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartService.swift; sourceTree = "<group>"; };
 		92B302612AA5ADE300031DBF /* cellSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cellSelection.swift; sourceTree = "<group>"; };
@@ -370,6 +372,7 @@
 		920FB7AB2A9539F4007C5E8C /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				923BE1372A960385006354BF /* Api */,
 				920FB7AC2A953A19007C5E8C /* loginServices.swift */,
 				92988DB22A95CD9D00DA4135 /* RegistrationService.swift */,
 				929484402A977E4700CA3C51 /* ProductServices.swift */,
@@ -409,19 +412,6 @@
 				923BE13A2A9603F6006354BF /* ApiManager.swift */,
 			);
 			path = Api;
-			sourceTree = "<group>";
-		};
-		923BE13F2A963791006354BF /* Entities */ = {
-			isa = PBXGroup;
-			children = (
-				92988DB62A95CE5B00DA4135 /* UserModel.swift */,
-				9294843E2A977E3400CA3C51 /* ProductModel.swift */,
-				929A9F802AA1CC29007B36F3 /* RatingModel.swift */,
-				929A9F822AA1CC4C007B36F3 /* OrderModel.swift */,
-				92E48DC32AA3B7B400822F8C /* AccountModel.swift */,
-				9295B0652AA87ACC00DF10C7 /* OrderlistModel.swift */,
-			);
-			path = Entities;
 			sourceTree = "<group>";
 		};
 		923BE1402A964C2D006354BF /* Validation */ = {
@@ -507,6 +497,7 @@
 				923BE1402A964C2D006354BF /* Validation */,
 				929483DF2A97391600CA3C51 /* utils */,
 				92D6EB7D2A8E1DC100838A15 /* Model */,
+				920FB7AB2A9539F4007C5E8C /* Services */,
 				92A8170E2A93573B00341144 /* ViewModel */,
 				92D6EB7B2A8E1DC000838A15 /* View */,
 				924449BF2A8E192C00481CFD /* Assets.xcassets */,
@@ -678,10 +669,18 @@
 			path = ProductCollectionViewImage;
 			sourceTree = "<group>";
 		};
+		92AE2A1D2AB71617005BEC6E /* BaseClass */ = {
+			isa = PBXGroup;
+			children = (
+				92AE2A1E2AB716B2005BEC6E /* BaseViewController.swift */,
+			);
+			path = BaseClass;
+			sourceTree = "<group>";
+		};
 		92AED7B02AA4D4D700B68CA7 /* protocols */ = {
 			isa = PBXGroup;
 			children = (
-				92AED7B12AA4D4ED00B68CA7 /* DataReload.swift */,
+				92AED7B12AA4D4ED00B68CA7 /* Protocol.swift */,
 			);
 			path = protocols;
 			sourceTree = "<group>";
@@ -699,6 +698,7 @@
 			isa = PBXGroup;
 			children = (
 				92D6EB822A8E1EBC00838A15 /* Pages */,
+				92AE2A1D2AB71617005BEC6E /* BaseClass */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -706,9 +706,12 @@
 		92D6EB7D2A8E1DC100838A15 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				923BE13F2A963791006354BF /* Entities */,
-				920FB7AB2A9539F4007C5E8C /* Services */,
-				923BE1372A960385006354BF /* Api */,
+				92988DB62A95CE5B00DA4135 /* UserModel.swift */,
+				9294843E2A977E3400CA3C51 /* ProductModel.swift */,
+				929A9F802AA1CC29007B36F3 /* RatingModel.swift */,
+				929A9F822AA1CC4C007B36F3 /* OrderModel.swift */,
+				92E48DC32AA3B7B400822F8C /* AccountModel.swift */,
+				9295B0652AA87ACC00DF10C7 /* OrderlistModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1331,7 +1334,7 @@
 				929852E42AA9BB0700FB8B78 /* ActivityIndicator.swift in Sources */,
 				924449BB2A8E192B00481CFD /* ViewController.swift in Sources */,
 				929484412A977E4700CA3C51 /* ProductServices.swift in Sources */,
-				92AED7B22AA4D4ED00B68CA7 /* DataReload.swift in Sources */,
+				92AED7B22AA4D4ED00B68CA7 /* Protocol.swift in Sources */,
 				929A9F812AA1CC29007B36F3 /* RatingModel.swift in Sources */,
 				92E891142AA2FD120099980C /* AddAddressLandMarkCell.swift in Sources */,
 				924449B72A8E192B00481CFD /* AppDelegate.swift in Sources */,
@@ -1357,6 +1360,7 @@
 				923BE1392A9603CD006354BF /* ApiService.swift in Sources */,
 				92970FBC2AAD9E5000FF91BD /* AddAddressCell.swift in Sources */,
 				923DA97A2A923FB2007016EA /* CartTableViewCell.swift in Sources */,
+				92AE2A1F2AB716B2005BEC6E /* BaseViewController.swift in Sources */,
 				923DA9642A9203F4007016EA /* SideMenuViewController.swift in Sources */,
 				929483E32A97397400CA3C51 /* Alert.swift in Sources */,
 				92E891532AA337A00099980C /* OrderIdCell.swift in Sources */,
@@ -1540,25 +1544,29 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DV48BW2GWL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Neostore/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Neo Saad";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow to use Camera";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow to locate the furniture shop";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = abc.test.Neostore11;
+				PRODUCT_BUNDLE_IDENTIFIER = abc.test.Neostore114;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1571,25 +1579,29 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = DV48BW2GWL;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Neostore/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Neo Saad";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Allow to use Camera";
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "Allow to locate the furniture shop";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = abc.test.Neostore11;
+				PRODUCT_BUNDLE_IDENTIFIER = abc.test.Neostore114;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

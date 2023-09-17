@@ -79,6 +79,10 @@ class validation{
             completion(false, "Please select a Gender.")
             return
         }
+        guard let phone = Phone?.trimmingCharacters(in: .whitespaces), !phone.isEmpty, phone.count >= 10, containsOnlyNumbers(phone) else {
+            completion(false, "Invalid Mobile Number.")
+            return
+        }
         
         guard let checkBox = chkBox, checkBox else {
             completion(false, "You must agree to the Terms and Conditions.")
@@ -89,8 +93,11 @@ class validation{
             completion(false, "Invalid Mobile Number.")
             return
         }
-        
-        completion(true, "All fields are valid.")
+        if let phone = Phone , phone.count > 10 {
+            completion(false, "Invalid Mobile Number.")
+        }else{
+            completion(true, "All fields are valid.")
+        }
     }
 
     // Function to validate email using regular expression

@@ -62,15 +62,14 @@ class ProductDetailsOrderViewController: UIViewController {
         if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
             let keyboardHeight = keyboardFrame.height
             
-            // Check if the active text field is not FirstName or LastName
-            if UIResponder.currentFirstResponder is UITextField {
-                UIView.animate(withDuration: 0.3) {
-                    // Move the view upward by the keyboard's height
-                    self.view.frame.origin.y = self.originalViewYPosition - keyboardHeight + 150
-                }
+            UIView.animate(withDuration: 0.3) {
+                // Move the view upward by a fixed amount (e.g., 10 points) above the keyboard
+                self.view.frame.origin.y = self.originalViewYPosition - 80
             }
         }
     }
+
+
     @objc func keyboardWillHide(_ notification: Notification) {
         UIView.animate(withDuration: 0.3) {
             // Restore the view to its original position
