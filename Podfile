@@ -6,8 +6,6 @@ target 'Neostore' do
   use_frameworks!
   pod 'GoogleMaps'
   pod 'GooglePlaces'
-  pod ‘GooglePlacePicker’
-  pod ‘GoogleMaps’
   pod 'SDWebImage'
   pod 'NVActivityIndicatorView'
 

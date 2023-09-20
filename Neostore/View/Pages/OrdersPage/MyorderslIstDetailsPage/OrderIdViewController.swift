@@ -7,22 +7,29 @@
 
 import UIKit
 import SDWebImage
-class OrderIdViewController: UIViewController {
+class OrderIdViewController: BaseViewController {
+    // MARK: FILE VARIABLE
     let viewmodel = OrderListViewModel()
-    var orderDetialId = Int()
+    var orderDetialId : Int?
+    
     @IBOutlet weak var orderIdTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        orderIdTableView.delegate = self
-        orderIdTableView.dataSource = self
-        title = "Order ID : \(orderDetialId)"
-        orderIdTableView.register(UINib(nibName: "OrderIdListCell", bundle: nil), forCellReuseIdentifier: "OrderIdListCell")
-        orderIdTableView.register(UINib(nibName: "OrderIdTotalCell", bundle: nil), forCellReuseIdentifier: "OrderIdTotalCell")
-        // Do any additional setup after loading the view.
+        setTitle(titleString: String(describing: orderDetialId))
+        registerCell()
+        setDeligate()
         getdata()
     }
+    func registerCell(){
+        orderIdTableView.register(UINib(nibName: "OrderIdListCell", bundle: nil), forCellReuseIdentifier: "OrderIdListCell")
+        orderIdTableView.register(UINib(nibName: "OrderIdTotalCell", bundle: nil), forCellReuseIdentifier: "OrderIdTotalCell")
+    }
+    func setDeligate(){
+        orderIdTableView.delegate = self
+        orderIdTableView.dataSource = self
+    }
     func getdata(){
-        viewmodel.getOrderListDetials(order_id: orderDetialId){
+        viewmodel.getOrderListDetials(order_id: orderDetialId ?? 0){
             responce in
             DispatchQueue.main.async {
                 self.orderIdTableView.reloadData()
@@ -44,8 +51,8 @@ extension OrderIdViewController : UITableViewDelegate,UITableViewDataSource{
             cell.orderDetailsQnt.text = String(viewmodel.orderListDetails?.data?.orderDetails[indexPath.row].quantity ?? 0)
             cell.orderDetailsCategory.text = viewmodel.orderListDetails?.data?.orderDetails[indexPath.row].prodCatName
             cell.orderDetailsCost.text = String(viewmodel.orderListDetails?.data?.orderDetails[indexPath.row].total ?? 0)
-            if let imageUrl = URL(string: viewmodel.orderListDetails?.data?.orderDetails[indexPath.row].prodImage ?? "invalid") {
-                    cell.orderDetailsImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "bg.jpg"))
+            if let imageUrl = URL(string: viewmodel.orderListDetails?.data?.orderDetails[indexPath.row].prodImage ?? errorConstant.error) {
+                cell.orderDetailsImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: ImageConstants.default_img))
                 }
             cell.selectionStyle = .none
             return cell

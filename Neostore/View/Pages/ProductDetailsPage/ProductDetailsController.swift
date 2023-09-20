@@ -7,58 +7,48 @@
 
 import UIKit
 import SDWebImage
-class ProductDetailsController: UIViewController{
+class ProductDetailsController: BaseViewController{
     
-    
-    @IBOutlet weak var productDetailsTableview: UITableView!
-    @IBOutlet weak var ProductDetailsMainView: UIView!
     var navigationtitle = String()
     var ProductCategory = String()
     var Productid = Int()
     var viewmodel = ProductDetailsViewModel()
     var tapGesture: UITapGestureRecognizer!
     var productRate = ProductDetailsRateController()
+    var ProductDetials = [DetailsProduct]()
+    
+    @IBOutlet weak var productDetailsTableview: UITableView!
+    @IBOutlet weak var ProductDetailsMainView: UIView!
+    
     override func viewWillAppear(_ animated: Bool) {
+        stopActivityIndicator()
         super.viewWillAppear(false)
         productRate.deligate = self
     }
+    
     override func viewDidLoad() {
+        stopActivityIndicator()
         super.viewDidLoad()
-        //        productRate.deligate = self
-        NotificationCenter.default.addObserver(self, selector: #selector(viewWillDisappearNotification), name: NSNotification.Name(rawValue: "RatingDoneNotification"), object: nil)
+        title = navigationtitle
+        getdata()
+        addNotificationObserver()
+        setDeligates()
+        registerCell()
+    }
+    
+    @objc override func viewWillDisappearNotification(_ notification: Notification) {
+        if let message = notification.userInfo?["message"] as? String {
+            self.showAlert(msg: message)
+            getdata()
+        }
+    }
+    
+    func setDeligates(){
         productDetailsTableview.delegate = self
         productDetailsTableview.dataSource = self
-        
-        let backbutton = UIBarButtonItem()
-        backbutton.title = ""
-        navigationItem.backBarButtonItem = backbutton
-        // for activating navigation bar
-        navigationController?.isNavigationBarHidden = false
-        
-        // for removing back button title
-        let backButton = UIBarButtonItem()
-        backButton.title = "" // Set an empty title
-        navigationItem.backBarButtonItem = backButton
-        
-        // navigation bar back image
-        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
-        
-        // navigation bar back text
-        navigationController?.navigationBar.backItem?.title = ""
-        
-        // navigation bar items color
-        navigationController?.navigationBar.tintColor = UIColor.white
-        
-        // addding search bitton on screen
-//        let searchButton = UIBarButtonItem(image: UIImage(systemName: "magnifyingglass"), style: .plain, target: self, action: #selector(searchButtonTapped))
-//        navigationItem.rightBarButtonItem = searchButton
-        
-        // setting title for navigation bar
-        self.navigationItem.title = navigationtitle
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        
-        
-        // register nib for tableview cell
+    }
+    
+    func registerCell(){
         productDetailsTableview.register(UINib(nibName: "ProductDetailsTitleCell", bundle: nil), forCellReuseIdentifier: "ProductDetailsTitleCell")
         productDetailsTableview.register(UINib(nibName: "ProductDetailsImageCell", bundle: nil), forCellReuseIdentifier: "ProductDetailsImageCell")
         productDetailsTableview.register(UINib(nibName: "ProductDetailsDescriptionCell", bundle: nil), forCellReuseIdentifier: "ProductDetailsDescriptionCell")
@@ -66,47 +56,22 @@ class ProductDetailsController: UIViewController{
         productDetailsTableview.register(UINib(nibName: "SepratorCell", bundle: nil), forCellReuseIdentifier: "SepratorCell")
         // table view seprator style
         productDetailsTableview.separatorStyle = .none
-        
-        // getdatresponce from view model
-        getdata()
-        
-        //adding tap guestiure
-        tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
     }
-    
-    @objc private func viewWillDisappearNotification(_ notification: Notification) {
-        if let message = notification.userInfo?["message"] as? String {
-            self.showAlert(msg: message)
-            getdata()
-        }
-    }
-    
     deinit {
-        // Remove the observer when the view is deallocated
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "ViewWillDisappearNotification"), object: nil)
     }
-    // view didload end
     
-    @objc private func handleTapGesture(_ sender: UITapGestureRecognizer) {
-        print("tap occured")
-        dismiss(animated: true, completion: nil)
-        
-    }
-    
-    @objc func searchButtonTapped() {
-//        navigationController?.pushViewController(CartViewController(nibName: "CartViewController", bundle: nil), animated: true)
-    }
-    var ProductDetials = [DetailsProduct]()
     func getdata(){
-//        self.startActivityIndicator()
+        startActivityIndicator()
         self.viewmodel.getProductDetails(id: Productid ){
             (Responce) in
             DispatchQueue.main.async {
-                self.productDetailsTableview.reloadData()
                 self.stopActivityIndicator()
+                self.productDetailsTableview.reloadData()
             }
         }
     }
+    
     func GetCategory(id :Int) ->String{
         switch id{
         case 1:
@@ -123,27 +88,25 @@ class ProductDetailsController: UIViewController{
     }
     
     func ShowOrderview() {
-        let popupViewController = ProductDetailsOrderViewController(nibName: "ProductDetailsOrderViewController", bundle: nil)
-        popupViewController.productId = self.Productid
-        popupViewController.deligate = SideMenuViewController()
-        popupViewController.productlabel = viewmodel.GetTitle()
-        popupViewController.productimage = viewmodel.productDetailsData?.data?.product_images?.first?.image
-        
-        popupViewController.modalPresentationStyle = .overCurrentContext
-        popupViewController.modalTransitionStyle = .crossDissolve
-        self.present(popupViewController, animated: true, completion: nil)
+        let orderPopUpViewController = ProductDetailsOrderViewController(nibName: "ProductDetailsOrderViewController", bundle: nil)
+        orderPopUpViewController.productId = self.Productid
+        orderPopUpViewController.deligate = SideMenuViewController()
+        orderPopUpViewController.productlabel = viewmodel.GetTitle()
+        orderPopUpViewController.productimage = viewmodel.productDetailsData?.data?.product_images?.first?.image
+        orderPopUpViewController.modalPresentationStyle = .overCurrentContext
+        orderPopUpViewController.modalTransitionStyle = .crossDissolve
+        self.present(orderPopUpViewController, animated: true, completion: nil)
     }
     
     func ShowRatingview() {
-        let popupViewController = ProductDetailsRateController(nibName: "ProductDetailsRateController", bundle: nil)
-        popupViewController.productlabel = viewmodel.GetTitle()
-        popupViewController.productimage = viewmodel.productDetailsData?.data?.product_images?.first?.image
-        popupViewController.productId = self.Productid
-        popupViewController.modalPresentationStyle = .overCurrentContext
-        popupViewController.modalTransitionStyle = .crossDissolve
-        self.present(popupViewController, animated: true, completion: nil)
+        let ratePopUpViewController = ProductDetailsRateController(nibName: "ProductDetailsRateController", bundle: nil)
+        ratePopUpViewController.productlabel = viewmodel.GetTitle()
+        ratePopUpViewController.productimage = viewmodel.productDetailsData?.data?.product_images?.first?.image
+        ratePopUpViewController.productId = self.Productid
+        ratePopUpViewController.modalPresentationStyle = .overCurrentContext
+        ratePopUpViewController.modalTransitionStyle = .crossDissolve
+        self.present(ratePopUpViewController, animated: true, completion: nil)
     }
-    
     
     @IBAction func OrderButtion(_ sender: UIButton) {
         ShowOrderview()
@@ -153,12 +116,10 @@ class ProductDetailsController: UIViewController{
         ShowRatingview()
     }
     
-    
-    
-    
 }
 
 extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 2
     }
@@ -184,15 +145,16 @@ extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
             detailscell.reloadCollectionviewdata()
             detailscell.selectionStyle = .none
             let imagedata = viewmodel.Getimagedata()
-            if let imageUrl = URL(string: imagedata?[0].image ?? "invalid") {
+            if let imageUrl = URL(string: imagedata?[0].image ?? errorConstant.error) {
                 detailscell.productDetailsMianImage.sd_setImage(with: imageUrl)
             }
             
             return detailscell
         default:
-            fatalError("Invalid section")
+            fatalError(errorConstant.error)
         }
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 2{
             return 65

@@ -8,104 +8,104 @@
 
 import UIKit
 
-class HomeViewController: UIViewController{
+class HomeViewController: BaseViewController{
     
-    private var categoryData:[[String:Any]] = [
-        ["name":"Table","lblPosition":positions.topRight,"imgName":"table","imgPosition":positions.bottomLeft],
-        ["name":"Chairs","lblPosition":positions.bottomLeft,"imgName":"chair","imgPosition":positions.topRight],
-        ["name":"Sofas","lblPosition":positions.topLeft,"imgName":"sofa","imgPosition":positions.bottomRight],
-        ["name":"Beds","lblPosition":positions.bottomRight,"imgName":"bed","imgPosition":positions.topLeft]
-    ]
-    
+    // MARK: FILE VARIABLE
     var currentsidemenupage = 0
     var sideMenuOpen = false
     var panGesture: UIPanGestureRecognizer!
     var tapGesture: UITapGestureRecognizer!
+    var viewmodel = HomepageViewModel()
+    // COLLECTON VIEW SCROLL
+    var currentscrollIndex = 1
+    var contentOffset = CGPoint()
+    var timer : Timer?
     
-    // creating the view model
-    var viewmodel = ProductViewController()
-    
-    
-    @IBOutlet var parentView: UIView!
-    
-    // main view outlet
-    
-    @IBOutlet weak var mainView: UIView!
+    // MARK: CONSTRAIN VARAIBLE
     @IBOutlet weak var mainMenuTrailingConstrain: NSLayoutConstraint!
     @IBOutlet weak var mainMenubottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var mainMenutopConstraint: NSLayoutConstraint!
     @IBOutlet weak var MainMenuLeadingConstraint: NSLayoutConstraint!
-    
-    //side menu view outlet
+    //SIDE VIEW
     @IBOutlet weak var sideMenuLeadingConstraint: NSLayoutConstraint!
+    
+    //MARK: UIVIEW OUTLETS
+    @IBOutlet var parentView: UIView!
+    @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var sideMenuContainer: UIView!
     
-    // page colntrol view outlet
-    @IBOutlet weak var pageControl: UIPageControl!
-    
-    // home collection view outlet
+    // MARK: Collection view
     @IBOutlet weak var homeCollectionView: UICollectionView!
-    
-    // category collection view outlet
-    
     @IBOutlet weak var categoryCollectionView: UICollectionView!
     
+    // MARK: page colntrol
+    @IBOutlet weak var pageControl: UIPageControl!
     
-    // demo imaged for collection view
     
-    let collectionViewImages = ["slider_img1","slider_img2","slider_img3","slider_img4"]
-    
-    // whenever we navigate back in that case we want to hide the navigation
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
     }
+    
     override func viewDidDisappear(_ animated: Bool) {
         closeSideMenu()
     }
+    
     override func viewDidLoad() {
         self.stopActivityIndicator()
         super.viewDidLoad()
-        homeCollectionView.decelerationRate = UIScrollView.DecelerationRate.fast // or .normal
-        // setting back button title
-        let backButton = UIBarButtonItem()
-        backButton.title = "" // Set an empty title
-        navigationItem.backBarButtonItem = backButton
+        navigationController?.isNavigationBarHidden = true
         
-        //for page controll
-        pageControl.currentPage = 0
-        pageControl.numberOfPages = collectionViewImages.count
-        
-        
-        //nib register
+        // nib register
+        registerNib()
+        //set collectionview deligate
+        setcollectionViewDeligate()
+        // page control
+        setupPageControl()
+        //hidin gthe side menum beofre loading
+        hideSideMenu()
+        // setup side menu
+        setupSideMenu()
+        // starting the timer for autoscrolling collctionview
+        startTimer()
+    }
+    
+    func hideSideMenu(){
+        self.sideMenuLeadingConstraint.constant = -self.sideMenuContainer.frame.width
+        self.view.layoutIfNeeded()
+    }
+    
+    func registerNib(){
         let slidecell = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
         homeCollectionView.register(slidecell, forCellWithReuseIdentifier: "collectionviewcell")
-        
         let catgorycell = UINib(nibName: "CategoryCollectionCell", bundle: nil)
         categoryCollectionView.register(catgorycell, forCellWithReuseIdentifier: "cell")
+    }
+    func setupSideMenu() {
+        // Initialize side menu view controller
+        let sideMenuVC = SideMenuViewController(nibName: "SideMenuViewController", bundle: nil)
+        addChild(sideMenuVC)
+        sideMenuContainer.addSubview(sideMenuVC.view)
+        sideMenuVC.view.frame = sideMenuContainer.bounds
+        sideMenuVC.didMove(toParent: self)
         
-        
-        // collection view deligate and datasource
+        // Initialize pan gesture recognizer
+        panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
+        view.addGestureRecognizer(panGesture)
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
+    }
+    
+    func setcollectionViewDeligate(){
         homeCollectionView.delegate = self
         homeCollectionView.dataSource = self
         categoryCollectionView.delegate = self
         categoryCollectionView.dataSource = self
-        
-        //  for removing navigation
-        navigationController?.isNavigationBarHidden = true
-        
-        
-        // Hiding the menue before loading
-        self.sideMenuLeadingConstraint.constant = -self.sideMenuContainer.frame.width
-        self.view.layoutIfNeeded()
-        
-        
-        setupSideMenu()
-        startTimer()
-        
-        // new code
     }
     
-    // hamburgure button
+    func setupPageControl(){
+        pageControl.currentPage = 0
+        pageControl.numberOfPages = viewmodel.collectionViewImages.count
+    }
+    
     @IBAction func sideMenuButtonAction(_ sender: UIButton) {
         if sideMenuOpen{
             closeSideMenu()
@@ -113,38 +113,17 @@ class HomeViewController: UIViewController{
             openSideMenu()
         }
     }
-    // search button
     
     @IBAction func searchButtonAction(_ sender: UIButton) {
-//        navigationController?.pushViewController(ProductViewController(nibName: "ProductViewController", bundle: nil), animated: true)
-    }
-    // setup pangesture and tapgesture
-    func setupSideMenu() {
-        // Initialize side menu view controller
-        let sideMenuVC = SideMenuViewController(nibName: "SideMenuViewController", bundle: nil)
-        
-        addChild(sideMenuVC)
-        sideMenuContainer.addSubview(sideMenuVC.view)
-        sideMenuVC.view.frame = sideMenuContainer.bounds
-        sideMenuVC.didMove(toParent: self)
-        
-        
-        // Initialize pan gesture recognizer
-        panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
-        view.addGestureRecognizer(panGesture)
-        
-        tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
-        //        mainView.addGestureRecognizer(tapGesture)
-        
+        navigationController?.pushViewController(CartViewController(nibName: "CartViewController", bundle: nil), animated: true)
     }
     
-    // handel tap gesture
+    // MARK: TAP GESTURE WHEN SIDE MENU IS VISIBLE
     @objc private func handleTapGesture(_ sender: UITapGestureRecognizer) {
-        print("tap occured")
         closeSideMenu()
     }
     
-    // handel pan gesture
+    // MARK: Handel pan Gesture
     @objc func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: view)
         
@@ -163,11 +142,10 @@ class HomeViewController: UIViewController{
                 sideMenuOpen = false
             }
         }
-        
         gesture.setTranslation(.zero, in: view)
     }
     
-    // open side menu code
+    // MARK: SIDE MENU OPEN
     func openSideMenu() {
         sideMenuOpen = true
         UIView.animate(withDuration: 0.3) {
@@ -180,17 +158,15 @@ class HomeViewController: UIViewController{
             self.mainMenuTrailingConstrain.constant =  self.sideMenuContainer.frame.width
             self.view.layoutIfNeeded()
         }
-        
-        
     }
     
-    // close side menu code
+    // MARK: SIDE MENU CLOSE
     func closeSideMenu() {
         sideMenuOpen = false
         UIView.animate(withDuration: 0.3) {
             self.mainView.removeGestureRecognizer(self.tapGesture)
             self.parentView.removeGestureRecognizer(self.tapGesture)
-            self.view.backgroundColor = #colorLiteral(red: 0.9599440694, green: 0.02287241258, blue: 0.09069452435, alpha: 1)
+            self.view.backgroundColor = ColorConstant.primary_red
             self.sideMenuLeadingConstraint.constant = -self.sideMenuContainer.frame.width
             self.MainMenuLeadingConstraint.constant = 0
             self.mainMenutopConstraint.constant = 0
@@ -200,10 +176,8 @@ class HomeViewController: UIViewController{
             self.view.layoutIfNeeded()
         }
     }
-    var currentscrollIndex = 1
-    var contentOffset = CGPoint()
+    
     @IBAction func PageControlAction(_ sender: UIPageControl) {
-        
         let presentSelected = sender.currentPage
         let cellSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
         
@@ -214,8 +188,7 @@ class HomeViewController: UIViewController{
         homeCollectionView.setContentOffset(CGPoint(x: targetOffsetX, y: contentOffset.y), animated: true)
     }
     
-    // auto scroll code
-    var timer : Timer?
+    // MARK: TIMER FOR COLLECTION VIEW
     func startTimer() {
         timer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(scrollToNextItem), userInfo: nil, repeats: true)
     }
@@ -223,7 +196,7 @@ class HomeViewController: UIViewController{
     @objc func scrollToNextItem() {
         let cellSize = CGSize(width: self.view.frame.width, height: self.view.frame.height)
         
-        if currentscrollIndex >= categoryData.count {
+        if currentscrollIndex >= viewmodel.categoryData.count {
             pageControl.currentPage = 0
             currentscrollIndex = 0
             homeCollectionView.setContentOffset(CGPoint(x: 0, y: contentOffset.y), animated: true)
@@ -234,7 +207,6 @@ class HomeViewController: UIViewController{
             currentscrollIndex += 1
         }
     }
-    
 }
 
 
@@ -258,30 +230,32 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == homeCollectionView{
-            return collectionViewImages.count
+            return viewmodel.collectionViewImages.count
         }else{
-            return categoryData.count
+            return viewmodel.categoryData.count
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
         if collectionView == homeCollectionView{
-            
             let collectionviewcell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionviewcell", for: indexPath) as! HomeCollectionViewCell
-            
-            collectionviewcell.cellImage.image = UIImage(named: collectionViewImages[indexPath.row])
+            collectionviewcell.cellImage.image = UIImage(named: viewmodel.collectionViewImages[indexPath.row])
             return collectionviewcell
-            
         }else{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoryCollectionCell
-            cell.setContraints(lblname: categoryData[indexPath.row]["name"] as! String,
-                               lblPosition: categoryData[indexPath.row]["lblPosition"] as! positions,
-                               imgName: categoryData[indexPath.row]["imgName"] as! String,
-                               imgPosition: categoryData[indexPath.row]["imgPosition"] as! positions)
+            cell.setContraints(lblname: viewmodel.categoryData[indexPath.row]["name"] as! String,
+                               lblPosition: viewmodel.categoryData[indexPath.row]["lblPosition"] as! positions,
+                               imgName: viewmodel.categoryData[indexPath.row]["imgName"] as! String,
+                               imgPosition: viewmodel.categoryData[indexPath.row]["imgPosition"] as! positions)
             return cell
         }
+        
     }
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         if collectionView == categoryCollectionView{
             let selectedId = indexPath.row + 1
             print(selectedId)
@@ -290,11 +264,10 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
             self.navigationController?.pushViewController(productViewController, animated: true)
         }
     }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let width = scrollView.frame.width
         let currentPage = Int((scrollView.contentOffset.x + width / 2) / width)
         pageControl.currentPage = currentPage
     }
-    
-    
 }

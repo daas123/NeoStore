@@ -7,93 +7,121 @@
 
 import UIKit
 
-class RegisterViewController: UIViewController, UITextFieldDelegate{
+class RegisterViewController: BaseViewController{
+    // MARK: File variable
+    var gender:String?
+    var chkbtn = false
+    let viewModel = RegisterViewModel()
     
-    var originalViewYPosition: CGFloat = 0.0
+    // MARK: IBOutlet for Uiview
     @IBOutlet var registerDetailsView: [UIView]!
-    
     @IBOutlet weak var scrollView: UIScrollView!
     
-    // user registration feilds
-    
+    // MARK: IBOutlet for Textfields
     @IBOutlet weak var registerFirstname: UITextField!
     @IBOutlet weak var registerlastname: UITextField!
     @IBOutlet weak var registerEmail: UITextField!
     @IBOutlet weak var registerPassword: UITextField?
     @IBOutlet weak var registerConformPassword: UITextField!
     @IBOutlet weak var registerPhoneNumber: UITextField?
-    var gender:String?
     
-    // male button and female button
-    
+    // MARK: IBOutlet for Button
     @IBOutlet weak var registerFemaleradio: UIButton!
     @IBOutlet weak var registerMaleRadio: UIButton!
-    
-    // chk box
-    
     @IBOutlet weak var registerchkBox: UIButton!
     
-    // view model
-    let viewModel = RegisterViewModel()
-    var chkbtn = false
-    
+    // MARK: ViewDidload
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-
-        navigationController?.isNavigationBarHidden = false
-        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
-        // navigation bar back text
-        navigationController?.navigationBar.backItem?.title = ""
-        // navigation bar items color
-        navigationController?.navigationBar.tintColor = UIColor.white
-        navigationController?.navigationBar.backgroundColor = #colorLiteral(red: 0.9568627451, green: 0.09411764706, blue: 0.05490196078, alpha: 1)
         
-        title = "Register"
+        // MARK: Setting scroll View in base view controller
+        baseScrollView = scrollView
+        
+        // MARK: Page Title
+        title = pageTitleConstant.register
+        
+        // MARK: Creating the border
         for registerViews in registerDetailsView{
             registerViews.layer.borderWidth = 2
             registerViews.layer.borderColor = UIColor.white.cgColor
         }
         
+        // MARK: Male Female Radio Btn Defalut Images
+        setDefaultImages()
         
-        // for radio button of register page
-        registerMaleRadio.setImage(UIImage(systemName: "circle"), for: .normal)
-        registerMaleRadio.setImage(UIImage(systemName: "circle.fill"), for: .selected)
-        registerFemaleradio.setImage(UIImage(systemName: "circle"), for: .normal)
-        registerFemaleradio.setImage(UIImage(systemName: "circle.fill"), for: .selected)
+        // MARK: TextField Deligate
+        setTextFieldDeligates()
         
-        
-        registerchkBox.setImage(UIImage(systemName: "square"), for: .normal)
-        registerchkBox.setImage(UIImage(systemName: "checkmark.square"), for: .selected)
-        
-        
-        
-        // for keyboard
+        // MARK: Tap Guesture For View
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tapGesture)
         
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        originalViewYPosition = view.frame.origin.y
-        
+    }
+    
+    //MARK: Default Images
+    func setDefaultImages(){
+        registerMaleRadio.setImage(UIImage(systemName: ImageConstants.circle), for: .normal)
+        registerMaleRadio.setImage(UIImage(systemName: ImageConstants.circle_fill), for: .selected)
+        registerFemaleradio.setImage(UIImage(systemName: ImageConstants.circle), for: .normal)
+        registerFemaleradio.setImage(UIImage(systemName: ImageConstants.circle_fill), for: .selected)
+        registerchkBox.setImage(UIImage(systemName: ImageConstants.square), for: .normal)
+        registerchkBox.setImage(UIImage(systemName: ImageConstants.square_fill), for: .selected)
+    }
+    
+    //MARK: VD Func Settitng the deligate for textfields
+    func setTextFieldDeligates(){
         registerFirstname.delegate = self
-        registerFirstname.tag = 0
         registerlastname.delegate = self
-        registerlastname.tag = 1
         registerEmail.delegate = self
-        registerEmail.tag = 2
         registerPassword?.delegate = self
         registerConformPassword.delegate = self
         registerPhoneNumber?.delegate = self
-        
-        
-        
-        
     }
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
+    
+    @IBAction func radioTapped(_ sender: UIButton) {
+        if sender == registerMaleRadio{
+            gender = GenderConstant.male
+            registerMaleRadio.isSelected = true
+            registerFemaleradio.isSelected = false
+        }else{
+            gender = GenderConstant.female
+            registerMaleRadio.isSelected = false
+            registerFemaleradio.isSelected = true
+        }
     }
+    
+    @IBAction func checkbutton(_ sender: UIButton) {
+        if chkbtn {
+            registerchkBox.isSelected = true
+            chkbtn = false
+        }else{
+            registerchkBox.isSelected = false
+            chkbtn = true
+        }
+    }
+    
+    @IBAction func registerButtonAction(_ sender: UIButton) {
+        self.startActivityIndicator()
+        viewModel.registervalidation(Fname: registerFirstname.text ?? "", Lname: registerlastname.text ?? "", Email: registerEmail.text ?? "", Pass: registerPassword?.text ?? "", Cpass: registerConformPassword?.text ?? "", Gender: gender ?? GenderConstant.NaN , Phone: registerPhoneNumber?.text ?? "", chkBox: registerchkBox.isSelected ){
+            (validateBool , resultStrng) in
+            DispatchQueue.main.async {
+                if validateBool{
+                    self.navigationController?.pushViewController(LoginViewController(nibName:"LoginViewController", bundle: nil), animated: true)
+                    self.showAlert(msg: resultStrng)
+                }else{
+                    self.showAlert(msg: resultStrng)
+                }
+                self.stopActivityIndicator()
+            }
+        }
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+}
+extension RegisterViewController : UITextFieldDelegate{
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case registerFirstname:
@@ -105,84 +133,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate{
         case registerPassword:
             registerConformPassword.becomeFirstResponder()
         case registerConformPassword:
-            registerPhoneNumber?.resignFirstResponder() // Hide the keyboard when pressing return on the last field
+            registerPhoneNumber?.resignFirstResponder()
         default:
             break
         }
-        
         return true
-    }
-
-    
-    @objc func keyboardWillShow(_ notification: Notification) {
-        if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
-            let keyboardHeight = keyboardFrame.height
-            
-            // Check if the active text field is not FirstName or LastName
-            if let activeTextField = UIResponder.currentFirstResponder as? UITextField,
-               activeTextField != registerFirstname && activeTextField != registerlastname {
-                UIView.animate(withDuration: 0.3) {
-                    var contentInset:UIEdgeInsets = self.scrollView.contentInset
-                            contentInset.bottom = keyboardFrame.size.height + 20
-                    self.scrollView.contentInset = contentInset
-                }
-                
-            }
-        }
-    }
-    @objc func keyboardWillHide(_ notification: Notification) {
-        UIView.animate(withDuration: 0.3) {
-            // Restore the view to its original position
-            self.scrollView.contentInset = UIEdgeInsets.zero
-        }
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
-    @IBAction func radioTapped(_ sender: UIButton) {
-        if sender == registerMaleRadio{
-            gender = "M"
-            registerMaleRadio.isSelected = true
-            registerFemaleradio.isSelected = false
-        }
-        else{
-            gender = "F"
-            registerMaleRadio.isSelected = false
-            registerFemaleradio.isSelected = true
-        }
-    }
-    
-    @IBAction func checkbutton(_ sender: UIButton) {
-        if chkbtn {
-            registerchkBox.isSelected = true
-            chkbtn = false
-            
-            
-        }else{
-            registerchkBox.isSelected = false
-            chkbtn = true
-            
-        }
-    }
-    
-    
-    @IBAction func registerButtonAction(_ sender: UIButton) {
-        self.startActivityIndicator()
-        viewModel.registervalidation(Fname: registerFirstname.text ?? "", Lname: registerlastname.text ?? "", Email: registerEmail.text ?? "", Pass: registerPassword?.text ?? "", Cpass: registerConformPassword?.text ?? "", Gender: gender ?? "Nan" , Phone: registerPhoneNumber?.text ?? "", chkBox: registerchkBox.isSelected ){
-            (validateBool , resultStrng) in
-            DispatchQueue.main.async {
-                if validateBool{
-                    self.navigationController?.pushViewController(LoginViewController(nibName:"LoginViewController", bundle: nil), animated: true)
-                    self.showAlert(msg: resultStrng)
-                }else{
-                    self.showAlert(msg: resultStrng)
-                }
-                self.stopActivityIndicator()
-            }
-            
-        }
     }
 }

@@ -6,67 +6,78 @@
 //
 
 import UIKit
-class LoginViewController: UIViewController {
+class LoginViewController: BaseViewController {
     
+    // MARK: FILE CONSTANT
+    let viewmodel = loginViewModel()
+    var islogin = true
+    
+    // MARK: BACK NAVIGATION BTN
     @IBOutlet weak var navigationback: UIButton!
+    
+    // MARK: REGISTER BTN
     @IBOutlet weak var dontHaveaccoutButton: UIButton!
     @IBOutlet weak var plusButton: UIButton!
+    
+    // MARK: FORGET PASSWORD
     @IBOutlet weak var forgetPassword: UIButton!
+    
+    // MARK: LOGIN BTN
     @IBOutlet weak var loginButton: UIButton!
+    
+    // MARK: SCROLLVIEW VIEW
     @IBOutlet weak var parentViewTapGuesture: UIView!
+    
+    // MARK: COLLECTION OF UIVIEW
     @IBOutlet var personDetailsview: [UIView]!
+    
+    // MARK: TEXT FIELD
     @IBOutlet weak var loginUsername: UITextField!
     @IBOutlet weak var loginPassword: UITextField!
-    @IBOutlet weak var passwordView: UIView!
-    let viewmodel = loginViewModel()
     
+    // MARK: FOR PASSWORD VIEW
+    @IBOutlet weak var passwordView: UIView!
+    
+    // MARK: ViewWillApper
+    // used because when user come here after logout then in that case navigation mus tbe hidden
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
     }
+    
+    //
+    
+    
+    // MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        //wrong
-        navigationController?.isNavigationBarHidden = true
-        let backButton = UIBarButtonItem()
-        backButton.title = "" // Set an empty title
-        navigationItem.backBarButtonItem = backButton
-        
         for userview in personDetailsview{
-            
             userview.layer.borderWidth = 1.0
             userview.layer.borderColor = UIColor.white.cgColor
         }
-        loginPassword.delegate = self
-        loginUsername.delegate = self
+        // MARK: Textfield Deligate
+        setTexfiedDeligate()
         
-        //wrong
-        // adding the tap guesture
+        // MARK: TapGesture For ParentView
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.parentViewTapGuesture.addGestureRecognizer(tapGesture)
     }
     
-    @objc func dismissKeyboard() {
-        self.parentViewTapGuesture.endEditing(true)
+    func setTexfiedDeligate(){
+        loginPassword.delegate = self
+        loginUsername.delegate = self
     }
-    
-    
-    
+
     @IBAction func LoginButtonAction(_ sender: UIButton) {
-        
-        //wrong
-        if sender.titleLabel?.text == "LOGIN" {
+        if islogin {
             self.startActivityIndicator()
             viewmodel.loginValidation(email: loginUsername.text ?? "", password: loginPassword.text ?? ""){
                 (validationCheck,msgString) in
                 DispatchQueue.main.async {
                     if validationCheck{
-                        self.navigationController?.pushViewController(HomeViewController(nibName: "HomeViewController", bundle: nil), animated: true)
-                        
-                        //                    self.showAlert(msg: msgString)
+                        self.navigationController?.pushViewController(HomeViewController(nibName:"HomeViewController", bundle: nil), animated: true)
                     }else{
                         self.showAlert(msg: msgString)
                         self.stopActivityIndicator()
-                        
                     }
                 }
             }
@@ -77,7 +88,7 @@ class LoginViewController: UIViewController {
                 DispatchQueue.main.async {
                     if responce{
                         self.stopActivityIndicator()
-                        self.showAlert(msg: "password send succesfuly")
+                        self.showAlert(msg: alertMsgConstant.password_send_succesfully)
                     }else{
                         self.stopActivityIndicator()
                         self.showAlert(msg: msg)
@@ -87,17 +98,17 @@ class LoginViewController: UIViewController {
             
         }
     }
+    
     @IBAction func registerButtonAction(_ sender: UIButton) {
-        let vc =  RegisterViewController(nibName: "RegisterViewController", bundle: nil)
-        navigationController?.pushViewController(vc, animated: true)
+        navigationController?.pushViewController(RegisterViewController(nibName:"RegisterViewController", bundle: nil), animated: true)
     }
     
     @IBAction func forgetPasswordAction(_ sender: UIButton) {
-        let attributedString = NSMutableAttributedString(string: "SEND EMAIL")
+        islogin = false
+        let attributedString = NSMutableAttributedString(string: btnString.sendEmail)
         let range = NSRange(location: 0, length: 10)
         attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
         loginButton.setAttributedTitle(attributedString, for: .normal)
-        
         passwordView.isHidden = true
         forgetPassword.isHidden = true
         dontHaveaccoutButton.isHidden = true
@@ -106,35 +117,30 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func cancelButtonAction(_ sender: UIButton) {
+        islogin = true
         passwordView.isHidden = false
         navigationback.isHidden = true
         forgetPassword.isHidden = false
         dontHaveaccoutButton.isHidden = false
         plusButton.isHidden = false
-        let attributedString = NSMutableAttributedString(string: "LOGIN")
+        let attributedString = NSMutableAttributedString(string: btnString.login)
         let range = NSRange(location: 0, length: 5)
         attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
         loginButton.setAttributedTitle(attributedString, for: .normal)
         
     }
-    
-    
 }
 
-
 extension LoginViewController: UITextFieldDelegate {
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
         case loginUsername:
             loginPassword.becomeFirstResponder()
         case loginPassword:
-            loginPassword.resignFirstResponder() // Hide the keyboard when pressing return on the last field
+            loginPassword.resignFirstResponder()
         default:
             break
         }
-        
         return true
     }
-    
 }

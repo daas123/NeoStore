@@ -75,7 +75,7 @@ class validation{
             return
         }
         
-        guard let gender = Gender, !gender.isEmpty , gender != "Nan" else {
+        guard let gender = Gender, !gender.isEmpty , gender != "NaN" else {
             completion(false, "Please select a Gender.")
             return
         }

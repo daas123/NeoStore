@@ -7,63 +7,59 @@
 
 import UIKit
 
-class AddressListViewController: UIViewController {
+class AddressListViewController: BaseViewController {
+    
     var selectedIndexPath: IndexPath?
-    @IBOutlet weak var orderButton: UIButton!
     var viewModel = AddAddressViewModel()
+    
+    @IBOutlet weak var orderButton: UIButton!
     @IBOutlet weak var addressListTableview: UITableView!
+    
     override func viewWillAppear(_ animated: Bool) {
         addressListTableview.reloadData()
-        if viewModel.addressData.count >= 0 {
-            let attributedString = NSMutableAttributedString(string: "ORDER")
-            let range = NSRange(location: 0, length: 5)
-            attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
-            orderButton.setAttributedTitle(attributedString, for: .normal)
-        }
+        setButtonText()
         
     }
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        addressListTableview.separatorStyle = .none
-
-        addressListTableview.delegate = self
-        addressListTableview.dataSource = self
-        
+        self.navigationItem.title = pageTitleConstant.selectAddress
+        addNavigationButton()
+        setButtonText()
+        registerNib()
+        setDeligate()
+    }
+    func addNavigationButton(){
+        let searchButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addAddressbutton))
+        navigationItem.rightBarButtonItem = searchButton
+    }
+    
+    func registerNib(){
         addressListTableview.register(UINib(nibName: "FirstViewCell", bundle: nil), forCellReuseIdentifier: "FirstViewCell")
         addressListTableview.register(UINib(nibName: "AddressListCell", bundle: nil), forCellReuseIdentifier: "AddressListCell")
         addressListTableview.register(UINib(nibName: "PlaceOrderCell", bundle: nil), forCellReuseIdentifier: "PlaceOrderCell")
         addressListTableview.register(UINib(nibName: "AddAddressCell", bundle: nil), forCellReuseIdentifier: "AddAddressCell")
-        
-        
-        // nvigation
-        navigationController?.isNavigationBarHidden = false
-        // for removing back button title
-        let backButton = UIBarButtonItem()
-        backButton.title = "" // Set an empty title
-        navigationItem.backBarButtonItem = backButton
-        
-        // navigation bar back image
-        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
-        
-        // navigation bar back text
-        navigationController?.navigationBar.backItem?.title = ""
-        
-        // navigation bar items color
-        navigationController?.navigationBar.tintColor = UIColor.white
-        
-        // addding search bitton on screen
-        let searchButton = UIBarButtonItem(image: UIImage(systemName: "plus"), style: .plain, target: self, action: #selector(addAddressbutton))
-        navigationItem.rightBarButtonItem = searchButton
-        self.navigationItem.title = "Select Address"
-        
+    }
+    
+    func setDeligate(){
+        addressListTableview.separatorStyle = .none
+        addressListTableview.delegate = self
+        addressListTableview.dataSource = self
+    }
+    
+    func setButtonText(){
         if viewModel.addressData.count >= 0 {
             let attributedString = NSMutableAttributedString(string: "ORDER")
             let range = NSRange(location: 0, length: 5)
             attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
             orderButton.setAttributedTitle(attributedString, for: .normal)
+        }else{
+            let attributedString = NSMutableAttributedString(string: "Add Address")
+            let range = NSRange(location: 0, length: 11)
+            attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
+            orderButton.setAttributedTitle(attributedString, for: .normal)
         }
     }
+    
     @objc func addAddressbutton() {
         navigationController?.pushViewController(AddAddressController(nibName: "AddAddressController", bundle: nil), animated: true)
     }
@@ -76,8 +72,7 @@ class AddressListViewController: UIViewController {
     @IBAction func orderButtonAction(_ sender: UIButton) {
         if selectedIndexPath != nil{
             if sender.titleLabel?.text == "ORDER" {
-                let selecteddata = dataCollection(index: 1-(selectedIndexPath?.row ?? 0))
-                
+                let selecteddata = dataCollection(index: (selectedIndexPath?.row ?? 0)-1)
                 viewModel.OrderCart(address: selecteddata){
                     responce in
                     DispatchQueue.main.async {
@@ -103,9 +98,11 @@ class AddressListViewController: UIViewController {
     }
     
 }
+
 extension AddressListViewController : UITableViewDelegate ,UITableViewDataSource{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if viewModel.addressData.count == 0 {
+        if viewModel.addressData.isEmpty{
             return 1
         }else{
             return viewModel.addressData.count + 1
@@ -113,7 +110,7 @@ extension AddressListViewController : UITableViewDelegate ,UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if viewModel.addressData.count == 0{
+        if viewModel.addressData.isEmpty{
             let cell = tableView.dequeueReusableCell(withIdentifier: "AddAddressCell", for: indexPath) as! AddAddressCell
             cell.selectionStyle = .none
             return cell
@@ -134,69 +131,71 @@ extension AddressListViewController : UITableViewDelegate ,UITableViewDataSource
             return cell
         }
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if viewModel.addressData.count == 0{
             navigationController?.pushViewController(AddAddressController(nibName: "AddAddressController", bundle: nil), animated: true)
         }
         if indexPath != selectedIndexPath {
-                selectedIndexPath = indexPath
-                tableView.reloadData()
+            selectedIndexPath = IndexPath(row: indexPath.row, section: indexPath.section)
+            tableView.reloadData()
         }
     }
-
     
-    // for deleting
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
     }
     
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        if editingStyle == .delete
-        {
-            var addresses = viewModel.addressData
-            addresses.remove(at: indexPath.row-1)
-            viewModel.addressData = addresses
-            tableView.reloadData()
-            selectedIndexPath = nil
-            if viewModel.addressData.count <= 0{
-                let attributedString = NSMutableAttributedString(string: "Add Address")
-                let range = NSRange(location: 0, length: 11)
-                attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
-                orderButton.setAttributedTitle(attributedString, for: .normal)
-            }
-        } else {
-            print("no data")
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: "") { (_, _, completionHandler) in
+            let alert = UIAlertController(title: alertMsgConstant.conformDeletion, message: "\(alertMsgConstant.deleteConformMsg)", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: alertMsgConstant.cancel, style: .cancel, handler: { (_) in
+                completionHandler(false) // Do not perform the delete action
+            }))
+            alert.addAction(UIAlertAction(title: alertMsgConstant.delete, style: .destructive, handler: { (_) in
+                // Perform the delete action
+                var addresses = self.viewModel.addressData
+                addresses.remove(at: indexPath.row-1)
+                self.viewModel.addressData = addresses
+                tableView.reloadData()
+                self.selectedIndexPath = nil
+                self.setButtonText()
+                completionHandler(true)
+            }))
+            self.present(alert, animated: true, completion: nil)
         }
+        
+        deleteAction.image = UIImage(systemName: ImageConstants.trash) // Set your delete button image
+        
+        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        return configuration
     }
     
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false
     }
     
-    
 }
 
 extension AddressListViewController : RemoveCell{
     func removeAddressCell(index: Int) {
-        var addresses = viewModel.addressData
-        addresses.remove(at: index )
-        viewModel.addressData = addresses
-        addressListTableview.reloadData()
-        selectedIndexPath = nil
-        if viewModel.addressData.count <= 0{
-            let attributedString = NSMutableAttributedString(string: "Add Address")
-            let range = NSRange(location: 0, length: 11)
-            attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
-            orderButton.setAttributedTitle(attributedString, for: .normal)
-        }
+        let alert = UIAlertController(title: alertMsgConstant.conformDeletion, message: "\(alertMsgConstant.deleteConformMsg)", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: alertMsgConstant.cancel, style: .cancel))
+        alert.addAction(UIAlertAction(title: alertMsgConstant.delete, style: .destructive, handler: { (_) in
+            // Perform the delete action
+            var addresses = self.viewModel.addressData
+            addresses.remove(at: index )
+            self.viewModel.addressData = addresses
+            self.addressListTableview.reloadData()
+            self.selectedIndexPath = nil
+            self.setButtonText()
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
-    
-    
 }
+
+

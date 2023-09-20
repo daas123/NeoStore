@@ -8,7 +8,7 @@
 import UIKit
 
 class ProductDetailsCartCell: UITableViewCell {
-    // picker view    
+    // MARK: FILE VARIABLE
     var index : Int?
     
     @IBOutlet weak var pickerBackgroundView: UIView!
@@ -17,10 +17,10 @@ class ProductDetailsCartCell: UITableViewCell {
     @IBOutlet weak var cartProductName: UILabel!
     @IBOutlet weak var cartProuductTotalCost: UILabel!
     @IBOutlet weak var cartProductCategory: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         pickerBackgroundView.layer.cornerRadius = 4
-        // Initialization code
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

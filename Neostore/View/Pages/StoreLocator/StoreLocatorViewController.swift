@@ -1,63 +1,54 @@
-
-
 import GoogleMaps
 import GooglePlaces
 import UIKit
 import CoreLocation
 
-class StoreLocatorViewController: UIViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
+class StoreLocatorViewController: BaseViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
 
+    // MARK: FILE VARIABLE
     let locationManager = CLLocationManager()
-    let apiKey = "AIzaSyDu8Jcaz3rWu-e9I8xP2y2hSWnXYnW6IfY" // Replace with your actual API key
+    let apiKey = apikeyConstant.googleMapApiKeyPaid
     var mapView: GMSMapView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.isNavigationBarHidden = false
-        // for removing back button title
-        let backButton = UIBarButtonItem()
-        backButton.title = "" // Set an empty title
-        navigationItem.backBarButtonItem = backButton
-        title = "Near By Store"
-        // navigation bar back image
-        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
-        
-        // navigation bar back text
-        navigationController?.navigationBar.backItem?.title = ""
-        
-        // navigation bar items color
-        navigationController?.navigationBar.tintColor = UIColor.white
-        // Initialize the map view
+        setInitalMapCamara()
+        setupDeligate()
+        activatingGpsButton()
+        setlocationFirstTime()
+    }
+    
+    func setInitalMapCamara(){
         let camera = GMSCameraPosition.camera(withLatitude: 0, longitude: 0, zoom: 15.0)
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(mapView)
-
-        // Constrain the map view
         NSLayoutConstraint.activate([
             mapView.topAnchor.constraint(equalTo: view.topAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             mapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             mapView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
-
-        // Set the delegate for the map view
+    }
+    
+    func setupDeligate(){
         mapView.delegate = self
-        mapView.settings.myLocationButton = true
-
-        // Enable the "My Location" button
-        mapView.isMyLocationEnabled = true
-
-        // Request location authorization and start updating location
         locationManager.delegate = self
+    }
+    
+    func activatingGpsButton(){
+        mapView.settings.myLocationButton = true
+        mapView.isMyLocationEnabled = true
+    }
+    
+    func setlocationFirstTime(){
         locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.startUpdatingLocation()
     }
-
+    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let userLocation = locations.first {
-            // Make an API request to find nearby nature locations.
             findNearbyNatureLocations(userLocation: userLocation)
         }
     }
@@ -132,11 +123,3 @@ class StoreLocatorViewController: UIViewController, CLLocationManagerDelegate, G
         task.resume()
     }
 }
-
-
-
-
-
-
-
-

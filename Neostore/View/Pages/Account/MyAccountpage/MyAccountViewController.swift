@@ -9,10 +9,14 @@ import UIKit
 
 class MyAccountViewController: UIViewController,UITextFieldDelegate {
     
+    // MARK: file varible
     let viewModel = SideMenuViewmodel()
-    //    var accessToken
     var accesstoken : String?
     var image: UIImage?
+    var originalViewYPosition: CGFloat = 0.0
+    let datePicker = UIPickerView()
+    var selectedDate = ""
+    let imagePicker = UIImagePickerController()
 
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var mainbackView: UIView!
@@ -23,16 +27,10 @@ class MyAccountViewController: UIViewController,UITextFieldDelegate {
     @IBOutlet weak var accountPhoneNo: UITextField!
     @IBOutlet weak var accountDateOfBirth: UITextField!
     @IBOutlet weak var editbutton: UIButton!
-    
     @IBOutlet weak var accountImage: UIImageView!
     @IBOutlet weak var cancelButton: UIButton!
-    var originalViewYPosition: CGFloat = 0.0
-    let datePicker = UIPickerView()
-    var selectedDate = ""
-    let imagePicker = UIImagePickerController()
     
-    //
-    //pickerview data
+    
     let days = Array(1...31)
     let months = Array(1...12)
     let minYear = 1970
@@ -43,15 +41,14 @@ class MyAccountViewController: UIViewController,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        accountImage.image = UIImage(named: "saad")
-        accountImage.layer.cornerRadius = accountImage.frame.size.width / 2
-        accountImage.clipsToBounds = true
+        
+        setupImage()
         
         for textViews in myAccountTextViews{
             textViews.layer.borderWidth = 1
             textViews.layer.borderColor = UIColor.white.cgColor
         }
-        self.stopActivityIndicator()
+        
         navigationController?.isNavigationBarHidden = false
         // for activating navigation bar
         
@@ -122,6 +119,12 @@ class MyAccountViewController: UIViewController,UITextFieldDelegate {
         accountPhoneNo.delegate = self
         fillData()
         
+    }
+    
+    func setupImage(){
+        accountImage.image = UIImage(named: ImageConstants.default_img)
+        accountImage.layer.cornerRadius = accountImage.frame.size.width / 2
+        accountImage.clipsToBounds = true
     }
     
     @objc func handleImageTap() {

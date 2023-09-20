@@ -7,42 +7,27 @@
 
 import UIKit
 
-class MyOrdersViewController: UIViewController {
+class MyOrdersViewController: BaseViewController {
     
     let viewModel = OrderListViewModel()
-
+    
     @IBOutlet weak var ordersPageTableview: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.isNavigationBarHidden = false
-        // for activating navigation bar
-        
-        // for removing back button title
-        let backButton = UIBarButtonItem()
-        backButton.title = "" // Set an empty title
-        navigationItem.backBarButtonItem = backButton
-        
-        // navigation bar back image
-        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
-        
-        // navigation bar back text
-        navigationController?.navigationBar.backItem?.title = ""
-        
-        // navigation bar items color
-        navigationController?.navigationBar.tintColor = UIColor.white
-        
-        
-        // setting title for navigation bar
-        title = "Order List"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        
-        
+        setTitle(titleString: pageTitleConstant.My_Orders)
+        setDeligate()
+        registerCell()
+        getdata()
+    }
+    
+    func registerCell(){
+        ordersPageTableview.register(UINib(nibName: "OrderIdCell", bundle: nil), forCellReuseIdentifier: "OrderIdCell")
+    }
+    
+    func setDeligate(){
         ordersPageTableview.delegate = self
         ordersPageTableview.dataSource = self
-        
-        ordersPageTableview.register(UINib(nibName: "OrderIdCell", bundle: nil), forCellReuseIdentifier: "OrderIdCell")
-        // Do any additional setup after loading the view.
-        getdata()
     }
     
     func getdata(){
@@ -52,17 +37,16 @@ class MyOrdersViewController: UIViewController {
                 if responce{
                     self.ordersPageTableview.reloadData()
                 }else{
-                    self.showAlert(msg: "erorr")
+                    self.showAlert(msg: errorConstant.error)
                 }
             }
             
         }
     }
-
-
-
+    
 }
 extension MyOrdersViewController : UITableViewDelegate,UITableViewDataSource{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.OrderListData?.data.count ?? 0
     }
@@ -74,6 +58,7 @@ extension MyOrdersViewController : UITableViewDelegate,UITableViewDataSource{
         cell.orderListTotalCost.text = String(viewModel.OrderListData?.data[indexPath.row].cost ?? 0)
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let OrderIdViewController = OrderIdViewController(nibName: "OrderIdViewController", bundle: nil)
         OrderIdViewController.orderDetialId = viewModel.OrderListData?.data[indexPath.row].id ?? 0

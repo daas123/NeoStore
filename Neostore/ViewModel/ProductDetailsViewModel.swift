@@ -10,7 +10,6 @@ import Foundation
 protocol GetDetailsPageDetails{
     func GetTitle()->String
     func GetProducer()->String
-//    func GetCategory()->String
     func Getcost()->Int
     func GetRating()->Int
     func GetimageCount()->Int
