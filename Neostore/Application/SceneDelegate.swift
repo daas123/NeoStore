@@ -1,22 +1,6 @@
 //
 //  SceneDelegate.swift
 //  Neostore
-//
-//  Created by Neosoft on 17/08/23.
-//guard let windowScene = (scene as? UIWindowScene) else { return }
-//let window = UIWindow(windowScene: windowScene)
-//let viewController : UIViewController
-//// Create your view controller
-//if UserDefaults.standard.string(forKey: "accessToken") == nil || UserDefaults.standard.string(forKey: "accessToken") == ""{
-//    viewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
-//} else {
-//    viewController = HomeContainerViewController()
-//}
-//// Create a navigation controller if needed
-//let navigationController = UINavigationController(rootViewController: viewController)
-//window.rootViewController = navigationController // or viewController if not using navigation controller
-//self.window = window
-//window.makeKeyAndVisible()
 
 import UIKit
 

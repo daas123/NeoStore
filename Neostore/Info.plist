@@ -2,8 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>NSLocationWhenInUseUsageDescription</key>
-    <string>We need your location to display nearby stores on the map.</string>
 	<key>GOOGLE_MAPS_API_KEY</key>
 	<string>AIzaSyAA7uG3pNZSYY5-nW3pa9QqO4SXelAGSoE</string>
 	<key>NSAppTransportSecurity</key>

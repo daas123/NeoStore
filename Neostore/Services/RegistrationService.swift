@@ -27,23 +27,3 @@ class RegisterWebService {
         }
     }
 }
-
-//
-//func RegisterAction(Fname:String? , Lname:String? ,Email:String?,Pass :String?,Cpass:String? ,Gender:String?,Phone:String?, chkBox:Bool? , complition : @escaping (Result<User,Error>)->Void){
-//    let param = ["first_name": Fname, "last_name": Lname, "email": Email, "password": Pass, "confirm_password": Cpass, "gender": Gender, "phone_no": Phone]
-//    APIManager.shared.callRequest(apiCallType: .userRegister(param: param)){
-//        (responce) in
-//        switch responce{
-//        case .success(let data):
-//            do{
-//                let jsondata = try? JSONDecoder().decode(User.self, from: data)
-//                complition(.success(jsondata!))
-//            }catch{
-//                complition(.failure(error))
-//            }
-//        case .failure(let error):
-//            complition(.failure(error))
-//        }
-//    }
-//
-//}

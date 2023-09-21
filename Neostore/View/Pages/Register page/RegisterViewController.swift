@@ -38,7 +38,7 @@ class RegisterViewController: BaseViewController{
         baseScrollView = scrollView
         
         // MARK: Page Title
-        title = pageTitleConstant.register
+        setTitle(titleString: pageTitleConstant.register )
         
         // MARK: Creating the border
         for registerViews in registerDetailsView{

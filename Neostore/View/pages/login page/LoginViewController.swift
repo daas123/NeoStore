@@ -67,6 +67,9 @@ class LoginViewController: BaseViewController {
         loginUsername.delegate = self
     }
 
+    static func loadFromNib()-> UIViewController{
+        return LoginViewController(nibName: "LoginViewController", bundle: nil)
+    }
     @IBAction func LoginButtonAction(_ sender: UIButton) {
         if islogin {
             self.startActivityIndicator()

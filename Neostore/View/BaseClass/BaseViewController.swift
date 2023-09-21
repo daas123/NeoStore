@@ -8,6 +8,7 @@
 import UIKit
 
 class BaseViewController: UIViewController {
+    // MARK: FILE CONSTANT
     var originalViewYPosition: CGFloat = 0.0
     var baseScrollView : UIScrollView?
     override func viewDidLoad() {
@@ -59,8 +60,8 @@ class BaseViewController: UIViewController {
     }
     @objc func keyboardWillShow(_ notification: Notification) {
         if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
-            let keyboardHeight = keyboardFrame.height
-            if let activeTextField = UIResponder.currentFirstResponder as? UITextField{
+            _ = keyboardFrame.height
+            if UIResponder.currentFirstResponder is UITextField{
                 UIView.animate(withDuration: 0.3) {
                     var contentInset:UIEdgeInsets = self.baseScrollView?.contentInset ?? UIEdgeInsets.zero
                     contentInset.bottom = keyboardFrame.size.height + 20

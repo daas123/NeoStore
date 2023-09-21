@@ -45,7 +45,7 @@ class SideMenuViewController: UIViewController {
     }
     
     func setupSideMenuImage(){
-        sideMenuImage.image = UIImage(named: ImageConstants.side_menu_Image)
+        sideMenuImage.image = UIImage(named: ImageConstants.default_img)
         sideMenuImage.layer.cornerRadius = sideMenuImage.frame.size.width / 2
         sideMenuImage.clipsToBounds = true
     }
@@ -77,7 +77,7 @@ class SideMenuViewController: UIViewController {
                         }
                     }else{
                         DispatchQueue.main.async {
-                            self.sideMenuImage.image = UIImage(named: ImageConstants.user_Defaults)
+                            self.sideMenuImage.image = UIImage(named: ImageConstants.default_img)
                         }
                     }
                 }

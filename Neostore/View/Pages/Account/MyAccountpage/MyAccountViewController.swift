@@ -7,13 +7,12 @@
 
 import UIKit
 
-class MyAccountViewController: UIViewController,UITextFieldDelegate {
+class MyAccountViewController: BaseViewController,UITextFieldDelegate {
     
     // MARK: file varible
     let viewModel = SideMenuViewmodel()
     var accesstoken : String?
     var image: UIImage?
-    var originalViewYPosition: CGFloat = 0.0
     let datePicker = UIPickerView()
     var selectedDate = ""
     let imagePicker = UIImagePickerController()
@@ -41,42 +40,37 @@ class MyAccountViewController: UIViewController,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        baseScrollView = scrollView
         setupImage()
+        setdeligate()
+        setNotificationObserver()
+        setupGuesture()
+        setPickerview()
+        setToolbar()
         
         for textViews in myAccountTextViews{
             textViews.layer.borderWidth = 1
             textViews.layer.borderColor = UIColor.white.cgColor
         }
+        setTitle(titleString: pageTitleConstant.acccountDetails)
+        fillData()
         
-        navigationController?.isNavigationBarHidden = false
-        // for activating navigation bar
+    }
+    
+    func setNotificationObserver(){
+        NotificationCenter.default.addObserver(self, selector: #selector(pickerWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(pickerWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        originalViewYPosition = view.frame.origin.y
+    }
+    
+    func setupGuesture(){
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleImageTap))
+        accountImage.addGestureRecognizer(tapGesture)
         
-        // for removing back button title
-        let backButton = UIBarButtonItem()
-        backButton.title = "" // Set an empty title
-        navigationItem.backBarButtonItem = backButton
-        
-        // navigation bar back image
-        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "chevron.left")
-        
-        // navigation bar back text
-        navigationController?.navigationBar.backItem?.title = ""
-        
-        // navigation bar items color
-        navigationController?.navigationBar.tintColor = UIColor.white
-        
-        
-        // setting title for navigation bar
-        title = "AccountDetails"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        
-        // Do any additional setup after loading the view.
-        
-        // deligate for picker view
-        datePicker.delegate = self
-        datePicker.dataSource = self
-        
+        let viewtapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(viewtapGesture)
+    }
+    func setPickerview(){
         accountDateOfBirth.inputView = datePicker
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
@@ -85,9 +79,10 @@ class MyAccountViewController: UIViewController,UITextFieldDelegate {
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolbar.setItems([cancelButton, flexibleSpace, doneButton], animated: false)
         accountDateOfBirth.inputAccessoryView = toolbar
-        toolbar.tintColor = #colorLiteral(red: 0.05993984508, green: 0.04426076461, blue: 0.08429525985, alpha: 1)
-        
-        // setting th ecurrent data for pickedr view
+        toolbar.tintColor = ColorConstant.black
+    }
+    
+    func setToolbar(){
         let currentDate = Date()
         let currentDay = Calendar.current.component(.day, from: currentDate)
         let currentMonth = Calendar.current.component(.month, from: currentDate)
@@ -98,27 +93,15 @@ class MyAccountViewController: UIViewController,UITextFieldDelegate {
             datePicker.selectRow(yearIndex, inComponent: 2, animated: false)
         }
         accountDateOfBirth.text = "\(currentMonth)-\(currentDay)-\(currentYear)"
-        
-        
-        // for pickerview
-        NotificationCenter.default.addObserver(self, selector: #selector(pickerWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(pickerWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-        originalViewYPosition = view.frame.origin.y
-        
-        // for image editiong
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleImageTap))
-        accountImage.addGestureRecognizer(tapGesture)
-        
-        let viewtapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        self.view.addGestureRecognizer(viewtapGesture)
-        accountDateOfBirth.inputView = datePicker
-        //deligate
+    }
+    
+    func setdeligate(){
+        datePicker.delegate = self
+        datePicker.dataSource = self
         accountFname.delegate = self
         accountLname.delegate = self
         accountEmail.delegate = self
         accountPhoneNo.delegate = self
-        fillData()
-        
     }
     
     func setupImage(){
@@ -146,11 +129,7 @@ class MyAccountViewController: UIViewController,UITextFieldDelegate {
         } else {
             textField.resignFirstResponder() // Hide the keyboard for all other fields
         }
-        
         return true
-    }
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
     }
     
     
@@ -182,7 +161,7 @@ class MyAccountViewController: UIViewController,UITextFieldDelegate {
     @objc func doneButtonTapped() {
         accountDateOfBirth.resignFirstResponder()
         if selectedDate.isEmpty{
-            self.showAlert(msg: "selcet the proper date")
+            self.showAlert(msg: alertMsgConstant.selectDate)
         }else{
             accountDateOfBirth.text = selectedDate
             print(selectedDate)
@@ -190,9 +169,6 @@ class MyAccountViewController: UIViewController,UITextFieldDelegate {
     }
     @objc func cancelButtonTapped() {
         accountDateOfBirth.resignFirstResponder()
-        
-    }
-    func assignDatatoTextfields(){
         
     }
     
@@ -213,48 +189,41 @@ class MyAccountViewController: UIViewController,UITextFieldDelegate {
                 }
             }else{
                 DispatchQueue.main.async {
-                  //  self.accountImage.image = UIImage(named: "userdefault")
                     self.stopActivityIndicator()
                 }
             }
         }
         self.stopActivityIndicator()
     }
-    
-    
-    
-    
+    func setButtonState(val:Bool){
+        accountFname.isUserInteractionEnabled = val
+        accountLname.isUserInteractionEnabled = val
+        accountEmail.isUserInteractionEnabled = val
+        accountPhoneNo.isUserInteractionEnabled = val
+        accountDateOfBirth.isUserInteractionEnabled = val
+
+    }
     
     @IBAction func EditProfileAction(_ sender: UIButton) {
-        print("button is clicked")
-        if sender.titleLabel?.text == "Edit Profile" {
+        if sender.titleLabel?.text == btnString.editProfile {
             accountImage.isUserInteractionEnabled = true
             cancelButton.isHidden = false
-            let attributedString = NSMutableAttributedString(string: "Save")
-            title = "Save Details"
+            let attributedString = NSMutableAttributedString(string: btnString.save)
+            setTitle(titleString: pageTitleConstant.saveDetails)
             let range = NSRange(location: 0, length: 4)
             attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
             sender.setAttributedTitle(attributedString, for: .normal)
-            accountFname.isUserInteractionEnabled = true
-            accountLname.isUserInteractionEnabled = true
-            accountEmail.isUserInteractionEnabled = true
-            accountPhoneNo.isUserInteractionEnabled = true
-            accountDateOfBirth.isUserInteractionEnabled = true
+            setButtonState(val: true)
             accountFname.becomeFirstResponder()
         }else{
-            title = "AccountDetails"
+            setTitle(titleString: pageTitleConstant.acccountDetails)
             accountImage.isUserInteractionEnabled = false
             cancelButton.isHidden = true
-            let attributedString = NSMutableAttributedString(string: "Edit Profile")
+            let attributedString = NSMutableAttributedString(string: btnString.editProfile)
             let range = NSRange(location: 0, length: 12)
             attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
             sender.setAttributedTitle(attributedString, for: .normal)
-            accountFname.isUserInteractionEnabled = false
-            accountLname.isUserInteractionEnabled = false
-            accountEmail.isUserInteractionEnabled = false
-            accountPhoneNo.isUserInteractionEnabled = false
-            accountDateOfBirth.isUserInteractionEnabled = false
-            
+            setButtonState(val: false)
             
             if let image = image  {
                 if let imageData = image.pngData(), let accessToken = accesstoken {
@@ -263,19 +232,15 @@ class MyAccountViewController: UIViewController,UITextFieldDelegate {
                     accountImage.image = image
                 }
             }
-//            if let selectedImage = accountImage.image,let accessToken = accesstoken {
-//                UserDefaults.standard.set(selectedImage, forKey: accessToken)
-//            }
                 
             viewModel.editAccountDetails(first_name: accountFname.text ?? "", last_name: accountLname.text ?? "", email: accountEmail.text  ?? "", dob: selectedDate , phone_no: accountPhoneNo.text ?? ""){
                 responce in
                 DispatchQueue.main.async {
                     if responce{
                         NotificationCenter.default.post(name: .reloadSideMenuData, object: nil)
-                        print(self.accesstoken)
-                        self.showAlert(msg: "Details Updated Succefully")
+                        self.showAlert(msg: alertMsgConstant.details_Updated_Succefully)
                     }else{
-                        self.showAlert(msg: "Some Went Wrong")
+                        self.showAlert(msg: errorConstant.error)
                     }
                 }
             }
@@ -286,10 +251,9 @@ class MyAccountViewController: UIViewController,UITextFieldDelegate {
     @IBAction func cancelButtonAction(_ sender: UIButton) {
         cancelButton.isHidden = true
         fillData()
-        title = "AccountDetails"
+        setTitle(titleString: pageTitleConstant.acccountDetails)
         accountImage.isUserInteractionEnabled = false
-        
-        let attributedString = NSMutableAttributedString(string: "Edit Profile")
+        let attributedString = NSMutableAttributedString(string: btnString.editProfile)
         let range = NSRange(location: 0, length: 12)
         attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
         editbutton.setAttributedTitle(attributedString, for: .normal)
@@ -298,7 +262,6 @@ class MyAccountViewController: UIViewController,UITextFieldDelegate {
         accountEmail.isUserInteractionEnabled = false
         accountPhoneNo.isUserInteractionEnabled = false
         accountDateOfBirth.isUserInteractionEnabled = false
-        
     }
     
     @IBAction func ResetPasswordAction(_ sender: UIButton) {
@@ -308,7 +271,7 @@ class MyAccountViewController: UIViewController,UITextFieldDelegate {
 
 extension MyAccountViewController : UIPickerViewDataSource, UIPickerViewDelegate{
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 3 // Three components: day, month, year
+        return 3
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -337,14 +300,10 @@ extension MyAccountViewController : UIPickerViewDataSource, UIPickerViewDelegate
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        // Handle the selected date components
         let selectedDay = days[pickerView.selectedRow(inComponent: 0)]
         let selectedMonth = months[pickerView.selectedRow(inComponent: 1)]
         let selectedYear = years[pickerView.selectedRow(inComponent: 2)]
-        
-        // You can use these components to construct the selected date
         selectedDate = "\(selectedMonth)-\(selectedDay)-\(selectedYear)"
-        //        print("Selected Date: \(selectedDate)")
     }
     
     
@@ -353,24 +312,23 @@ extension MyAccountViewController : UIPickerViewDataSource, UIPickerViewDelegate
 extension MyAccountViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func openActionSheetForUploadImage(){
-        let alert:UIAlertController=UIAlertController(title: "Choose Image", message: nil, preferredStyle: UIAlertController.Style.actionSheet)
-        let cameraAction = UIAlertAction(title: "Camera", style: UIAlertAction.Style.default){
+        let alert:UIAlertController=UIAlertController(title: alertMsgConstant.choose_Image, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
+        let cameraAction = UIAlertAction(title: alertMsgConstant.camera, style: UIAlertAction.Style.default){
             UIAlertAction in
             self.openCamera()
         }
-        let gallaryAction = UIAlertAction(title: "Gallery", style: UIAlertAction.Style.default){
+        let gallaryAction = UIAlertAction(title: alertMsgConstant.gallery, style: UIAlertAction.Style.default){
             UIAlertAction in
             self.openGallary()
         }
         
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel){
+        let cancelAction = UIAlertAction(title: alertMsgConstant.cancel, style: UIAlertAction.Style.cancel){
             UIAlertAction in
         }
         imagePicker.delegate = self
         alert.addAction(cameraAction)
         alert.addAction(gallaryAction)
-       // alert.addAction(removeImageAction)
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
     }
@@ -398,13 +356,10 @@ extension MyAccountViewController: UIImagePickerControllerDelegate, UINavigation
             image = img
             accountImage.image = image
         }
-
-        // Convert the UIImage to Data
-
         picker.dismiss(animated: true, completion: nil)
     }
+    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        print("Cancel Tapped")
         imagePicker.dismiss(animated: true, completion: nil)
     }
 }

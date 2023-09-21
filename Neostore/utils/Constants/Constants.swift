@@ -20,12 +20,15 @@ struct pageTitleConstant{
     static let register = "Register"
     // sdiemenu cell title
     static let cart = "Cart"
-    static let account = "MyAccount"
+    static let account = "My Account"
     static let Store_Locator = "Store Locator"
     static let My_Orders = "My Orders"
     static let logOut = "logOut"
     static let selectAddress = "Select Address"
     static let addAddress = "Add Address"
+    static let acccountDetails = "Account Details"
+    static let saveDetails = "Save Details"
+    static let reset_Password = "Reset Password"
 }
 struct ImageConstants {
     static let default_img = "newbg"
@@ -58,6 +61,14 @@ struct alertMsgConstant{
     static let conformDeletion = "Confirm Deletion"
     static let deleteConformMsg = "Are you sure you want to delete"
     static let addproduct = "Add product to cart"
+    // for picker view in my acccount
+    static let selectDate = "Select the Proper Date"
+    static let details_Updated_Succefully = "Details Updated Succefully"
+    
+    // for my accocunt page
+    static let choose_Image = "Choose Image"
+    static let camera = "Camera"
+    static let gallery = "Gallery"
     
 }
 
@@ -65,6 +76,8 @@ struct btnString{
     // for login
     static let sendEmail = "SEND EMAIL"
     static let login = "LOGIN"
+    static let save = "SAVE"
+    static let editProfile = "Edit Profile"
     
     // for register
     
@@ -75,3 +88,5 @@ struct errorConstant{
 struct apikeyConstant{
     static let googleMapApiKeyPaid = "AIzaSyDu8Jcaz3rWu-e9I8xP2y2hSWnXYnW6IfY"
 }
+
+
