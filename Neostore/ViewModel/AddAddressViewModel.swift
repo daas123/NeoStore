@@ -19,7 +19,7 @@ class AddAddressViewModel {
     let userDefaults = UserDefaults.standard
     var addressData: [AddressFormate] {
             get {
-                if let data = UserDefaults.standard.data(forKey: "myAddress"),
+                if let data = UserDefaults.standard.data(forKey: userDefConstant.myAddress),
                    let addresses = try? JSONDecoder().decode([AddressFormate].self, from: data) {
                     return addresses
                 }
@@ -27,7 +27,7 @@ class AddAddressViewModel {
             }
             set {
                 if let encodedData = try? JSONEncoder().encode(newValue) {
-                    UserDefaults.standard.set(encodedData, forKey: "myAddress")
+                    UserDefaults.standard.set(encodedData, forKey: userDefConstant.myAddress)
                 }
             }
         }

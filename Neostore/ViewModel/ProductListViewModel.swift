@@ -28,8 +28,6 @@ protocol RelaodProductListPage{
 }
 
 class ProductCategoryViewModel{
-    // For category data
-    
     var productListDetailsData: ProductList?
     
     func GetProductList(id:Int , complition : @escaping (Bool)->Void){
@@ -53,7 +51,7 @@ extension ProductCategoryViewModel:GetProductListDetails{
         return productListDetailsData?.data?.count ?? 0
     }
     func getProducer(row:Int) -> String{
-        return productListDetailsData?.data?[row].producer ?? "Invalid Row"
+        return productListDetailsData?.data?[row].producer ?? errorConstant.error
     }
     func getCost(row:Int)-> Int{
         return productListDetailsData?.data?[row].cost ?? 0
@@ -62,10 +60,10 @@ extension ProductCategoryViewModel:GetProductListDetails{
         return productListDetailsData?.data?[row].id ?? 0
     }
     func getName(row:Int)->String{
-        return productListDetailsData?.data?[row].name ?? "invalid"
+        return productListDetailsData?.data?[row].name ?? errorConstant.error
     }
     func getimage(row:Int)->String{
-        return productListDetailsData?.data?[row].productImages ?? "invalid"
+        return productListDetailsData?.data?[row].productImages ?? errorConstant.error
     }
     func getrating(row:Int)->Int{
         return productListDetailsData?.data?[row].rating ?? 0

@@ -50,7 +50,7 @@ class ProductViewController: BaseViewController {
     }
     
     func registerNib(){
-        productTableview.register(UINib(nibName: "ProductTableViewCell", bundle: nil), forCellReuseIdentifier: "ProductTableViewCell")
+        productTableview.register(UINib(nibName: cellRegNibConstant.productTableViewCell, bundle: nil), forCellReuseIdentifier: cellRegNibConstant.productTableViewCell)
     }
     
     func setdeligate(){
@@ -68,6 +68,10 @@ class ProductViewController: BaseViewController {
         productTableview.reloadData()
     }
     
+    static func loadFromNib()-> UIViewController{
+        return ProductViewController(nibName: navigationVCConstant.productListVC, bundle: nil)
+    }
+    
     @objc func searchButtonTapped() {
         if searchView.isHidden{
             setupSearch(false)
@@ -77,7 +81,7 @@ class ProductViewController: BaseViewController {
     }
     
     @IBAction func cancelSearch(_ sender: UIButton) {
-        searchTextfiled.text = ""
+        searchTextfiled.text = txtfieldValConst.emptyStr
         self.productsfilteredData = self.productsData
         productTableview.reloadData()
         view.endEditing(true)
@@ -127,7 +131,7 @@ extension ProductViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         view.endEditing(true)
         self.startActivityIndicator()
-        let ProductDetailsController = ProductDetailsController(nibName: "ProductDetailsController", bundle: nil)
+        let ProductDetailsController = ProductDetailsController.loadFromNib() as! ProductDetailsController
         ProductDetailsController.Productid = productsfilteredData[indexPath.row].id ?? 0
         ProductDetailsController.ProductCategory = self.getTitle(id: self.id)
         ProductDetailsController.navigationtitle = productsfilteredData[indexPath.row].name ?? ""
@@ -135,7 +139,7 @@ extension ProductViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ProductTableViewCell", for: indexPath) as! ProductTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.productTableViewCell, for: indexPath) as! ProductTableViewCell
         cell.productTitle.text = productsfilteredData[indexPath.row].name
         cell.productProducer.text = productsfilteredData[indexPath.row].producer
         cell.productCost.text = String(productsfilteredData[indexPath.row].cost ?? 0)
@@ -183,7 +187,7 @@ extension ProductViewController: UITextFieldDelegate{
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         productsfilteredData = productsData
-        let newText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? ""
+        let newText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? txtfieldValConst.emptyStr
         if newText.isEmpty{
             print(newText)
             productsfilteredData = productsData

@@ -7,11 +7,6 @@
 
 import UIKit
 import SDWebImage
-struct cartDetails{
-    var name : String
-    var category : String
-    var image : String
-}
 class CartViewController: BaseViewController , UITextFieldDelegate {
     
     //MARK: File Variable
@@ -58,9 +53,9 @@ class CartViewController: BaseViewController , UITextFieldDelegate {
     
     
     func regCell(){
-        cartTableview.register(UINib(nibName: "ProductDetailsCartCell", bundle: nil), forCellReuseIdentifier: "ProductDetailsCartCell")
-        cartTableview.register(UINib(nibName: "CartTotalCell", bundle: nil), forCellReuseIdentifier: "CartTotalCell")
-        cartTableview.register(UINib(nibName: "CartOrderCell", bundle: nil), forCellReuseIdentifier: "CartOrderCell")
+        cartTableview.register(UINib(nibName: cellRegNibConstant.productDetailsCartCell, bundle: nil), forCellReuseIdentifier: cellRegNibConstant.productDetailsCartCell)
+        cartTableview.register(UINib(nibName: cellRegNibConstant.cartTotalCell, bundle: nil), forCellReuseIdentifier: cellRegNibConstant.cartTotalCell)
+        cartTableview.register(UINib(nibName: cellRegNibConstant.cartOrderCell, bundle: nil), forCellReuseIdentifier: cellRegNibConstant.cartOrderCell)
     }
     
     func setDeligate(){
@@ -69,6 +64,10 @@ class CartViewController: BaseViewController , UITextFieldDelegate {
         cartTableview.dataSource = self
         cartPickerView.delegate = self
         cartPickerView.dataSource = self
+    }
+    
+    static func loadFromNib()-> UIViewController{
+        return CartViewController(nibName: navigationVCConstant.cartVC, bundle: nil)
     }
     
     @objc func viewTapped() {
@@ -156,7 +155,7 @@ class CartViewController: BaseViewController , UITextFieldDelegate {
     
     @IBAction func orderAction(_ sender: UIButton) {
         if viewModel.cartData?.count != 0 && viewModel.cartData?.count != nil{
-            let addressListController = AddressListViewController(nibName: "AddressListViewController", bundle: nil)
+            let addressListController = AddressListViewController.loadFromNib()
             self.navigationController?.pushViewController(addressListController,animated: true)
         }
     }
@@ -175,7 +174,7 @@ extension CartViewController : UITableViewDelegate,UITableViewDataSource{
         if (TotalData ) > 0 {
             
             if (indexPath.row) < TotalData{
-                let productCell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailsCartCell", for: indexPath) as! ProductDetailsCartCell
+                let productCell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.productDetailsCartCell, for: indexPath) as! ProductDetailsCartCell
                 productCell.cartProductQuantity.delegate = self
                 let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(textFieldTapped(_:)))
                 productCell.cartProductQuantity.addGestureRecognizer(tapGestureRecognizer)
@@ -184,33 +183,33 @@ extension CartViewController : UITableViewDelegate,UITableViewDataSource{
                 productCell.cartProductCategory.text = viewModel.cartData?.data?[indexPath.row].product?.productCategory
                 productCell.cartProductQuantity.text = String(viewModel.cartData?.data?[indexPath.row].quantity ?? 0)
                 productCell.cartProuductTotalCost.text = String(viewModel.cartData?.data?[indexPath.row].product?.subTotal ?? 0)
-                if let imageUrl = URL(string: viewModel.cartData?.data?[indexPath.row].product?.productImages ?? "invalid" ) {
-                    productCell.cartProductImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "bg.jpg"))
+                if let imageUrl = URL(string: viewModel.cartData?.data?[indexPath.row].product?.productImages ?? ImageConstants.default_img ) {
+                    productCell.cartProductImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: ImageConstants.default_img))
                 } else {
-                    productCell.cartProductImage.image = UIImage(named: "bg.jpg")
+                    productCell.cartProductImage.image = UIImage(named: ImageConstants.default_img)
                 }
                 productCell.selectionStyle = .none
                 return productCell
                 
             }else if indexPath.row == TotalData{
-                let productCell = tableView.dequeueReusableCell(withIdentifier: "CartTotalCell", for: indexPath) as! CartTotalCell
+                let productCell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.cartTotalCell, for: indexPath) as! CartTotalCell
                 productCell.cartTotalCost.text = String(viewModel.cartData?.total ?? 0)
                 productCell.selectionStyle = .none
                 return productCell
                 
             }else{
-                let productCell = tableView.dequeueReusableCell(withIdentifier: "CartTotalCell", for: indexPath) as! CartTotalCell
+                let productCell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.cartTotalCell, for: indexPath) as! CartTotalCell
                 productCell.selectionStyle = .none
                 return productCell
             }
         }else{
             if indexPath.row == 0{
-                let productCell = tableView.dequeueReusableCell(withIdentifier: "CartTotalCell", for: indexPath) as! CartTotalCell
+                let productCell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.cartTotalCell, for: indexPath) as! CartTotalCell
                 productCell.cartTotalCost.text = String(0)
                 productCell.selectionStyle = .none
                 return productCell
             }else{
-                let productCell = tableView.dequeueReusableCell(withIdentifier: "CartOrderCell", for: indexPath) as! CartOrderCell
+                let productCell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.cartOrderCell, for: indexPath) as! CartOrderCell
                 productCell.selectionStyle = .none
                 return productCell
             }
@@ -226,7 +225,7 @@ extension CartViewController : UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "") { (_, _, completionHandler) in
+        let deleteAction = UIContextualAction(style: .destructive, title: txtfieldValConst.emptyStr) { (_, _, completionHandler) in
             let deletedata = self.viewModel.cartData?.data?[indexPath.row].product?.name
             let alert = UIAlertController(title: alertMsgConstant.conformDeletion, message: "\(alertMsgConstant.deleteConformMsg) \(deletedata!)", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: alertMsgConstant.cancel, style: .cancel, handler: { (_) in
@@ -279,7 +278,7 @@ extension CartViewController : CartAction{
         if viewModel.cartData?.count == 0 || viewModel.cartData == nil{
             self.showAlert(msg: alertMsgConstant.addproduct)
         }else{
-            let addressListController = AddressListViewController(nibName: "AddressListViewController", bundle: nil)
+            let addressListController = AddressListViewController.loadFromNib()
             self.navigationController?.pushViewController(addressListController,animated: true)
         }
     }

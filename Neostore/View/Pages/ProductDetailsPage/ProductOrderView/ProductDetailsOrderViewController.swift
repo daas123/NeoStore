@@ -53,6 +53,9 @@ class ProductDetailsOrderViewController: BaseViewController {
         orderDetailsGesture = UITapGestureRecognizer(target: self, action: #selector(handleOrderDetailsTap(_:)))
         orderDetailsview?.addGestureRecognizer(orderDetailsGesture)
     }
+    static func loadFromNib()-> UIViewController{
+        return ProductDetailsOrderViewController(nibName: navigationVCConstant.productDetailsOrderVC, bundle: nil)
+    }
     
     @objc private func handleOrderViewTap(_ sender: UITapGestureRecognizer) {
         dismiss(animated: true, completion: nil)
@@ -68,7 +71,7 @@ class ProductDetailsOrderViewController: BaseViewController {
     
     @IBAction func orderButton(_ sender: UIButton) {
         startActivityIndicator()
-        viewModel.AddToCart(productid:productId, quantity: productOrderQuantityField?.text ?? "0" ){
+        viewModel.AddToCart(productid:productId, quantity: productOrderQuantityField?.text ?? txtfieldValConst.emptyStr ){
             (responce,Msg) in
             if responce{
                 DispatchQueue.main.async {
@@ -89,13 +92,9 @@ class ProductDetailsOrderViewController: BaseViewController {
 extension ProductDetailsOrderViewController : UITextFieldDelegate{
     //MARK: For Setting On Limit On Text Fileds
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        // Check if the text field is the digitTextField
         if textField == productOrderQuantityField {
-            // Get the current text in the text field
-            let currentText = textField.text ?? ""
-            // Combine the current text with the replacement text
+            let currentText = textField.text ?? txtfieldValConst.emptyStr
             let updatedText = (currentText as NSString).replacingCharacters(in: range, with: string)
-            // Check if the updated text has more than 2 characters
             if updatedText.count <= 1 {
                 return true
             } else {
@@ -107,5 +106,5 @@ extension ProductDetailsOrderViewController : UITextFieldDelegate{
 }
 
 extension Notification.Name {
-    static let reloadSideMenuData = Notification.Name("ReloadSideMenuData")
+    static let reloadSideMenuData = Notification.Name(notificationString.reloadSideMenuData)
 }

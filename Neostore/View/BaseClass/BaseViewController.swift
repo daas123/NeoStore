@@ -18,7 +18,7 @@ class BaseViewController: UIViewController {
         originalViewYPosition = view.frame.origin.y
     }
     func addNotificationObserver(){
-        NotificationCenter.default.addObserver(self, selector: #selector(viewWillDisappearNotification), name: NSNotification.Name(rawValue: "RatingDoneNotification"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(viewWillDisappearNotification), name: NSNotification.Name(rawValue: notificationString.ratingDoneNotification ), object: nil)
     }
     
     @objc func viewWillDisappearNotification(_ notification: Notification) {
@@ -43,14 +43,9 @@ class BaseViewController: UIViewController {
     func setupNavigationbar(){
         navigationController?.isNavigationBarHidden = false
         navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: NavigationbarConstant.backButton_image)
-        
-        // navigation bar back text
         let backButton = UIBarButtonItem()
-        
-        backButton.title = "" // Set an empty title
+        backButton.title = ""
         navigationItem.backBarButtonItem = backButton
-        
-        // navigation bar items color
         navigationController?.navigationBar.tintColor = UIColor.white
         navigationController?.navigationBar.backgroundColor = ColorConstant.primary_red
     }

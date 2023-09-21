@@ -14,5 +14,4 @@ class HomepageViewModel{
         ["name":"Beds","lblPosition":positions.bottomRight,"imgName":"bed","imgPosition":positions.topLeft]
     ]
     let collectionViewImages = ["slider_img1","slider_img2","slider_img3","slider_img4"]
-    
 }

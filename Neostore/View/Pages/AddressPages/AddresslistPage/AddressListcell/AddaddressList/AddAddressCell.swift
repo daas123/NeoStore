@@ -13,7 +13,9 @@ class AddAddressCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         addaddressview.layer.borderWidth = 2
-        addaddressview.layer.borderColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)    }
+        addaddressview.layer.borderColor = #colorLiteral(red: 0.921431005, green: 0.9214526415, blue: 0.9214410186, alpha: 1)
+        
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

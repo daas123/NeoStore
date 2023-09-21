@@ -38,10 +38,10 @@ class SideMenuViewController: UIViewController {
     }
     
     func registerNib(){
-        let reg = UINib(nibName: "SideMenuTableViewCell", bundle: nil)
-        sideMenuTableview.register(reg, forCellReuseIdentifier: "SideMenuTableviewCell")
-        let cart = UINib(nibName: "CartTableViewCell", bundle: nil)
-        sideMenuTableview.register(cart, forCellReuseIdentifier: "CartTableViewCell")
+        let reg = UINib(nibName: cellRegNibConstant.sideMenuTableViewCell, bundle: nil)
+        sideMenuTableview.register(reg, forCellReuseIdentifier: cellRegNibConstant.sideMenuTableViewCell)
+        let cart = UINib(nibName: cellRegNibConstant.cartTableViewCell, bundle: nil)
+        sideMenuTableview.register(cart, forCellReuseIdentifier: cellRegNibConstant.cartTableViewCell)
     }
     
     func setupSideMenuImage(){
@@ -50,8 +50,12 @@ class SideMenuViewController: UIViewController {
         sideMenuImage.clipsToBounds = true
     }
     
+    static func loadFromNib()-> UIViewController{
+        return SideMenuViewController(nibName: navigationVCConstant.sideMenuVC, bundle: nil)
+    }
+    
     @objc func handleTap() {
-        let MyAccountViewController = MyAccountViewController(nibName: "MyAccountViewController", bundle: nil)
+        let MyAccountViewController = MyAccountViewController.loadFromNib() as! MyAccountViewController
         MyAccountViewController.accesstoken = SideMenuViewmodel.menuDemoData.data?.user_data?.access_token
         navigationController?.pushViewController(MyAccountViewController, animated: true)
     }
@@ -68,7 +72,7 @@ class SideMenuViewController: UIViewController {
                 if respose{
                     self.sideMenuTableview.reloadData()
                     self.userEmail.text = SideMenuViewmodel.menuDemoData.data?.user_data?.email
-                    self.userName.text = (SideMenuViewmodel.menuDemoData.data?.user_data?.first_name ?? "Hello") + (SideMenuViewmodel.menuDemoData.data?.user_data?.last_name ?? "User")
+                    self.userName.text = (SideMenuViewmodel.menuDemoData.data?.user_data?.first_name ?? txtfieldValConst.emptyStr) + (SideMenuViewmodel.menuDemoData.data?.user_data?.last_name ?? txtfieldValConst.emptyStr)
                     if let accessToken = SideMenuViewmodel.menuDemoData.data?.user_data?.access_token,
                        let imageData = UserDefaults.standard.data(forKey: accessToken),
                        let image = UIImage(data: imageData) {
@@ -101,37 +105,37 @@ extension SideMenuViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CartTableViewCell", for: indexPath) as! CartTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.cartTableViewCell, for: indexPath) as! CartTableViewCell
             cell.TotalCartlabel.text = String(SideMenuViewmodel.menuDemoData.data?.total_carts ?? 0 )
             return cell
         }else if (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuTableviewCell", for: indexPath) as! SideMenuTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.sideMenuTableViewCell, for: indexPath) as! SideMenuTableViewCell
             cell.celllabel.text = SideMenuViewmodel.menuDemoData.data?.product_categories?[indexPath.row-1].name
             cell.cellImage.image = UIImage(named: viewmodel.sideMenuTableImages[indexPath.row])
             return cell
         }else if indexPath.row == 5{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuTableviewCell", for: indexPath) as! SideMenuTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.sideMenuTableViewCell, for: indexPath) as! SideMenuTableViewCell
             cell.celllabel.text = pageTitleConstant.account
             cell.cellImage.image = UIImage(named: viewmodel.sideMenuTableImages[indexPath.row])
             return cell
         }else if indexPath.row == 6{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuTableviewCell", for: indexPath) as! SideMenuTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.sideMenuTableViewCell, for: indexPath) as! SideMenuTableViewCell
             cell.celllabel.text = pageTitleConstant.Store_Locator
             cell.cellImage.image = UIImage(named: viewmodel.sideMenuTableImages[indexPath.row])
             return cell
         }else if indexPath.row == 7{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuTableviewCell", for: indexPath) as! SideMenuTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.sideMenuTableViewCell, for: indexPath) as! SideMenuTableViewCell
             cell.celllabel.text = pageTitleConstant.My_Orders
             cell.cellImage.image = UIImage(named: viewmodel.sideMenuTableImages[indexPath.row])
             return cell
         }else if indexPath.row == 8{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "SideMenuTableviewCell", for: indexPath) as! SideMenuTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.sideMenuTableViewCell, for: indexPath) as! SideMenuTableViewCell
             cell.celllabel.text = pageTitleConstant.logOut
             cell.cellImage.image = UIImage(named: viewmodel.sideMenuTableImages[indexPath.row])
             return cell
         }
         else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "CartTableViewCell", for: indexPath) as! CartTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.cartTableViewCell, for: indexPath) as! CartTableViewCell
             return cell
         }
     }
@@ -143,37 +147,29 @@ extension SideMenuViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             self.startActivityIndicator()
-            let cartViewController = CartViewController(nibName: "CartViewController", bundle: nil)
+            let cartViewController = CartViewController.loadFromNib()
             self.navigationController?.pushViewController(cartViewController, animated: true)
             
         }else if (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4){
-            let productViewController = ProductViewController(nibName: "ProductViewController", bundle: nil)
+            let productViewController = ProductViewController.loadFromNib() as! ProductViewController
             productViewController.id = SideMenuViewmodel.menuDemoData.data?.product_categories?[indexPath.row-1].id ?? 0
             self.navigationController?.pushViewController(productViewController, animated: true)
             
         }else if indexPath.row == 5{
             self.startActivityIndicator()
-            let MyAccountViewController = MyAccountViewController(nibName: "MyAccountViewController", bundle: nil)
+            let MyAccountViewController = MyAccountViewController.loadFromNib() as! MyAccountViewController
             MyAccountViewController.accesstoken = SideMenuViewmodel.menuDemoData.data?.user_data?.access_token
             self.navigationController?.pushViewController(MyAccountViewController, animated: true)
         }else if indexPath.row == 6{
-            let StoreLocatorViewController = StoreLocatorViewController(nibName: "StoreLocatorViewController", bundle: nil)
-            
+            let StoreLocatorViewController = StoreLocatorViewController.loadFromNib()
             self.navigationController?.pushViewController(StoreLocatorViewController, animated: true)
-            
         }else if indexPath.row == 7{
-            let MyOrdersViewController = MyOrdersViewController(nibName: "MyOrdersViewController", bundle: nil)
-            
+            let MyOrdersViewController = MyOrdersViewController.loadFromNib()
             self.navigationController?.pushViewController(MyOrdersViewController, animated: true)
-            
         }else if indexPath.row == 8{
-            UserDefaults.standard.set("", forKey: "accessToken")
-            let loginViewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
-            
-            // Create a new navigation controller with the LoginViewController as the root view controller
+            UserDefaults.standard.set(userDefConstant.empty, forKey: userDefConstant.accessToken)
+            let loginViewController = LoginViewController.loadFromNib()
             let navigationController = UINavigationController(rootViewController: loginViewController)
-            
-            // Set the new navigation controller as the root view controller
             UIApplication.shared.windows.first?.rootViewController = navigationController
         }
         else{
@@ -186,7 +182,7 @@ extension SideMenuViewController : ReloadSideMenuData{
         viewmodel.fetchAccountDetails{
             responce in
             if responce{
-                debugPrint("data get reloaded")
+                debugPrint(alertMsgConstant.cancel)
             }
         }
     }

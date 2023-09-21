@@ -12,7 +12,7 @@ protocol ReloadSidemenuDetails{
     func reloadSideMenu()
 }
 class SideMenuViewmodel{
-     static var menuDemoData = FetchAccount()
+    static var menuDemoData = FetchAccount()
     var sideMenuTableImages = ["cart","table","chair","sofa","bed","person","location","order","logout"]
     func fetchAccountDetails(complition : @escaping (Bool)->Void){
         
@@ -28,10 +28,8 @@ class SideMenuViewmodel{
                 print(error.localizedDescription)
                 complition(false)
             }
-    
+            
         }
-                
-        
     }
     func editAccountDetails(first_name: String, last_name: String, email: String, dob: String, phone_no: String,complition : @escaping (Bool)->Void){
         FetchAccountWEbService().editAccountdata(first_name: first_name, last_name: last_name, email: email, dob: dob, phone_no:phone_no, profile_pic: ""){
@@ -44,10 +42,10 @@ class SideMenuViewmodel{
                 print(error.localizedDescription)
                 complition(false)
             }
-    
+            
         }
     }
-
+    
 }
 
 

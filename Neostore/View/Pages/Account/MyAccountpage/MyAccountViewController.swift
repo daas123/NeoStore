@@ -74,8 +74,8 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
         accountDateOfBirth.inputView = datePicker
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneButtonTapped))
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelButtonTapped))
+        let doneButton = UIBarButtonItem(title: toolbarBtnConstant.done, style: .plain, target: self, action: #selector(doneButtonTapped))
+        let cancelButton = UIBarButtonItem(title: toolbarBtnConstant.cancel, style: .plain, target: self, action: #selector(cancelButtonTapped))
         let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         toolbar.setItems([cancelButton, flexibleSpace, doneButton], animated: false)
         accountDateOfBirth.inputAccessoryView = toolbar
@@ -110,6 +110,10 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
         accountImage.clipsToBounds = true
     }
     
+    static func loadFromNib()-> UIViewController{
+        return MyAccountViewController(nibName: navigationVCConstant.myAccountVC, bundle: nil)
+    }
+    
     @objc func handleImageTap() {
         view.endEditing(true)
         openActionSheetForUploadImage()
@@ -119,15 +123,15 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == accountFname {
-            accountLname.becomeFirstResponder() // Move to the next field (Last Name)
+            accountLname.becomeFirstResponder()
         } else if textField == accountLname {
-            accountEmail.becomeFirstResponder() // Move to the next field (Email)
+            accountEmail.becomeFirstResponder()
         } else if textField == accountEmail {
-            accountPhoneNo.becomeFirstResponder() // Move to the next field (Phone Number)
+            accountPhoneNo.becomeFirstResponder()
         } else if textField == accountPhoneNo {
-            accountDateOfBirth.becomeFirstResponder() // Move to the Date of Birth field
+            accountDateOfBirth.becomeFirstResponder()
         } else {
-            textField.resignFirstResponder() // Hide the keyboard for all other fields
+            textField.resignFirstResponder()
         }
         return true
     }
@@ -135,12 +139,10 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
     
     @objc func pickerWillShow(_ notification: Notification) {
         if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
-            let keyboardHeight = keyboardFrame.height
-            // Check if the active text field is not FirstName or LastName
+            _ = keyboardFrame.height
             if let activeTextField = UIResponder.currentFirstResponder as? UITextField,
                activeTextField != accountFname && activeTextField != accountLname {
                 UIView.animate(withDuration: 0.3) {
-                    // Move the view upward by the keyboard's height
                     UIView.animate(withDuration: 0.3) {
                         var contentInset:UIEdgeInsets = self.scrollView.contentInset
                         contentInset.bottom = keyboardFrame.size.height + 20
@@ -153,7 +155,6 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
     }
     @objc func pickerWillHide(_ notification: Notification) {
         UIView.animate(withDuration: 0.3) {
-            // Restore the view to its original position
             self.scrollView.contentInset = UIEdgeInsets.zero
         }
     }
@@ -233,7 +234,7 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
                 }
             }
                 
-            viewModel.editAccountDetails(first_name: accountFname.text ?? "", last_name: accountLname.text ?? "", email: accountEmail.text  ?? "", dob: selectedDate , phone_no: accountPhoneNo.text ?? ""){
+            viewModel.editAccountDetails(first_name: accountFname.text ?? txtfieldValConst.emptyStr, last_name: accountLname.text ?? txtfieldValConst.emptyStr, email: accountEmail.text  ?? txtfieldValConst.emptyStr, dob: selectedDate , phone_no: accountPhoneNo.text ?? txtfieldValConst.emptyStr){
                 responce in
                 DispatchQueue.main.async {
                     if responce{
@@ -265,7 +266,7 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
     }
     
     @IBAction func ResetPasswordAction(_ sender: UIButton) {
-        navigationController?.pushViewController(ResetPassViewController(nibName:"ResetPassViewController", bundle: nil), animated: true)
+        navigationController?.pushViewController(ResetPassViewController.loadFromNib(), animated: true)
     }
 }
 

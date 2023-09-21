@@ -37,6 +37,10 @@ class ResetPassViewController: BaseViewController, UITextFieldDelegate {
         newPassword.delegate = self
         conformPassword.delegate = self
     }
+    static func loadFromNib()-> UIViewController{
+        return ResetPassViewController(nibName: navigationVCConstant.reSetPassVC, bundle: nil)
+    }
+
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         switch textField {
@@ -54,16 +58,16 @@ class ResetPassViewController: BaseViewController, UITextFieldDelegate {
     
     func getdata(){
         startActivityIndicator()
-        viewModel.chnagePassword(old_password:oldPassword.text ?? "", password: newPassword.text ?? "", confirm_password: conformPassword.text ?? ""){
+        viewModel.chnagePassword(old_password:oldPassword.text ?? txtfieldValConst.emptyStr, password: newPassword.text ?? txtfieldValConst.emptyStr, confirm_password: conformPassword.text ?? txtfieldValConst.emptyStr){
             (responce,msg) in
             DispatchQueue.main.async {
                 self.stopActivityIndicator()
                 if responce {
                     self.showAlert(msg: msg)
-                    self.oldPassword.text = ""
-                    self.newPassword.text = ""
-                    self.conformPassword.text = ""
-                    self.navigationController?.pushViewController(HomeViewController(nibName: "HomeViewController", bundle: nil), animated: true)
+                    self.oldPassword.text = txtfieldValConst.emptyStr
+                    self.newPassword.text = txtfieldValConst.emptyStr
+                    self.conformPassword.text = txtfieldValConst.emptyStr
+                    self.navigationController?.pushViewController(HomeViewController.loadFromNib(), animated: true)
                 }else{
                     self.showAlert(msg: msg)
                 }

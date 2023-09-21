@@ -16,7 +16,6 @@ class HomeViewController: BaseViewController{
     var panGesture: UIPanGestureRecognizer!
     var tapGesture: UITapGestureRecognizer!
     var viewmodel = HomepageViewModel()
-    // COLLECTON VIEW SCROLL
     var currentscrollIndex = 1
     var contentOffset = CGPoint()
     var timer : Timer?
@@ -26,7 +25,6 @@ class HomeViewController: BaseViewController{
     @IBOutlet weak var mainMenubottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var mainMenutopConstraint: NSLayoutConstraint!
     @IBOutlet weak var MainMenuLeadingConstraint: NSLayoutConstraint!
-    //SIDE VIEW
     @IBOutlet weak var sideMenuLeadingConstraint: NSLayoutConstraint!
     
     //MARK: UIVIEW OUTLETS
@@ -54,18 +52,11 @@ class HomeViewController: BaseViewController{
         self.stopActivityIndicator()
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
-        
-        // nib register
         registerNib()
-        //set collectionview deligate
         setcollectionViewDeligate()
-        // page control
         setupPageControl()
-        //hidin gthe side menum beofre loading
         hideSideMenu()
-        // setup side menu
         setupSideMenu()
-        // starting the timer for autoscrolling collctionview
         startTimer()
     }
     
@@ -75,20 +66,18 @@ class HomeViewController: BaseViewController{
     }
     
     func registerNib(){
-        let slidecell = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
-        homeCollectionView.register(slidecell, forCellWithReuseIdentifier: "collectionviewcell")
-        let catgorycell = UINib(nibName: "CategoryCollectionCell", bundle: nil)
-        categoryCollectionView.register(catgorycell, forCellWithReuseIdentifier: "cell")
+        let slidecell = UINib(nibName: cellRegNibConstant.homeCollectionViewCell, bundle: nil)
+        homeCollectionView.register(slidecell, forCellWithReuseIdentifier: cellRegNibConstant.homeCollectionViewCell)
+        
+        let catgorycell = UINib(nibName: cellRegNibConstant.categoryCollectionCell, bundle: nil)
+        categoryCollectionView.register(catgorycell, forCellWithReuseIdentifier: cellRegNibConstant.categoryCollectionCell)
     }
     func setupSideMenu() {
-        // Initialize side menu view controller
-        let sideMenuVC = SideMenuViewController(nibName: "SideMenuViewController", bundle: nil)
+        let sideMenuVC = SideMenuViewController(nibName: navigationVCConstant.sideMenuVC, bundle: nil)
         addChild(sideMenuVC)
         sideMenuContainer.addSubview(sideMenuVC.view)
         sideMenuVC.view.frame = sideMenuContainer.bounds
         sideMenuVC.didMove(toParent: self)
-        
-        // Initialize pan gesture recognizer
         panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
         view.addGestureRecognizer(panGesture)
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture(_:)))
@@ -106,6 +95,10 @@ class HomeViewController: BaseViewController{
         pageControl.numberOfPages = viewmodel.collectionViewImages.count
     }
     
+    static func loadFromNib()-> UIViewController{
+        return HomeViewController(nibName: navigationVCConstant.homeVC, bundle: nil)
+    }
+    
     @IBAction func sideMenuButtonAction(_ sender: UIButton) {
         if sideMenuOpen{
             closeSideMenu()
@@ -115,7 +108,7 @@ class HomeViewController: BaseViewController{
     }
     
     @IBAction func searchButtonAction(_ sender: UIButton) {
-        navigationController?.pushViewController(CartViewController(nibName: "CartViewController", bundle: nil), animated: true)
+        navigationController?.pushViewController(CartViewController.loadFromNib(), animated: true)
     }
     
     // MARK: TAP GESTURE WHEN SIDE MENU IS VISIBLE
@@ -172,7 +165,6 @@ class HomeViewController: BaseViewController{
             self.mainMenutopConstraint.constant = 0
             self.mainMenubottomConstraint.constant = 0
             self.mainMenuTrailingConstrain.constant = 0
-            
             self.view.layoutIfNeeded()
         }
     }
@@ -239,15 +231,15 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView == homeCollectionView{
-            let collectionviewcell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionviewcell", for: indexPath) as! HomeCollectionViewCell
+            let collectionviewcell = collectionView.dequeueReusableCell(withReuseIdentifier: cellRegNibConstant.homeCollectionViewCell, for: indexPath) as! HomeCollectionViewCell
             collectionviewcell.cellImage.image = UIImage(named: viewmodel.collectionViewImages[indexPath.row])
             return collectionviewcell
         }else{
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoryCollectionCell
-            cell.setContraints(lblname: viewmodel.categoryData[indexPath.row]["name"] as! String,
-                               lblPosition: viewmodel.categoryData[indexPath.row]["lblPosition"] as! positions,
-                               imgName: viewmodel.categoryData[indexPath.row]["imgName"] as! String,
-                               imgPosition: viewmodel.categoryData[indexPath.row]["imgPosition"] as! positions)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellRegNibConstant.categoryCollectionCell, for: indexPath) as! CategoryCollectionCell
+            cell.setContraints(lblname: viewmodel.categoryData[indexPath.row][homeCollectionViewConstant.name] as! String,
+                               lblPosition: viewmodel.categoryData[indexPath.row][homeCollectionViewConstant.lblPosition] as! positions,
+                               imgName: viewmodel.categoryData[indexPath.row][homeCollectionViewConstant.imgName] as! String,
+                               imgPosition: viewmodel.categoryData[indexPath.row][homeCollectionViewConstant.imgPosition] as! positions)
             return cell
         }
         
@@ -259,7 +251,7 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
         if collectionView == categoryCollectionView{
             let selectedId = indexPath.row + 1
             print(selectedId)
-            let productViewController = ProductViewController(nibName: "ProductViewController", bundle: nil)
+            let productViewController = ProductViewController.loadFromNib() as! ProductViewController
             productViewController.id = selectedId
             self.navigationController?.pushViewController(productViewController, animated: true)
         }

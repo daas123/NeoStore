@@ -27,10 +27,10 @@ class ProductDetailsTitleCell: UITableViewCell {
         var count = 1
         for i in productratingimages {
             if rating >= count {
-                i.image = UIImage(systemName: "star.fill")
+                i.image = UIImage(systemName: ImageConstants.starFill)
                 count += 1
             }else{
-                i.image = UIImage(systemName: "star")
+                i.image = UIImage(systemName: ImageConstants.star)
             }
         }
     }

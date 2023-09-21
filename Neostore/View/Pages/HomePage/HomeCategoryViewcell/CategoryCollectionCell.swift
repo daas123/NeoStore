@@ -18,7 +18,7 @@ class CategoryCollectionCell: UICollectionViewCell {
         setUpUI()
     }
     private func setUpUI() {
-        categoryLabel.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        categoryLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
             // Other label setup code
         }
     func setContraints(lblname: String,lblPosition:positions,imgName: String,imgPosition:positions){

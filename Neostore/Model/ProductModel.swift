@@ -122,3 +122,9 @@ enum productListTile:String{
     case error
 }
 
+// for cart
+struct cartDetails{
+    var name : String
+    var category : String
+    var image : String
+}

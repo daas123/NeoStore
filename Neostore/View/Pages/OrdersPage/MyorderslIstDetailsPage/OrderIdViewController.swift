@@ -21,13 +21,18 @@ class OrderIdViewController: BaseViewController {
         getdata()
     }
     func registerCell(){
-        orderIdTableView.register(UINib(nibName: "OrderIdListCell", bundle: nil), forCellReuseIdentifier: "OrderIdListCell")
-        orderIdTableView.register(UINib(nibName: "OrderIdTotalCell", bundle: nil), forCellReuseIdentifier: "OrderIdTotalCell")
+        orderIdTableView.register(UINib(nibName: cellRegNibConstant.orderIdListCell, bundle: nil), forCellReuseIdentifier: cellRegNibConstant.orderIdListCell)
+        orderIdTableView.register(UINib(nibName: cellRegNibConstant.orderIdTotalCell, bundle: nil), forCellReuseIdentifier: cellRegNibConstant.orderIdTotalCell)
     }
     func setDeligate(){
         orderIdTableView.delegate = self
         orderIdTableView.dataSource = self
     }
+    
+    static func loadFromNib()-> UIViewController{
+        return OrderIdViewController(nibName: navigationVCConstant.myOrdersDetailsVC, bundle: nil)
+    }
+    
     func getdata(){
         viewmodel.getOrderListDetials(order_id: orderDetialId ?? 0){
             responce in
@@ -46,7 +51,7 @@ extension OrderIdViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let orderdetailsCount = (viewmodel.orderListDetails?.data?.orderDetails.count ?? 0)
         if indexPath.row <= (orderdetailsCount - 1){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "OrderIdListCell", for: indexPath) as! OrderIdListCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.orderIdListCell, for: indexPath) as! OrderIdListCell
             cell.orderDetailsTitle.text = viewmodel.orderListDetails?.data?.orderDetails[indexPath.row].prodName
             cell.orderDetailsQnt.text = String(viewmodel.orderListDetails?.data?.orderDetails[indexPath.row].quantity ?? 0)
             cell.orderDetailsCategory.text = viewmodel.orderListDetails?.data?.orderDetails[indexPath.row].prodCatName
@@ -57,12 +62,12 @@ extension OrderIdViewController : UITableViewDelegate,UITableViewDataSource{
             cell.selectionStyle = .none
             return cell
         }else if indexPath.row == orderdetailsCount{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "OrderIdTotalCell", for: indexPath) as! OrderIdTotalCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.orderIdTotalCell, for: indexPath) as! OrderIdTotalCell
             cell.orderDetailsTotal.text = String(viewmodel.orderListDetails?.data?.cost ?? 0)
             cell.selectionStyle = .none
             return cell
         }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: "OrderIdTotalCell", for: indexPath) as! OrderIdTotalCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.orderIdTotalCell, for: indexPath) as! OrderIdTotalCell
             cell.selectionStyle = .none
             return cell
         }

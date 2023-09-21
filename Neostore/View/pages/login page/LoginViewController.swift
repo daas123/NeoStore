@@ -39,13 +39,9 @@ class LoginViewController: BaseViewController {
     @IBOutlet weak var passwordView: UIView!
     
     // MARK: ViewWillApper
-    // used because when user come here after logout then in that case navigation mus tbe hidden
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.isNavigationBarHidden = true
     }
-    
-    //
-    
     
     // MARK: ViewDidLoad
     override func viewDidLoad() {
@@ -68,16 +64,16 @@ class LoginViewController: BaseViewController {
     }
 
     static func loadFromNib()-> UIViewController{
-        return LoginViewController(nibName: "LoginViewController", bundle: nil)
+        return LoginViewController(nibName: navigationVCConstant.loginVC, bundle: nil)
     }
     @IBAction func LoginButtonAction(_ sender: UIButton) {
         if islogin {
             self.startActivityIndicator()
-            viewmodel.loginValidation(email: loginUsername.text ?? "", password: loginPassword.text ?? ""){
+            viewmodel.loginValidation(email: loginUsername.text ?? txtfieldValConst.emptyStr, password: loginPassword.text ?? txtfieldValConst.emptyStr){
                 (validationCheck,msgString) in
                 DispatchQueue.main.async {
                     if validationCheck{
-                        self.navigationController?.pushViewController(HomeViewController(nibName:"HomeViewController", bundle: nil), animated: true)
+                        self.navigationController?.pushViewController(HomeViewController.loadFromNib(), animated: true)
                     }else{
                         self.showAlert(msg: msgString)
                         self.stopActivityIndicator()
@@ -103,7 +99,7 @@ class LoginViewController: BaseViewController {
     }
     
     @IBAction func registerButtonAction(_ sender: UIButton) {
-        navigationController?.pushViewController(RegisterViewController(nibName:"RegisterViewController", bundle: nil), animated: true)
+        navigationController?.pushViewController(RegisterViewController.loadFromNib(), animated: true)
     }
     
     @IBAction func forgetPasswordAction(_ sender: UIButton) {

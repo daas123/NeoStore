@@ -37,7 +37,7 @@ class ProductDetailsController: BaseViewController{
     }
     
     @objc override func viewWillDisappearNotification(_ notification: Notification) {
-        if let message = notification.userInfo?["message"] as? String {
+        if let message = notification.userInfo?[notificationString.message] as? String {
             self.showAlert(msg: message)
             getdata()
         }
@@ -49,16 +49,16 @@ class ProductDetailsController: BaseViewController{
     }
     
     func registerCell(){
-        productDetailsTableview.register(UINib(nibName: "ProductDetailsTitleCell", bundle: nil), forCellReuseIdentifier: "ProductDetailsTitleCell")
-        productDetailsTableview.register(UINib(nibName: "ProductDetailsImageCell", bundle: nil), forCellReuseIdentifier: "ProductDetailsImageCell")
-        productDetailsTableview.register(UINib(nibName: "ProductDetailsDescriptionCell", bundle: nil), forCellReuseIdentifier: "ProductDetailsDescriptionCell")
-        productDetailsTableview.register(UINib(nibName: "ProductDetailsBuynowCell", bundle: nil), forCellReuseIdentifier: "ProductDetailsBuynowCell")
-        productDetailsTableview.register(UINib(nibName: "SepratorCell", bundle: nil), forCellReuseIdentifier: "SepratorCell")
+        productDetailsTableview.register(UINib(nibName: cellRegNibConstant.productDetailsTitleCell, bundle: nil), forCellReuseIdentifier: cellRegNibConstant.productDetailsTitleCell)
+        productDetailsTableview.register(UINib(nibName: cellRegNibConstant.productDetailsImageCell, bundle: nil), forCellReuseIdentifier: cellRegNibConstant.productDetailsImageCell)
+        productDetailsTableview.register(UINib(nibName: cellRegNibConstant.productDetailsDescriptionCell, bundle: nil), forCellReuseIdentifier: cellRegNibConstant.productDetailsDescriptionCell)
+        productDetailsTableview.register(UINib(nibName: cellRegNibConstant.productDetailsBuynowCell, bundle: nil), forCellReuseIdentifier: cellRegNibConstant.productDetailsBuynowCell)
+        productDetailsTableview.register(UINib(nibName: cellRegNibConstant.sepratorCell, bundle: nil), forCellReuseIdentifier: cellRegNibConstant.sepratorCell)
         // table view seprator style
         productDetailsTableview.separatorStyle = .none
     }
     deinit {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "ViewWillDisappearNotification"), object: nil)
+        NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: notificationString.viewWillDisappearNotification), object: nil)
     }
     
     func getdata(){
@@ -88,7 +88,7 @@ class ProductDetailsController: BaseViewController{
     }
     
     func ShowOrderview() {
-        let orderPopUpViewController = ProductDetailsOrderViewController(nibName: "ProductDetailsOrderViewController", bundle: nil)
+        let orderPopUpViewController = ProductDetailsOrderViewController.loadFromNib() as! ProductDetailsOrderViewController
         orderPopUpViewController.productId = self.Productid
         orderPopUpViewController.deligate = SideMenuViewController()
         orderPopUpViewController.productlabel = viewmodel.GetTitle()
@@ -99,13 +99,17 @@ class ProductDetailsController: BaseViewController{
     }
     
     func ShowRatingview() {
-        let ratePopUpViewController = ProductDetailsRateController(nibName: "ProductDetailsRateController", bundle: nil)
+        let ratePopUpViewController = ProductDetailsRateController.loadFromNib() as! ProductDetailsRateController
         ratePopUpViewController.productlabel = viewmodel.GetTitle()
         ratePopUpViewController.productimage = viewmodel.productDetailsData?.data?.product_images?.first?.image
         ratePopUpViewController.productId = self.Productid
         ratePopUpViewController.modalPresentationStyle = .overCurrentContext
         ratePopUpViewController.modalTransitionStyle = .crossDissolve
         self.present(ratePopUpViewController, animated: true, completion: nil)
+    }
+    
+    static func loadFromNib()-> UIViewController{
+        return ProductDetailsController(nibName: navigationVCConstant.productDetailsVC, bundle: nil)
     }
     
     @IBAction func OrderButtion(_ sender: UIButton) {
@@ -127,7 +131,7 @@ extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            let titleCell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailsTitleCell", for: indexPath) as! ProductDetailsTitleCell
+            let titleCell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.productDetailsTitleCell, for: indexPath) as! ProductDetailsTitleCell
             titleCell.productTitle.text = viewmodel.GetTitle()
             titleCell.productProducer.text = viewmodel.GetProducer()
             titleCell.productCategory.text = ProductCategory
@@ -138,7 +142,7 @@ extension ProductDetailsController: UITableViewDelegate, UITableViewDataSource {
             return titleCell
             
         case 1:
-            let detailscell = tableView.dequeueReusableCell(withIdentifier: "ProductDetailsImageCell", for: indexPath) as! ProductDetailsImageCell
+            let detailscell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.productDetailsImageCell, for: indexPath) as! ProductDetailsImageCell
             detailscell.productDetailsDescription.text = viewmodel.GetDescription()
             detailscell.productDetailsCost.text = String(viewmodel.Getcost())
             detailscell.imageCollectioViewData = viewmodel.Getimagedata()

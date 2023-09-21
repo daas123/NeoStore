@@ -47,13 +47,17 @@ class AddAddressController: BaseViewController {
         addressCountry.delegate = self
     }
     
+    static func loadFromNib()-> UIViewController{
+        return AddAddressController(nibName: navigationVCConstant.addAddressVC, bundle: nil)
+    }
+    
     @IBAction func SaveAddress(_ sender: UIButton) {
-        let address = addressMainTextview.text ?? ""
-            let landmark = AddressCityLandmark.text ?? ""
-            let city = addressCity.text ?? ""
-            let state = addressState.text ?? ""
-            let zipCodeText = addressZipCode.text ?? ""
-            let country = addressCountry.text ?? ""
+        let address = addressMainTextview.text ?? txtfieldValConst.emptyStr
+            let landmark = AddressCityLandmark.text ?? txtfieldValConst.emptyStr
+            let city = addressCity.text ?? txtfieldValConst.emptyStr
+            let state = addressState.text ?? txtfieldValConst.emptyStr
+            let zipCodeText = addressZipCode.text ?? txtfieldValConst.emptyStr
+            let country = addressCountry.text ?? txtfieldValConst.emptyStr
         viewModel.addAddressData(address: address, landmark: landmark, city: city, state:state , zipCode: Int(zipCodeText) ?? 0 , country: country){
             responce,msg in
             if responce{
@@ -80,7 +84,7 @@ extension AddAddressController : UITextFieldDelegate{
         case addressZipCode:
             addressCountry.becomeFirstResponder()
         case addressCountry:
-            addressCountry.resignFirstResponder() // Hide the keyboard when pressing return on the last field
+            addressCountry.resignFirstResponder()
         default:
             break
         }

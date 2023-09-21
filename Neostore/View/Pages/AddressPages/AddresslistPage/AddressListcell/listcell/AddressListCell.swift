@@ -25,9 +25,8 @@ class AddressListCell: UITableViewCell {
         addressBackView.layer.cornerRadius = 5
         addressBackView.layer.borderColor = UIColor.gray.cgColor
         addressBackView.layer.borderWidth = 1
-//        listcellview.layer.borderColor = UIColor.white.cgColor
-        radioButton.setImage(UIImage(systemName: "circle"), for: .normal)
-        radioButton.setImage(UIImage(systemName: "circle.fill"), for: .selected)
+        radioButton.setImage(UIImage(systemName: ImageConstants.circle), for: .normal)
+        radioButton.setImage(UIImage(systemName: ImageConstants.circle_fill), for: .selected)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

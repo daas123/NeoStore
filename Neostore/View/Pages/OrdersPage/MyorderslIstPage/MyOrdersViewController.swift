@@ -22,12 +22,16 @@ class MyOrdersViewController: BaseViewController {
     }
     
     func registerCell(){
-        ordersPageTableview.register(UINib(nibName: "OrderIdCell", bundle: nil), forCellReuseIdentifier: "OrderIdCell")
+        ordersPageTableview.register(UINib(nibName: cellRegNibConstant.orderIdCell, bundle: nil), forCellReuseIdentifier: cellRegNibConstant.orderIdCell)
     }
     
     func setDeligate(){
         ordersPageTableview.delegate = self
         ordersPageTableview.dataSource = self
+    }
+    
+    static func loadFromNib()-> UIViewController{
+        return MyOrdersViewController(nibName: navigationVCConstant.myOrdersVC, bundle: nil)
     }
     
     func getdata(){
@@ -52,7 +56,7 @@ extension MyOrdersViewController : UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "OrderIdCell", for: indexPath) as! OrderIdCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.orderIdCell, for: indexPath) as! OrderIdCell
         cell.orderListDetails.text = viewModel.OrderListData?.data[indexPath.row].created
         cell.orderListOrderId.text = String(viewModel.OrderListData?.data[indexPath.row].id ?? 0)
         cell.orderListTotalCost.text = String(viewModel.OrderListData?.data[indexPath.row].cost ?? 0)
@@ -60,7 +64,7 @@ extension MyOrdersViewController : UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let OrderIdViewController = OrderIdViewController(nibName: "OrderIdViewController", bundle: nil)
+        let OrderIdViewController = OrderIdViewController.loadFromNib() as! OrderIdViewController
         OrderIdViewController.orderDetialId = viewModel.OrderListData?.data[indexPath.row].id ?? 0
         self.navigationController?.pushViewController(OrderIdViewController, animated: true)
     }

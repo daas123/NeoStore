@@ -628,9 +628,9 @@
 		929C11D72A9147C300FB3382 /* SideMenuHomePage */ = {
 			isa = PBXGroup;
 			children = (
+				923DA9712A922C5A007016EA /* SideMenuTableviewcell */,
 				923DA9622A9203F4007016EA /* SideMenuViewController.swift */,
 				923DA9632A9203F4007016EA /* SideMenuViewController.xib */,
-				923DA9712A922C5A007016EA /* SideMenuTableviewcell */,
 			);
 			path = SideMenuHomePage;
 			sourceTree = "<group>";

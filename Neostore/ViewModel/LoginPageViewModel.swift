@@ -19,7 +19,7 @@ class loginViewModel{
                     switch responce{
                     case .success(let value):
                         if value.0 != nil{
-                            UserDefaults.standard.set(value.0?.data?.access_token, forKey: "accessToken")
+                            UserDefaults.standard.set(value.0?.data?.access_token, forKey: userDefConstant.accessToken)
                             complition(true,(value.0?.user_msg)!)
                         }else{
                             complition(false,(value.1?.userMsg)!)

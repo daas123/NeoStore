@@ -52,6 +52,10 @@ class StoreLocatorViewController: BaseViewController, CLLocationManagerDelegate,
             findNearbyNatureLocations(userLocation: userLocation)
         }
     }
+    
+    static func loadFromNib()-> UIViewController{
+        return StoreLocatorViewController(nibName: "StoreLocatorViewController", bundle: nil)
+    }
 
     func findNearbyNatureLocations(userLocation: CLLocation) {
         let baseUrl = "https://maps.googleapis.com/maps/api/place/nearbysearch/json"

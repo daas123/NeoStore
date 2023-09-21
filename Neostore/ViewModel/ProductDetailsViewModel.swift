@@ -36,11 +36,11 @@ class ProductDetailsViewModel:GetDetailsPageDetails{
     }
     
     func GetTitle() -> String {
-        return productDetailsData?.data?.name ?? "Invalid data"
+        return productDetailsData?.data?.name ?? errorConstant.error
     }
     
     func GetProducer() -> String {
-        return productDetailsData?.data?.producer ?? "Invalid data"
+        return productDetailsData?.data?.producer ?? errorConstant.error
     }
     
     func Getcost() -> Int {
@@ -56,7 +56,7 @@ class ProductDetailsViewModel:GetDetailsPageDetails{
     }
     
     func GetDescription() -> String {
-        return productDetailsData?.data?.description ?? "Invalid data"
+        return productDetailsData?.data?.description ?? errorConstant.error
     }
     func Getimagedata() -> [Product_images]? {
         return productDetailsData?.data?.product_images

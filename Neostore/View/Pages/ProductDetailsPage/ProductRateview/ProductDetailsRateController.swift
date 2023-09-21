@@ -43,8 +43,8 @@ class ProductDetailsRateController: BaseViewController {
     
     func setRatingImage(){
         for (index, image) in ratingImage.enumerated() {
-            image.image = UIImage(systemName: "star")
-            image.highlightedImage = UIImage(systemName: "star.fill")
+            image.image = UIImage(systemName: ImageConstants.star)
+            image.highlightedImage = UIImage(systemName: ImageConstants.starFill)
             image.tag = index // Set the tag to represent the index
             image.isUserInteractionEnabled = true
             image.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(rateButtonClickAction(_:))))
@@ -52,8 +52,8 @@ class ProductDetailsRateController: BaseViewController {
     }
     
     func setImage_text(){
-        if let imageUrl = URL(string: productimage ?? "invalid" ) {
-            productDetailsImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: "bg.jpg"))
+        if let imageUrl = URL(string: productimage ?? ImageConstants.default_img ) {
+            productDetailsImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: ImageConstants.default_img))
         }
         rateTitle.text = productlabel
     }
@@ -64,6 +64,10 @@ class ProductDetailsRateController: BaseViewController {
         
         RateGestureMainSubview = UITapGestureRecognizer(target: self, action: #selector(handleOrderDetailsTap(_:)))
         productDetailsSubview.addGestureRecognizer(RateGestureMainSubview)
+    }
+    
+    static func loadFromNib()-> UIViewController{
+        return ProductDetailsRateController(nibName: navigationVCConstant.productDetailsRateController, bundle: nil)
     }
     
     @objc private func handleOrderViewTap(_ sender: UITapGestureRecognizer) {
@@ -95,14 +99,12 @@ class ProductDetailsRateController: BaseViewController {
                 currentrating = 1
             }
         } else {
-            // Handle the selection of other stars
             for i in 0..<ratingImage.count {
                 ratingImage[i].isHighlighted = i <= selectedRating
             }
             currentrating = selectedRating + 1
         }
-        
-        debugPrint("User selected \(currentrating) star")
+//        debugPrint("User selected \(currentrating) star")
     }
     
     @IBAction func closeButtonAction(_ sender: UIButton) {
@@ -118,7 +120,7 @@ class ProductDetailsRateController: BaseViewController {
                 DispatchQueue.main.async {
                     UIView.animate(withDuration: 0.3) {
                         self.dismiss(animated: true, completion: nil)
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "RatingDoneNotification"), object: nil , userInfo: ["message": msg])
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: notificationString.ratingDoneNotification), object: nil , userInfo: [notificationString.message: msg])
                         self.deligate?.reloadDetailsPage()
                     }
                 }

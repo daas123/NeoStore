@@ -78,6 +78,10 @@ class RegisterViewController: BaseViewController{
         registerPhoneNumber?.delegate = self
     }
     
+    static func loadFromNib()-> UIViewController{
+        return RegisterViewController(nibName: navigationVCConstant.registerVC, bundle: nil)
+    }
+    
     @IBAction func radioTapped(_ sender: UIButton) {
         if sender == registerMaleRadio{
             gender = GenderConstant.male
@@ -102,11 +106,11 @@ class RegisterViewController: BaseViewController{
     
     @IBAction func registerButtonAction(_ sender: UIButton) {
         self.startActivityIndicator()
-        viewModel.registervalidation(Fname: registerFirstname.text ?? "", Lname: registerlastname.text ?? "", Email: registerEmail.text ?? "", Pass: registerPassword?.text ?? "", Cpass: registerConformPassword?.text ?? "", Gender: gender ?? GenderConstant.NaN , Phone: registerPhoneNumber?.text ?? "", chkBox: registerchkBox.isSelected ){
+        viewModel.registervalidation(Fname: registerFirstname.text ?? txtfieldValConst.emptyStr, Lname: registerlastname.text ?? txtfieldValConst.emptyStr, Email: registerEmail.text ?? txtfieldValConst.emptyStr, Pass: registerPassword?.text ?? txtfieldValConst.emptyStr, Cpass: registerConformPassword?.text ?? txtfieldValConst.emptyStr, Gender: gender ?? GenderConstant.NaN , Phone: registerPhoneNumber?.text ?? txtfieldValConst.emptyStr, chkBox: registerchkBox.isSelected ){
             (validateBool , resultStrng) in
             DispatchQueue.main.async {
                 if validateBool{
-                    self.navigationController?.pushViewController(LoginViewController(nibName:"LoginViewController", bundle: nil), animated: true)
+                    self.navigationController?.pushViewController(LoginViewController.loadFromNib(), animated: true)
                     self.showAlert(msg: resultStrng)
                 }else{
                     self.showAlert(msg: resultStrng)
