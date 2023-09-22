@@ -47,14 +47,24 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
         setupGuesture()
         setPickerview()
         setToolbar()
-        
-        for textViews in myAccountTextViews{
-            textViews.layer.borderWidth = 1
-            textViews.layer.borderColor = UIColor.white.cgColor
-        }
+        setupTextfileds()
         setTitle(titleString: pageTitleConstant.acccountDetails)
         fillData()
         
+    }
+    
+    func setupTextfileds(){
+        accountFname.setIcon(UIImage(systemName: ImageConstants.person)!)
+        accountLname.setIcon(UIImage(systemName: ImageConstants.person)!)
+        accountEmail.setIcon(UIImage(systemName: ImageConstants.mail)!)
+        accountPhoneNo.setIcon(UIImage(systemName: ImageConstants.phone)!)
+        accountDateOfBirth.setIcon(UIImage(systemName: ImageConstants.birthday)!)
+        
+        accountFname.setBorder()
+        accountLname.setBorder()
+        accountEmail.setBorder()
+        accountPhoneNo.setBorder()
+        accountDateOfBirth.setBorder()
     }
     
     func setNotificationObserver(){
@@ -177,9 +187,8 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
         self.accountFname.text = SideMenuViewmodel.menuDemoData.data?.user_data?.first_name
         self.accountLname.text = SideMenuViewmodel.menuDemoData.data?.user_data?.last_name
         self.accountEmail.text = SideMenuViewmodel.menuDemoData.data?.user_data?.email
-        self.accountPhoneNo.text = String(SideMenuViewmodel.menuDemoData.data?.user_data?.phone_no ?? "0")
-        self.accountDateOfBirth.text = String(SideMenuViewmodel.menuDemoData.data?.user_data?.dob ?? "0")
-        self.startActivityIndicator()
+        self.accountPhoneNo.text = String(SideMenuViewmodel.menuDemoData.data?.user_data?.phone_no ?? txtfieldValConst.emptyStr)
+        self.accountDateOfBirth.text = String(SideMenuViewmodel.menuDemoData.data?.user_data?.dob ?? txtfieldValConst.emptyStr)
         DispatchQueue.global(qos: .background).async {
             if let accessToken = self.accesstoken,
                let imageData = UserDefaults.standard.data(forKey: accessToken),
@@ -311,7 +320,7 @@ extension MyAccountViewController : UIPickerViewDataSource, UIPickerViewDelegate
 }
 
 extension MyAccountViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+    // MARK: For Upload the image
     func openActionSheetForUploadImage(){
         let alert:UIAlertController=UIAlertController(title: alertMsgConstant.choose_Image, message: nil, preferredStyle: UIAlertController.Style.actionSheet)
         let cameraAction = UIAlertAction(title: alertMsgConstant.camera, style: UIAlertAction.Style.default){
@@ -323,7 +332,6 @@ extension MyAccountViewController: UIImagePickerControllerDelegate, UINavigation
             self.openGallary()
         }
         
-        
         let cancelAction = UIAlertAction(title: alertMsgConstant.cancel, style: UIAlertAction.Style.cancel){
             UIAlertAction in
         }
@@ -333,7 +341,7 @@ extension MyAccountViewController: UIImagePickerControllerDelegate, UINavigation
         alert.addAction(cancelAction)
         self.present(alert, animated: true, completion: nil)
     }
-    
+    // MARK: For opning the camera
     func openCamera() {
         if(UIImagePickerController .isSourceTypeAvailable(UIImagePickerController.SourceType.camera)){
             imagePicker.sourceType = UIImagePickerController.SourceType.camera
@@ -342,13 +350,13 @@ extension MyAccountViewController: UIImagePickerControllerDelegate, UINavigation
            
         }
     }
-    
+    // MARK: for opningthe gallery
     func openGallary(){
         imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
         imagePicker.allowsEditing = true
         self.present(imagePicker, animated: true, completion: nil)
     }
-    
+    // MARK: Selected Image
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let img = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             image = img

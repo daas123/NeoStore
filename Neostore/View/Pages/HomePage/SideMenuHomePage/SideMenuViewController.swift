@@ -61,14 +61,18 @@ class SideMenuViewController: UIViewController {
     }
     
     @objc func reloadData() {
-        //reload the data
-        getData()
+        viewmodel.fetchAccountDetails{_ in
+            DispatchQueue.main.async {
+                self.sideMenuTableview.reloadData()
+            }
+        }
     }
     
     func getData(){
         viewmodel.fetchAccountDetails{
             respose in
             DispatchQueue.main.async {
+                self.stopActivityIndicator()
                 if respose{
                     self.sideMenuTableview.reloadData()
                     self.userEmail.text = SideMenuViewmodel.menuDemoData.data?.user_data?.email
@@ -145,18 +149,15 @@ extension SideMenuViewController : UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        startActivityIndicator()
         if indexPath.row == 0 {
-            self.startActivityIndicator()
             let cartViewController = CartViewController.loadFromNib()
             self.navigationController?.pushViewController(cartViewController, animated: true)
-            
         }else if (indexPath.row == 1 || indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4){
             let productViewController = ProductViewController.loadFromNib() as! ProductViewController
             productViewController.id = SideMenuViewmodel.menuDemoData.data?.product_categories?[indexPath.row-1].id ?? 0
             self.navigationController?.pushViewController(productViewController, animated: true)
-            
         }else if indexPath.row == 5{
-            self.startActivityIndicator()
             let MyAccountViewController = MyAccountViewController.loadFromNib() as! MyAccountViewController
             MyAccountViewController.accesstoken = SideMenuViewmodel.menuDemoData.data?.user_data?.access_token
             self.navigationController?.pushViewController(MyAccountViewController, animated: true)
@@ -173,6 +174,7 @@ extension SideMenuViewController : UITableViewDelegate,UITableViewDataSource{
             UIApplication.shared.windows.first?.rootViewController = navigationController
         }
         else{
+            stopActivityIndicator()
             print(errorConstant.error)
         }
     }

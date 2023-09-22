@@ -12,6 +12,10 @@ struct ColorConstant{
     static let primary_red = UIColor(red: 0.9568627451, green: 0.09411764706, blue: 0.05490196078, alpha: 1.0)
     // tool bar backgound color
     static let black = UIColor(red: 0.05993984508, green: 0.04426076461, blue: 0.08429525985, alpha: 1)
+    // for activity indicator transperent color
+    static let whiteTarnsperent = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3096592379)
+    // for border
+    static let white = UIColor.white
 }
 
 struct toolbarBtnConstant{
@@ -97,8 +101,18 @@ struct ImageConstants {
     // for raring
     static let starFill = "star.fill"
     static let star = "star"
-    
     static let empty = ""
+    // for textfiles
+    static let person = "person.fill"
+    static let lock = "lock.fill"
+    static let mail = "envelope.fill"
+    static let phone = "phone.fill"
+    static let birthday = "birthday.cake.fill"
+//    static let  = ""
+    
+    
+    
+
 }
 
 struct homeCollectionViewConstant{
@@ -142,6 +156,8 @@ struct alertMsgConstant{
     static let order_done_Succesfully = "Order done Succesfully"
     static let add_an_Address = "Add an Address"
     static let select_the_Address = "Select the Address"
+    
+    static let ok = "OK"
 }
 
 struct btnString{
@@ -193,4 +209,33 @@ struct userDefConstant{
     static let accessToken = "accessToken"
     static let empty = ""
     static let myAddress = "myAddress"
+}
+
+struct validationConstant{
+    static let emptyStr = ""
+    static let enterTheUsername = "Enter the Username"
+    static let enterThePassword = "Enter the Password"
+    static let emailAllowedChar = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+    static let emailStruct = "SELF MATCHES %@"
+    static let enterTheValidEmail = "enter the valid email"
+    static let  ook = "OK"
+    //register constant
+    static let firstNameMustBeAtLeastCharactersLong = "First Name must be at least 4 characters long."
+    static let lastNameMustBeAtLeastCharactersLong = "Last Name must be at least 4 characters long."
+    static let invalidEmailAddress = "Invalid Email Address"
+    static let passwordMustBeAtLeastCharactersLong = "Password must be at least 8 characters long"
+    static let confirmPasswordDoesNotMatchPassword = "Confirm Password does not match Password"
+    static let pleaseSelectaGender = "Please select a Gender"
+    static let invalidMobileNumber = "Invalid Mobile Number"
+    static let agreeTermsAndCondition = "You must agree to the Terms and Conditions"
+    static let numberAllowed = "0123456789"
+    static let quantityMustBeBetweenAndContainOnlyNumbers = "Quantity must be between 1 to 7 and contain only numbers"
+    static let allTextFilledMustBeFilled = "all Text Filled must be Filled"
+    static let enterTheAddress = "Enter the address"
+    static let enterTheLandmark = "Enter the landmark"
+    static let enterTheCity = "Enter the City"
+    static let enterTheState = "Enter the State"
+    static let enterTheCountry = "Enter the Country"
+    static let zipcodeShouldBeNumber = "Zipcode should be a number"
+    
 }

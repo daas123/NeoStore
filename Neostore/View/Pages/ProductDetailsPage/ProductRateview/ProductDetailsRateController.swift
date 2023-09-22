@@ -121,7 +121,6 @@ class ProductDetailsRateController: BaseViewController {
                     UIView.animate(withDuration: 0.3) {
                         self.dismiss(animated: true, completion: nil)
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: notificationString.ratingDoneNotification), object: nil , userInfo: [notificationString.message: msg])
-                        self.deligate?.reloadDetailsPage()
                     }
                 }
             }

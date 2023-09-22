@@ -10,8 +10,6 @@ import UIKit
 extension UINavigationController{
     open override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Configure the navigation bar appearance
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithOpaqueBackground()
         navigationBarAppearance.backgroundColor = UIColor(named: "Primary Background")
@@ -20,16 +18,7 @@ extension UINavigationController{
         ]
         navigationBar.standardAppearance = navigationBarAppearance
         navigationBar.scrollEdgeAppearance = navigationBarAppearance
-        
-        // Optionally, set other navigation bar properties
         navigationBar.tintColor = UIColor(named: "Primary Foreground")
-        
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-//        self.view.addGestureRecognizer(tapGesture)
-        
     }
-//    @objc func dismissKeyboard() {
-//        debugPrint("tap gusture is sworking")
-//        view.endEditing(true)
-//    }
+
 }

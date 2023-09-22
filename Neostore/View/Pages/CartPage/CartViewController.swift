@@ -27,7 +27,6 @@ class CartViewController: BaseViewController , UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         baseScrollView = scrollView
         title = pageTitleConstant.cart
         setDeligate()

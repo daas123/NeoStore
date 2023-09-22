@@ -33,29 +33,33 @@ class RegisterViewController: BaseViewController{
     // MARK: ViewDidload
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // MARK: Setting scroll View in base view controller
+        setupTextfileds()
         baseScrollView = scrollView
-        
-        // MARK: Page Title
         setTitle(titleString: pageTitleConstant.register )
-        
-        // MARK: Creating the border
-        for registerViews in registerDetailsView{
-            registerViews.layer.borderWidth = 2
-            registerViews.layer.borderColor = UIColor.white.cgColor
-        }
-        
-        // MARK: Male Female Radio Btn Defalut Images
         setDefaultImages()
-        
-        // MARK: TextField Deligate
         setTextFieldDeligates()
-        
-        // MARK: Tap Guesture For View
+        setTapGuesture()
+    }
+    
+    func setTapGuesture(){
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    func setupTextfileds(){
+        registerFirstname.setIcon(UIImage(systemName: ImageConstants.person)!)
+        registerlastname.setIcon(UIImage(systemName: ImageConstants.person)!)
+        registerEmail.setIcon(UIImage(systemName: ImageConstants.mail)!)
+        registerPassword?.setIcon(UIImage(systemName: ImageConstants.lock)!)
+        registerConformPassword.setIcon(UIImage(systemName: ImageConstants.lock)!)
+        registerPhoneNumber?.setIcon(UIImage(systemName: ImageConstants.phone)!)
         
+        registerFirstname.setBorder()
+        registerlastname.setBorder()
+        registerEmail.setBorder()
+        registerPassword?.setBorder()
+        registerConformPassword.setBorder()
+        registerPhoneNumber?.setBorder()
     }
     
     //MARK: Default Images

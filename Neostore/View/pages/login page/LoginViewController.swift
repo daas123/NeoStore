@@ -11,51 +11,39 @@ class LoginViewController: BaseViewController {
     // MARK: FILE CONSTANT
     let viewmodel = loginViewModel()
     var islogin = true
+    let leftImageView = UIImageView()
     
-    // MARK: BACK NAVIGATION BTN
+    // MARK: IBOUTLET
     @IBOutlet weak var navigationback: UIButton!
-    
-    // MARK: REGISTER BTN
     @IBOutlet weak var dontHaveaccoutButton: UIButton!
     @IBOutlet weak var plusButton: UIButton!
-    
-    // MARK: FORGET PASSWORD
     @IBOutlet weak var forgetPassword: UIButton!
-    
-    // MARK: LOGIN BTN
     @IBOutlet weak var loginButton: UIButton!
-    
-    // MARK: SCROLLVIEW VIEW
     @IBOutlet weak var parentViewTapGuesture: UIView!
-    
-    // MARK: COLLECTION OF UIVIEW
     @IBOutlet var personDetailsview: [UIView]!
-    
-    // MARK: TEXT FIELD
     @IBOutlet weak var loginUsername: UITextField!
     @IBOutlet weak var loginPassword: UITextField!
-    
-    // MARK: FOR PASSWORD VIEW
     @IBOutlet weak var passwordView: UIView!
-    
-    // MARK: ViewWillApper
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.isNavigationBarHidden = true
-    }
-    
-    // MARK: ViewDidLoad
+ 
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        for userview in personDetailsview{
-            userview.layer.borderWidth = 1.0
-            userview.layer.borderColor = UIColor.white.cgColor
-        }
+        loginUsername.setIcon(UIImage(systemName: ImageConstants.person )!)
+        loginPassword.setIcon(UIImage(systemName: ImageConstants.lock )!)
+        
+        loginUsername.setBorder()
+        loginPassword.setBorder()
+
         // MARK: Textfield Deligate
         setTexfiedDeligate()
         
         // MARK: TapGesture For ParentView
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.parentViewTapGuesture.addGestureRecognizer(tapGesture)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
     }
     
     func setTexfiedDeligate(){
@@ -66,6 +54,7 @@ class LoginViewController: BaseViewController {
     static func loadFromNib()-> UIViewController{
         return LoginViewController(nibName: navigationVCConstant.loginVC, bundle: nil)
     }
+    
     @IBAction func LoginButtonAction(_ sender: UIButton) {
         if islogin {
             self.startActivityIndicator()

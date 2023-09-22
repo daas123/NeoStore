@@ -62,7 +62,6 @@ class ProductDetailsController: BaseViewController{
     }
     
     func getdata(){
-        startActivityIndicator()
         self.viewmodel.getProductDetails(id: Productid ){
             (Responce) in
             DispatchQueue.main.async {

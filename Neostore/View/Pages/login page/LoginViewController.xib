@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -46,16 +47,8 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ghr-NS-MuW">
                                             <rect key="frame" x="0.0" y="0.0" width="309" height="48"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="bb6-Vn-04s">
-                                                    <rect key="frame" x="8" y="8" width="35" height="32"/>
-                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="35" id="LdH-Ho-bsR"/>
-                                                        <constraint firstAttribute="height" constant="35" id="XCg-Fo-AkG"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="saad1@gmail.com" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ROz-4J-ANH">
-                                                    <rect key="frame" x="51" y="12.5" width="250" height="23"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="309" height="48"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -68,27 +61,18 @@
                                                 </textField>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="ROz-4J-ANH" secondAttribute="trailing" id="CwO-NV-Nie"/>
+                                                <constraint firstAttribute="bottom" secondItem="ROz-4J-ANH" secondAttribute="bottom" id="Kg4-fx-XMp"/>
+                                                <constraint firstItem="ROz-4J-ANH" firstAttribute="leading" secondItem="ghr-NS-MuW" secondAttribute="leading" id="LmH-pr-1gX"/>
+                                                <constraint firstItem="ROz-4J-ANH" firstAttribute="top" secondItem="ghr-NS-MuW" secondAttribute="top" id="Q0J-tR-Cen"/>
                                                 <constraint firstAttribute="height" constant="48" id="RXE-aW-2sQ"/>
-                                                <constraint firstItem="bb6-Vn-04s" firstAttribute="leading" secondItem="ghr-NS-MuW" secondAttribute="leading" constant="8" id="akm-zh-5AJ"/>
-                                                <constraint firstItem="ROz-4J-ANH" firstAttribute="centerY" secondItem="bb6-Vn-04s" secondAttribute="centerY" id="etl-47-TPG"/>
-                                                <constraint firstItem="ROz-4J-ANH" firstAttribute="leading" secondItem="bb6-Vn-04s" secondAttribute="trailing" constant="8" id="m4K-UN-pa1"/>
-                                                <constraint firstItem="bb6-Vn-04s" firstAttribute="centerY" secondItem="ghr-NS-MuW" secondAttribute="centerY" id="o9y-g7-IfO"/>
-                                                <constraint firstAttribute="trailing" secondItem="ROz-4J-ANH" secondAttribute="trailing" constant="8" id="rjG-Xc-d60"/>
                                             </constraints>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jof-kZ-0jR">
                                             <rect key="frame" x="0.0" y="63" width="309" height="48"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lock.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="AdO-iN-FT7">
-                                                    <rect key="frame" x="8" y="7" width="35" height="33.5"/>
-                                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="35" id="6QD-n1-LkS"/>
-                                                        <constraint firstAttribute="width" constant="35" id="XFY-ih-3mR"/>
-                                                    </constraints>
-                                                </imageView>
                                                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="8080saad" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j1q-HC-MYt">
-                                                    <rect key="frame" x="51" y="13" width="250" height="22"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="309" height="48"/>
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -102,11 +86,10 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="48" id="6li-wL-jQu"/>
-                                                <constraint firstAttribute="trailing" secondItem="j1q-HC-MYt" secondAttribute="trailing" constant="8" id="7Nu-D3-6WD"/>
-                                                <constraint firstItem="j1q-HC-MYt" firstAttribute="leading" secondItem="AdO-iN-FT7" secondAttribute="trailing" constant="8" id="9ay-Or-fDF"/>
-                                                <constraint firstItem="AdO-iN-FT7" firstAttribute="leading" secondItem="Jof-kZ-0jR" secondAttribute="leading" constant="8" id="X9y-JS-wzK"/>
-                                                <constraint firstItem="AdO-iN-FT7" firstAttribute="centerY" secondItem="Jof-kZ-0jR" secondAttribute="centerY" id="b8s-2c-M8Z"/>
-                                                <constraint firstItem="j1q-HC-MYt" firstAttribute="centerY" secondItem="AdO-iN-FT7" secondAttribute="centerY" id="xHB-NY-877"/>
+                                                <constraint firstAttribute="bottom" secondItem="j1q-HC-MYt" secondAttribute="bottom" id="6tT-BD-WoE"/>
+                                                <constraint firstAttribute="trailing" secondItem="j1q-HC-MYt" secondAttribute="trailing" id="7Nu-D3-6WD"/>
+                                                <constraint firstItem="j1q-HC-MYt" firstAttribute="top" secondItem="Jof-kZ-0jR" secondAttribute="top" id="S68-hb-qu6"/>
+                                                <constraint firstItem="j1q-HC-MYt" firstAttribute="leading" secondItem="Jof-kZ-0jR" secondAttribute="leading" id="ejT-g9-6Vc"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -167,10 +150,10 @@
                                     </connections>
                                 </button>
                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SgY-dz-xTv">
-                                    <rect key="frame" x="10" y="15" width="40" height="34"/>
+                                    <rect key="frame" x="10" y="15" width="48" height="34"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" image="chevron.left" catalog="system"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="lock.fill" catalog="system"/>
                                     <connections>
                                         <action selector="cancelButtonAction:" destination="-1" eventType="touchUpInside" id="S5B-2g-7wf"/>
                                     </connections>
@@ -219,9 +202,7 @@
         </view>
     </objects>
     <resources>
-        <image name="chevron.left" catalog="system" width="97" height="128"/>
         <image name="lock.fill" catalog="system" width="125" height="128"/>
-        <image name="person.fill" catalog="system" width="128" height="120"/>
         <image name="plus" catalog="system" width="128" height="113"/>
     </resources>
 </document>

@@ -90,7 +90,6 @@ class ProductViewController: BaseViewController {
     }
     
     func getdata(){
-        self.startActivityIndicator()
         self.viewmodel.GetProductList(id: id ){
             (dataretrived) in
             if dataretrived{
@@ -130,7 +129,6 @@ extension ProductViewController: UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         view.endEditing(true)
-        self.startActivityIndicator()
         let ProductDetailsController = ProductDetailsController.loadFromNib() as! ProductDetailsController
         ProductDetailsController.Productid = productsfilteredData[indexPath.row].id ?? 0
         ProductDetailsController.ProductCategory = self.getTitle(id: self.id)

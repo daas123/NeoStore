@@ -11,35 +11,8 @@ import UIKit
 extension UIViewController{
     func showAlert(msg : String){
         let alert = UIAlertController(title: nil, message: msg , preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel))
+        alert.addAction(UIAlertAction(title: alertMsgConstant.ok, style: .cancel))
         present(alert, animated: true)
     }
 }
 
-
-//class AlertError{
-//    func showAlert(msg:String) {
-//        let alert = UIAlertController(title: nil, message: msg, preferredStyle: .alert)
-//        if msg == "Registered Successfull"{
-//
-//            let action = UIAlertAction(title: "OK", style: .default) { (action) in
-//                let nextViewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
-//                self.navigationController?.pushViewController(nextViewController, animated: true)
-//                self.dismiss(animated: true, completion: nil)
-//            }
-//
-//            alert.addAction(action)
-//
-//        } else {
-//
-//            let action = UIAlertAction(title: "OK", style: .default) { (action) in
-//                self.dismiss(animated: true, completion: nil)
-//            }
-//
-//            alert.addAction(action)
-//        }
-//
-//        self.present(alert, animated: true, completion: nil)
-//    }
-//}
-//

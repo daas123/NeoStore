@@ -70,15 +70,15 @@ class ProductDetailsOrderViewController: BaseViewController {
     }
     
     @IBAction func orderButton(_ sender: UIButton) {
-        startActivityIndicator()
         viewModel.AddToCart(productid:productId, quantity: productOrderQuantityField?.text ?? txtfieldValConst.emptyStr ){
             (responce,Msg) in
             if responce{
                 DispatchQueue.main.async {
                     self.stopActivityIndicator()
                     UIView.animate(withDuration: 0.3) {
-                        NotificationCenter.default.post(name: .reloadSideMenuData, object: nil)
                         self.dismiss(animated: true, completion: nil)
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: notificationString.ratingDoneNotification), object: nil , userInfo: [notificationString.message: Msg])
+                        NotificationCenter.default.post(name: .reloadSideMenuData, object: nil)
                     }
                 }
             }else{
