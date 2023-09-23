@@ -40,6 +40,7 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        startActivityIndicator()
         baseScrollView = scrollView
         setupImage()
         setdeligate()
@@ -59,7 +60,6 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
         accountEmail.setIcon(UIImage(systemName: ImageConstants.mail)!)
         accountPhoneNo.setIcon(UIImage(systemName: ImageConstants.phone)!)
         accountDateOfBirth.setIcon(UIImage(systemName: ImageConstants.birthday)!)
-        
         accountFname.setBorder()
         accountLname.setBorder()
         accountEmail.setBorder()
@@ -184,6 +184,7 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
     }
     
     func fillData(){
+        startActivityIndicator()
         self.accountFname.text = SideMenuViewmodel.menuDemoData.data?.user_data?.first_name
         self.accountLname.text = SideMenuViewmodel.menuDemoData.data?.user_data?.last_name
         self.accountEmail.text = SideMenuViewmodel.menuDemoData.data?.user_data?.email
@@ -194,6 +195,7 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
                let imageData = UserDefaults.standard.data(forKey: accessToken),
                let image = UIImage(data: imageData) {
                 DispatchQueue.main.async {
+                    self.stopActivityIndicator()
                     self.accountImage.image = image
                     self.stopActivityIndicator()
                 }
@@ -203,7 +205,7 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
                 }
             }
         }
-        self.stopActivityIndicator()
+        stopActivityIndicator()
     }
     func setButtonState(val:Bool){
         accountFname.isUserInteractionEnabled = val
@@ -237,7 +239,6 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
             
             if let image = image  {
                 if let imageData = image.pngData(), let accessToken = accesstoken {
-                    // Save the image data in UserDefaults
                     UserDefaults.standard.set(imageData, forKey: accessToken)
                     accountImage.image = image
                 }

@@ -35,9 +35,11 @@ class MyOrdersViewController: BaseViewController {
     }
     
     func getdata(){
+        self.startActivityIndicator()
         viewModel.getorderList(){
             responce in
             DispatchQueue.main.async {
+                self.stopActivityIndicator()
                 if responce{
                     self.ordersPageTableview.reloadData()
                 }else{

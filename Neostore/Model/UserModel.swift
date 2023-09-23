@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 struct User: Codable {
     var status: Int?
     var data: UserDetail?
@@ -35,7 +34,6 @@ struct UserDetail: Codable {
     var created: String?
     var modified: String?
     var access_token: String?
-    
     var dob: String?
     var profile_pic: String?
     
@@ -56,7 +54,14 @@ struct UserDetail: Codable {
         case profile_pic = "profile_pic"
     }
 }
-struct AuthResponse: Codable {
+
+struct UserDataError:Codable{
+    var status:Int
+    var message:String
+    var user_msg:String
+}
+
+struct UserResponseFalied: Codable {
     let status: Int?
     let data: Bool?
     let message, userMsg: String?
@@ -67,8 +72,7 @@ struct AuthResponse: Codable {
     }
 }
 
-
-struct ForgetPass:Codable{
+struct ForgetUser:Codable{
     let status:Int
     let message:String
     let user_msg:String

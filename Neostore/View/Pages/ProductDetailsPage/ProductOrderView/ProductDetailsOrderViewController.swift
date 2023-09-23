@@ -70,6 +70,7 @@ class ProductDetailsOrderViewController: BaseViewController {
     }
     
     @IBAction func orderButton(_ sender: UIButton) {
+        startActivityIndicator()
         viewModel.AddToCart(productid:productId, quantity: productOrderQuantityField?.text ?? txtfieldValConst.emptyStr ){
             (responce,Msg) in
             if responce{

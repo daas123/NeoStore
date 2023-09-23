@@ -44,7 +44,6 @@ class APIManager {
         }
         if !(apiCallType.isImageFetching){
             request.allHTTPHeaderFields = apiCallType.header
-            
         }
         
         let task = session.dataTask(with: request){ data, response, error in

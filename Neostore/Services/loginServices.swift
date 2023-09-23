@@ -10,46 +10,54 @@ import Foundation
 import Foundation
 
 class LoginWebService {
-    func loginAction(email: String, password: String, completion: @escaping (Result<(User?, AuthResponse?), Error>) -> Void) {
+    func loginAction(email: String, password: String, completion: @escaping (Result<(User?,UserResponseFalied?,UserDataError?), Error>) -> Void) {
         let param = ["email": email, "password": password]
         APIManager.shared.callRequest(apiCallType: .userLogin(param: param)) { response in
-            do {
-                switch response {
-                case .success(let data):
-                    guard let retrievedData = data as? Data else {
-                        print("Error in model")
-                        return
+            switch response {
+            case .success(let data):
+                do {
+                    let user = try JSONDecoder().decode(User.self, from: data)
+                    completion(.success((user,nil,nil)))
+                } catch {
+                    do {
+                        let userResponseFalied = try JSONDecoder().decode(UserResponseFalied.self, from: data)
+                        completion(.success((nil, userResponseFalied,nil)))
+                    }catch {
+                        do {
+                            let userDataError = try JSONDecoder().decode(UserDataError.self, from: data)
+                            completion(.success((nil,nil,userDataError)))
+                        }catch {
+                            completion(.failure(error))
+                        }
                     }
-                    
-                    if let jsondata = try? JSONDecoder().decode(User.self, from: retrievedData) {
-                        completion(.success((jsondata, nil)))
-                    }
-                    
-                    if let jsondata2 = try? JSONDecoder().decode(AuthResponse.self, from: retrievedData) {
-                        completion(.success((nil, jsondata2)))
-                    }
-                    
-                case .failure(let error):
-                    throw error
                 }
-            } catch {
+            case .failure(let error):
                 completion(.failure(error))
             }
         }
     }
     
-    
-    func changeAction(old_password: String, password: String,confirm_password:String, completion: @escaping (Result<ForgetPass,Error>)->Void){
+    func changeAction(old_password: String, password: String,confirm_password:String, completion: @escaping (Result<(ForgetUser?,UserDataError?),Error>)->Void){
         let param = ["old_password":old_password,"password":password,"confirm_password":confirm_password]
         APIManager.shared.callRequest(apiCallType: .ChangePasword(param: param)) { response in
             switch response {
             case .success(let data):
-                if let retriveData = data as? Data {
-                    let jsondata = try? JSONDecoder().decode(ForgetPass.self, from: retriveData)
-                    completion(.success(jsondata!))
-                }else{
-                    completion(.failure(Error.self as! Error))
+                do {
+                    let forgetPassSucces = try JSONDecoder().decode(ForgetUser.self, from: data)
+                    if forgetPassSucces.status == 200{
+                        completion(.success((forgetPassSucces,nil)))
+                    }else{
+                        debugPrint("error")
+                    }
+                }catch{
+                    do {
+                        let userDataError = try JSONDecoder().decode(UserDataError.self, from: data)
+                        completion(.success((nil,userDataError)))
+                    } catch {
+                        completion(.failure(error))
+                    }
                 }
+                
             case .failure(let error ):
                 completion(.failure(error))
             }
@@ -57,19 +65,23 @@ class LoginWebService {
         
     }
     
-    func forgetAction(email:String, completion: @escaping (Result<ForgetPass,Error>)->Void){
+    func forgetAction(email:String, completion: @escaping (Result<(ForgetUser?,UserDataError?),Error>)->Void){
         let param = ["email":email]
         APIManager.shared.callRequest(apiCallType: .ForgetPassword(param: param)) { response in
             switch response {
             case .success(let data):
-                if let retriveData = data as? Data {
-                    let jsondata = try? JSONDecoder().decode(ForgetPass.self, from: retriveData)
-                    completion(.success(jsondata!))
-                }else{
-                    completion(.failure(Error.self as! Error))
+                do {
+                    let forgetUser = try JSONDecoder().decode(ForgetUser.self, from: data)
+                    completion(.success((forgetUser,nil)))
+                }catch{
+                    do {
+                        let userDataError = try? JSONDecoder().decode(UserDataError.self, from: data)
+                        completion(.success((nil,userDataError)))
+                    }
                 }
             case .failure(let error ):
                 completion(.failure(error))
+                
             }
         }
         

@@ -7,39 +7,55 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "B539A090-3543-4A1D-B07E-30D3876890EB"
+            uuid = "CD68D775-A243-44BF-A581-C176F1F171BD"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Neostore/View/Pages/ProductDetailsPage/ProductRateview/ProductDetailsRateController.swift"
+            filePath = "Neostore/View/Pages/CartPage/CartViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
-            landmarkName = "RateButtonAction(_:)"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "48854FD3-4957-4B49-9CCD-CA75ED441997"
+            uuid = "97F22E42-3813-4095-95A0-1C6D014D860D"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Neostore/View/Pages/ProductDetailsPage/ProductOrderView/ProductDetailsOrderViewController.swift"
+            filePath = "Neostore/View/Pages/Account/MyAccountpage/MyAccountViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "orderButton(_:)"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "55682FA6-F56B-46D9-AD46-AAD2DF40A412"
+            uuid = "AE8255B7-97FC-409A-9025-771F8F8DAF55"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/View/Pages/Account/MyAccountpage/MyAccountViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F8444CA8-3F93-4DA9-A029-40F6800C706C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -52,7 +68,7 @@
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "55682FA6-F56B-46D9-AD46-AAD2DF40A412 - 5179807b4952c79b"
+                  uuid = "F8444CA8-3F93-4DA9-A029-40F6800C706C - 5179807b4952c79b"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -64,24 +80,56 @@
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "40"
                   endingLineNumber = "40"
-                  offsetFromSymbolStart = "130">
+                  offsetFromSymbolStart = "626">
                </Location>
                <Location
-                  uuid = "55682FA6-F56B-46D9-AD46-AAD2DF40A412 - 5179807b4952c79b"
+                  uuid = "F8444CA8-3F93-4DA9-A029-40F6800C706C - 11e980db2d347c9f"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "Neostore.ProductDetailsController.viewWillDisappearNotification(Foundation.Notification) -&gt; ()"
+                  symbolName = "closure #1 (Swift.Bool) -&gt; () in Neostore.ProductDetailsController.viewWillDisappearNotification(Foundation.Notification) -&gt; ()"
                   moduleName = "Neostore"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/neosoft/Documents/neostoreassests/Neostore/Neostore/View/Pages/ProductDetailsPage/ProductDetailsController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40"
-                  offsetFromSymbolStart = "573">
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
+                  offsetFromSymbolStart = "74">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9B26CD21-E1B6-4078-8022-E7935BA112F6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/View/Pages/ProductDetailsPage/ProductDetailsController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "viewWillDisappearNotification(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "ED6F87EE-3122-4BC6-829E-EED9539C21C9"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Neostore/View/Pages/ProductDetailsPage/ProductDetailsController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "viewWillDisappearNotification(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

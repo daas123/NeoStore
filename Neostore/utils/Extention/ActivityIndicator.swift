@@ -3,36 +3,31 @@ import NVActivityIndicatorView
 
 extension UIViewController {
     
-    func startActivityIndicator() {
-        let indicatorFrame = CGRect(x: 0, y: 0, width: 50, height: 50)
-        let indicatorColor = UIColor.white
-        let indicatorPadding: CGFloat = 10.0
-        
-        let indicator = NVActivityIndicatorView(
-            frame: indicatorFrame,
-            type: .circleStrokeSpin,
-            color: indicatorColor,
-            padding: indicatorPadding)
-        indicator.center = view.center
-        indicator.backgroundColor = ColorConstant.whiteTarnsperent
-        indicator.layer.cornerRadius = 8.0
-        let window = UIApplication.shared.keyWindow
-        if let window = UIApplication.shared.keyWindow {
-            indicator.center = window.center
-            window.addSubview(indicator)
-            indicator.startAnimating()
-        }
-        indicator.startAnimating()
-    }
-    func stopActivityIndicator() {
-        if let indicator = UIApplication.shared.keyWindow?.subviews.first(where: { $0 is NVActivityIndicatorView }) as? NVActivityIndicatorView {
-            indicator.stopAnimating()
-            indicator.removeFromSuperview()
-        }
+    private var activityIndicator: NVActivityIndicatorView? {
+        return view.subviews.first(where: { $0 is NVActivityIndicatorView }) as? NVActivityIndicatorView
     }
     
+    func startActivityIndicator() {
+        if activityIndicator == nil {
+            let indicatorFrame = CGRect(x: 0, y: 0, width: 50, height: 50)
+            let newActivityIndicator = NVActivityIndicatorView(frame: indicatorFrame)
+            newActivityIndicator.color = UIColor.white
+            newActivityIndicator.layer.cornerRadius = 25
+            newActivityIndicator.backgroundColor = ColorConstant.whiteTarnsperent
+            newActivityIndicator.type = .circleStrokeSpin
+            newActivityIndicator.padding = 5
+            newActivityIndicator.center = view.center
+            
+            view.addSubview(newActivityIndicator)
+        }
+        
+        activityIndicator?.startAnimating()
+        view.isUserInteractionEnabled = false
+    }
+    
+    func stopActivityIndicator() {
+        activityIndicator?.stopAnimating()
+        activityIndicator?.removeFromSuperview()
+        view.isUserInteractionEnabled = true
+    }
 }
-
-
-
-

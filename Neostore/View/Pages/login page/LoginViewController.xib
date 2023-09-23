@@ -139,10 +139,10 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ruz-DH-nKG">
-                                    <rect key="frame" x="95.5" y="393.5" width="184.5" height="31.5"/>
+                                    <rect key="frame" x="93" y="393.5" width="189" height="32"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" title="FORGET PASSWORD ?">
-                                        <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                        <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
                                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </buttonConfiguration>
                                     <connections>
@@ -150,10 +150,10 @@
                                     </connections>
                                 </button>
                                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SgY-dz-xTv">
-                                    <rect key="frame" x="10" y="15" width="48" height="34"/>
+                                    <rect key="frame" x="10" y="15" width="40" height="34"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" image="lock.fill" catalog="system"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="chevron.left" catalog="system"/>
                                     <connections>
                                         <action selector="cancelButtonAction:" destination="-1" eventType="touchUpInside" id="S5B-2g-7wf"/>
                                     </connections>
@@ -202,7 +202,7 @@
         </view>
     </objects>
     <resources>
-        <image name="lock.fill" catalog="system" width="125" height="128"/>
+        <image name="chevron.left" catalog="system" width="97" height="128"/>
         <image name="plus" catalog="system" width="128" height="113"/>
     </resources>
 </document>

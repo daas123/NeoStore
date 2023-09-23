@@ -21,13 +21,11 @@ class ProductDetailsController: BaseViewController{
     @IBOutlet weak var ProductDetailsMainView: UIView!
     
     override func viewWillAppear(_ animated: Bool) {
-        stopActivityIndicator()
         super.viewWillAppear(false)
         productRate.deligate = self
     }
     
     override func viewDidLoad() {
-        stopActivityIndicator()
         super.viewDidLoad()
         title = navigationtitle
         getdata()
@@ -39,7 +37,15 @@ class ProductDetailsController: BaseViewController{
     @objc override func viewWillDisappearNotification(_ notification: Notification) {
         if let message = notification.userInfo?[notificationString.message] as? String {
             self.showAlert(msg: message)
-            getdata()
+            self.viewmodel.getProductDetails(id: Productid){res in
+                DispatchQueue.main.async {
+                    if res {
+                        self.productDetailsTableview.reloadData()
+                    }else{
+                        debugPrint(errorConstant.error)
+                    }
+                }
+            }
         }
     }
     
@@ -62,6 +68,7 @@ class ProductDetailsController: BaseViewController{
     }
     
     func getdata(){
+        self.startActivityIndicator()
         self.viewmodel.getProductDetails(id: Productid ){
             (Responce) in
             DispatchQueue.main.async {

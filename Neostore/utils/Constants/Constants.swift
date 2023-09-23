@@ -79,6 +79,7 @@ struct cellRegNibConstant{
     static let orderIdCell = "OrderIdCell"
     static let orderIdListCell = "OrderIdListCell"
     static let orderIdTotalCell = "OrderIdTotalCell"
+    static let emptyCartCell = "EmptyCartCell"
 }
 
 struct ImageConstants {
@@ -138,7 +139,7 @@ struct txtfieldValConst{
 }
 
 struct alertMsgConstant{
-    static let password_send_succesfully = "password send succesfully"
+    static let password_send_succesfully = "Reset Email send succesfully"
     // for cart page
     static let cancel = "Cancel"
     static let delete = "Delete"

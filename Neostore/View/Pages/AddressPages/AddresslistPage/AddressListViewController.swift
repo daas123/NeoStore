@@ -75,11 +75,13 @@ class AddressListViewController: BaseViewController {
     
     @IBAction func orderButtonAction(_ sender: UIButton) {
         if selectedIndexPath != nil{
+            self.startActivityIndicator()
             if sender.titleLabel?.text == btnString.order {
                 let selecteddata = dataCollection(index: (selectedIndexPath?.row ?? 0)-1)
                 viewModel.OrderCart(address: selecteddata){
                     responce in
                     DispatchQueue.main.async {
+                        self.stopActivityIndicator()
                         if responce{
                             self.navigationController?.pushViewController(HomeViewController.loadFromNib(), animated: true)
                             self.showAlert(msg: alertMsgConstant.order_done_Succesfully)
@@ -124,7 +126,7 @@ extension AddressListViewController : UITableViewDelegate ,UITableViewDataSource
             cell.selectionStyle = .none
             return cell
         }else{
-            let cell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.addAddressCell, for: indexPath) as! AddressListCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.addressListCell, for: indexPath) as! AddressListCell
             cell.cellindex = indexPath.row - 1
             cell.deligate = self
             cell.addressLabel.text = "\(txtfieldValConst.address) \(indexPath.row - 1)"

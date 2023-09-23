@@ -109,7 +109,7 @@ class RegisterViewController: BaseViewController{
     }
     
     @IBAction func registerButtonAction(_ sender: UIButton) {
-        self.startActivityIndicator()
+       startActivityIndicator()
         viewModel.registervalidation(Fname: registerFirstname.text ?? txtfieldValConst.emptyStr, Lname: registerlastname.text ?? txtfieldValConst.emptyStr, Email: registerEmail.text ?? txtfieldValConst.emptyStr, Pass: registerPassword?.text ?? txtfieldValConst.emptyStr, Cpass: registerConformPassword?.text ?? txtfieldValConst.emptyStr, Gender: gender ?? GenderConstant.NaN , Phone: registerPhoneNumber?.text ?? txtfieldValConst.emptyStr, chkBox: registerchkBox.isSelected ){
             (validateBool , resultStrng) in
             DispatchQueue.main.async {

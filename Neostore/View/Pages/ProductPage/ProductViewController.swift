@@ -90,6 +90,7 @@ class ProductViewController: BaseViewController {
     }
     
     func getdata(){
+        self.startActivityIndicator()
         self.viewmodel.GetProductList(id: id ){
             (dataretrived) in
             if dataretrived{
@@ -133,6 +134,7 @@ extension ProductViewController: UITableViewDelegate,UITableViewDataSource{
         ProductDetailsController.Productid = productsfilteredData[indexPath.row].id ?? 0
         ProductDetailsController.ProductCategory = self.getTitle(id: self.id)
         ProductDetailsController.navigationtitle = productsfilteredData[indexPath.row].name ?? ""
+        
         self.navigationController?.pushViewController(ProductDetailsController, animated: true)
     }
     

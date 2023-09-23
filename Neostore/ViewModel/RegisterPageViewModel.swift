@@ -19,7 +19,11 @@ class RegisterViewModel: NSObject {
                     (responce) in
                     switch responce{
                     case .success(let data):
-                        complition(true,data.message!)
+                        if data.0 != nil{
+                            complition(true,data.0?.user_msg ?? "done")
+                        }else if data.1 != nil{
+                            complition(true,data.1?.userMsg ?? "faliuer")
+                        }
                     case .failure(let error):
                         complition(false,error.localizedDescription)
                     }

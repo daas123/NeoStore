@@ -112,12 +112,13 @@ class ProductDetailsRateController: BaseViewController {
     }
     
     @IBAction func RateButtonAction(_ sender: UIButton) {
-        
+        startActivityIndicator()
         viewModel.sendRating(rating: currentrating, productId: productId){
             (responce,msg) in
             print(self.currentrating)
             if responce {
                 DispatchQueue.main.async {
+                    self.stopActivityIndicator()
                     UIView.animate(withDuration: 0.3) {
                         self.dismiss(animated: true, completion: nil)
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: notificationString.ratingDoneNotification), object: nil , userInfo: [notificationString.message: msg])

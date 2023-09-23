@@ -57,7 +57,7 @@ class ResetPassViewController: BaseViewController, UITextFieldDelegate {
     }
     
     func getdata(){
-        startActivityIndicator()
+        self.startActivityIndicator()
         viewModel.chnagePassword(old_password:oldPassword.text ?? txtfieldValConst.emptyStr, password: newPassword.text ?? txtfieldValConst.emptyStr, confirm_password: conformPassword.text ?? txtfieldValConst.emptyStr){
             (responce,msg) in
             DispatchQueue.main.async {

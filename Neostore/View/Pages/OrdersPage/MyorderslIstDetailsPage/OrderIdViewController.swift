@@ -34,9 +34,11 @@ class OrderIdViewController: BaseViewController {
     }
     
     func getdata(){
+        self.startActivityIndicator()
         viewmodel.getOrderListDetials(order_id: orderDetialId ?? 0){
             responce in
             DispatchQueue.main.async {
+                self.stopActivityIndicator()
                 self.orderIdTableView.reloadData()
             }
         }

@@ -54,7 +54,7 @@ class CartViewController: BaseViewController , UITextFieldDelegate {
     func regCell(){
         cartTableview.register(UINib(nibName: cellRegNibConstant.productDetailsCartCell, bundle: nil), forCellReuseIdentifier: cellRegNibConstant.productDetailsCartCell)
         cartTableview.register(UINib(nibName: cellRegNibConstant.cartTotalCell, bundle: nil), forCellReuseIdentifier: cellRegNibConstant.cartTotalCell)
-        cartTableview.register(UINib(nibName: cellRegNibConstant.cartOrderCell, bundle: nil), forCellReuseIdentifier: cellRegNibConstant.cartOrderCell)
+        cartTableview.register(UINib(nibName: cellRegNibConstant.emptyCartCell, bundle: nil), forCellReuseIdentifier: cellRegNibConstant.emptyCartCell)
     }
     
     func setDeligate(){
@@ -76,15 +76,15 @@ class CartViewController: BaseViewController , UITextFieldDelegate {
     }
     
     func getData(){
+        self.startActivityIndicator()
         viewModel.getCartDetails(){
             responce in
             DispatchQueue.main.async {
                 if responce{
+                    self.stopActivityIndicator()
                     self.cartTableview.reloadData()
                     self.stopActivityIndicator()
-                    
                     self.cartPickerView.reloadAllComponents()
-                    
                     if let selectedTextField = self.selectedTextField {
                         self.cartPickerView.selectRow(self.selectedOption - 1, inComponent: 0, animated: false)
                         selectedTextField.text = String(self.selectedOption)
@@ -110,8 +110,8 @@ class CartViewController: BaseViewController , UITextFieldDelegate {
             cellIndexpath = IndexPath(row: textField.tag, section: 0)
             cartTableview.scrollToRow(at: cellIndexpath, at: .middle, animated: true)
             selectedTextField = textField
-            textField.inputView = cartPickerView // Show the picker view
-            textField.inputAccessoryView = toolbar // Set the toolbar as an accessory view
+            textField.inputView = cartPickerView
+            textField.inputAccessoryView = toolbar
             cartPickerView.isHidden = false
             textField.becomeFirstResponder()
             // Calculate the IndexPath of the selected cell
@@ -148,7 +148,7 @@ class CartViewController: BaseViewController , UITextFieldDelegate {
     
     @objc func cancelButtonTapped() {
         cartTableview.reloadData()
-        selectedTextField?.resignFirstResponder() // Hide the keyboard/picker view
+        selectedTextField?.resignFirstResponder()
         cartPickerView.isHidden = true
     }
     
@@ -170,8 +170,7 @@ extension CartViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let TotalData = viewModel.cartData?.count ?? 0
-        if (TotalData ) > 0 {
-            
+        if (TotalData) > 0 && TotalData != nil {
             if (indexPath.row) < TotalData{
                 let productCell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.productDetailsCartCell, for: indexPath) as! ProductDetailsCartCell
                 productCell.cartProductQuantity.delegate = self
@@ -189,30 +188,16 @@ extension CartViewController : UITableViewDelegate,UITableViewDataSource{
                 }
                 productCell.selectionStyle = .none
                 return productCell
-                
             }else if indexPath.row == TotalData{
                 let productCell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.cartTotalCell, for: indexPath) as! CartTotalCell
                 productCell.cartTotalCost.text = String(viewModel.cartData?.total ?? 0)
                 productCell.selectionStyle = .none
                 return productCell
-                
-            }else{
-                let productCell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.cartTotalCell, for: indexPath) as! CartTotalCell
-                productCell.selectionStyle = .none
-                return productCell
-            }
-        }else{
-            if indexPath.row == 0{
-                let productCell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.cartTotalCell, for: indexPath) as! CartTotalCell
-                productCell.cartTotalCost.text = String(0)
-                productCell.selectionStyle = .none
-                return productCell
-            }else{
-                let productCell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.cartOrderCell, for: indexPath) as! CartOrderCell
-                productCell.selectionStyle = .none
-                return productCell
             }
         }
+        let emptyCell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.emptyCartCell, for: indexPath) as! EmptyCartCell
+        emptyCell.selectionStyle = .none
+        return emptyCell
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -224,27 +209,32 @@ extension CartViewController : UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: txtfieldValConst.emptyStr) { (_, _, completionHandler) in
-            let deletedata = self.viewModel.cartData?.data?[indexPath.row].product?.name
-            let alert = UIAlertController(title: alertMsgConstant.conformDeletion, message: "\(alertMsgConstant.deleteConformMsg) \(deletedata!)", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: alertMsgConstant.cancel, style: .cancel, handler: { (_) in
-                completionHandler(false) // Do not perform the delete action
-            }))
-            alert.addAction(UIAlertAction(title: alertMsgConstant.delete, style: .destructive, handler: { (_) in
-                // Perform the delete action
-                self.deleteCartData(indexpath: self.viewModel.cartData?.data?[indexPath.row].productID ?? 1)
-                NotificationCenter.default.post(name: .reloadSideMenuData, object: nil)
-                self.getData()
-                completionHandler(true)
-            }))
-            self.present(alert, animated: true, completion: nil)
+        if indexPath.row < viewModel.cartData?.count ?? 0{
+            let deleteAction = UIContextualAction(style: .destructive, title: txtfieldValConst.emptyStr) { (_, _, completionHandler) in
+                let deletedata = self.viewModel.cartData?.data?[indexPath.row].product?.name
+                let alert = UIAlertController(title: alertMsgConstant.conformDeletion, message: "\(alertMsgConstant.deleteConformMsg) \(deletedata!)", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: alertMsgConstant.cancel, style: .cancel, handler: { (_) in
+                    completionHandler(false) // Do not perform the delete action
+                }))
+                alert.addAction(UIAlertAction(title: alertMsgConstant.delete, style: .destructive, handler: { (_) in
+                    // Perform the delete action
+                    self.deleteCartData(indexpath: self.viewModel.cartData?.data?[indexPath.row].productID ?? 1)
+                    NotificationCenter.default.post(name: .reloadSideMenuData, object: nil)
+                    self.getData()
+                    completionHandler(true)
+                }))
+                self.present(alert, animated: true, completion: nil)
+            }
+            
+            deleteAction.image = UIImage(systemName: ImageConstants.trash) // Set your delete button image
+            
+            let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+            return configuration
         }
-        
-        deleteAction.image = UIImage(systemName: ImageConstants.trash) // Set your delete button image
-        
-        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
+        let configuration = UISwipeActionsConfiguration(actions: [])
         return configuration
     }
+    
     
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
         return false

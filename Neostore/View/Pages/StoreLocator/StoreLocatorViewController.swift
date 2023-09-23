@@ -13,6 +13,7 @@ class StoreLocatorViewController: BaseViewController, CLLocationManagerDelegate,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTitle(titleString: pageTitleConstant.Store_Locator)
         setInitalMapCamara()
         setupDeligate()
         activatingGpsButton()
@@ -59,6 +60,7 @@ class StoreLocatorViewController: BaseViewController, CLLocationManagerDelegate,
     }
     
     func findNearbyNatureLocations(userLocation: CLLocation) {
+        self.startActivityIndicator()
         let baseUrl = storelocatorConstant.baseUrl
         let locationString = "\(userLocation.coordinate.latitude),\(userLocation.coordinate.longitude)"
         let radius = storelocatorConstant.radius
@@ -67,6 +69,7 @@ class StoreLocatorViewController: BaseViewController, CLLocationManagerDelegate,
         viewModel.getLocationData(baseUrl: baseUrl, locationString: locationString, radius: radius, apiKey: apiKey, type: type){
             responce,data in
             DispatchQueue.main.async {
+                self.stopActivityIndicator()
                 if responce{
                     let camera = GMSCameraPosition.camera(withLatitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude, zoom: 15.0)
                     self.mapView.animate(to: camera)
@@ -95,6 +98,7 @@ class StoreLocatorViewController: BaseViewController, CLLocationManagerDelegate,
                     }
                     
                 }
+                self.stopActivityIndicator()
             }
         }
         

@@ -19,18 +19,17 @@ extension UITextField {
         iconContainerView.addSubview(iconView)
         NSLayoutConstraint.activate([
             iconView.leadingAnchor.constraint(equalTo: iconContainerView.leadingAnchor),
-            iconView.trailingAnchor.constraint(equalTo: iconContainerView.trailingAnchor,constant: -10),
-            iconView.topAnchor.constraint(equalTo: iconContainerView.topAnchor),
-            iconView.bottomAnchor.constraint(equalTo: iconContainerView.bottomAnchor)
+            iconView.trailingAnchor.constraint(equalTo: iconContainerView.trailingAnchor, constant: -10),
+            iconView.centerYAnchor.constraint(equalTo: iconContainerView.centerYAnchor) // Center vertically
         ])
         leftView = iconContainerView
         leftViewMode = .always
     }
     
-    func setBorder(){
+    func setBorder() {
         self.layer.borderWidth = 1.2
-        self.layer.borderColor = ColorConstant.white.cgColor
+        self.layer.borderColor = UIColor.white.cgColor
         self.layer.cornerRadius = 5.0
     }
-    
 }
+

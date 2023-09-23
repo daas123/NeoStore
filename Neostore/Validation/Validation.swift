@@ -14,8 +14,12 @@ class validation{
         let inputCharacterSet = CharacterSet(charactersIn: input)
         return numericCharacterSet.isSuperset(of: inputCharacterSet)
     }
-    func loginValidation(email:String , password:String , complition: @escaping (Bool,String)->Void){
-        
+    func isValidEmail(_ email: String) -> Bool {
+        let emailRegex = validationConstant.emailAllowedChar
+        let emailPredicate = NSPredicate(format: validationConstant.emailStruct, emailRegex)
+        return emailPredicate.evaluate(with: email)
+    }
+    func loginValidation(email:String? , password:String , complition: @escaping (Bool,String)->Void){
         
         guard email != validationConstant.emptyStr else{
             complition(false,validationConstant.enterTheUsername)
@@ -25,12 +29,11 @@ class validation{
             complition(false,validationConstant.enterThePassword)
             return
         }
-        
-        func isValidEmail(_ email: String) -> Bool {
-            let emailRegex = validationConstant.emailAllowedChar
-            let emailPredicate = NSPredicate(format: validationConstant.emailStruct, emailRegex)
-            return emailPredicate.evaluate(with: email)
+        guard let email = email?.trimmingCharacters(in: .whitespaces), !email.isEmpty, isValidEmail(email) else {
+            complition(false, validationConstant.invalidEmailAddress)
+            return
         }
+    
         guard (isValidEmail(email)) else{
             complition(false,validationConstant.enterTheValidEmail)
             return
@@ -93,11 +96,6 @@ class validation{
             completion(true, validationConstant.ook)
         }
     }
-
-    func isValidEmail(_ email: String) -> Bool {
-        let emailRegex = validationConstant.emailAllowedChar
-        return NSPredicate(format: validationConstant.emailStruct, emailRegex).evaluate(with: email)
-    }
     
     func addToCart(Quantity: String, completion: @escaping (Bool, String) -> Void) {
         let allowedCharacterSet = CharacterSet(charactersIn: validationConstant.numberAllowed)
@@ -152,7 +150,19 @@ class validation{
             return
         }
         complition(true,validationConstant.ook)
+    }
+    
+    func resetValidation(email:String? ,complition :@escaping (Bool, String) -> Void){
+        guard email != validationConstant.emptyStr else{
+            complition(false,validationConstant.enterTheUsername)
+            return
+        }
         
+        guard let email = email?.trimmingCharacters(in: .whitespaces), !email.isEmpty, isValidEmail(email) else {
+            complition(false, validationConstant.invalidEmailAddress)
+            return
+        }
+        complition(true,validationConstant.ook)
         
     }
 }

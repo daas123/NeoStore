@@ -13,6 +13,7 @@ extension UIViewController{
         let alert = UIAlertController(title: nil, message: msg , preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: alertMsgConstant.ok, style: .cancel))
         present(alert, animated: true)
+        self.stopActivityIndicator()
     }
 }
 

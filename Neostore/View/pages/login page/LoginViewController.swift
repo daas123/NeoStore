@@ -56,8 +56,8 @@ class LoginViewController: BaseViewController {
     }
     
     @IBAction func LoginButtonAction(_ sender: UIButton) {
+        startActivityIndicator()
         if islogin {
-            self.startActivityIndicator()
             viewmodel.loginValidation(email: loginUsername.text ?? txtfieldValConst.emptyStr, password: loginPassword.text ?? txtfieldValConst.emptyStr){
                 (validationCheck,msgString) in
                 DispatchQueue.main.async {
@@ -65,22 +65,20 @@ class LoginViewController: BaseViewController {
                         self.navigationController?.pushViewController(HomeViewController.loadFromNib(), animated: true)
                     }else{
                         self.showAlert(msg: msgString)
-                        self.stopActivityIndicator()
                     }
+                    self.stopActivityIndicator()
                 }
             }
         }else{
-            self.startActivityIndicator()
             viewmodel.forgetPassword(email: loginUsername.text ?? ""){
                 (responce, msg) in
                 DispatchQueue.main.async {
                     if responce{
-                        self.stopActivityIndicator()
                         self.showAlert(msg: alertMsgConstant.password_send_succesfully)
                     }else{
-                        self.stopActivityIndicator()
                         self.showAlert(msg: msg)
                     }
+                    self.stopActivityIndicator()
                 }
             }
             

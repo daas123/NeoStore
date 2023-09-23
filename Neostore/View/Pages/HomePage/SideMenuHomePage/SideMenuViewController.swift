@@ -6,11 +6,11 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
 class SideMenuViewController: UIViewController {
     
     // MARK: FILE VARIABLE
     var viewmodel = SideMenuViewmodel()
-    
     @IBOutlet weak var profileview: UIView!
     @IBOutlet weak var userEmail: UILabel!
     @IBOutlet weak var userName: UILabel!
@@ -69,11 +69,13 @@ class SideMenuViewController: UIViewController {
     }
     
     func getData(){
+        startActivityIndicator()
         viewmodel.fetchAccountDetails{
             respose in
             DispatchQueue.main.async {
                 self.stopActivityIndicator()
                 if respose{
+                    self.stopActivityIndicator()
                     self.sideMenuTableview.reloadData()
                     self.userEmail.text = SideMenuViewmodel.menuDemoData.data?.user_data?.email
                     self.userName.text = (SideMenuViewmodel.menuDemoData.data?.user_data?.first_name ?? txtfieldValConst.emptyStr) + (SideMenuViewmodel.menuDemoData.data?.user_data?.last_name ?? txtfieldValConst.emptyStr)
@@ -107,7 +109,6 @@ extension SideMenuViewController : UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.cartTableViewCell, for: indexPath) as! CartTableViewCell
             cell.TotalCartlabel.text = String(SideMenuViewmodel.menuDemoData.data?.total_carts ?? 0 )
@@ -149,7 +150,6 @@ extension SideMenuViewController : UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        startActivityIndicator()
         if indexPath.row == 0 {
             let cartViewController = CartViewController.loadFromNib()
             self.navigationController?.pushViewController(cartViewController, animated: true)

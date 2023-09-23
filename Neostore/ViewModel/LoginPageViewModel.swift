@@ -21,8 +21,10 @@ class loginViewModel{
                         if value.0 != nil{
                             UserDefaults.standard.set(value.0?.data?.access_token, forKey: userDefConstant.accessToken)
                             complition(true,(value.0?.user_msg)!)
-                        }else{
+                        }else if value.1 != nil{
                             complition(false,(value.1?.userMsg)!)
+                        }else{
+                            complition(false,(value.2?.user_msg)!)
                         }
                     case .failure(let error):
                         complition (false , error.localizedDescription)
@@ -42,35 +44,44 @@ class loginViewModel{
                     responce in
                     switch responce{
                     case .success(let value):
-                        if value.status == 200{
-                            complition(true,value.user_msg)
+                        if value.0 != nil{
+                            complition(true,value.0?.user_msg ?? "Done")
                         }else{
-                            complition(false,value.user_msg)
+                            complition(false,value.1?.user_msg ?? "Error")
                         }
                     case .failure(let error):
-                        complition (false , error.localizedDescription)
+                        complition (false , errorConstant.error)
                     }
                 }
             }else{
-                complition(false,ErrorString)
+                complition(false,errorConstant.error)
             }
         }
         
     }
     func forgetPassword(email:String,complition :@escaping (Bool, String)-> Void){
-        self.loginservice.forgetAction(email: email){
-            responce in
-            switch responce{
-            case .success(let value):
-                if value.status == 200{
-                    complition(true,value.user_msg)
-                }else{
-                    complition(false,value.user_msg)
+        validation().resetValidation(email: email){
+            (ValidBool,ErrorString) in
+            if ValidBool{
+                self.loginservice.forgetAction(email: email){
+                    responce in
+                    switch responce{
+                    case .success(let value):
+                        if value.0 != nil{
+                            complition(true,value.0?.user_msg ?? "done")
+                        }else{
+                            complition(false,value.1?.user_msg ?? "error")
+                        }
+                    case .failure(let error):
+                        complition (false , error.localizedDescription)
+                    }
                 }
-            case .failure(let error):
-                complition (false , error.localizedDescription)
+            }else
+            {
+                complition(false,ErrorString)
             }
         }
+        
     }
     
 }

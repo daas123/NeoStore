@@ -49,7 +49,6 @@ class HomeViewController: BaseViewController{
     }
     
     override func viewDidLoad() {
-        self.stopActivityIndicator()
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
         registerNib()
@@ -247,8 +246,7 @@ extension HomeViewController : UICollectionViewDelegate , UICollectionViewDataSo
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        if collectionView == categoryCollectionView{
+            if collectionView == categoryCollectionView{
             let selectedId = indexPath.row + 1
             print(selectedId)
             let productViewController = ProductViewController.loadFromNib() as! ProductViewController
