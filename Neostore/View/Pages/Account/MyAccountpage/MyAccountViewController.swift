@@ -40,7 +40,6 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        startActivityIndicator()
         baseScrollView = scrollView
         setupImage()
         setdeligate()
@@ -184,7 +183,6 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
     }
     
     func fillData(){
-        startActivityIndicator()
         self.accountFname.text = SideMenuViewmodel.menuDemoData.data?.user_data?.first_name
         self.accountLname.text = SideMenuViewmodel.menuDemoData.data?.user_data?.last_name
         self.accountEmail.text = SideMenuViewmodel.menuDemoData.data?.user_data?.email
