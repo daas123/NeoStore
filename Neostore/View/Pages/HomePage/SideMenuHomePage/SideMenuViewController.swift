@@ -64,10 +64,23 @@ class SideMenuViewController: UIViewController {
         viewmodel.fetchAccountDetails{_ in
             DispatchQueue.main.async {
                 self.sideMenuTableview.reloadData()
+                self.reloadProfileImage()
             }
         }
     }
-    
+    func reloadProfileImage(){
+        if let accessToken = SideMenuViewmodel.menuDemoData.data?.user_data?.access_token,
+           let imageData = UserDefaults.standard.data(forKey: accessToken),
+           let image = UIImage(data: imageData) {
+            DispatchQueue.main.async {
+                self.sideMenuImage.image = image
+            }
+        }else{
+            DispatchQueue.main.async {
+                self.sideMenuImage.image = UIImage(named: ImageConstants.default_img)
+            }
+        }
+    }
     func getData(){
         startActivityIndicator()
         viewmodel.fetchAccountDetails{
@@ -79,17 +92,7 @@ class SideMenuViewController: UIViewController {
                     self.sideMenuTableview.reloadData()
                     self.userEmail.text = SideMenuViewmodel.menuDemoData.data?.user_data?.email
                     self.userName.text = (SideMenuViewmodel.menuDemoData.data?.user_data?.first_name ?? txtfieldValConst.emptyStr) + (SideMenuViewmodel.menuDemoData.data?.user_data?.last_name ?? txtfieldValConst.emptyStr)
-                    if let accessToken = SideMenuViewmodel.menuDemoData.data?.user_data?.access_token,
-                       let imageData = UserDefaults.standard.data(forKey: accessToken),
-                       let image = UIImage(data: imageData) {
-                        DispatchQueue.main.async {
-                            self.sideMenuImage.image = image
-                        }
-                    }else{
-                        DispatchQueue.main.async {
-                            self.sideMenuImage.image = UIImage(named: ImageConstants.default_img)
-                        }
-                    }
+                    self.reloadProfileImage()
                 }
             }
         }

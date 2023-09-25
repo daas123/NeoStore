@@ -86,10 +86,6 @@ class validation{
             return
         }
         
-        guard let phone = Phone?.trimmingCharacters(in: .whitespaces), !phone.isEmpty, phone.count >= 10, containsOnlyNumbers(phone) else {
-            completion(false, validationConstant.invalidMobileNumber)
-            return
-        }
         if let phone = Phone , phone.count > 10 {
             completion(false, validationConstant.invalidMobileNumber)
         }else{
@@ -106,24 +102,26 @@ class validation{
         }
     }
     
-    func changeAction(old_password:String,password:String,confirm_password:String,completion: @escaping (Bool, String) -> Void){
+    func changeAction(old_password: String, password: String, confirm_password: String, completion: @escaping (Bool, String) -> Void) {
         
-        guard password != validationConstant.emptyStr && old_password != validationConstant.emptyStr && confirm_password != validationConstant.emptyStr else{
-            completion(false,validationConstant.allTextFilledMustBeFilled)
+        guard !old_password.isEmpty && !password.isEmpty && !confirm_password.isEmpty else {
+            completion(false, validationConstant.allTextFilledMustBeFilled)
             return
         }
         
-        guard password == confirm_password else{
-            completion(false,validationConstant.confirmPasswordDoesNotMatchPassword)
-            return
-        }
-        guard password.count <= 8 || confirm_password.count <= 8 || old_password.count <= 8 else{
-            completion(false,validationConstant.passwordMustBeAtLeastCharactersLong)
+        guard password == confirm_password else {
+            completion(false, validationConstant.confirmPasswordDoesNotMatchPassword)
             return
         }
         
-        completion(true,validationConstant.ook)
+        guard password.count > 8 && confirm_password.count > 8 && old_password.count > 8 else {
+            completion(false, validationConstant.passwordMustBeAtLeastCharactersLong)
+            return
+        }
+        
+        completion(true, validationConstant.ook)
     }
+
     func addAddressValidation(address :String , landmard:String ,city:String,state:String,zipcode:Int ,country:String, complition :@escaping (Bool, String) -> Void){
         guard address != validationConstant.emptyStr else{
             complition(false,validationConstant.allTextFilledMustBeFilled)
@@ -163,6 +161,34 @@ class validation{
             return
         }
         complition(true,validationConstant.ook)
+    }
+    
+    func editAccountValidation(fname:String?,lname:String? ,email:String?,phone:String?,complition :@escaping (Bool, String) -> Void){
+        guard let firstName = fname?.trimmingCharacters(in: .whitespaces), !firstName.isEmpty, firstName.count > 3 else {
+            complition(false, validationConstant.firstNameMustBeAtLeastCharactersLong)
+            return
+        }
+        
+        guard let lastName = lname?.trimmingCharacters(in: .whitespaces), !lastName.isEmpty, lastName.count > 3 else {
+            complition(false, validationConstant.lastNameMustBeAtLeastCharactersLong)
+            return
+        }
+        
+        guard let email = email?.trimmingCharacters(in: .whitespaces), !email.isEmpty, isValidEmail(email) else {
+            complition(false, validationConstant.invalidEmailAddress)
+            return
+        }
+        
+        guard let phone = phone?.trimmingCharacters(in: .whitespaces), !phone.isEmpty, phone.count >= 10, containsOnlyNumbers(phone) else {
+            complition(false, validationConstant.invalidMobileNumber)
+            return
+        }
+        
+        if phone.count != 10{
+            complition(false , validationConstant.invalidMobileNumber)
+        }else{
+            complition(true , validationConstant.ook)
+        }
         
     }
 }

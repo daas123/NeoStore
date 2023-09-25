@@ -11,6 +11,9 @@ class BaseViewController: UIViewController {
     // MARK: FILE CONSTANT
     var originalViewYPosition: CGFloat = 0.0
     var baseScrollView : UIScrollView?
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         setupkeybord()

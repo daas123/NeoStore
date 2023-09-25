@@ -16,6 +16,7 @@ class AddressListViewController: BaseViewController {
     @IBOutlet weak var addressListTableview: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
+        
         addressListTableview.reloadData()
         setButtonText()
         
@@ -52,11 +53,15 @@ class AddressListViewController: BaseViewController {
             let range = NSRange(location: 0, length: 5)
             attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
             orderButton.setAttributedTitle(attributedString, for: .normal)
+            if viewModel.addressData.count == 1 {
+                selectedIndexPath = nil
+            }
         }else{
             let attributedString = NSMutableAttributedString(string: btnString.add_Address)
             let range = NSRange(location: 0, length: 11)
             attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
             orderButton.setAttributedTitle(attributedString, for: .normal)
+            selectedIndexPath = nil
         }
     }
     
@@ -92,6 +97,7 @@ class AddressListViewController: BaseViewController {
                 }
             }else{
                 if viewModel.addressData.count != 0 && selectedIndexPath?.row != 0 && selectedIndexPath != nil{
+                    selectedIndexPath = nil
                     self.navigationController?.pushViewController(AddAddressController.loadFromNib(), animated: true)
                 }else{
                     self.showAlert(msg: alertMsgConstant.add_an_Address)
@@ -123,6 +129,8 @@ extension AddressListViewController : UITableViewDelegate ,UITableViewDataSource
         
         if indexPath.row == 0{
             let cell = tableView.dequeueReusableCell(withIdentifier: cellRegNibConstant.firstViewCell, for: indexPath) as! FirstViewCell
+            cell.isUserInteractionEnabled = false
+            cell.userInteractionEnabledWhileDragging = false
             cell.selectionStyle = .none
             return cell
         }else{
@@ -140,8 +148,8 @@ extension AddressListViewController : UITableViewDelegate ,UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if viewModel.addressData.count == 0{
             navigationController?.pushViewController(AddAddressController.loadFromNib(), animated: true)
-        }
-        if indexPath != selectedIndexPath {
+            selectedIndexPath = nil
+        }else if indexPath != selectedIndexPath {
             selectedIndexPath = IndexPath(row: indexPath.row, section: indexPath.section)
             tableView.reloadData()
         }
@@ -167,10 +175,10 @@ extension AddressListViewController : UITableViewDelegate ,UITableViewDataSource
                 addresses.remove(at: indexPath.row-1)
                 self.viewModel.addressData = addresses
                 tableView.reloadData()
-                self.selectedIndexPath = nil
                 self.setButtonText()
                 completionHandler(true)
             }))
+            self.selectedIndexPath = nil
             self.present(alert, animated: true, completion: nil)
         }
         
@@ -196,10 +204,10 @@ extension AddressListViewController : RemoveCell{
             addresses.remove(at: index )
             self.viewModel.addressData = addresses
             self.addressListTableview.reloadData()
-            self.selectedIndexPath = nil
             self.setButtonText()
         }))
         self.present(alert, animated: true, completion: nil)
+        self.selectedIndexPath = nil
     }
 }
 

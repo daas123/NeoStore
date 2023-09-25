@@ -27,6 +27,7 @@ class ProductViewController: BaseViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
         setupSearch()
     }
     

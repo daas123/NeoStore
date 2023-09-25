@@ -31,6 +31,11 @@ class ProductDetailsOrderViewController: BaseViewController {
         setDeligate()
         setimage_titile()
         setTapGesture()
+        setborderRadius()
+    }
+    
+    func setborderRadius(){
+        orderDetailsview.layer.cornerRadius = 20
     }
     
     func setDeligate(){

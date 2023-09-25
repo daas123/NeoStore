@@ -74,6 +74,10 @@
 		929A9F832AA1CC4C007B36F3 /* OrderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929A9F822AA1CC4C007B36F3 /* OrderModel.swift */; };
 		929ADC552ABC47D8001992F9 /* locationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929ADC542ABC47D8001992F9 /* locationService.swift */; };
 		929ADC592ABC5E70001992F9 /* StoreLocatorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929ADC582ABC5E70001992F9 /* StoreLocatorViewModel.swift */; };
+		929B87FC2AC150600043EFED /* Gotham-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 929B87F92AC1505F0043EFED /* Gotham-Medium.otf */; };
+		929B87FD2AC150600043EFED /* Gotham-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 929B87FA2AC150600043EFED /* Gotham-Book.otf */; };
+		929B87FE2AC150600043EFED /* Gotham-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 929B87FB2AC150600043EFED /* Gotham-Bold.otf */; };
+		929B88002AC191B10043EFED /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929B87FF2AC191B10043EFED /* AccountViewModel.swift */; };
 		929C527D2A9C972C00E98F18 /* ProductDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929C527C2A9C972C00E98F18 /* ProductDetailsViewModel.swift */; };
 		929FF3032AA72EE10095C3DE /* AddAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929FF3022AA72EE10095C3DE /* AddAddressViewModel.swift */; };
 		929FF3072AA737A40095C3DE /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 929FF3062AA737A40095C3DE /* Keyboard.swift */; };
@@ -225,6 +229,10 @@
 		929A9F822AA1CC4C007B36F3 /* OrderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderModel.swift; sourceTree = "<group>"; };
 		929ADC542ABC47D8001992F9 /* locationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = locationService.swift; sourceTree = "<group>"; };
 		929ADC582ABC5E70001992F9 /* StoreLocatorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreLocatorViewModel.swift; sourceTree = "<group>"; };
+		929B87F92AC1505F0043EFED /* Gotham-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Medium.otf"; sourceTree = "<group>"; };
+		929B87FA2AC150600043EFED /* Gotham-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Book.otf"; sourceTree = "<group>"; };
+		929B87FB2AC150600043EFED /* Gotham-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Gotham-Bold.otf"; sourceTree = "<group>"; };
+		929B87FF2AC191B10043EFED /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		929C527C2A9C972C00E98F18 /* ProductDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailsViewModel.swift; sourceTree = "<group>"; };
 		929FF3022AA72EE10095C3DE /* AddAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAddressViewModel.swift; sourceTree = "<group>"; };
 		929FF3062AA737A40095C3DE /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
@@ -489,6 +497,7 @@
 		924449B52A8E192B00481CFD /* Neostore */ = {
 			isa = PBXGroup;
 			children = (
+				929B87F82AC1505F0043EFED /* Fonts */,
 				92D6EB7E2A8E1DF800838A15 /* Application */,
 				923BE1402A964C2D006354BF /* Validation */,
 				929483DF2A97391600CA3C51 /* utils */,
@@ -621,6 +630,16 @@
 			path = ProductDetailsPage;
 			sourceTree = "<group>";
 		};
+		929B87F82AC1505F0043EFED /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				929B87F92AC1505F0043EFED /* Gotham-Medium.otf */,
+				929B87FA2AC150600043EFED /* Gotham-Book.otf */,
+				929B87FB2AC150600043EFED /* Gotham-Bold.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 		929C11D72A9147C300FB3382 /* SideMenuHomePage */ = {
 			isa = PBXGroup;
 			children = (
@@ -636,6 +655,7 @@
 			children = (
 				920FB7A42A95360D007C5E8C /* LoginPageViewModel.swift */,
 				92988DB42A95CE2200DA4135 /* RegisterPageViewModel.swift */,
+				929B87FF2AC191B10043EFED /* AccountViewModel.swift */,
 				9295CE922AB83B79000AE689 /* Homepageviewmodel.swift */,
 				92D5B9232A9BAC8700D03C5C /* ProductListViewModel.swift */,
 				929C527C2A9C972C00E98F18 /* ProductDetailsViewModel.swift */,
@@ -1103,6 +1123,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				929B87FD2AC150600043EFED /* Gotham-Book.otf in Resources */,
 				929867B22A94AD9000E2DF59 /* ProductDetailsBuynowCell.xib in Resources */,
 				92E8911D2AA2FD820099980C /* AddAddressCityStateCell.xib in Resources */,
 				92E48DAA2AA3446700822F8C /* StoreLocatorViewController.xib in Resources */,
@@ -1127,8 +1148,10 @@
 				924449C02A8E192D00481CFD /* Assets.xcassets in Resources */,
 				92E48DB32AA34EDB00822F8C /* ResetPassViewController.xib in Resources */,
 				9292F0E62AA09D9800851195 /* ProductDetailsOrderViewController.xib in Resources */,
+				929B87FC2AC150600043EFED /* Gotham-Medium.otf in Resources */,
 				92AFFAE42ABE1E7E008F0A20 /* EmptyCartCell.xib in Resources */,
 				929524532A8F3608004C2089 /* HomeCollectionViewCell.xib in Resources */,
+				929B87FE2AC150600043EFED /* Gotham-Bold.otf in Resources */,
 				92E891402AA329240099980C /* AddressListCell.xib in Resources */,
 				923DA97B2A923FB2007016EA /* CartTableViewCell.xib in Resources */,
 				920FB79A2A951699007C5E8C /* ProductDetailsCartCell.xib in Resources */,
@@ -1327,6 +1350,7 @@
 				9295CE932AB83B79000AE689 /* Homepageviewmodel.swift in Sources */,
 				92B302622AA5ADE300031DBF /* cellSelection.swift in Sources */,
 				929867B12A94AD9000E2DF59 /* ProductDetailsBuynowCell.swift in Sources */,
+				929B88002AC191B10043EFED /* AccountViewModel.swift in Sources */,
 				92E48DC22AA3B00D00822F8C /* SideMenuViewmodel.swift in Sources */,
 				929A9F7F2AA1CB4B007B36F3 /* OrderService.swift in Sources */,
 				92E8911C2AA2FD820099980C /* AddAddressCityStateCell.swift in Sources */,

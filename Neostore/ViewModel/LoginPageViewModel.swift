@@ -54,7 +54,7 @@ class loginViewModel{
                     }
                 }
             }else{
-                complition(false,errorConstant.error)
+                complition(false,ErrorString)
             }
         }
         

@@ -39,6 +39,10 @@ class ProductDetailsRateController: BaseViewController {
         setImage_text()
         setTapgesture()
         setRatingImage()
+        setborderRadius()
+    }
+    func setborderRadius(){
+        productDetailsSubview.layer.cornerRadius = 10
     }
     
     func setRatingImage(){
@@ -104,7 +108,6 @@ class ProductDetailsRateController: BaseViewController {
             }
             currentrating = selectedRating + 1
         }
-//        debugPrint("User selected \(currentrating) star")
     }
     
     @IBAction func closeButtonAction(_ sender: UIButton) {

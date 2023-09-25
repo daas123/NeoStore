@@ -17,12 +17,14 @@ class CartViewController: BaseViewController , UITextFieldDelegate {
     var cellIndexpath : IndexPath = []
     var cartPickerView = UIPickerView()
     
+    @IBOutlet weak var orderBtn: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var cartStackView: UIStackView!
     @IBOutlet weak var cartTableview: UITableView!
     
+    
     override func viewWillAppear(_ animated: Bool) {
-        getData()
+        navigationController?.isNavigationBarHidden = false
     }
     
     override func viewDidLoad() {
@@ -33,6 +35,12 @@ class CartViewController: BaseViewController , UITextFieldDelegate {
         setToolBarPickerView()
         setupTapGuesture()
         regCell()
+        getData()
+        setupBtn()
+    }
+    func setupBtn(){
+        self.orderBtn.backgroundColor = .white
+        self.orderBtn.tintColor = .gray
     }
     
     func setupTapGuesture(){
@@ -88,6 +96,13 @@ class CartViewController: BaseViewController , UITextFieldDelegate {
                     if let selectedTextField = self.selectedTextField {
                         self.cartPickerView.selectRow(self.selectedOption - 1, inComponent: 0, animated: false)
                         selectedTextField.text = String(self.selectedOption)
+                    }
+                    if self.viewModel.cartData == nil || self.viewModel.cartData?.count == 0 {
+                        self.orderBtn.backgroundColor = .white
+                        self.orderBtn.tintColor = .gray
+                    }else{
+                        self.orderBtn.backgroundColor = .white
+                        self.orderBtn.tintColor = .red
                     }
                 }
             }
@@ -166,9 +181,8 @@ extension CartViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1+(viewModel.cartData?.count ?? 0)
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        orderBtn.isUserInteractionEnabled = true
         let TotalData = viewModel.cartData?.count ?? 0
         if (TotalData) > 0 && TotalData != nil {
             if (indexPath.row) < TotalData{

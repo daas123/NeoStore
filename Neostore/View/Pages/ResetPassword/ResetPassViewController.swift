@@ -18,15 +18,22 @@ class ResetPassViewController: BaseViewController, UITextFieldDelegate {
     @IBOutlet var textFiledViews: [UIView]!
     
     override func viewDidLoad() {
-        
+        baseScrollView = scrollView
         super.viewDidLoad()
         setTitle(titleString: pageTitleConstant.reset_Password)
-        for view in textFiledViews {
-            view.layer.borderColor = UIColor.white.cgColor
-            view.layer.borderWidth = 1
-        }
-       
+        setupdeligate()
+        setupTapGuesture()
+        setupTextfileds()
     }
+    func setupTextfileds(){
+        conformPassword.setIcon(UIImage(systemName: ImageConstants.lock)!)
+        newPassword.setIcon(UIImage(systemName: ImageConstants.lock)!)
+        oldPassword.setIcon(UIImage(systemName: ImageConstants.lock)!)
+        conformPassword.setBorder()
+        newPassword.setBorder()
+        oldPassword.setBorder()
+    }
+    
     func setupTapGuesture(){
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         self.view.addGestureRecognizer(tapGesture)

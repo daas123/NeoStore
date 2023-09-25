@@ -10,13 +10,13 @@ import UIKit
 class MyAccountViewController: BaseViewController,UITextFieldDelegate {
     
     // MARK: file varible
-    let viewModel = SideMenuViewmodel()
+    let viewModel = AccountViewModel()
     var accesstoken : String?
     var image: UIImage?
     let datePicker = UIPickerView()
     var selectedDate = ""
     let imagePicker = UIImagePickerController()
-
+    
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var mainbackView: UIView!
     @IBOutlet var myAccountTextViews: [UIView]!
@@ -190,21 +190,26 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
         self.accountEmail.text = SideMenuViewmodel.menuDemoData.data?.user_data?.email
         self.accountPhoneNo.text = String(SideMenuViewmodel.menuDemoData.data?.user_data?.phone_no ?? txtfieldValConst.emptyStr)
         self.accountDateOfBirth.text = String(SideMenuViewmodel.menuDemoData.data?.user_data?.dob ?? txtfieldValConst.emptyStr)
-        DispatchQueue.global(qos: .background).async {
-            if let accessToken = self.accesstoken,
-               let imageData = UserDefaults.standard.data(forKey: accessToken),
-               let image = UIImage(data: imageData) {
-                DispatchQueue.main.async {
-                    self.stopActivityIndicator()
-                    self.accountImage.image = image
-                    self.stopActivityIndicator()
-                }
-            }else{
-                DispatchQueue.main.async {
-                    self.stopActivityIndicator()
-                }
+        
+        viewModel.storeData(firstname: (SideMenuViewmodel.menuDemoData.data?.user_data?.first_name)!,
+                            lastname: (SideMenuViewmodel.menuDemoData.data?.user_data?.last_name)!,
+                            email: (SideMenuViewmodel.menuDemoData.data?.user_data?.email)!,
+                            dob: String(SideMenuViewmodel.menuDemoData.data?.user_data?.dob ?? txtfieldValConst.emptyStr),
+                            phoneno: String(SideMenuViewmodel.menuDemoData.data?.user_data?.phone_no ?? txtfieldValConst.emptyStr))
+        if let accessToken = self.accesstoken,
+           let imageData = UserDefaults.standard.data(forKey: accessToken),
+           let image = UIImage(data: imageData) {
+            DispatchQueue.main.async {
+                self.stopActivityIndicator()
+                self.accountImage.image = image
+                self.stopActivityIndicator()
+            }
+        }else{
+            DispatchQueue.main.async {
+                self.stopActivityIndicator()
             }
         }
+        
         stopActivityIndicator()
     }
     func setButtonState(val:Bool){
@@ -213,50 +218,70 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
         accountEmail.isUserInteractionEnabled = val
         accountPhoneNo.isUserInteractionEnabled = val
         accountDateOfBirth.isUserInteractionEnabled = val
-
+        
+    }
+    func succeessSetup(sender : UIButton){
+        self.setTitle(titleString: pageTitleConstant.acccountDetails)
+        self.accountImage.isUserInteractionEnabled = false
+        self.cancelButton.isHidden = true
+        sender.setAttributedTitle(self.setEditButtontext(), for: .normal)
+        self.setButtonState(val: false)
+        
+        if let image = self.image  {
+            if let imageData = image.pngData(), let accessToken = self.accesstoken {
+                UserDefaults.standard.set(imageData, forKey: accessToken)
+                self.accountImage.image = image
+            }
+        }
     }
     
     @IBAction func EditProfileAction(_ sender: UIButton) {
         if sender.titleLabel?.text == btnString.editProfile {
             accountImage.isUserInteractionEnabled = true
             cancelButton.isHidden = false
-            let attributedString = NSMutableAttributedString(string: btnString.save)
-            setTitle(titleString: pageTitleConstant.saveDetails)
-            let range = NSRange(location: 0, length: 4)
-            attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
-            sender.setAttributedTitle(attributedString, for: .normal)
+            sender.setAttributedTitle(setSaveButtontext(), for: .normal)
             setButtonState(val: true)
             accountFname.becomeFirstResponder()
         }else{
-            setTitle(titleString: pageTitleConstant.acccountDetails)
-            accountImage.isUserInteractionEnabled = false
-            cancelButton.isHidden = true
-            let attributedString = NSMutableAttributedString(string: btnString.editProfile)
-            let range = NSRange(location: 0, length: 12)
-            attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
-            sender.setAttributedTitle(attributedString, for: .normal)
-            setButtonState(val: false)
-            
-            if let image = image  {
-                if let imageData = image.pngData(), let accessToken = accesstoken {
-                    UserDefaults.standard.set(imageData, forKey: accessToken)
-                    accountImage.image = image
-                }
+            guard !viewModel.chkChanges(firstname: accountFname.text!, lastname: accountLname.text!, email: accountEmail.text!, dob: accountDateOfBirth.text!, phoneno: accountPhoneNo.text!) else{
+                succeessSetup(sender: sender)
+                return
             }
-                
-            viewModel.editAccountDetails(first_name: accountFname.text ?? txtfieldValConst.emptyStr, last_name: accountLname.text ?? txtfieldValConst.emptyStr, email: accountEmail.text  ?? txtfieldValConst.emptyStr, dob: selectedDate , phone_no: accountPhoneNo.text ?? txtfieldValConst.emptyStr){
-                responce in
-                DispatchQueue.main.async {
-                    if responce{
-                        NotificationCenter.default.post(name: .reloadSideMenuData, object: nil)
-                        self.showAlert(msg: alertMsgConstant.details_Updated_Succefully)
-                    }else{
-                        self.showAlert(msg: errorConstant.error)
+            validation().editAccountValidation(fname: accountFname.text ?? txtfieldValConst.emptyStr, lname: accountLname.text ?? txtfieldValConst.emptyStr , email: accountEmail.text  ?? txtfieldValConst.emptyStr, phone: accountPhoneNo.text ?? txtfieldValConst.emptyStr){
+                (responce , errorStr) in
+                if responce {
+                    self.viewModel.editAccountDetails(first_name: self.accountFname.text ?? txtfieldValConst.emptyStr, last_name: self.accountLname.text ?? txtfieldValConst.emptyStr, email: self.accountEmail.text  ?? txtfieldValConst.emptyStr, dob: self.selectedDate , phone_no: self.accountPhoneNo.text ?? txtfieldValConst.emptyStr){
+                        responce,str in
+                        DispatchQueue.main.async {
+                            if responce{
+                                NotificationCenter.default.post(name: .reloadSideMenuData, object: nil)
+                                self.showAlert(msg: alertMsgConstant.details_Updated_Succefully)
+                                self.succeessSetup(sender: sender)
+                            }else{
+                                self.showAlert(msg: errorConstant.error)
+                            }
+                        }
                     }
                 }
             }
+            
         }
         
+    }
+    
+    func setEditButtontext()-> NSAttributedString{
+        let attributedString = NSMutableAttributedString(string: btnString.editProfile)
+        let range = NSRange(location: 0, length: 12)
+        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
+        return attributedString
+    }
+    
+    func setSaveButtontext()-> NSAttributedString{
+        let attributedString = NSMutableAttributedString(string: btnString.save)
+        setTitle(titleString: pageTitleConstant.saveDetails)
+        let range = NSRange(location: 0, length: 4)
+        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
+        return attributedString
     }
     
     @IBAction func cancelButtonAction(_ sender: UIButton) {
@@ -264,10 +289,7 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
         fillData()
         setTitle(titleString: pageTitleConstant.acccountDetails)
         accountImage.isUserInteractionEnabled = false
-        let attributedString = NSMutableAttributedString(string: btnString.editProfile)
-        let range = NSRange(location: 0, length: 12)
-        attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
-        editbutton.setAttributedTitle(attributedString, for: .normal)
+        editbutton.setAttributedTitle(self.setEditButtontext(), for: .normal)
         accountFname.isUserInteractionEnabled = false
         accountLname.isUserInteractionEnabled = false
         accountEmail.isUserInteractionEnabled = false
@@ -348,7 +370,7 @@ extension MyAccountViewController: UIImagePickerControllerDelegate, UINavigation
             imagePicker.sourceType = UIImagePickerController.SourceType.camera
             self.present(imagePicker, animated: true, completion: nil)
         } else {
-           
+            
         }
     }
     // MARK: for opningthe gallery

@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CartViewController" customModule="Neostore" customModuleProvider="target">
             <connections>
                 <outlet property="cartTableview" destination="k2P-Bh-1zL" id="yAn-3p-0aM"/>
+                <outlet property="orderBtn" destination="eR8-KT-lAo" id="4mn-3b-Iw3"/>
                 <outlet property="scrollView" destination="OXk-On-sgh" id="wX7-PV-A4Z"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -36,8 +37,7 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eR8-KT-lAo">
                                             <rect key="frame" x="20" y="10" width="374" height="39.5"/>
-                                            <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <color key="tintColor" red="0.95994406939999999" green="0.022872412580000001" blue="0.09069452435" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="filled">
                                                 <attributedString key="attributedTitle">
@@ -49,8 +49,6 @@
                                                         </attributes>
                                                     </fragment>
                                                 </attributedString>
-                                                <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <color key="baseBackgroundColor" red="0.95994406939999999" green="0.022872412580000001" blue="0.09069452435" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </buttonConfiguration>
                                             <connections>
                                                 <action selector="orderAction:" destination="-1" eventType="touchUpInside" id="Ccw-OS-J3W"/>
