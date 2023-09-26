@@ -89,7 +89,7 @@ class ProductViewController: BaseViewController {
         self.tableViewBottomconstrain.constant = 0
         
     }
-    
+    // MARK: API CALL
     func getdata(){
         self.startActivityIndicator()
         self.viewmodel.GetProductList(id: id ){
@@ -124,7 +124,7 @@ class ProductViewController: BaseViewController {
     
 }
 extension ProductViewController: UITableViewDelegate,UITableViewDataSource{
-    
+    // MARK: SETUP TABLE VIEW
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         self.productsfilteredData.count
     }
@@ -185,15 +185,13 @@ extension ProductViewController: UITableViewDelegate,UITableViewDataSource{
     
 }
 extension ProductViewController: UITextFieldDelegate{
-    
+    // MARK: SEARCH TEXT FILED SHOULD CHANGECHANRATER
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         productsfilteredData = productsData
         let newText = (textField.text as NSString?)?.replacingCharacters(in: range, with: string) ?? txtfieldValConst.emptyStr
         if newText.isEmpty{
-            print(newText)
             productsfilteredData = productsData
         } else {
-            print(newText)
             productsfilteredData = productsData.filter{$0.name?.lowercased().contains(newText.lowercased()) ?? false}
         }
         productTableview.reloadData()

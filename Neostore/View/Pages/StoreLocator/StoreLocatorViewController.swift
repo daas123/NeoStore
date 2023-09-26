@@ -6,6 +6,7 @@ import CoreLocation
 class StoreLocatorViewController: BaseViewController, CLLocationManagerDelegate, GMSMapViewDelegate {
     
     // MARK: FILE VARIABLE
+    var previousLocation: CLLocation?
     let locationManager = CLLocationManager()
     let apiKey = apikeyConstant.googleMapApiKeyPaid
     var mapView: GMSMapView!
@@ -50,15 +51,23 @@ class StoreLocatorViewController: BaseViewController, CLLocationManagerDelegate,
     }
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let userLocation = locations.first {
+        guard let userLocation = locations.first else { return }
+        if var previousLocation = previousLocation {
+            let distance = userLocation.distance(from: previousLocation)
+            if distance >= 10 {
+                findNearbyNatureLocations(userLocation: userLocation)
+                previousLocation = userLocation
+            }
+        } else {
             findNearbyNatureLocations(userLocation: userLocation)
+            previousLocation = userLocation
         }
     }
     
     static func loadFromNib()-> UIViewController{
-        return StoreLocatorViewController(nibName: "StoreLocatorViewController", bundle: nil)
+        return StoreLocatorViewController(nibName: navigationVCConstant.storeLocatorVC , bundle: nil)
     }
-    
+    // MARK: API CALL
     func findNearbyNatureLocations(userLocation: CLLocation) {
         self.startActivityIndicator()
         let baseUrl = storelocatorConstant.baseUrl
@@ -73,19 +82,19 @@ class StoreLocatorViewController: BaseViewController, CLLocationManagerDelegate,
                 if responce{
                     let camera = GMSCameraPosition.camera(withLatitude: userLocation.coordinate.latitude, longitude: userLocation.coordinate.longitude, zoom: 15.0)
                     self.mapView.animate(to: camera)
-                    if let results = self.viewModel.nearbyResturentData?["results"] as? [[String: Any]] {
+                    if let results = self.viewModel.nearbyResturentData?[storelocatorConstant.results] as? [[String: Any]] {
                         for result in results {
-                            if let name = result["name"] as? String,
-                               let geometry = result["geometry"] as? [String: Any],
-                               let location = geometry["location"] as? [String: Any],
-                               let lat = location["lat"] as? Double,
-                               let lng = location["lng"] as? Double,
-                               let types = result["types"] as? [String] {
-                                if types.contains("restaurant") {
+                            if let name = result[storelocatorConstant.name] as? String,
+                               let geometry = result[storelocatorConstant.geometry] as? [String: Any],
+                               let location = geometry[storelocatorConstant.location] as? [String: Any],
+                               let lat = location[storelocatorConstant.lat] as? Double,
+                               let lng = location[storelocatorConstant.lng] as? Double,
+                               let types = result[storelocatorConstant.types] as? [String] {
+                                if types.contains(storelocatorConstant.restaurant) {
                                     let marker = GMSMarker()
                                     marker.position = CLLocationCoordinate2D(latitude: lat, longitude: lng)
                                     marker.title = name
-                                    marker.icon = UIImage(named: "red_pin")
+                                    marker.icon = UIImage(named: ImageConstants.red_pin)
                                     marker.map = self.mapView
                                 } else {
                                     let marker = GMSMarker()

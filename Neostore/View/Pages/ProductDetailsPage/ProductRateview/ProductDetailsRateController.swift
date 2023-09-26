@@ -85,7 +85,6 @@ class ProductDetailsRateController: BaseViewController {
         guard sender.view is UIImageView else {
             return
         }
-        
         let selectedRating = sender.view?.tag ?? 0
         let isFirstImageSelected = ratingImage[0].isHighlighted
         if selectedRating == 0 {
@@ -113,20 +112,22 @@ class ProductDetailsRateController: BaseViewController {
     @IBAction func closeButtonAction(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
-    
+    // MARK: Api Call
     @IBAction func RateButtonAction(_ sender: UIButton) {
         startActivityIndicator()
         viewModel.sendRating(rating: currentrating, productId: productId){
-            (responce,msg) in
+            (msg) in
             print(self.currentrating)
-            if responce {
+            if msg == txtfieldValConst.emptyStr {
                 DispatchQueue.main.async {
                     self.stopActivityIndicator()
                     UIView.animate(withDuration: 0.3) {
                         self.dismiss(animated: true, completion: nil)
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: notificationString.ratingDoneNotification), object: nil , userInfo: [notificationString.message: msg])
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: notificationString.ratingDoneNotification), object: nil , userInfo: [notificationString.message: txtfieldValConst.ratingDoneSuccessfull])
                     }
                 }
+            }else{
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: notificationString.ratingDoneNotification), object: nil , userInfo: [notificationString.message: errorConstant.error])
             }
         }
     }

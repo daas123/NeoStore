@@ -8,7 +8,7 @@
 import UIKit
 
 class ProductDetailsTitleCell: UITableViewCell {
-
+    
     
     @IBOutlet var productratingimages: [UIImageView]!
     @IBOutlet weak var productProducer: UILabel!
@@ -18,7 +18,7 @@ class ProductDetailsTitleCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

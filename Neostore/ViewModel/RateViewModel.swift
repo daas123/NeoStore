@@ -7,14 +7,14 @@
 
 import Foundation
 class RateViewModel{
-    func sendRating(rating:Int,productId:Int, complition : @escaping (Bool,String)->Void){
+    func sendRating(rating:Int,productId:Int, complition : @escaping (String)->Void){
         RatingService().sendRating(rate: rating , productId: productId){
             responce in
             switch responce{
-            case .success(let data):
-                complition(true, data.message)
+            case .success(_):
+                complition(txtfieldValConst.emptyStr)
             case .failure(let error):
-                complition(false , error.localizedDescription)
+                complition(error.localizedDescription)
             }
         }
     }

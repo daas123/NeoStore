@@ -14,22 +14,21 @@ protocol CartAction:NSObject{
 class CartViewModel{
     var cartData : CartData?
     var cartPickerviewData = [1,2,3,4,5,6,7,8]
-    func editToCart(productid :Int ,quantity:String, complition : @escaping (Bool,String?)->Void){
+    func editToCart(productid :Int ,quantity:String, complition : @escaping (String?)->Void){
         validation().addToCart(Quantity: quantity){
-            (Result,msg) in
-            if Result{
-//                OrderService().(productid: productid, quantity: Int(quantity) ?? 0)
+            (resultMsg) in
+            if resultMsg == txtfieldValConst.emptyStr{
                 CartService().editCart(productid: productid, quantity: Int(quantity) ?? 0){
                     responce in
                     switch responce{
-                    case .success(let data):
-                        complition(true, data.message)
+                    case .success(_):
+                        complition(txtfieldValConst.emptyStr)
                     case .failure(let error):
-                        complition(false , error.localizedDescription)
+                        complition(error.localizedDescription)
                     }
                 }
             }else{
-                complition(false,msg)
+                complition(resultMsg)
             }
         }
         

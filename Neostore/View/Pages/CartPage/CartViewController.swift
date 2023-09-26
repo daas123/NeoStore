@@ -22,11 +22,7 @@ class CartViewController: BaseViewController , UITextFieldDelegate {
     @IBOutlet weak var cartStackView: UIStackView!
     @IBOutlet weak var cartTableview: UITableView!
     
-    
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.isNavigationBarHidden = false
-    }
-    
+    // MARK: lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         baseScrollView = scrollView
@@ -38,6 +34,11 @@ class CartViewController: BaseViewController , UITextFieldDelegate {
         getData()
         setupBtn()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
+    }
+    
     func setupBtn(){
         self.orderBtn.backgroundColor = .white
         self.orderBtn.tintColor = .gray
@@ -82,6 +83,8 @@ class CartViewController: BaseViewController , UITextFieldDelegate {
         selectedTextField?.resignFirstResponder()
         cartPickerView.isHidden = true
     }
+    
+    // MARK: APi call
     
     func getData(){
         self.startActivityIndicator()
@@ -143,12 +146,10 @@ class CartViewController: BaseViewController , UITextFieldDelegate {
         print(selectedOption)
         if selectedOption != 0 {
             viewModel.editToCart(productid: viewModel.cartData?.data?[cellIndexpath.row].productID ?? 0, quantity: String(selectedOption ) ){
-                (responce,msg) in
-                if responce {
+                (responceMsg) in
+                if responceMsg == txtfieldValConst.emptyStr {
                     DispatchQueue.main.async {
-                        if responce{
-                            self.getData()
-                        }
+                        self.getData()
                     }
                 }
             }

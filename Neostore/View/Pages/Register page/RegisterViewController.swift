@@ -24,13 +24,14 @@ class RegisterViewController: BaseViewController{
     @IBOutlet weak var registerPassword: UITextField?
     @IBOutlet weak var registerConformPassword: UITextField!
     @IBOutlet weak var registerPhoneNumber: UITextField?
+    @IBOutlet weak var termsCond: UILabel!
     
     // MARK: IBOutlet for Button
     @IBOutlet weak var registerFemaleradio: UIButton!
     @IBOutlet weak var registerMaleRadio: UIButton!
     @IBOutlet weak var registerchkBox: UIButton!
     
-    // MARK: ViewDidload
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTextfileds()
@@ -39,6 +40,15 @@ class RegisterViewController: BaseViewController{
         setDefaultImages()
         setTextFieldDeligates()
         setTapGuesture()
+        setunderlineText()
+    }
+    func setunderlineText(){
+        if let labelText = termsCond.text, labelText.count >= 30 {
+            let lastFourRange = labelText.index(labelText.endIndex, offsetBy: -18)..<labelText.endIndex
+            let attributedString = NSMutableAttributedString(string: labelText)
+            attributedString.addAttribute(NSAttributedString.Key.underlineStyle, value: NSUnderlineStyle.single.rawValue, range: NSRange(lastFourRange, in: labelText))
+            termsCond.attributedText = attributedString
+        }
     }
     
     func setTapGuesture(){
@@ -49,7 +59,7 @@ class RegisterViewController: BaseViewController{
     func setupTextfileds(){
         registerFirstname.setIcon(UIImage(systemName: ImageConstants.person)!)
         registerlastname.setIcon(UIImage(systemName: ImageConstants.person)!)
-        registerEmail.setIcon(UIImage(systemName: ImageConstants.mail)!)
+        registerEmail.setIcon(UIImage(named: ImageConstants.mail))
         registerPassword?.setIcon(UIImage(systemName: ImageConstants.lock)!)
         registerConformPassword.setIcon(UIImage(systemName: ImageConstants.lock)!)
         registerPhoneNumber?.setIcon(UIImage(systemName: ImageConstants.phone)!)
@@ -62,7 +72,6 @@ class RegisterViewController: BaseViewController{
         registerPhoneNumber?.setBorder()
     }
     
-    //MARK: Default Images
     func setDefaultImages(){
         registerMaleRadio.setImage(UIImage(systemName: ImageConstants.circle), for: .normal)
         registerMaleRadio.setImage(UIImage(systemName: ImageConstants.circle_fill), for: .selected)
@@ -72,7 +81,6 @@ class RegisterViewController: BaseViewController{
         registerchkBox.setImage(UIImage(systemName: ImageConstants.square_fill), for: .selected)
     }
     
-    //MARK: VD Func Settitng the deligate for textfields
     func setTextFieldDeligates(){
         registerFirstname.delegate = self
         registerlastname.delegate = self
@@ -100,24 +108,23 @@ class RegisterViewController: BaseViewController{
     
     @IBAction func checkbutton(_ sender: UIButton) {
         if chkbtn {
-            registerchkBox.isSelected = true
+            registerchkBox.isSelected = false
             chkbtn = false
         }else{
-            registerchkBox.isSelected = false
+            registerchkBox.isSelected = true
             chkbtn = true
         }
     }
-    
     @IBAction func registerButtonAction(_ sender: UIButton) {
-       startActivityIndicator()
+        startActivityIndicator()
+        // MARK: ApiCall for register button
         viewModel.registervalidation(Fname: registerFirstname.text ?? txtfieldValConst.emptyStr, Lname: registerlastname.text ?? txtfieldValConst.emptyStr, Email: registerEmail.text ?? txtfieldValConst.emptyStr, Pass: registerPassword?.text ?? txtfieldValConst.emptyStr, Cpass: registerConformPassword?.text ?? txtfieldValConst.emptyStr, Gender: gender ?? GenderConstant.NaN , Phone: registerPhoneNumber?.text ?? txtfieldValConst.emptyStr, chkBox: registerchkBox.isSelected ){
-            (validateBool , resultStrng) in
+            (resultStrng) in
             DispatchQueue.main.async {
-                if validateBool{
-                    self.navigationController?.pushViewController(LoginViewController.loadFromNib(), animated: true)
-                    self.showAlert(msg: resultStrng)
+                if resultStrng == txtfieldValConst.emptyStr {
+                    self.navigationController?.popToRootViewController(animated: true)
                 }else{
-                    self.showAlert(msg: resultStrng)
+                    self.showAlert(msg:resultStrng)
                 }
                 self.stopActivityIndicator()
             }
@@ -141,6 +148,8 @@ extension RegisterViewController : UITextFieldDelegate{
         case registerPassword:
             registerConformPassword.becomeFirstResponder()
         case registerConformPassword:
+            registerPhoneNumber?.becomeFirstResponder()
+        case registerPhoneNumber:
             registerPhoneNumber?.resignFirstResponder()
         default:
             break

@@ -25,7 +25,7 @@ class BaseViewController: UIViewController {
     }
     
     @objc func viewWillDisappearNotification(_ notification: Notification) {
-        if let message = notification.userInfo?["message"] as? String {
+        if let message = notification.userInfo?[notificationString.message] as? String {
             self.showAlert(msg: message)
         }
     }

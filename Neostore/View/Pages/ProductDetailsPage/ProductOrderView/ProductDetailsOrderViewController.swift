@@ -58,6 +58,7 @@ class ProductDetailsOrderViewController: BaseViewController {
         orderDetailsGesture = UITapGestureRecognizer(target: self, action: #selector(handleOrderDetailsTap(_:)))
         orderDetailsview?.addGestureRecognizer(orderDetailsGesture)
     }
+    
     static func loadFromNib()-> UIViewController{
         return ProductDetailsOrderViewController(nibName: navigationVCConstant.productDetailsOrderVC, bundle: nil)
     }
@@ -73,23 +74,23 @@ class ProductDetailsOrderViewController: BaseViewController {
     @IBAction func cancelButtonaction(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-    
+    // MARK: API CALL
     @IBAction func orderButton(_ sender: UIButton) {
         startActivityIndicator()
         viewModel.AddToCart(productid:productId, quantity: productOrderQuantityField?.text ?? txtfieldValConst.emptyStr ){
-            (responce,Msg) in
-            if responce{
+            (msg) in
+            if msg == txtfieldValConst.emptyStr {
                 DispatchQueue.main.async {
                     self.stopActivityIndicator()
                     UIView.animate(withDuration: 0.3) {
                         self.dismiss(animated: true, completion: nil)
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: notificationString.ratingDoneNotification), object: nil , userInfo: [notificationString.message: Msg])
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: notificationString.ratingDoneNotification), object: nil , userInfo: [notificationString.message: txtfieldValConst.productAddedToCart])
                         NotificationCenter.default.post(name: .reloadSideMenuData, object: nil)
                     }
                 }
             }else{
                 self.stopActivityIndicator()
-                self.showAlert(msg: Msg ?? errorConstant.error)
+                self.showAlert(msg: msg ?? errorConstant.error)
             }
         }
     }

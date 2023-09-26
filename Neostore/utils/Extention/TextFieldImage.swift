@@ -10,7 +10,7 @@ import UIKit
 
 extension UITextField {
     
-    func setIcon(_ image: UIImage) {
+    func setIcon(_ image : UIImage?) {
         let iconView = UIImageView(frame:
                                     CGRect(x: 10, y: 5, width: 25, height: 25))
         iconView.image = image

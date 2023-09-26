@@ -10,75 +10,75 @@ import Foundation
 class loginViewModel{
     let loginservice = LoginWebService()
     
-    func loginValidation(email : String , password : String, complition :@escaping (Bool, String)-> Void){
+    func loginValidation(email : String , password : String, complition :@escaping (String)-> Void){
         validation().loginValidation(email: email, password: password){
-            (ValidBool,ErrorString) in
-            if ValidBool{
+            (resultMsg) in
+            if resultMsg == txtfieldValConst.emptyStr{
                 self.loginservice.loginAction(email: email, password: password){
                     (responce) in
                     switch responce{
                     case .success(let value):
                         if value.0 != nil{
                             UserDefaults.standard.set(value.0?.data?.access_token, forKey: userDefConstant.accessToken)
-                            complition(true,(value.0?.user_msg)!)
+                            complition(txtfieldValConst.emptyStr)
                         }else if value.1 != nil{
-                            complition(false,(value.1?.userMsg)!)
+                            complition(txtfieldValConst.emptyStr)
                         }else{
-                            complition(false,(value.2?.user_msg)!)
+                            complition((value.2?.user_msg)!)
                         }
                     case .failure(let error):
-                        complition (false , error.localizedDescription)
+                        complition(error.localizedDescription)
                     }
                 }
             }else{
-                complition(false,ErrorString)
+                complition(resultMsg)
             }
         }
     }
     
-    func chnagePassword(old_password:String,password:String,confirm_password:String,complition :@escaping (Bool, String)-> Void){
+    func chnagePassword(old_password:String,password:String,confirm_password:String,complition :@escaping (String)-> Void){
         validation().changeAction(old_password: old_password, password: password, confirm_password: confirm_password){
-            (ValidBool,ErrorString) in
-            if ValidBool{
+            (resultMsg) in
+            if resultMsg == txtfieldValConst.emptyStr{
                 self.loginservice.changeAction(old_password: old_password, password: password, confirm_password: confirm_password){
                     responce in
                     switch responce{
                     case .success(let value):
                         if value.0 != nil{
-                            complition(true,value.0?.user_msg ?? "Done")
+                            complition(txtfieldValConst.emptyStr)
                         }else{
-                            complition(false,value.1?.user_msg ?? "Error")
+                            complition(value.1?.user_msg ?? errorConstant.error)
                         }
                     case .failure(let error):
-                        complition (false , errorConstant.error)
+                        complition (error.localizedDescription)
                     }
                 }
             }else{
-                complition(false,ErrorString)
+                complition(resultMsg)
             }
         }
         
     }
-    func forgetPassword(email:String,complition :@escaping (Bool, String)-> Void){
+    func forgetPassword(email:String,complition :@escaping (String)-> Void){
         validation().resetValidation(email: email){
-            (ValidBool,ErrorString) in
-            if ValidBool{
+            (resultMsg) in
+            if resultMsg == txtfieldValConst.emptyStr{
                 self.loginservice.forgetAction(email: email){
                     responce in
                     switch responce{
                     case .success(let value):
                         if value.0 != nil{
-                            complition(true,value.0?.user_msg ?? "done")
+                            complition(txtfieldValConst.emptyStr)
                         }else{
-                            complition(false,value.1?.user_msg ?? "error")
+                            complition(value.1?.user_msg ?? txtfieldValConst.someThingWentWrong)
                         }
                     case .failure(let error):
-                        complition (false , error.localizedDescription)
+                        complition (error.localizedDescription)
                     }
                 }
             }else
             {
-                complition(false,ErrorString)
+                complition(resultMsg)
             }
         }
         

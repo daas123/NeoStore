@@ -7,26 +7,26 @@
 
 import Foundation
 class AccountViewModel{
-    func editAccountDetails(first_name: String, last_name: String, email: String, dob: String, phone_no: String,complition : @escaping (Bool,String)->Void){
+    func editAccountDetails(first_name: String, last_name: String, email: String, dob: String, phone_no: String,complition : @escaping (String)->Void){
         
         FetchAccountWEbService().editAccountdata(first_name: first_name, last_name: last_name, email: email, dob: dob, phone_no:phone_no, profile_pic: ""){
             responce in
             switch responce{
             case .success(let data):
                 SideMenuViewmodel.menuDemoData = data
-                complition(true , "")
+                complition(txtfieldValConst.emptyStr)
             case .failure(let error):
-                complition(false,error.localizedDescription )
+                complition(error.localizedDescription)
             }
         }
         
     }
     
-    var fname : String = ""
-    var lname : String = ""
-    var uemail : String = ""
-    var udob : String = ""
-    var phonenumber : String = ""
+    var fname : String?
+    var lname : String?
+    var uemail : String?
+    var udob : String?
+    var phonenumber : String?
     
     func storeData(firstname:String,lastname:String,email:String,dob:String,phoneno:String){
         self.fname = firstname

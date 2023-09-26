@@ -9,21 +9,21 @@ import Foundation
 
 
 class OrderviewModel{
-    func AddToCart(productid :Int ,quantity:String, complition : @escaping (Bool,String?)->Void){
+    func AddToCart(productid :Int ,quantity:String, complition : @escaping (String?)->Void){
         validation().addToCart(Quantity: quantity){
-                (Result,msg) in
-                if Result{
+                (resultMsg) in
+            if resultMsg == txtfieldValConst.emptyStr{
                     OrderService().AddtoCart(productid: productid, quantity: Int(quantity) ?? 0){
                         responce in
                         switch responce{
-                        case .success(let data):
-                            complition(true, data.message)
+                        case .success(_):
+                            complition(txtfieldValConst.emptyStr)
                         case .failure(let error):
-                            complition(false , error.localizedDescription)
+                            complition(error.localizedDescription)
                         }
                     }
                 }else{
-                    complition(false,msg)
+                    complition(resultMsg)
                 }
             }
         

@@ -8,6 +8,7 @@
 import UIKit
 import SDWebImage
 class OrderIdViewController: BaseViewController {
+    
     // MARK: FILE VARIABLE
     let viewmodel = OrderListViewModel()
     var orderDetialId : Int?
@@ -33,6 +34,7 @@ class OrderIdViewController: BaseViewController {
         return OrderIdViewController(nibName: navigationVCConstant.myOrdersDetailsVC, bundle: nil)
     }
     
+    //MARK: APi Call
     func getdata(){
         self.startActivityIndicator()
         viewmodel.getOrderListDetials(order_id: orderDetialId ?? 0){
@@ -43,7 +45,7 @@ class OrderIdViewController: BaseViewController {
             }
         }
     }
-
+    
 }
 extension OrderIdViewController : UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -60,7 +62,7 @@ extension OrderIdViewController : UITableViewDelegate,UITableViewDataSource{
             cell.orderDetailsCost.text = String(viewmodel.orderListDetails?.data?.orderDetails[indexPath.row].total ?? 0)
             if let imageUrl = URL(string: viewmodel.orderListDetails?.data?.orderDetails[indexPath.row].prodImage ?? errorConstant.error) {
                 cell.orderDetailsImage.sd_setImage(with: imageUrl, placeholderImage: UIImage(named: ImageConstants.default_img))
-                }
+            }
             cell.selectionStyle = .none
             return cell
         }else if indexPath.row == orderdetailsCount{

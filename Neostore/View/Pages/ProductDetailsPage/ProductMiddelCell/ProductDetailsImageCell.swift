@@ -8,6 +8,7 @@
 import UIKit
 import SDWebImage
 class ProductDetailsImageCell: UITableViewCell {
+    
     var selectedImageIndex = 0
     var imageCollectioViewData : [Product_images]?
     
@@ -38,6 +39,7 @@ class ProductDetailsImageCell: UITableViewCell {
     @IBAction func ProductDetailsShareButton(_ sender: UIButton) {
         shareProductDetails()
     }
+    
     func shareProductDetails() {
         if let image = productDetailsMianImage.image,
            let productName = productDetailsDescription.text,

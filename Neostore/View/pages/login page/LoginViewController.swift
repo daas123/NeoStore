@@ -58,10 +58,11 @@ class LoginViewController: BaseViewController {
     @IBAction func LoginButtonAction(_ sender: UIButton) {
         startActivityIndicator()
         if islogin {
+            //MARK: API CALL FOR LOGIN
             viewmodel.loginValidation(email: loginUsername.text ?? txtfieldValConst.emptyStr, password: loginPassword.text ?? txtfieldValConst.emptyStr){
-                (validationCheck,msgString) in
+                (msgString) in
                 DispatchQueue.main.async {
-                    if validationCheck{
+                    if msgString == txtfieldValConst.emptyStr {
                         self.navigationController?.pushViewController(HomeViewController.loadFromNib(), animated: true)
                     }else{
                         self.showAlert(msg: msgString)
@@ -70,10 +71,11 @@ class LoginViewController: BaseViewController {
                 }
             }
         }else{
-            viewmodel.forgetPassword(email: loginUsername.text ?? ""){
-                (responce, msg) in
+            //MARK: API CALL FOR FORGOT
+            viewmodel.forgetPassword(email: loginUsername.text ?? txtfieldValConst.emptyStr){
+                (msg) in
                 DispatchQueue.main.async {
-                    if responce{
+                    if msg == txtfieldValConst.emptyStr {
                         self.showAlert(msg: alertMsgConstant.password_send_succesfully)
                     }else{
                         self.showAlert(msg: msg)
@@ -89,8 +91,11 @@ class LoginViewController: BaseViewController {
         navigationController?.pushViewController(RegisterViewController.loadFromNib(), animated: true)
     }
     
+    
     @IBAction func forgetPasswordAction(_ sender: UIButton) {
         islogin = false
+        loginUsername.text = txtfieldValConst.emptyStr
+        loginPassword.text = txtfieldValConst.emptyStr
         let attributedString = NSMutableAttributedString(string: btnString.sendEmail)
         let range = NSRange(location: 0, length: 10)
         attributedString.addAttribute(.font, value: UIFont.boldSystemFont(ofSize: 24), range: range)
@@ -104,6 +109,7 @@ class LoginViewController: BaseViewController {
     
     @IBAction func cancelButtonAction(_ sender: UIButton) {
         islogin = true
+        loginUsername.text = txtfieldValConst.emptyStr
         passwordView.isHidden = false
         navigationback.isHidden = true
         forgetPassword.isHidden = false

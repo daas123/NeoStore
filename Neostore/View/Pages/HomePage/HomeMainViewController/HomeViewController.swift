@@ -26,28 +26,14 @@ class HomeViewController: BaseViewController{
     @IBOutlet weak var mainMenutopConstraint: NSLayoutConstraint!
     @IBOutlet weak var MainMenuLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var sideMenuLeadingConstraint: NSLayoutConstraint!
-    
-    //MARK: UIVIEW OUTLETS
     @IBOutlet var parentView: UIView!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var sideMenuContainer: UIView!
-    
-    // MARK: Collection view
     @IBOutlet weak var homeCollectionView: UICollectionView!
     @IBOutlet weak var categoryCollectionView: UICollectionView!
-    
-    // MARK: page colntrol
     @IBOutlet weak var pageControl: UIPageControl!
     
-    
-    override func viewWillAppear(_ animated: Bool) {
-        navigationController?.isNavigationBarHidden = true
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        closeSideMenu()
-    }
-    
+    // MARK: - Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.isNavigationBarHidden = true
@@ -59,6 +45,15 @@ class HomeViewController: BaseViewController{
         startTimer()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        closeSideMenu()
+    }
+    
+    // MARK: - Viewdiload function
     func hideSideMenu(){
         self.sideMenuLeadingConstraint.constant = -self.sideMenuContainer.frame.width
         self.view.layoutIfNeeded()
@@ -98,6 +93,8 @@ class HomeViewController: BaseViewController{
         return HomeViewController(nibName: navigationVCConstant.homeVC, bundle: nil)
     }
     
+    // MARK: IB ACTIONS
+    
     @IBAction func sideMenuButtonAction(_ sender: UIButton) {
         if sideMenuOpen{
             closeSideMenu()
@@ -110,12 +107,10 @@ class HomeViewController: BaseViewController{
         navigationController?.pushViewController(CartViewController.loadFromNib(), animated: true)
     }
     
-    // MARK: TAP GESTURE WHEN SIDE MENU IS VISIBLE
     @objc private func handleTapGesture(_ sender: UITapGestureRecognizer) {
         closeSideMenu()
     }
     
-    // MARK: Handel pan Gesture
     @objc func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: view)
         

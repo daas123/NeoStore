@@ -50,6 +50,20 @@ class SideMenuViewController: UIViewController {
         sideMenuImage.clipsToBounds = true
     }
     
+    func reloadProfileImage(){
+        if let accessToken = SideMenuViewmodel.menuDemoData.data?.user_data?.access_token,
+           let imageData = UserDefaults.standard.data(forKey: accessToken),
+           let image = UIImage(data: imageData) {
+            DispatchQueue.main.async {
+                self.sideMenuImage.image = image
+            }
+        }else{
+            DispatchQueue.main.async {
+                self.sideMenuImage.image = UIImage(named: ImageConstants.default_img)
+            }
+        }
+    }
+    
     static func loadFromNib()-> UIViewController{
         return SideMenuViewController(nibName: navigationVCConstant.sideMenuVC, bundle: nil)
     }
@@ -65,22 +79,13 @@ class SideMenuViewController: UIViewController {
             DispatchQueue.main.async {
                 self.sideMenuTableview.reloadData()
                 self.reloadProfileImage()
+                self.userEmail.text = SideMenuViewmodel.menuDemoData.data?.user_data?.email
+                self.userName.text = (SideMenuViewmodel.menuDemoData.data?.user_data?.first_name ?? txtfieldValConst.emptyStr) + (SideMenuViewmodel.menuDemoData.data?.user_data?.last_name ?? txtfieldValConst.emptyStr)
             }
         }
     }
-    func reloadProfileImage(){
-        if let accessToken = SideMenuViewmodel.menuDemoData.data?.user_data?.access_token,
-           let imageData = UserDefaults.standard.data(forKey: accessToken),
-           let image = UIImage(data: imageData) {
-            DispatchQueue.main.async {
-                self.sideMenuImage.image = image
-            }
-        }else{
-            DispatchQueue.main.async {
-                self.sideMenuImage.image = UIImage(named: ImageConstants.default_img)
-            }
-        }
-    }
+    
+    // MARK: API CALL
     func getData(){
         startActivityIndicator()
         viewmodel.fetchAccountDetails{
@@ -104,7 +109,7 @@ class SideMenuViewController: UIViewController {
     }
     
 }
-
+// MARK: TABLE VIEW SETUP
 extension SideMenuViewController : UITableViewDelegate,UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -182,12 +187,13 @@ extension SideMenuViewController : UITableViewDelegate,UITableViewDataSource{
         }
     }
 }
+
 extension SideMenuViewController : ReloadSideMenuData{
     func reloadSidemenu() {
         viewmodel.fetchAccountDetails{
             responce in
             if responce{
-                debugPrint(alertMsgConstant.cancel)
+                debugPrint(alertMsgConstant.ok)
             }
         }
     }

@@ -33,6 +33,7 @@ class MyOrdersViewController: BaseViewController {
     static func loadFromNib()-> UIViewController{
         return MyOrdersViewController(nibName: navigationVCConstant.myOrdersVC, bundle: nil)
     }
+    // MARK: APICALL
     
     func getdata(){
         self.startActivityIndicator()

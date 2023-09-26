@@ -34,6 +34,7 @@ class ProductDetailsController: BaseViewController{
         registerCell()
     }
     
+    // MARK: APi Call
     @objc override func viewWillDisappearNotification(_ notification: Notification) {
         if let message = notification.userInfo?[notificationString.message] as? String {
             self.showAlert(msg: message)
@@ -67,6 +68,7 @@ class ProductDetailsController: BaseViewController{
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: notificationString.viewWillDisappearNotification), object: nil)
     }
     
+    // MARK: APi Call
     func getdata(){
         self.startActivityIndicator()
         self.viewmodel.getProductDetails(id: Productid ){

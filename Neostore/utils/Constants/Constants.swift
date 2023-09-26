@@ -106,9 +106,10 @@ struct ImageConstants {
     // for textfiles
     static let person = "person.fill"
     static let lock = "lock.fill"
-    static let mail = "envelope.fill"
+    static let mail = "mail"
     static let phone = "phone.fill"
-    static let birthday = "birthday.cake.fill"
+    static let cake = "cake"
+    static let userdefault = "userdefault"
 //    static let  = ""
     
     
@@ -136,6 +137,11 @@ struct GenderConstant{
 struct txtfieldValConst{
     static let address = "Address"
     static let emptyStr = ""
+    static let someThingWentWrong = "Some Thing Went Wrong"
+    static let productAddedToCart = "Added To Cart Successfully"
+    static let ratingDoneSuccessfull = "Rated Successfully"
+    static let passwordSentSuccess = "Password Sent Successfully"
+    static let passwordResetSuccess = "Password Reset Successfully"
 }
 
 struct alertMsgConstant{
@@ -219,6 +225,7 @@ struct validationConstant{
     static let emailAllowedChar = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
     static let emailStruct = "SELF MATCHES %@"
     static let enterTheValidEmail = "enter the valid email"
+    static let phoneNoMustBeEqualTo = "Phone No Must be Equal To 10 Number"
     static let  ook = "OK"
     //register constant
     static let firstNameMustBeAtLeastCharactersLong = "First Name must be at least 4 characters long."

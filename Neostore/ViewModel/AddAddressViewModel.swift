@@ -31,11 +31,11 @@ class AddAddressViewModel {
                 }
             }
         }
-    func addAddressData(address:String,landmark:String,city:String,state:String,zipCode:Int,country:String,complition: @escaping (Bool,String)->Void){
+    func addAddressData(address:String,landmark:String,city:String,state:String,zipCode:Int,country:String,complition: @escaping (String)->Void){
         
         validation().addAddressValidation(address: address, landmard: landmark, city: city, state: state, zipcode: zipCode, country: country){
-            result,msg in
-            if result {
+            resultMsg in
+            if resultMsg == txtfieldValConst.emptyStr {
                 var newAddress = AddressFormate(
                             address: address,
                             landmark: landmark,
@@ -48,9 +48,9 @@ class AddAddressViewModel {
                 addresses.append(newAddress)
                 self.addressData = addresses
                         
-                complition(true,msg)
+                complition(txtfieldValConst.emptyStr)
             }else{
-                complition(false,msg)
+                complition(resultMsg)
             }
             
         }

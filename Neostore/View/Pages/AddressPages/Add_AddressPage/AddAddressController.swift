@@ -25,7 +25,7 @@ class AddAddressController: BaseViewController {
     @IBOutlet weak var addressCountry: UITextField!
     @IBOutlet weak var scrollviewtopConstrain: NSLayoutConstraint!
     @IBOutlet weak var scrollviewbottomConstrain: NSLayoutConstraint!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         baseScrollView = scrollview
@@ -51,16 +51,17 @@ class AddAddressController: BaseViewController {
         return AddAddressController(nibName: navigationVCConstant.addAddressVC, bundle: nil)
     }
     
+    //MARK: APi call
     @IBAction func SaveAddress(_ sender: UIButton) {
         let address = addressMainTextview.text ?? txtfieldValConst.emptyStr
-            let landmark = AddressCityLandmark.text ?? txtfieldValConst.emptyStr
-            let city = addressCity.text ?? txtfieldValConst.emptyStr
-            let state = addressState.text ?? txtfieldValConst.emptyStr
-            let zipCodeText = addressZipCode.text ?? txtfieldValConst.emptyStr
-            let country = addressCountry.text ?? txtfieldValConst.emptyStr
+        let landmark = AddressCityLandmark.text ?? txtfieldValConst.emptyStr
+        let city = addressCity.text ?? txtfieldValConst.emptyStr
+        let state = addressState.text ?? txtfieldValConst.emptyStr
+        let zipCodeText = addressZipCode.text ?? txtfieldValConst.emptyStr
+        let country = addressCountry.text ?? txtfieldValConst.emptyStr
         viewModel.addAddressData(address: address, landmark: landmark, city: city, state:state , zipCode: Int(zipCodeText) ?? 0 , country: country){
-            responce,msg in
-            if responce{
+            msg in
+            if msg == txtfieldValConst.emptyStr{
                 self.navigationController?.popViewController(animated: true)
             }else{
                 self.showAlert(msg: msg)

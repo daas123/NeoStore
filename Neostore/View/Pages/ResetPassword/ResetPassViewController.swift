@@ -63,20 +63,21 @@ class ResetPassViewController: BaseViewController, UITextFieldDelegate {
         return true
     }
     
+    // MARK: API CALL
     func getdata(){
         self.startActivityIndicator()
         viewModel.chnagePassword(old_password:oldPassword.text ?? txtfieldValConst.emptyStr, password: newPassword.text ?? txtfieldValConst.emptyStr, confirm_password: conformPassword.text ?? txtfieldValConst.emptyStr){
-            (responce,msg) in
+            (responceMsg) in
             DispatchQueue.main.async {
                 self.stopActivityIndicator()
-                if responce {
-                    self.showAlert(msg: msg)
+                if responceMsg == txtfieldValConst.emptyStr {
+                    self.showAlert(msg: txtfieldValConst.passwordResetSuccess)
                     self.oldPassword.text = txtfieldValConst.emptyStr
                     self.newPassword.text = txtfieldValConst.emptyStr
                     self.conformPassword.text = txtfieldValConst.emptyStr
                     self.navigationController?.pushViewController(HomeViewController.loadFromNib(), animated: true)
                 }else{
-                    self.showAlert(msg: msg)
+                    self.showAlert(msg: responceMsg)
                 }
             }
             

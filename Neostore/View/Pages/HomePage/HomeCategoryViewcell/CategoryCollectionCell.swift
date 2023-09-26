@@ -8,7 +8,7 @@
 import UIKit
 
 class CategoryCollectionCell: UICollectionViewCell {
-
+    
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var categoryImage: UIImageView!
     @IBOutlet weak var containerView: UIView!
@@ -19,8 +19,7 @@ class CategoryCollectionCell: UICollectionViewCell {
     }
     private func setUpUI() {
         categoryLabel.font = UIFont.systemFont(ofSize: 20, weight: .bold)
-            // Other label setup code
-        }
+    }
     func setContraints(lblname: String,lblPosition:positions,imgName: String,imgPosition:positions){
         categoryLabel.text = lblname
         categoryImage.image = UIImage(named: imgName)
@@ -53,5 +52,5 @@ class CategoryCollectionCell: UICollectionViewCell {
             containerView.addConstraints([bottomConstraint, rightConstraint])
         }
     }
-
+    
 }

@@ -54,11 +54,11 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
     }
     
     func setupTextfileds(){
-        accountFname.setIcon(UIImage(systemName: ImageConstants.person)!)
-        accountLname.setIcon(UIImage(systemName: ImageConstants.person)!)
-        accountEmail.setIcon(UIImage(systemName: ImageConstants.mail)!)
-        accountPhoneNo.setIcon(UIImage(systemName: ImageConstants.phone)!)
-        accountDateOfBirth.setIcon(UIImage(systemName: ImageConstants.birthday)!)
+        accountFname.setIcon(UIImage(systemName: ImageConstants.person))
+        accountLname.setIcon(UIImage(systemName: ImageConstants.person))
+        accountEmail.setIcon(UIImage(named: ImageConstants.mail))
+        accountPhoneNo.setIcon(UIImage(systemName: ImageConstants.phone))
+        accountDateOfBirth.setIcon(UIImage(named: ImageConstants.cake))
         accountFname.setBorder()
         accountLname.setBorder()
         accountEmail.setBorder()
@@ -174,21 +174,20 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
             self.showAlert(msg: alertMsgConstant.selectDate)
         }else{
             accountDateOfBirth.text = selectedDate
-            print(selectedDate)
         }
     }
     @objc func cancelButtonTapped() {
         accountDateOfBirth.resignFirstResponder()
         
     }
-    
+    // MARK: INITIAL DATA FILL
     func fillData(){
         self.accountFname.text = SideMenuViewmodel.menuDemoData.data?.user_data?.first_name
         self.accountLname.text = SideMenuViewmodel.menuDemoData.data?.user_data?.last_name
         self.accountEmail.text = SideMenuViewmodel.menuDemoData.data?.user_data?.email
         self.accountPhoneNo.text = String(SideMenuViewmodel.menuDemoData.data?.user_data?.phone_no ?? txtfieldValConst.emptyStr)
         self.accountDateOfBirth.text = String(SideMenuViewmodel.menuDemoData.data?.user_data?.dob ?? txtfieldValConst.emptyStr)
-        
+        // MARK: SET Data tot view model
         viewModel.storeData(firstname: (SideMenuViewmodel.menuDemoData.data?.user_data?.first_name)!,
                             lastname: (SideMenuViewmodel.menuDemoData.data?.user_data?.last_name)!,
                             email: (SideMenuViewmodel.menuDemoData.data?.user_data?.email)!,
@@ -200,7 +199,6 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
             DispatchQueue.main.async {
                 self.stopActivityIndicator()
                 self.accountImage.image = image
-                self.stopActivityIndicator()
             }
         }else{
             DispatchQueue.main.async {
@@ -231,9 +229,11 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
                 self.accountImage.image = image
             }
         }
+        NotificationCenter.default.post(name: .reloadSideMenuData, object: nil)
     }
     
     @IBAction func EditProfileAction(_ sender: UIButton) {
+        
         if sender.titleLabel?.text == btnString.editProfile {
             accountImage.isUserInteractionEnabled = true
             cancelButton.isHidden = false
@@ -245,21 +245,31 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
                 succeessSetup(sender: sender)
                 return
             }
+            // MARK: API CALL
             validation().editAccountValidation(fname: accountFname.text ?? txtfieldValConst.emptyStr, lname: accountLname.text ?? txtfieldValConst.emptyStr , email: accountEmail.text  ?? txtfieldValConst.emptyStr, phone: accountPhoneNo.text ?? txtfieldValConst.emptyStr){
-                (responce , errorStr) in
-                if responce {
+                (resultMsg) in
+                if resultMsg == txtfieldValConst.emptyStr {
                     self.viewModel.editAccountDetails(first_name: self.accountFname.text ?? txtfieldValConst.emptyStr, last_name: self.accountLname.text ?? txtfieldValConst.emptyStr, email: self.accountEmail.text  ?? txtfieldValConst.emptyStr, dob: self.selectedDate , phone_no: self.accountPhoneNo.text ?? txtfieldValConst.emptyStr){
-                        responce,str in
+                        resultStr in
                         DispatchQueue.main.async {
-                            if responce{
+                            if resultStr == txtfieldValConst.emptyStr{
                                 NotificationCenter.default.post(name: .reloadSideMenuData, object: nil)
                                 self.showAlert(msg: alertMsgConstant.details_Updated_Succefully)
                                 self.succeessSetup(sender: sender)
+                                
+                                self.viewModel.storeData(firstname: self.accountFname.text!,
+                                                         lastname: self.accountLname.text!,
+                                                         email: self.accountEmail.text!,
+                                                         dob: String(self.accountDateOfBirth.text!),
+                                                         phoneno: String(self.accountPhoneNo.text!))
+                                
                             }else{
-                                self.showAlert(msg: errorConstant.error)
+                                self.showAlert(msg: resultStr)
                             }
                         }
                     }
+                }else{
+                    self.showAlert(msg: resultMsg)
                 }
             }
             

@@ -10,26 +10,28 @@ import UIKit
 
 class RegisterViewModel: NSObject {
     let registerservice = RegisterWebService()
-    func registervalidation(Fname:String , Lname:String ,Email:String,Pass :String,Cpass:String ,Gender:String,Phone:String, chkBox:Bool , complition : @escaping (Bool,String)->Void)
+    func registervalidation(Fname:String , Lname:String ,Email:String,Pass :String,Cpass:String ,Gender:String,Phone:String, chkBox:Bool , complition : @escaping (String)->Void)
     {
         validation().registerValidation(Fname: Fname, Lname: Lname, Email: Email, Pass: Pass, Cpass: Cpass, Gender: Gender, Phone: Phone, chkBox: chkBox){
-            (BoolVlaue , resultString) in
-            if BoolVlaue{
+            (resultMsg) in
+            if resultMsg == txtfieldValConst.emptyStr{
                 self.registerservice.RegisterAction(Fname: Fname, Lname: Lname, Email: Email, Pass: Pass, Cpass: Cpass, Gender: Gender, Phone: Phone, chkBox: chkBox){
                     (responce) in
                     switch responce{
                     case .success(let data):
                         if data.0 != nil{
-                            complition(true,data.0?.user_msg ?? "done")
+                            complition(txtfieldValConst.emptyStr)
                         }else if data.1 != nil{
-                            complition(true,data.1?.userMsg ?? "faliuer")
+                            complition(txtfieldValConst.emptyStr)
+                        }else{
+                            complition(errorConstant.error)
                         }
                     case .failure(let error):
-                        complition(false,error.localizedDescription)
+                        complition(error.localizedDescription)
                     }
                 }
             }else{
-                complition(BoolVlaue,resultString)
+                complition(resultMsg)
             }
         }
     }
