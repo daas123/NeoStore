@@ -8,7 +8,6 @@
 import Foundation
 class AccountViewModel{
     func editAccountDetails(first_name: String, last_name: String, email: String, dob: String, phone_no: String,complition : @escaping (String)->Void){
-        
         FetchAccountWEbService().editAccountdata(first_name: first_name, last_name: last_name, email: email, dob: dob, phone_no:phone_no, profile_pic: ""){
             responce in
             switch responce{

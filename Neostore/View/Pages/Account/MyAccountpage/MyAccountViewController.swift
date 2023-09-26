@@ -101,7 +101,7 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
         if let yearIndex = years.firstIndex(of: currentYear) {
             datePicker.selectRow(yearIndex, inComponent: 2, animated: false)
         }
-        accountDateOfBirth.text = "\(currentMonth)-\(currentDay)-\(currentYear)"
+        accountDateOfBirth.text = "\(currentDay)-\(currentMonth)-\(currentYear)"
     }
     
     func setdeligate(){
@@ -200,12 +200,12 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
                 self.stopActivityIndicator()
                 self.accountImage.image = image
             }
-        }else{
+        } else {
             DispatchQueue.main.async {
                 self.stopActivityIndicator()
+                self.accountImage.image = UIImage(named: ImageConstants.default_img)
             }
         }
-        
         stopActivityIndicator()
     }
     func setButtonState(val:Bool){
@@ -227,6 +227,8 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
             if let imageData = image.pngData(), let accessToken = self.accesstoken {
                 UserDefaults.standard.set(imageData, forKey: accessToken)
                 self.accountImage.image = image
+            }else{
+                self.accountImage.image = UIImage(named: ImageConstants.default_img)
             }
         }
         NotificationCenter.default.post(name: .reloadSideMenuData, object: nil)
@@ -246,7 +248,7 @@ class MyAccountViewController: BaseViewController,UITextFieldDelegate {
                 return
             }
             // MARK: API CALL
-            validation().editAccountValidation(fname: accountFname.text ?? txtfieldValConst.emptyStr, lname: accountLname.text ?? txtfieldValConst.emptyStr , email: accountEmail.text  ?? txtfieldValConst.emptyStr, phone: accountPhoneNo.text ?? txtfieldValConst.emptyStr){
+            validation().editAccountValidation(fname: accountFname.text ?? txtfieldValConst.emptyStr, lname: accountLname.text ?? txtfieldValConst.emptyStr , email: accountEmail.text  ?? txtfieldValConst.emptyStr, phone: accountPhoneNo.text ?? txtfieldValConst.emptyStr, dob: accountDateOfBirth.text ?? txtfieldValConst.emptyStr){
                 (resultMsg) in
                 if resultMsg == txtfieldValConst.emptyStr {
                     self.viewModel.editAccountDetails(first_name: self.accountFname.text ?? txtfieldValConst.emptyStr, last_name: self.accountLname.text ?? txtfieldValConst.emptyStr, email: self.accountEmail.text  ?? txtfieldValConst.emptyStr, dob: self.selectedDate , phone_no: self.accountPhoneNo.text ?? txtfieldValConst.emptyStr){
@@ -344,7 +346,8 @@ extension MyAccountViewController : UIPickerViewDataSource, UIPickerViewDelegate
         let selectedDay = days[pickerView.selectedRow(inComponent: 0)]
         let selectedMonth = months[pickerView.selectedRow(inComponent: 1)]
         let selectedYear = years[pickerView.selectedRow(inComponent: 2)]
-        selectedDate = "\(selectedMonth)-\(selectedDay)-\(selectedYear)"
+        selectedDate = "\(selectedDay)-\(selectedMonth)-\(selectedYear)"
+        
     }
     
     

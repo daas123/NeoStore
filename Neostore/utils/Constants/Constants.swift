@@ -245,5 +245,6 @@ struct validationConstant{
     static let enterTheState = "Enter the State"
     static let enterTheCountry = "Enter the Country"
     static let zipcodeShouldBeNumber = "Zipcode should be a number"
+    static let doberror = "Date of Birth Must be less then Current data"
     
 }

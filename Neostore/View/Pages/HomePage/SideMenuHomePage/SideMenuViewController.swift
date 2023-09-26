@@ -98,6 +98,7 @@ class SideMenuViewController: UIViewController {
                     self.userEmail.text = SideMenuViewmodel.menuDemoData.data?.user_data?.email
                     self.userName.text = (SideMenuViewmodel.menuDemoData.data?.user_data?.first_name ?? txtfieldValConst.emptyStr) + (SideMenuViewmodel.menuDemoData.data?.user_data?.last_name ?? txtfieldValConst.emptyStr)
                     self.reloadProfileImage()
+                    
                 }
             }
         }

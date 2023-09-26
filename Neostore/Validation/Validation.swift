@@ -33,7 +33,7 @@ class validation{
             complition(validationConstant.invalidEmailAddress)
             return
         }
-    
+        
         guard (isValidEmail(email)) else{
             complition(validationConstant.enterTheValidEmail)
             return
@@ -121,7 +121,7 @@ class validation{
         
         completion(validationConstant.emptyStr)
     }
-
+    
     func addAddressValidation(address :String , landmard:String ,city:String,state:String,zipcode:Int ,country:String, complition :@escaping (String) -> Void){
         guard address != validationConstant.emptyStr else{
             complition(validationConstant.allTextFilledMustBeFilled)
@@ -162,38 +162,50 @@ class validation{
         }
         complition(validationConstant.emptyStr)
     }
+
     
-    func editAccountValidation(fname:String?,lname:String? ,email:String?,phone:String?,complition :@escaping (String) -> Void){
+    func editAccountValidation(fname: String?, lname: String?, email: String?, phone: String?, dob: String?, completion: @escaping (String) -> Void) {
         guard let firstName = fname?.trimmingCharacters(in: .whitespaces), !firstName.isEmpty, firstName.count > 3 else {
-            complition(validationConstant.firstNameMustBeAtLeastCharactersLong)
+            completion(validationConstant.firstNameMustBeAtLeastCharactersLong)
             return
         }
         
         guard let lastName = lname?.trimmingCharacters(in: .whitespaces), !lastName.isEmpty, lastName.count > 3 else {
-            complition(validationConstant.lastNameMustBeAtLeastCharactersLong)
+            completion(validationConstant.lastNameMustBeAtLeastCharactersLong)
             return
         }
         
         guard let email = email?.trimmingCharacters(in: .whitespaces), !email.isEmpty, isValidEmail(email) else {
-            complition(validationConstant.invalidEmailAddress)
+            completion(validationConstant.invalidEmailAddress)
             return
         }
         
         guard let phone = phone?.trimmingCharacters(in: .whitespaces), !phone.isEmpty, phone.count >= 10, containsOnlyNumbers(phone) else {
-            complition( validationConstant.invalidMobileNumber)
+            completion(validationConstant.invalidMobileNumber)
             return
         }
         
-        if phone.count != 10{
-            complition(validationConstant.invalidMobileNumber)
-        }else{
-            complition( validationConstant.emptyStr)
+        guard let dob = dob, let dateOfBirth = dateFromString(dob) else {
+            completion(validationConstant.doberror)
+            return
         }
         
+        let currentDate = Date()
+        
+        if dateOfBirth > currentDate {
+            completion(validationConstant.doberror)
+        } else {
+            completion(validationConstant.emptyStr)
+        }
     }
+    
+    func dateFromString(_ dateString: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd-MM-yyyy"
+        return dateFormatter.date(from: dateString)
+    }
+    
 }
-
-
 
 
 

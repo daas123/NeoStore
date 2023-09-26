@@ -15,10 +15,6 @@ class SideMenuViewmodel{
     static var menuDemoData = FetchAccount()
     var sideMenuTableImages = ["cart","table","chair","sofa","bed","person","location","order","logout"]
     func fetchAccountDetails(complition : @escaping (Bool)->Void){
-        if let imageData = UIImage(named: ImageConstants.userdefault), let accessToken = SideMenuViewmodel.menuDemoData.data?.user_data?.access_token {
-            UserDefaults.standard.set(imageData, forKey: accessToken)
-        }
-        
         FetchAccountWEbService().getAccountdata(){
             responce in
             switch responce{
