@@ -163,7 +163,6 @@ class validation{
         complition(validationConstant.emptyStr)
     }
 
-    
     func editAccountValidation(fname: String?, lname: String?, email: String?, phone: String?, dob: String?, completion: @escaping (String) -> Void) {
         guard let firstName = fname?.trimmingCharacters(in: .whitespaces), !firstName.isEmpty, firstName.count > 3 else {
             completion(validationConstant.firstNameMustBeAtLeastCharactersLong)
